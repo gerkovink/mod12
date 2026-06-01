@@ -17,6 +17,8 @@ format:
 
 ::: callout-tip
 ## Hoorcollege 19 juni 2026
++ GENAI use en log
+
 Vandaag kijken we naar reproduceerbaar onderzoek. We leren ho we er voor kunnen zorgen dat de route van ruwe data naar eindrapport transparant, controleerbaar en begrijpelijk is? We behandelen reproduceerbaarheid niet alleen als tecnhische netheid, maar als onderdeel van wetenschappelijke integriteit en professioneel statistisch werk. We besteden aandacht aan:
 
 - wat een reproduceerbaar onderzoeksarchief is
