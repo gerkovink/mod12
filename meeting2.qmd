@@ -50,7 +50,7 @@ Het doel is dat je aan het einde van de opdracht beschikt over:
 
 De nadruk ligt op het kritisch bekijken van je eigen vraag. Welke conclusie zou je graag willen trekken? En welke conclusie mag je, gegeven je data en onderzoeksontwerp, daadwerkelijk trekken?
 
-De opdracht [staat hier](). De uitwerktabel voor de literatuurkaart voor Groepsopdracht 2 is beschikbaar als invulbaar [Word bestand]() of [Excel bestand]().
+De opdracht [staat hier](opdracht/groepsopdracht2.html). De uitwerktabel voor de literatuurkaart voor Groepsopdracht 2 is beschikbaar als invulbaar [Word bestand]() of [Excel bestand]().
 
 ## Individuele opdracht
 Na de groepsopdracht pas je de inzichten uit het hoorcollege en de groepsopdracht toe op je eigen onderzoeksproject. Je voegt vandaag een nieuwe paragraaf toe aan je projectdocument met de focus "Onderzoeksontwerp, literatuur en type claim."
@@ -79,7 +79,7 @@ In deze paragraaf werk je de volgende onderdelen uit:
 9. Welke kenmerken van je data of onderzoeksontwerp beperken je conclusie?
 10. Wat zou er nodig zijn om een sterkere conclusie te kunnen trekken?
 
-Deze paragraaf helpt je om realistischer en preciezer te formuleren wat je onderzoek kan opleveren. De tekst die je vandaag schrijft, kan later gebruikt worden in de introductie, het theoretisch kader, de methode-, discussie- en beperkingenparagraaf van het Research Report.
+Deze paragraaf helpt je om realistischer en preciezer te formuleren wat je onderzoek kan opleveren. De tekst die je vandaag schrijft, kan later gebruikt worden in de introductie, het theoretisch kader, de methode-, discussie- en discussieparagraaf van het Research Report.
 
 Een mogelijke formulering is:
 

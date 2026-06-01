@@ -19,20 +19,20 @@ format:
 | Onderdeel | Beschrijving |
 |---|---|
 | **Duur** | 1 uur |
-| **Werkvorm** | Groepswerk in groepen van 3–4 studenten. Het is wenselijk dat studenten met verschillende inhoudelijke interesses in één groep zitten, zodat zij elkaar kunnen helpen om aannames, onduidelijkheden en te sterke claims te herkennen. |
-| **Product** | Aangescherpte onderzoeksvraag, voorlopig antwoordformat en bewuste afbakening van wat het onderzoek niet kan concluderen |
+| **Werkvorm** | Groepswerk in groepen van 3–4 studenten. Het is wenselijk dat je met verschillende inhoudelijke interesses in één groep zit, zodat jullie elkaar kunnen helpen om aannames, onduidelijkheden en te sterke claims te herkennen. Twee weten immers meer dan één! |
 
-Aan het einde van de opdracht levert iedere student een korte uitwerking op met:
+
+Aan het einde van de opdracht heb je met je groep een uitwerking met:
 
 1. een aangescherpte onderzoeksvraag;
 2. een voorlopig antwoordformat;
 3. één zin over wat het onderzoek niet kan concluderen;
 4. een eerste idee van welke data, variabelen en vergelijking nodig zijn.
 
-Dit eindproduct vormt de basis voor de verdere uitwerking van het onderzoeksproject, het analyseplan en uiteindelijk het Research Project Report.
+De vaardigheden die je ontwikkeld in het maken van deze opdracht vormen de basis voor de verdere uitwerking van het onderzoeksproject, het analyseplan en uiteindelijk het Research Project Report.
 
 # Opdracht
-In deze opdracht werken we in groepen aan een bewuste en gestructureerde opzet van het ontwerpen van een onderzoeksvraag. Dit doen we aan de hand van een aantal voorbeeldonderwerpen. Aan het eind van de opdracht hebben we het volgende: 
+In deze opdracht werken je in groepen aan een bewuste en gestructureerde opzet van het ontwerpen van een onderzoeksvraag. Dit doen we aan de hand van een aantal voorbeeldonderwerpen. Aan het eind van de opdracht hebben we het volgende: 
 
 1. een aangescherpte onderzoeksvraag;
 2. een voorlopig antwoordformat;
@@ -45,7 +45,7 @@ Voor deze opdracht gebruiken we de onderstaande uitwerktabel.
 
 | Onderdeel | Uitwerking |
 |---|---|
-| **Naam student** |  |
+| **Naam studenten** |  |
 | **Oorspronkelijk onderwerp** |  |
 | **Maatschappelijk of wetenschappelijk probleem** |  |
 | **Relevantie voor Suriname/Zuid-Amerika/beleid/ontwikkeling/klimaat/natuur** |  |
@@ -138,7 +138,6 @@ Bij de bespreking wordt vooral gelet op:
 
 # Voorbeeldonderwerpen (Nog verder uit te werken)
 
-Studenten mogen hun eigen onderwerp gebruiken, maar kunnen ook oefenen met één van de onderstaande voorbeeldonderwerpen.
 
 ## Onderwerp 1: Klimaatverandering en wateroverlast in Suriname
 
@@ -169,35 +168,5 @@ Satellietbeelden, geografische databestanden, gegevens over mijnbouwconcessies, 
 
 Let op:
 Een verschil tussen gebieden met en zonder mijnbouwactiviteit bewijst niet automatisch dat mijnbouw de enige oorzaak is van ontbossing. Andere factoren, zoals infrastructuur, landbouw, bereikbaarheid en regelgeving, kunnen ook een rol spelen.
-
-
-## Onderwerp 3: Onderwijs, taalvaardigheid en leerprestaties
-
-Breed onderwerp:
-De rol van Nederlandse taalvaardigheid in schoolprestaties van leerlingen in Suriname.
-
-Mogelijke onderzoeksvraag:
-In welke mate is Nederlandse taalvaardigheid geassocieerd met rekenprestaties van basisschoolleerlingen in Suriname, rekening houdend met achtergrondkenmerken zoals leeftijd, geslacht, district, opleidingsniveau van ouders en sociaaleconomische positie?
-
-Mogelijke data:
-MICS-data, onderwijsdata, toetsgegevens, schoolregistraties of surveydata over huishoudens en kinderen.
-
-Let op:
-Een associatie tussen taalvaardigheid en rekenprestaties betekent niet automatisch dat taalvaardigheid de oorzaak is van betere of slechtere rekenprestaties. Er kunnen andere verklarende factoren zijn, zoals schoolkwaliteit, thuissituatie of toegang tot leermiddelen.
-
-
-## Onderwerp 4: Publiek vertrouwen, corruptieperceptie en economisch gedrag
-
-Breed onderwerp:
-De relatie tussen corruptieperceptie en vertrouwen in overheid of economisch gedrag in Suriname.
-
-Mogelijke onderzoeksvraag:
-In welke mate zijn ervaringen met of percepties van corruptie geassocieerd met vertrouwen in overheidsinstellingen en economisch vertrouwen onder burgers in Suriname, op basis van surveydata?
-
-Mogelijke data:
-LAPOP-data, publieke opinieonderzoeken, administratieve gegevens, economische indicatoren of surveydata over vertrouwen, instituties en gedrag.
-
-Let op:
-Surveydata kunnen laten zien of burgers met bepaalde ervaringen of percepties ook minder vertrouwen rapporteren, maar zijn meestal onvoldoende om zonder verdere aannames harde causale uitspraken te doen over het effect van corruptie op economisch gedrag.
 
 
