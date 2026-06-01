@@ -16,13 +16,44 @@ format:
 ---
 
 ::: callout-tip
-## Hoorcollege 15 juni 2026
+## Hoorcollege 19 juni 2026
+Vandaag kijken we naar reproduceerbaar onderzoek. We leren ho we er voor kunnen zorgen dat de route van ruwe data naar eindrapport transparant, controleerbaar en begrijpelijk is? We behandelen reproduceerbaarheid niet alleen als tecnhische netheid, maar als onderdeel van wetenschappelijke integriteit en professioneel statistisch werk. We besteden aandacht aan:
 
-We beginnen vandaag met `R` en `RStudio`. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met `storytelling` en zullen daar het publicatieplatform [`Quarto`]() voor gebruiken. De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+- wat een reproduceerbaar onderzoeksarchief is
+- waarom transparantie belangrijk is voor geloofwaardigheid, samenwerking en begeleiding
+- hoe een goede projectstructuur helpt om fouten te vinden en keuzes te verantwoorden
+- welke onderdelen minimaal in een onderzoeksarchief aanwezig moeten zijn
+- het verschil tussen ruwe data, opgeschoonde data, scripts, output, rapport en presentatie
+- het belang van een README, (evt datatoegangsnotitie), codeboek en beslislogboek
+- principes voor een transparante workflow, zoals het niet overschrijven van ruwe data
+
+Ook besteden we aandacht aan het idee dat reproduceerbaarheid niet perfect hoeft te zijn om waardevol te zijn. Het belangrijkste is traceerbaarheid: wat is er gedaan, waarom is dat gedaan, waar staat het beschreven, en waar komt de output in het rapport vandaan?
+
+De slides voor het hoorcollege kunt je [hier vinden](slides/lec-4.html).
 :::
 
 ## Groepsopdracht
-hier de groepsopdracht tekst
+In duo's 
+
+--> krijg een folder <br>
+--> maak een overzichtelijk archief <br>
+--> breng structuur aan <br>
+--> voeg readme toe <br>
+--> maak een decision log entry <br>
+
+  - datum
+  - besluit
+  - reden
+  - gevolg (verwacht gevolg iig)
+  - effect op interpretatie/RQ
+  
+--> peer review: geef archief aan ander duo en geef feedback <br>
+--> plenaire bespreking van de feedback <br>
+
+Deliverable is archief met mapstructuur, readme en DDL
+
 
 ## Individuele opdracht
-hier de individuele opdracht tekst
+- Pas geleerde toe
+- maak structuur en DDL 
+- maak codeboek als het er nog niet is

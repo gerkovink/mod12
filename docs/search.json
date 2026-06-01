@@ -194,7 +194,17 @@
     "href": "meeting3.html",
     "title": "Data zijn niet heilig!",
     "section": "",
-    "text": "Groepsopdracht\nhier de groepsopdracht tekst",
+    "text": "Groepsopdracht\nData biography worksheet maken met de onderstaande velden:\nSynthese: Zijn er beperkingen die een verandering in de RQ vereisen?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data zijn niet heilig!</span>"
+    ]
+  },
+  {
+    "objectID": "meeting3.html#groepsopdracht",
+    "href": "meeting3.html#groepsopdracht",
+    "title": "Data zijn niet heilig!",
+    "section": "",
+    "text": "Naam van het databestand.\nEigenaar of bron van de data.\nOorspronkelijk doel van de dataverzameling.\nObservatie-eenheid.\nDoelpopulatie.\nGeobserveerde populatie of steekproef.\nTijdperiode.\nSteekproef- of selectiemechanisme.\nWegingen of designvariabelen, indien relevant.\nBelangrijkste variabelen die nodig zijn voor het project.\nBelangrijke ontbrekende waarden of niet-beschikbare variabelen.\nMogelijke meetproblemen.\nMogelijke selectie- of dekkingsproblemen.\nEthische, privacy- of toegangsbeperkingen.\nWaarvoor het databestand geschikt is.\nWelke vragen het databestand niet kan beantwoorden.\n\n\nDataset Inventory\nDark Data diagnose\nGebruiksoverzicht van onze data:\n\n\nwaarom is de data geschikt of nuttig?\nwat is de belangrijkste beperking?\nhoe ondervang ik die beperking?",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data zijn niet heilig!</span>"
     ]
@@ -204,7 +214,7 @@
     "href": "meeting3.html#individuele-opdracht",
     "title": "Data zijn niet heilig!",
     "section": "Individuele opdracht",
-    "text": "Individuele opdracht\nhier de individuele opdracht tekst",
+    "text": "Individuele opdracht\n\nvoortbouwen op technieken geleerd in groepsopdracht\nmaak Data Decision Log aan (morgen gaan vullen)",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data zijn niet heilig!</span>"
     ]
@@ -214,7 +224,17 @@
     "href": "meeting4.html",
     "title": "Reproduceerbare onderzoeksarchieven",
     "section": "",
-    "text": "Groepsopdracht\nhier de groepsopdracht tekst",
+    "text": "Groepsopdracht\nIn duo’s\n–&gt; krijg een folder  –&gt; maak een overzichtelijk archief  –&gt; breng structuur aan  –&gt; voeg readme toe  –&gt; maak een decision log entry\n–&gt; peer review: geef archief aan ander duo en geef feedback  –&gt; plenaire bespreking van de feedback\nDeliverable is archief met mapstructuur, readme en DDL",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproduceerbare onderzoeksarchieven</span>"
+    ]
+  },
+  {
+    "objectID": "meeting4.html#groepsopdracht",
+    "href": "meeting4.html#groepsopdracht",
+    "title": "Reproduceerbare onderzoeksarchieven",
+    "section": "",
+    "text": "datum\nbesluit\nreden\ngevolg (verwacht gevolg iig)\neffect op interpretatie/RQ",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproduceerbare onderzoeksarchieven</span>"
     ]
@@ -224,7 +244,7 @@
     "href": "meeting4.html#individuele-opdracht",
     "title": "Reproduceerbare onderzoeksarchieven",
     "section": "Individuele opdracht",
-    "text": "Individuele opdracht\nhier de individuele opdracht tekst",
+    "text": "Individuele opdracht\n\nPas geleerde toe\nmaak structuur en DDL\nmaak codeboek als het er nog niet is",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproduceerbare onderzoeksarchieven</span>"
     ]
@@ -234,7 +254,17 @@
     "href": "meeting5.html",
     "title": "Statistisch modeleren",
     "section": "",
-    "text": "Groepsopdracht\nhier de groepsopdracht tekst",
+    "text": "Groepsopdracht\nAnalyseplan maken\nPlenair nabespreken",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistisch modeleren</span>"
+    ]
+  },
+  {
+    "objectID": "meeting5.html#groepsopdracht",
+    "href": "meeting5.html#groepsopdracht",
+    "title": "Statistisch modeleren",
+    "section": "",
+    "text": "tabel template geven:\n\n\n\n\nElement\nUitwerking door de student\n\n\n\n\nOnderzoeksvraag\n\n\n\nAnalyse-eenheid\n\n\n\nUitkomstvariabele\n\n\n\nType uitkomst\n\n\n\nBelangrijkste verklarende variabele(n)\n\n\n\nBelangrijke covariaten/achtergrondvariabelen\n\n\n\nSubgroepen of vergelijkingen\n\n\n\nBeschrijvende analyses\n\n\n\nBelangrijkste statistische methode\n\n\n\nAlternatieve of eenvoudigere methode\n\n\n\nDiagnostiek of controles\n\n\n\nGeplande tabellen en figuren\n\n\n\nBeoogde interpretatie\n\n\n\n\n\nvars in kaart brengen\nmethode zoeken + backup methode\nmogelijke interpretatie\nwelke output nodig?\nvervolg test nodig of test vooraf? alles ok?",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistisch modeleren</span>"
     ]
@@ -244,7 +274,7 @@
     "href": "meeting5.html#individuele-opdracht",
     "title": "Statistisch modeleren",
     "section": "Individuele opdracht",
-    "text": "Individuele opdracht\nhier de individuele opdracht tekst",
+    "text": "Individuele opdracht\ntoevoegen van statistical analysis plan, zoals hierboven beschreven.\n\nuitkomsten/predictoren\nbelangrijkste vergelijking\nvoorgestelde descriptives\nmethod + backup daarvoor\ninterpretatie van de params, coefs, diffs en metrics\nplanning van tabellen of figuren die nodig zijn voor analyse overbrengen op publiek?",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistisch modeleren</span>"
     ]
