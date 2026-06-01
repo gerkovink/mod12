@@ -25,7 +25,7 @@ We beginnen vandaag met een inleiding tot het vak en een hoorcollege over de ana
 - hoe we van onderwerp naar onderzoekbare vragen kunnen komen 
 - antwoordkwaliteit en hoe dit samenhangt met goed onderzoek
 
-De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+De slides voor het hoorcollege kun je [hier vinden](slides/lec-1.html).
 :::
 
 ## Groepsopdracht
@@ -53,4 +53,4 @@ In de komende twee weken werken we naar de structuur van een eindproduct toe. In
 - Een beschrijving van de dataset die hiervoor gebruikt zal worden. 
 - In ieder geval 1 beperking die nu al voorzien kan worden. 
 
-De paragraaf waaraan we in de individuele opdracht werken zal dienen als de basis voor de introductie en onderzoeksvraag sectie in het Research Report. In de komende gecombineerde hoor- en werk-colleges zullen we toewerken naar een completer einddocument. 
+De paragraaf waaraan we in de individuele opdracht werken, zal dienen als de basis voor de introductie en onderzoeksvraag sectie in het Research Report. In de komende gecombineerde hoor- en werk-colleges zullen we toewerken naar een completer einddocument. 

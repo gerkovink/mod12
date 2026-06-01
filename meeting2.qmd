@@ -16,13 +16,73 @@ format:
 ---
 
 ::: callout-tip
-## Hoorcollege 15 juni 2026
-test 
-We beginnen vandaag met `R` en `RStudio`. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met `storytelling` en zullen daar het publicatieplatform [`Quarto`]() voor gebruiken. De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+## Hoorcollege 16 juni 2026
+Vandaag werken we verder aan de stap van maatschappelijk probleem naar onderzoeksontwerp. We kijken vooral naar het soort vraag dat je stelt en naar het soort antwoord dat je onderzoek redelijkerwijs kan geven. We besteden aandacht aan
+
+- verschillende typen statistische onderzoeksvragen
+- het verschil tussen beschrijven, vergelijken, verklaren, voorspellen, causaliteit en valideren
+- waarom onderzoeksontwerp vóór analysemethode komt
+- de rol van literatuur bij het aanscherpen van je onderzoeksvraag
+- het zoeken naar inhoudelijke, theoretische en methodologische literatuur
+- de grenzen van wat je met een dataset kunt concluderen
+- het verschil tussen “samenhang”, “voorspelling”, “verklaring” en “oorzaak”
+
+Ook besteden we aandacht aan het zoeken naar literatuur en bronnen en aan de manieren waarop we dat kunnen doen. We oefenen in de groepsopdracht met het opstellen van een literatuurkaart. 
+
+De slides voor het hoorcollege kunt je [hier vinden](slides/lec-2.html).
 :::
 
 ## Groepsopdracht
-hier de groepsopdracht tekst
+Tijdens de groepsopdracht werk je verder aan de onderzoeksvraag die je gisteren hebt aangescherpt. Vandaag staat niet alleen de formulering van de vraag centraal, maar vooral het type vraag dat je stelt, de literatuur die helpt om je vraag te onderbouwen, en de claim die je met je onderzoek wel of niet kunt maken.
+
+Een statistisch onderzoek kan verschillende soorten antwoorden opleveren. Soms wil je vooral beschrijven hoe vaak iets voorkomt of hoe een trend zich ontwikkelt. Soms wil je groepen vergelijken. Soms wil je onderzoeken of variabelen met elkaar samenhangen, of je een uitkomst kunt voorspellen, of een meetmethode valide is. In sommige gevallen wil je een causale uitspraak doen, maar daarvoor is meestal een sterker onderzoeksontwerp nodig dan alleen een observationeel databestand.
+
+In deze opdracht gebruik je literatuur niet als decoratie voor het rapport, maar als instrument om je onderzoek beter te maken. Literatuur helpt om je begrippen scherper te definiëren, relevante variabelen en achtergrondkenmerken te kiezen, mogelijke mechanismen te herkennen, geschikte mehtoden te vinden en te beplaen welke conclusie je onderzoek wel of niet kan dragen.
+
+Het doel is dat je aan het einde van de opdracht beschikt over:
+
+1. een aangescherpte onderzoeksvraag;
+2. een classificatie van je onderzoeksvraag;
+3. een eerste zoekstrategie voor relevante literatuur;
+4. een mini-literatuurkaart;
+5. een beschrijving van de sterkste claim die je met je data kunt ondersteunen;
+6. een waarschuwingszin over de claim die je onderzoek niet kan dragen.
+
+De nadruk ligt op het kritisch bekijken van je eigen vraag. Welke conclusie zou je graag willen trekken? En welke conclusie mag je, gegeven je data en onderzoeksontwerp, daadwerkelijk trekken?
+
+De opdracht [staat hier](). De uitwerktabel voor de literatuurkaart voor Groepsopdracht 2 is beschikbaar als invulbaar [Word bestand]() of [Excel bestand]().
 
 ## Individuele opdracht
-hier de individuele opdracht tekst
+Na de groepsopdracht pas je de inzichten uit het hoorcollege en de groepsopdracht toe op je eigen onderzoeksproject. Je voegt vandaag een nieuwe paragraaf toe aan je projectdocument met de focus "Onderzoeksontwerp, literatuur en type claim."
+
+In deze paragraaf werk je de volgende onderdelen uit:
+
+1. Welk type onderzoeksvraag stel je?
+    - Beschrijvend
+    - Vergelijkend
+    - Verklarend of associatief
+    - Voorspellend
+    - Causaal
+    - Validerend of meetkundig
+2. Waarom past jouw vraag bij dit type?
+3. Welke literatuur heb je nodig om je vraag beter te maken?
+    - Inhoudelijke literatuur over het onderwerp
+    - Theoretische literatuur over relevante begrippen of mechanismen
+    - Methodologische literatuur over data, meetinstrumenten of analysemethoden
+    - Datasetdocumentatie of codeboeken
+4. Welke 3–5 zoektermen of zoekopdrachten ga je gebruiken?
+5. Welke begrippen, variabelen of achtergrondkenmerken verwacht je uit de literatuur te halen?
+6. Welk onderzoeksontwerp volgt uit je dataset?
+    - Is je dataset bijvoorbeeld cross-sectioneel, longitudinaal, administratief, survey-gebaseerd, experimenteel, geografisch of gebaseerd op metingen?
+7. Wat is de sterkste claim die je studie kan ondersteunen?
+8. Welke sterkere claim kan je studie niet ondersteunen?
+9. Welke kenmerken van je data of onderzoeksontwerp beperken je conclusie?
+10. Wat zou er nodig zijn om een sterkere conclusie te kunnen trekken?
+
+Deze paragraaf helpt je om realistischer en preciezer te formuleren wat je onderzoek kan opleveren. De tekst die je vandaag schrijft, kan later gebruikt worden in de introductie, het theoretisch kader, de methode-, discussie- en beperkingenparagraaf van het Research Report.
+
+Een mogelijke formulering is:
+
+_Dit onderzoek stelt een [type] onderzoeksvraag, omdat het gericht is op [doel van de analyse]. De literatuur helpt om [begrippen/variabelen/mechanismen] te definiëren en om [achtergrondvariabelen/methode/claimgrens] te onderbouwen. Op basis van [dataset] kan dit onderzoek uitspraken doen over [toegestane claim]. Het onderzoek kan echter niet aantonen dat [niet-toegestane claim], omdat [beperking van design of data]._
+
+Aan het einde van vandaag heb je dus niet alleen een betere onderzoeksvraag, maar ook een eerste literatuurkaart en een scherper beeld van de grenzen van je eigen onderzoeksontwerp.
