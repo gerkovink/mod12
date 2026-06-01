@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -253,16 +282,43 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We beginnen vandaag met <code>R</code> en <code>RStudio</code>. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met <code>storytelling</code> en zullen daar het publicatieplatform <a href=""><code>Quarto</code></a> voor gebruiken. De slides voor het hoorcollege kunt u <a href="slides/lec-1.html">hier vinden</a>.</p>
+<p>Vandaag kijken we naar onzekerheid, aannames en robuustheid. Ieder statistisch antwoord hangt af van aannames over de data, de meting, het model en de onderzoekssituatie. In dit college leren we hoe je die aannames zichtbaar kunt maken en hoe je eenvoudige controles kunt plannen om te onderzoeken hoe stevig of robuust je conclusies zijn. We besteden aandacht aan:</p>
+<ul>
+<li>onzekerheid als meer dan alleen <span class="math inline">\(p\)</span>-waarden en betrouwbaarheidsintervallen (- steekproefonzekerheid, meetonzekerheid, modelonzekerheid en missing-data-onzekerheid) –&gt; dag ervoor?</li>
+<li>aannames als brug tussen analyse en conclusie</li>
+<li>bedreigingen voor validiteit, zoals selectiebias, confounding, nonrespons en meetfouten</li>
+<li>het herkennen van te sterke conclusies bij beperkte data</li>
+<li>eenvoudige robuustheids- en sensitiviteitschecks</li>
+</ul>
+<p>Ook besteden we aandacht aan verantwoord taalgebruik bij conclusies. Een goed statistisch antwoord zegt niet alleen wat de resultaten laten zien, maar ook onder welke aannames die resultaten betekenisvol zijn.</p>
+<p>De slides voor het hoorcollege kunt je <a href="slides/lec-6.html">hier vinden</a>.</p>
 </div>
 </div>
 <section id="groepsopdracht" class="level2">
 <h2 class="anchored" data-anchor-id="groepsopdracht">Groepsopdracht</h2>
-<p>hier de groepsopdracht tekst</p>
+<p>sceptische reviewer opdracht.</p>
+<p>–&gt; krijg tekst –&gt; schrijf conclusie –&gt; geef door + doe review –&gt; robustness check + suggestie –&gt; herschrijven conclusie</p>
+<ul>
+<li>hoofconclusie (intended)</li>
+<li>aannames</li>
+<li>grootste bedreiging voor validiteti?</li>
+<li>effect bedreiging op conclusie?</li>
+<li>1 mogelijke robusstheid of sensitiviteitscheck</li>
+<li>welk resultatt brengt vertrouwen omhoog?</li>
+<li>welk res naar beneden?</li>
+<li>verantwoord rephrasen van conclusie nodig?</li>
+</ul>
 </section>
 <section id="individuele-opdracht" class="level2">
 <h2 class="anchored" data-anchor-id="individuele-opdracht">Individuele opdracht</h2>
-<p>hier de individuele opdracht tekst</p>
+<p>Bsis voor aannames en beperkingen sectie</p>
+<ol type="1">
+<li>aannames voor primaire conclusie</li>
+<li>mogelijke bronnen bias en oinzekerheid</li>
+<li>robustness chekc plan maken</li>
+<li>Hoe ga je onzekerhjeid rapporteren?</li>
+<li>welke conclusie wordt vermeden of kan dat beter worden?</li>
+</ol>
 
 
 </section>

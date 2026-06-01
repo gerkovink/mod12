@@ -18,11 +18,45 @@ format:
 ::: callout-tip
 ## Hoorcollege 15 juni 2026
 
-We beginnen vandaag met `R` en `RStudio`. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met `storytelling` en zullen daar het publicatieplatform [`Quarto`]() voor gebruiken. De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+Vandaag kijken we naar onzekerheid, aannames en robuustheid. Ieder statistisch antwoord hangt af van aannames over de data, de meting, het model en de onderzoekssituatie. In dit college leren we hoe je die aannames zichtbaar kunt maken en hoe je eenvoudige controles kunt plannen om te onderzoeken hoe stevig of robuust je conclusies zijn. We besteden aandacht aan:
+
+- onzekerheid als meer dan alleen $p$-waarden en betrouwbaarheidsintervallen
+(- steekproefonzekerheid, meetonzekerheid, modelonzekerheid en missing-data-onzekerheid) --> dag ervoor?
+- aannames als brug tussen analyse en conclusie
+- bedreigingen voor validiteit, zoals selectiebias, confounding, nonrespons en meetfouten
+- het herkennen van te sterke conclusies bij beperkte data
+- eenvoudige robuustheids- en sensitiviteitschecks
+
+Ook besteden we aandacht aan verantwoord taalgebruik bij conclusies. Een goed statistisch antwoord zegt niet alleen wat de resultaten laten zien, maar ook onder welke aannames die resultaten betekenisvol zijn.
+
+De slides voor het hoorcollege kunt je [hier vinden](slides/lec-6.html).
+
 :::
 
 ## Groepsopdracht
-hier de groepsopdracht tekst
+sceptische reviewer opdracht. 
+
+--> krijg tekst
+--> schrijf conclusie
+--> geef door + doe review
+--> robustness check + suggestie
+--> herschrijven conclusie
+
+- hoofconclusie (intended)
+- aannames
+- grootste bedreiging voor validiteti?
+- effect bedreiging op conclusie?
+- 1 mogelijke robusstheid of sensitiviteitscheck
+- welk resultatt brengt vertrouwen omhoog?
+- welk res naar beneden?
+- verantwoord rephrasen van conclusie nodig?
+
 
 ## Individuele opdracht
-hier de individuele opdracht tekst
+Bsis voor aannames en beperkingen sectie
+
+1. aannames voor primaire conclusie
+2. mogelijke bronnen bias en oinzekerheid
+3. robustness chekc plan maken
+4. Hoe ga je onzekerhjeid rapporteren?
+5. welke conclusie wordt vermeden of kan dat beter worden?

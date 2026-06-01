@@ -18,11 +18,13 @@ format:
 ::: callout-tip
 ## Hoorcollege 15 juni 2026
 
-We beginnen vandaag met `R` en `RStudio`. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met `storytelling` en zullen daar het publicatieplatform [`Quarto`]() voor gebruiken. De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+Van resultaat tot argument. Hoe presenteer je je onderzoek?
+doel: leren dat onderzoek presenteren een keten moet zijn van coherente argumenten en niet van lsose secties of resultaten. dit geldt voor rapporten en artikelen, maar ook voor presentaties. 
+
 :::
 
 ## Groepsopdracht
-hier de groepsopdracht tekst
+Wel groepsopdracht doen? Of werken aan individuele resultaten en presentatie?
 
 ## Individuele opdracht
-hier de individuele opdracht tekst
+Werken aan presentatie voor de volgende dag

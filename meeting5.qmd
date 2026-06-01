@@ -28,6 +28,9 @@ Vandaag kijken we naar statistische modellering als een vorm van gedisciplineerd
 - vermijden van *method-first* denken
 
 Ook besteden we aandacht aan het idee dat een complexere methode niet automatisch een beter antwoord geeft. Een eenvoudige analyse die goed aansluit op de onderzoeksvraag, zorgvuldig is uitgevoerd en helder wordt geïnterpreteerd, is vaak krachtiger dan een geavanceerd model dat niet helemaal past bij de data, aannames of de claim.
+
+De slides voor het hoorcollege kunt je [hier vinden](slides/lec-5.html).
+
 :::
 
 ## Groepsopdracht

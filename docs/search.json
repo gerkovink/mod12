@@ -284,7 +284,17 @@
     "href": "meeting6.html",
     "title": "Onzekerheid, aannames en robuustheid",
     "section": "",
-    "text": "Groepsopdracht\nhier de groepsopdracht tekst",
+    "text": "Groepsopdracht\nsceptische reviewer opdracht.\n–&gt; krijg tekst –&gt; schrijf conclusie –&gt; geef door + doe review –&gt; robustness check + suggestie –&gt; herschrijven conclusie",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Onzekerheid, aannames en robuustheid</span>"
+    ]
+  },
+  {
+    "objectID": "meeting6.html#groepsopdracht",
+    "href": "meeting6.html#groepsopdracht",
+    "title": "Onzekerheid, aannames en robuustheid",
+    "section": "",
+    "text": "hoofconclusie (intended)\naannames\ngrootste bedreiging voor validiteti?\neffect bedreiging op conclusie?\n1 mogelijke robusstheid of sensitiviteitscheck\nwelk resultatt brengt vertrouwen omhoog?\nwelk res naar beneden?\nverantwoord rephrasen van conclusie nodig?",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Onzekerheid, aannames en robuustheid</span>"
     ]
@@ -294,7 +304,7 @@
     "href": "meeting6.html#individuele-opdracht",
     "title": "Onzekerheid, aannames en robuustheid",
     "section": "Individuele opdracht",
-    "text": "Individuele opdracht\nhier de individuele opdracht tekst",
+    "text": "Individuele opdracht\nBsis voor aannames en beperkingen sectie\n\naannames voor primaire conclusie\nmogelijke bronnen bias en oinzekerheid\nrobustness chekc plan maken\nHoe ga je onzekerhjeid rapporteren?\nwelke conclusie wordt vermeden of kan dat beter worden?",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Onzekerheid, aannames en robuustheid</span>"
     ]
@@ -304,7 +314,7 @@
     "href": "meeting7.html",
     "title": "Onderzoeksresultaten presenteren",
     "section": "",
-    "text": "Groepsopdracht\nhier de groepsopdracht tekst",
+    "text": "Groepsopdracht\nWel groepsopdracht doen? Of werken aan individuele resultaten en presentatie?",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Onderzoeksresultaten presenteren</span>"
     ]
@@ -314,7 +324,7 @@
     "href": "meeting7.html#individuele-opdracht",
     "title": "Onderzoeksresultaten presenteren",
     "section": "Individuele opdracht",
-    "text": "Individuele opdracht\nhier de individuele opdracht tekst",
+    "text": "Individuele opdracht\nWerken aan presentatie voor de volgende dag",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Onderzoeksresultaten presenteren</span>"
     ]
