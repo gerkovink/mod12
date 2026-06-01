@@ -1,0 +1,40 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Module 12: Research Project"
+  repo-url: https://github.com/gerkovink/mod12
+  repo-branch: book
+  repo-actions: [edit, issue]
+  author:
+  - name: Gerko Vink
+    orcid: 0000-0001-9767-1924
+    email: g.vink@uu.nl
+  date: last-modified
+  chapters:
+    - index.qmd
+    - overview.qmd
+    - team.qmd
+    - deliverables.qmd
+    - genai.qmd
+    - meeting1.qmd
+    - meeting2.qmd
+    - meeting3.qmd
+    - meeting4.qmd
+    - meeting5.qmd
+    - meeting6.qmd
+    - meeting7.qmd
+    - meeting8.qmd
+    # - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

@@ -1,0 +1,714 @@
+---
+title: "Data Visualization"
+author: 
+  - name: Gerko Vink
+    orcid: 0000-0001-9767-1924
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+date: 12 June 2025
+date-format: "D MMM YYYY"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    theme: [solarized, gerko.scss]
+    embed-resources: true
+    progress: true
+    margin: 0.075
+    logo: logo.png 
+    toc: false
+    toc-depth: 1
+    toc-title: Outline
+    slide-number: true
+    scrollable: false
+    width: 1200
+    reference-location: margin
+    footer: Gerko Vink @ Anton de Kom Universiteit, Paramaribo
+    standalone: true
+---
+
+## Disclaimer {.smaller}
+I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.
+
+Images are either directly linked, or generated with StableDiffusion or DALL-E. That said, there is no information in this presentation that exceeds legal use of copyright materials in academic settings, or that should not be part of the public domain. 
+
+::: {.callout-warning}
+You **may use** any and all content in this presentation - including my name - and submit it as input to generative AI tools, with the following **exception**:
+
+- You must ensure that the content is not used for further training of the model
+:::
+
+## Slide materials and source code
+::: callout-tip
+# Materials
+- lecture slides on Moodle
+- course page: [www.gerkovink.com/sur](https://www.gerkovink.com/sur)
+- source: [github.com/gerkovink/sur](https://github.com/gerkovink/sur)
+:::
+
+## Recap
+
+Gisteren hebben we deze onderwerpen behandeld:
+
+- Ontbrekende waarden identificeren
+- Synthetische imputaties maken
+
+```{r echo=FALSE}
+library(mice)
+library(magrittr)
+library(dplyr)
+```
+
+## Some addition
+I've showed you how to draw a *bootstrap* sample from a dataset in the following way:
+```{r eval = FALSE}
+which_rows <- sample(1:nrow(mice::boys), size = 100, replace = TRUE)
+mice::boys[which_rows, ]
+```
+But, there is a much easier way:
+```{r}
+mice::boys %>% 
+  slice_sample(n = 100, replace = TRUE) %>% 
+  glimpse()
+```
+
+
+
+## Today
+Vandaag behandelen we de volgende onderwerpen:
+
+- Basisplots: histogrammen, scatterplots en boxplots
+- Geavanceerde plots met ggplot2
+- Aanpassen van grafieken voor publicatie
+- Exporteren van grafieken en resultaten
+
+## We use the following packages
+```{r, message=FALSE, warning=FALSE}
+library(mice)     # Boys dataset
+library(dplyr)    # Data manipulation
+library(magrittr) # Pipes
+library(ggplot2)  # Plotting suite
+```
+
+## Why visualise?
+
+- We can process a lot of information quickly with our eyes
+- Plots give us information about
+    - Distribution / shape
+    - Irregularities
+    - Assumptions
+    - Intuitions
+- Summary statistics, correlations, parameters, model tests, *p*-values do not tell the whole story
+
+### ALWAYS plot your data!
+
+
+## Why visualise?
+
+<img src="img/lec-7/anscombe.svg" style="display:block;width:90%;margin:0 auto;"></img>
+<p style="text-align:center;font-style:italic;font-size:0.5em;">Source: Anscombe, F. J. (1973). "Graphs in Statistical Analysis". American Statistician. 27 (1): 17–21.</p>
+
+
+## Why visualise?
+
+<img src="img/lec-7/datasaurus.gif" style="display:block;width:90%;margin:0 auto;"></img>
+
+
+<p style="text-align:center;font-style:italic;font-size:0.5em;">Source: https://www.autodeskresearch.com/publications/samestats</p>
+
+## Base `R` Plots
+
+```{r, echo=FALSE, fig.align='center'}
+par(mfrow = c(2,2), mar = c(4, 4, 3, 1))
+boys %$% hist(na.omit(hgt), main = "Histogram", xlab = "Height")
+boys %$% plot(density(na.omit(hgt)), main = "Density plot", xlab = "Height", bty = "L")
+boys %$% plot(hgt, wgt, main = "Scatter plot", xlab = "Height", ylab = "Weight", bty = "L")
+boys %$% boxplot(hgt~reg, main = "Boxplot", xlab = "Region", ylab = "Height")
+``` 
+
+## Histogram
+```{r, fig.align='center', dev.args=list(bg="transparent")}
+hist(boys$hgt, main = "Histogram", xlab = "Height")
+```
+
+## Density
+```{r, fig.align='center', dev.args=list(bg="transparent")}
+dens <- density(boys$hgt, na.rm = TRUE)
+plot(dens, main = "Density plot", xlab = "Height", bty = "L")
+```
+
+## Scatter plot
+```{r, fig.align='center', dev.args=list(bg="transparent")}
+plot(x = boys$hgt, y = boys$wgt, main = "Scatter plot", 
+     xlab = "Height", ylab = "Weight")
+```
+
+## Box plot
+```{r, fig.align='center', dev.args=list(bg="transparent")}
+boxplot(boys$hgt ~ boys$reg, main = "Boxplot", 
+        xlab = "Region", ylab = "Height")
+```
+
+## Many `R` objects also have a `plot()` method
+
+```{r, warning=FALSE, message=FALSE, fig.align='center', dev.args=list(bg="transparent")}
+boys %$% lm(age~wgt) %>% plot()
+```
+
+
+## Neat! But what if we want more control?
+
+# ggplot2
+
+## What is `ggplot2`?
+Layered plotting based on the book **The Grammer of Graphics** by Leland Wilkinsons.
+
+With `ggplot2` you
+
+1. provide the _data_
+2. define how to map variables to _aesthetics_
+3. state which _geometric object_ to display
+4. (optional) edit the overall _theme_ of the plot
+
+`ggplot2` then takes care of the details
+
+## An example: scatterplot
+
+1: Provide the data
+```{r, eval=FALSE}
+boys %>%
+  ggplot()
+```
+
+2: map variable to aesthetics
+```{r, eval=FALSE}
+boys %>%
+  ggplot(aes(x = age, y = bmi))
+```
+
+3: state which geometric object to display
+```{r, eval=FALSE}
+boys %>%
+  ggplot(aes(x = age, y = bmi)) +
+  geom_point()
+```
+
+## An example: scatterplot
+```{r, echo=FALSE, fig.align='center'}
+boys %>%
+  ggplot(aes(x = age, y = bmi)) +
+  geom_point(na.rm = TRUE)
+```
+
+## Why this syntax?
+
+Create the plot
+```{r, fig.align='center', dev.args=list(bg="transparent"), warning=FALSE, message=FALSE}
+gg <- 
+  boys %>%
+  ggplot(aes(x = age, y = bmi)) +
+  geom_point(col = "dark green")
+```
+
+Add another layer (smooth fit line)
+```{r, warning=FALSE, message=FALSE, fig.align='center', dev.args=list(bg="transparent")}
+gg <- gg + 
+  geom_smooth(col = "dark blue")
+```
+
+Give it some labels and a nice look
+```{r, fig.align='center', dev.args=list(bg="transparent")}
+gg <- gg + 
+  labs(x = "Age", y = "BMI", title = "BMI trend for boys") +
+  theme_minimal()
+```
+
+## Why this syntax?
+```{r, warning=FALSE, message=FALSE, fig.align='center', dev.args=list(bg="transparent")}
+plot(gg)
+```
+
+## Why this syntax?
+<img src="img/lec-7/ggani.gif" style="display:block;width:90%;margin:0 auto;"></img>
+
+## Aesthetics
+
+- x
+- y
+- size
+- colour
+- fill
+- opacity (alpha)
+- linetype
+- ...
+
+## Aesthetics
+```{r, warning=FALSE, message=FALSE, fig.align='center', dev.args=list(bg="transparent")}
+gg <- 
+  boys %>% 
+  filter(!is.na(reg)) %>% 
+  
+  ggplot(aes(x      = age, 
+             y      = bmi, 
+             size   = hc, 
+             colour = reg)) +
+  
+  geom_point(alpha = 0.5) +
+  
+  labs(title  = "BMI trend for boys",
+       x      = "Age", 
+       y      = "BMI", 
+       size   = "Head circumference",
+       colour = "Region")
+```
+ 
+## Aesthetics
+```{r, warning=FALSE, message=FALSE, fig.align='center', dev.args=list(bg="transparent")}
+plot(gg)
+```
+
+## Geoms
+
+- geom_point
+- geom_bar
+- geom_line
+- geom_smooth
+
+- geom_histogram
+- geom_boxplot
+- geom_density
+
+## Geoms: Bar
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+data.frame(x = letters[1:5], y = c(1, 3, 3, 2, 1)) %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_bar(fill = "dark green", stat = "identity") +
+  labs(title = "Value per letter",
+       x     = "Letter", 
+       y     = "Value") +
+  theme_minimal()
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r, eval=FALSE, warning=FALSE, message=FALSE}
+data.frame(x = letters[1:5], 
+           y = c(1, 3, 3, 2, 1)) %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_bar(fill = "dark green", 
+           stat = "identity") +
+  labs(title = "Value per letter",
+       x     = "Letter", 
+       y     = "Value")
+```
+:::
+
+::::
+
+## Geoms: Line
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+ggdat <- data.frame(x = 1:100, 
+                    y = rnorm(100))
+ggdat %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_line(colour = "dark green", 
+            lwd = 1) +
+  ylim(-2, 3.5) +
+  labs(title = "Some line thing",
+       x     = "Some x label", 
+       y     = "Some value")
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+ggdat <- data.frame(x = 1:100, 
+                    y = rnorm(100))
+ggdat %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_line(colour = "dark green", 
+            lwd = 1) +
+  ylim(-2, 3.5) +
+  labs(title = "Some line thing",
+       x     = "Some x label", 
+       y     = "Some value")
+```
+
+:::
+
+::::
+
+
+## Geoms: Smooth
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+ggdat %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_smooth(colour = "dark green", 
+              lwd = 1, 
+              se = TRUE) +
+  ylim(-2, 3.5) +
+  labs(title = "Some line thing",
+       x     = "Some x label", 
+       y     = "Some value") +
+  theme_minimal()
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+ggdat %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_smooth(colour = "dark green", 
+              lwd = 1, 
+              se = TRUE) +
+  ylim(-2, 3.5) +
+  labs(title = "Some line thing",
+       x     = "Some x label", 
+       y     = "Some value")
+```
+
+:::
+
+::::
+
+
+
+## Geoms: Boxplot
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = reg, 
+             y = bmi, 
+             fill = reg)) +
+  geom_boxplot() +
+  labs(title = "BMI across regions",
+       x     = "Region", 
+       y     = "BMI")
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = reg, 
+             y = bmi, 
+             fill = reg)) +
+  geom_boxplot() +
+  labs(title = "BMI across regions",
+       x     = "Region", 
+       y     = "BMI")
+```
+
+:::
+
+::::
+
+## Geoms: Boxplot without legend
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = reg, 
+             y = bmi, 
+             fill = reg)) +
+  geom_boxplot() +
+  labs(title = "BMI across regions",
+       x     = "Region", 
+       y     = "BMI") +
+  theme(legend.position = "none")
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = reg, 
+             y = bmi, 
+             fill = reg)) +
+  geom_boxplot() +
+  labs(title = "BMI across regions",
+       x     = "Region", 
+       y     = "BMI") +
+  theme(legend.position = "none")
+```
+
+:::
+
+::::
+
+## Geoms: Density
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region")
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region")
+```
+
+:::
+
+::::
+
+
+## Changing the Style: Themes
+
+- Themes determine the overall appearance of your plot
+- standard themes: e.g., `theme_minimal()`, `theme_classic()`, `theme_bw()`, ...
+- extra libraries with additional themes: e.g., `ggthemes`
+- customize own theme using options of `theme()`
+
+## Changing the Style: Themes
+
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_minimal()
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_minimal()
+```
+
+:::
+
+::::
+
+## Changing the Style: Themes
+
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_gray()
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_gray()
+```
+
+:::
+
+::::
+
+## Changing the Style: Themes
+
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_classic()
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_classic()
+```
+
+:::
+
+::::
+
+## Changing the Style: Themes
+
+:::: {.columns}
+
+::: {.column width="58%"}
+```{r echo=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_bw()
+```
+
+:::
+
+::: {.column width="42%"}
+<br>
+```{r eval=FALSE}
+boys %>% 
+  filter(!is.na(reg)) %>% 
+  ggplot(aes(x = hgt, fill = reg)) +
+  geom_density(alpha = 0.5, 
+               colour = "transparent") +
+  xlim(0, 250) + 
+  labs(title = "Height across regions",
+       x     = "Height", 
+       fill  = "Region") +
+  theme_bw()
+```
+
+:::
+
+::::
+
+## Interactive plots
+Use `plotly::ggplotly()` to make any ggplot interactive
+```{r eval=FALSE}
+library(plotly)
+gg <- boys %>% 
+  filter(!is.na(reg)) %>% 
+  
+  ggplot(aes(x      = age, 
+             y      = bmi, 
+             colour = reg)) +
+  
+  geom_point(alpha = 0.5) +
+  
+  labs(title  = "BMI trend for boys",
+       x      = "Age", 
+       y      = "BMI", 
+       colour = "Region") + 
+  theme_minimal()
+
+ggplotly(gg)
+```
+
+## Interactive plots
+Use `plotly::ggplotly()` to make any ggplot interactive
+```{r echo=FALSE}
+library(plotly)
+gg <- boys %>% 
+  filter(!is.na(reg)) %>% 
+  
+  ggplot(aes(x      = age, 
+             y      = bmi, 
+             colour = reg)) +
+  
+  geom_point(alpha = 0.5) +
+  
+  labs(title  = "BMI trend for boys",
+       x      = "Age", 
+       y      = "BMI", 
+       colour = "Region") + 
+  theme_minimal()
+
+ggplotly(gg)
+```
+
+
+## Helpful link in RStudio
+![](img/lec-7/cheatsheet.png) 
+
+# Practical

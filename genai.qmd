@@ -1,0 +1,41 @@
+# Regels voor GenAI {.unnumbered}
+
+Je mag generatieve AI gebruiken in deze cursus, maar alleen als je de onderstaande tekst goed hebt gelezen.
+
+## Auteursrecht en intellectueel eigendom
+
+::: callout-tip
+# Weet je wat je wel en niet mag invoeren?
+
+In de wetenschappelijk onderzoek en onderwijs vinden we ethiek, eerlijkheid en de waarden van open wetenschap zeer belangrijk. Deze principes vormen de basis van onze academische gemeenschap. Ze sturen zowel ons onderwijs als onze zoektocht naar kennis.
+
+Nu AI-tools steeds beter worden en steeds vaker worden gebruikt, is het belangrijk om deze waarden te blijven bewaken. Er is veel aandacht voor wat AI-tools produceren. Maar ik wil hier de aandacht vestigen op een ander belangrijk punt: het onterecht gebruiken van materiaal dat wij invoeren in deze tools.
+
+Veel mensen gebruiken AI alsof zij in de privacy van hun eigen computer of telefoon werken. Dat gevoel van privacy kan misleidend zijn. Daardoor kunnen mensen informatie invoeren die niet van hen is, die zij niet mochten delen, of die vertrouwelijk had moeten blijven. Om onze integriteit te beschermen en respectvol om te gaan met intellectueel eigendom, moeten we voorzichtig zijn met wat we delen met AI-tools. Let daarom op het volgende:
+
+- Voer geen opdrachten, cursusmateriaal, wetenschappelijke manuscripten of ander werk in zonder expliciete toestemming van de eigenaar.
+- Gebruik AI-tools niet om elkaars werk te verwerken, samen te vatten, te beoordelen of te evalueren, tenzij je toestemming hebt van de auteur.
+
+Door deze richtlijnen te volgen, beschermen en respecteren we zowel het creatieve werk als het intellectuele eigendom binnen onze gemeenschap.
+
+:::
+
+## Hoe zit het met deze cursus?
+
+Het materiaal in deze cursus is gemaakt door Gerko en zijn team. Zij bezitten het auteursrecht. Het intellectuele eigendom ligt bij de Universiteit Utrecht. Afbeeldingen zijn zelf gemaakt, direct gelinkt, of gegenereerd met AI-tools. Dit gezegd hebbende: het cursusmateriaal bevat geen informatie die buiten het wettelijk toegestane gebruik van auteursrechtelijk beschermd materiaal in een academische context valt. Het bevat ook geen informatie die niet openbaar beschikbaar is of die geen onderdeel zou mogen zijn van het publieke domein.
+
+::: {.callout-warning}
+Je mag alle inhoud uit deze cursus gebruiken — inclusief namen van docenten en medewerkers — en als input geven aan generatieve AI-tools, met de volgende uitzondering:
+
+* Je moet ervoor zorgen dat de inhoud niet wordt gebruikt om het AI-model verder te trainen.
+
+Als je niet weet hoe je training van input kan uitsluiten, mag je geen AI gebruiken!
+
+:::
+
+## Mijn advies
+
+Generatieve AI kan een goede assistent zijn bij het maken van taal die context lijkt te hebben en goed geschreven oogt. Veel vaardigheden die we in deze cursus behandelen, zijn afhankelijk van taal en van het kunnen samenbrengen van informatie. Daardoor kan generatieve AI heel behulpzaam lijken. Maar een vaardigheid die sterk op taal gebaseerd is, leer je vooral door te oefenen. Wetenschappelijk onderzoek heeft aangetoond dat wanneer je het oefenen achterwege laat en AI je *oefening* laat doen, je leeropbrengst niet duurzaam is. Sterker nog, wanneer je afhankelijk wordt van GenAI, kan dat je ontwikkeling op de lange termijn juist belemmeren. In extreme gevallen kun je zelfs ongezond afhankelijk worden van AI.
+
+Daarom adviseren we je om ook actief in gesprek te gaan met je medestudenten, docenten, en andere betrouwbare bronnen op het internet. Zo ontwikkel je jezelf van iemand die vooral informatie opneemt tot iemand die ook kennis kan verwerken en die kennis kan delen. In onderwijstermen: als je aan anderen kunt uitleggen wat je doet en waarom je het zo doet, ben je gegroeid van student naar meester. Pas wanneer je deze metacognitieve vaardigheden hebt ontwikkeld, heb je een goede basis om generatieve AI op een verantwoorde manier te gebruiken.
+

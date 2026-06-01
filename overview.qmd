@@ -1,0 +1,52 @@
+# Module handleiding {.unnumbered}
+
+## Cursusgegevens
+|          |                            |
+|----------------------------------|--------------------------------------------------------------------------------|
+| Vakcode                          | AS_12                                                                          |
+| Opleiding                        | Master Applied Statistics                                                      |
+| Leerlijn/Vakgroep/Discipline     | Data-Analyse                                                                   |
+| Aantal studiepunten              | 8 ECTs                                                                         |
+| Semester en studiefase           | Jaar 2, semester 2                                                             |
+| Contacturen per semester         | 40                                                                             |
+| College periode                  | 15 juni – 26 juni 2026                                                         |
+| Werkcolleges+studievrije periode | 29 juni – 24 juli 2026                                                         |
+| Onderwijsvrij en Tentamen   |    | 27 juli 2026 - 7 augustus 2026                                                                  |
+| Hertentamenperiode               | Niet van toepassing                                              |
+| Vereiste voorkennis              | Afgeronde Wetenschappelijke Bachelor/ Premaster Wetenschappelijke Vorming IGSR |
+| Docent(en) + contactgegevens     | Dr.Gerko Vink, [g.vink@uu.nl](mailto:g.vink@uu.nl)                                                       |
+| Spreekuur docent(en)             | Op afspraak                                                                    |
+
+## Inleiding
+Deze studiehandleiding beschrijft de module Research Project (AS-12) van de masteropleiding Applied Statistics. Deze module vormt een belangrijk sluitstuk van de opleiding en heeft als doel studenten op een praktische en geïntegreerde wijze voor te bereiden op het uitvoeren van zelfstandig wetenschappelijk onderzoek en de verdere uitwerking van hun masterthesis. Binnen deze module passen studenten de kennis en vaardigheden toe die zij gedurende de opleiding hebben opgedaan, met bijzondere aandacht voor onderzoeksopzet, dataverzameling, statistische analyse en wetenschappelijke rapportage.
+
+Het Research Project is opgezet middels een combinatie van een groepsopdracht en individuele opdrachten waarbij studenten zowel gezamenlijk een relevant onderzoeksthema selecteren en vervolgens zowel individueel als in groepsverband dit nader uitwerken. Studenten verkennen verschillende onderwerpen van wetenschappelijke en maatschappelijke relevantie, verzamelen theoretische literatuur, ontwikkelen een onderzoeksdesign en voeren empirisch onderzoek uit op basis van primaire of secundaire data. Daarbij ligt de nadruk op het correct toepassen van statistische analysemethoden en het interpreteren van onderzoeksresultaten binnen een wetenschappelijk kader.
+
+De module behandelt het volledige onderzoeksproces, vanaf de formulering van een probleemstelling en onderzoeksvraag tot aan de presentatie van onderzoeksbevindingen. Studenten leren een methodologisch verantwoord onderzoeksplan op te stellen volgens internationale wetenschappelijke standaarden en ontwikkelen vaardigheden in dataverwerking, statistische analyse, interpretatie van resultaten en het trekken van onderbouwde conclusies. Tevens wordt aandacht besteed aan het kritisch reflecteren op het eigen onderzoek, het koppelen van bevindingen aan bestaande wetenschappelijke theorieën, en het formuleren van de maatschappelijke en wetenschappelijke relevantie van het onderzoek.
+
+Gedurende het project werken studenten in multidisciplinaire teams en dragen zij gezamenlijk verantwoordelijkheid voor planning, samenwerking, taakverdeling en het naleven van de regels van wetenschappelijke integriteit. De module stimuleert studenten om zelfstandig en onder beperkte begeleiding onderzoek uit te voeren, waarbij zowel academische als professionele vaardigheden verder worden ontwikkeld. Daarnaast wordt expliciet aandacht besteed aan mondelinge en schriftelijke communicatievaardigheden, waaronder het schrijven van een onderzoeksrapport en het presenteren van onderzoeksresultaten aan academici en medestudenten.
+
+De module bestaat uit hoorcolleges, werkcolleges en begeleidingsmomenten waarin studenten stapsgewijs worden ondersteund bij de uitvoering van hun onderzoek. De beoordeling van de module vindt plaats op basis van een onderzoeksrapport (Research Project Report), dat 90% van het eindcijfer vertegenwoordigt, en een mondelinge presentatie, die meetelt voor 10% van het eindcijfer.
+
+In deze handleiding zijn tevens de leerdoelen van de module opgenomen, evenals een overzicht van de vakinhoud, het programma van de colleges, de werkwijze van het onderzoeksproject en een toelichting op de toetsing en beoordelingscriteria.
+
+## Wijze van toetsen en vaststellen eindcijfer
+De beoordeling van Module 12 (Research Project) vindt plaats op basis van een groepsgericht onderzoeksproject dat bestaat uit een schriftelijk onderzoeksrapport en een mondelinge presentatie. Gedurende de module werken studenten in groepen aan het opzetten, uitvoeren, analyseren en rapporteren van een wetenschappelijk onderzoekstraject.
+
+Het eindcijfer van de module wordt als volgt vastgesteld:
+•	Research Project Report: 90% 
+•	Mondelinge presentatie: 10% 
+
+Het onderzoeksrapport vormt het belangrijkste onderdeel van de beoordeling en omvat onder andere de probleemstelling, onderzoeksvragen, theoretisch kader, methodologie, dataverzameling en -analyse, interpretatie van resultaten, discussie en conclusies. Bij de beoordeling wordt gelet op de methodologische kwaliteit van het onderzoek, de correcte toepassing van statistische analysetechnieken, de wetenschappelijke onderbouwing, de interpretatie van resultaten, de academische schrijfstijl en de mate van kritische reflectie.
+
+De mondelinge presentatie richt zich op het professioneel presenteren en verdedigen van het uitgevoerde onderzoek aan medestudenten en/of academici. Hierbij worden onder andere de inhoudelijke kwaliteit van de presentatie, academische presentatievaardigheden, structuur, argumentatie en beantwoording van vragen beoordeeld.
+De beoordeling geschiedt aan de hand van vooraf vastgestelde beoordelingscriteria en rubrics die gedurende de module aan de studenten beschikbaar worden gesteld.
+
+
+### Cesuur
+De student haalt deze module met een cijfer van 5.5 of meer. Indien een student de toets niet heeft gehaald, dan komt die in aanmerking voor een herkansing. Voor het deelnemen zijn er geen bijkomende voorwaarden dan die vermeld zijn in de OER waaronder het tijdig intekenen voor deelname.
+
+
+### Collegemateriaal
+•	Powerpoint slides lecturer 
+•	A selection of relevant online and free reference materials (scientific articles/journals)

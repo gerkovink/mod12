@@ -1,0 +1,283 @@
+---
+title: "Development and Q&A"
+author: 
+  - name: Gerko Vink
+    orcid: 0000-0001-9767-1924
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+date: 13 June 2025
+date-format: "D MMM YYYY"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    theme: [solarized, gerko.scss]
+    embed-resources: true
+    progress: true
+    margin: 0.075
+    logo: logo.png 
+    toc: false
+    toc-depth: 1
+    toc-title: Outline
+    slide-number: true
+    scrollable: false
+    width: 1200
+    reference-location: margin
+    footer: Gerko Vink @ Anton de Kom Universiteit, Paramaribo
+    standalone: true
+---
+
+## Disclaimer {.smaller}
+I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.
+
+Images are either directly linked, or generated with StableDiffusion or DALL-E. That said, there is no information in this presentation that exceeds legal use of copyright materials in academic settings, or that should not be part of the public domain. 
+
+::: {.callout-warning}
+You **may use** any and all content in this presentation - including my name - and submit it as input to generative AI tools, with the following **exception**:
+
+- You must ensure that the content is not used for further training of the model
+:::
+
+## Slide materials and source code
+::: callout-tip
+# Materials
+- lecture slides on Moodle
+- course page: [www.gerkovink.com/sur](https://www.gerkovink.com/sur)
+- source: [github.com/gerkovink/sur](https://github.com/gerkovink/sur)
+:::
+
+## Recap
+
+Gisteren hebben we deze onderwerpen behandeld:
+
+- Basisplots: histogrammen, scatterplots en boxplots
+- Geavanceerde plots met ggplot2
+- Aanpassen van grafieken voor publicatie
+- Exporteren van grafieken en resultaten
+
+
+
+## Today
+Vandaag behandelen we de volgende onderwerpen:
+
+- Zelf R-packages maken
+- Samenvatting + Q&A
+
+# Samenvatting (met stiekem wat nieuws)
+
+## Simpele data containers
+```{r}
+c(1, 2, 3, 4, 5) # een vector met waarden 1 tot en met 5
+1:10 # een vector met waarden 1 tot en met 10
+letters[1:10] # de eerste 10 elementen uit het letters object
+a <- c(1, 2, 3, 4, 5) # een vector assigned naar a
+a[3] # element 3 uit a
+a[1:3] # element 1, 2 en 3 uit a
+a[5:3] # element 5, 4 en 3 uit a
+c(a, "oeps") # alles is nu character
+```
+
+## Matrices en data frames
+```{r}
+m <- matrix(1:9, nrow = 3) # een matrix met 3 rijen en 3 kolommen
+m
+m[2, 3] # element in rij 2, kolom 3
+m[1:2, 2:3] # elementen in rij 1 en 2, kolom 2 en 3
+df <- data.frame(a = 1:3, b = letters[1:3]) # data frame met 3 rijen, 2 kolommen
+df[, 2] # tweede kolom van df
+df$b # tweede kolom van df, met de naam b --> vandaar dat we $ kunnen gebruiken
+```
+
+## Datasets inlezen
+```{r}
+library(haven) # voor het inlezen van SPSS, Stata en SAS bestanden
+library(magrittr) # voor pipes
+library(dplyr) # voor data manipulatie
+# inlezen van een Stata bestand
+stata <- read_dta("files/03-poverty-analysis-data-2022-rt001-housing-plus.dta") 
+stata %>% glimpse()
+```
+
+## Datasets inspecteren
+```{r}
+stata %>% head(n = 5) # eerste 5 rijen van de dataset
+stata %>% slice_head(n = 2) # eerste 2 rijen van de dataset
+```
+
+## Datasets corrigeren
+```{r}
+stata %>% 
+  as_factor() %>% # alle labelled variabelen omzetten naar factor
+  glimpse()
+```
+Let op dat deze dan wel goed gelabelled zijn!
+
+## Tabellen en kruistabellen
+```{r}
+stata %$% # exposition pipe 
+  table(HHsize) # frequentietabel van HHsize
+
+stata %$% # exposition pipe
+  table(HHsize, district) # kruistabel van HHsize en district
+```
+
+## Datasets manipuleren: filter OF select
+```{r}
+stata %>% 
+  filter(district == "Commewijne" | district == "Nickerie") %$% # filter op district
+  table(district)
+stata %>% 
+  select(district, HHsize) %>% # selecteer kolommen
+  head()
+```
+
+## Datasets manipuleren: filter EN select
+```{r}
+stata %>% 
+  filter(district == "Commewijne" | district == "Nickerie") %>% # filter op district
+  select(district, HHsize) %>% # selecteer kolommen
+  head()
+```
+
+## Datasets manipuleren: mutate
+```{r}
+stata %<>% # assign pipe ipv `stata <- stata %>%`
+  as_factor() %>% # alle labelled variabelen omzetten naar factor
+  mutate(HHclass = ifelse(test = HHsize > 5, # Als HHsize groter dan 5
+                          yes = "groot", # dan is HHclass groot
+                          no = "niet groot")) # anders is HHclass niet groot
+
+stata %<>%
+  mutate(HHclass2 = case_when(HHsize > 5 ~ "groot", 
+                             HHsize <= 5 ~ "niet groot")) 
+```
+
+## Datasets manipuleren: group_by en summarise
+```{r}
+stata %>% 
+  group_by(district) %>% # groepeer op district
+  summarise(mean_HHsize = mean(HHsize, na.rm = TRUE), # gemiddelde HHsize per district
+            median_HHsize = median(HHsize, na.rm = TRUE), # mediaan HHsize per district)
+            sd_HHsize = sd(HHsize, na.rm = TRUE), # standaarddeviatie HHsize perm district
+            IQR_HHsize = IQR(HHsize, na.rm = TRUE)) # interkwartielafstand HHsize per district
+```
+
+## T-toets
+```{r}
+# var.test
+stata %>% 
+  filter(district == "Paramaribo" | district == "Wanica") %$% # filter op district
+  var.test(HHsize ~ district) # t-toets voor gelijke varianties
+
+stata %>% 
+  filter(district == "Paramaribo" | district == "Wanica") %$% # filter op district
+  t.test(HHsize ~ district, var.equal = FALSE) # t-toets voor gelijke varianties
+```
+
+## $\chi^2$-toets
+```{r}
+stata %>% 
+  filter(district == "Paramaribo" | district == "Wanica") %$% # filter op district
+  table(HHclass, district)
+
+stata %>% 
+  filter(district == "Paramaribo" | district == "Wanica") %$% # filter op district
+  table(HHclass, district) %>% 
+  chisq.test() # chi-kwadraattoets voor kruistabel van HHclass en district
+```
+
+## Expected and observed frequencies
+```{r}
+X2 <- stata %>% 
+  filter(district == "Paramaribo" | district == "Wanica") %$% # filter op district
+  table(HHclass, district) %>% 
+  chisq.test() # chi-kwadraattoets voor kruistabel van HHclass en district
+X2$observed # waargenomen frequenties
+X2$expected # verwachte frequenties
+stata %>% 
+  filter(district == "Paramaribo" | district == "Wanica") %$% # filter op district
+  table(HHclass, district) %>% 
+  fisher.test()
+```
+
+## Missende waarden
+```{r warning = FALSE}
+library(mice)
+library(ggmice)
+imp <- mice(mice::nhanes2, print = FALSE)
+imp$data %>% 
+  plot_pattern()
+```
+
+## Analyzing imputations
+```{r}
+library(purrr)
+imp %>% 
+  complete("all") %>% # list met alle geimputeerde data sets
+  map(~.x %$% mean(bmi))
+
+imp %>% 
+  complete("all") %>% # list met alle geimputeerde data sets
+  map_df(~.x %$% mean(bmi))
+```
+
+## Analyzing imputations: averaging
+```{r}
+library(purrr)
+imp %>% 
+  complete("all") %>% # list met alle geimputeerde data sets
+  map(~.x %$% mean(bmi)) %>% 
+  reduce(`+`) / imp$m
+
+imp %>% 
+  complete("all") %>% # list met alle geimputeerde data sets
+  map_df(~.x %$% mean(bmi)) %>% 
+  rowMeans()
+```
+
+## Analyzing imputations: pooling
+```{r}
+imp %>% 
+  complete("all") %>% # list met alle geimputeerde data sets
+  map(~.x %$% lm(bmi ~ chl)) %>% 
+  pool() %>%  # pooling van de resultaten
+  summary() # samenvatting van de resultaten
+
+```
+
+## Plotting
+```{r}
+library(ggplot2)
+stata %>% 
+  ggplot(aes(x = HHclass, y = HHsize, fill = HHclass)) + # plot HHsize per district
+  geom_bar(stat = "summary", fun = "mean") # staafdiagram met gemiddelde HHsize per district
+```
+
+## Plotting: histogram
+```{r}
+stata %>% 
+  ggplot(aes(x = HHsize)) + # plot HHsize
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") + # histogram met binwidth van 1
+  labs(title = "Histogram van HHsize", x = "HHsize", y = "Frequentie") + # titel en labels
+  theme_minimal() # minimalistisch thema
+```
+
+
+# Development
+
+## `Browser()`
+```{r eval=FALSE}
+myfunction <- function(x) {
+  # Deze functie doet iets met x
+  x_squared <- x^2 # kwadrateert x
+  browser() # zet een breakpoint in de code
+  return(x_squared) # geeft het kwadraat van x terug
+}
+```
+
+## `reprex()`
+
+Demo
+
+# Live R-package maken

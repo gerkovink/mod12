@@ -1,0 +1,24 @@
+# Studieprogramma {.unnumbered}
+
+Dit [Quarto](https://quarto.org) boek bevat het cursusmateriaal en de informatie voor **Module 12: Research Project**. De genummerde hoofdstukken in dit boek komen overeen met de gecombineerde hoor- en werk-colleges. 
+
+| Week 1                 | Date   | Location         |
+|------------------------|--------|------------------|
+| @sec-mt1               | 15 Juni  |  ISGR    |
+| @sec-mt2               | 16 Juni  |  ISGR      |
+| Geen Hoorcollege       | 17 Juni  |    -       |
+| @sec-mt3               | 18 Juni  |  ISGR      |
+| @sec-mt4               | 19 Juni  |  ISGR      |
+
+: {tbl-colwidths="[60,20,20]"}
+
+| Week 2                 | Date   | Location         |
+|------------------------|--------|------------------|
+| @sec-mt5               | 22 Juni  |  ISGR     |
+| @sec-mt6               | 23 Juni  |  ISGR     |
+| Geen Hoorcollege       | 24 Juni  |    -      |
+| @sec-mt7               | 25 Juni  |  ISGR     |
+| @sec-mt8               | 26 Juni  |  ISGR      |
+
+: {tbl-colwidths="[60,20,20]"}
+

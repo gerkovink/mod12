@@ -1,0 +1,56 @@
+# De anatomie van een antwoord {#sec-mt1}
+
+---
+subtitle: "Wat maakt een goed statistisch antwoord?"
+author: 
+  - name: "Gerko Vink"
+    orcid: "0000-0001-9767-1924"
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+---
+
+::: callout-tip
+## Hoorcollege 15 juni 2026
+
+We beginnen vandaag met een inleiding tot het vak en een hoorcollege over de anatomie van een antwoord. We zullen aandacht besteden aan 
+
+- de structuur en opzet van dit vak
+- waarom statistische antwoorden (kunnen) falen
+- hoe we van onderwerp naar onderzoekbare vragen kunnen komen 
+- antwoordkwaliteit en hoe dit samenhangt met goed onderzoek
+
+De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+:::
+
+## Groepsopdracht
+In deze opdracht leren studenten om een breed maatschappelijk of wetenschappelijk onderwerp om te vormen tot een concrete, onderzoekbare statistische vraag. Veel onderzoek begint met een interessant thema, maar een thema is nog geen onderzoeksvraag. Een goede onderzoeksvraag maakt duidelijk over welke populatie of eenheden het onderzoek gaat, welke uitkomst wordt onderzocht, welke verklarende variabele of vergelijking centraal staat, welke periode relevant is en welk databestand gebruikt kan worden.
+
+Het doel is dat iedere student aan het einde van de opdracht beschikt over:
+
+1. een aangescherpte onderzoeksvraag;
+2. een voorlopig format voor het beantwoorden van die vraag;
+3. een korte beschrijving van wat het onderzoek niet kan aantonen of concluderen.
+
+De nadruk ligt niet op het vinden van het perfecte antwoord, maar op het formuleren van een vraag die met beschikbare data op een verantwoorde manier onderzocht kan worden.
+
+De opdracht [staat hier](opdracht/groepsopdracht1.html). De uitwerktabel voor Groepsopdracht 1 is beschikbaar als invulbaar [Word bestand](documents/mt1/Groepsopdracht1.docx) of [Excel bestand](documents/mt1/Groepsopdracht1.xlsx).
+
+## Individuele opdracht
+In de komende twee weken werken we naar de structuur van een eindproduct toe. Informatie over dit eindproduct (i.e. de deliverables @sec-resrep, @sec-archive en @sec-pres) staat beschreven in het hoofdstuk @sec-deliv. Om een eerste begin te maken, zullen we vandaag de volgende stappen volgen:
+
+1. Start met een projectdocument. Bijvoorbeeld in Word of Quarto.
+2. Begin te schrijven aan een paragraaf **Onderzoeksvraag** waarin het volgende aan bod komt:
+
+- Wat is het maatschappelijke of wetenschappelijke probleem?
+- De (aangescherpte) onderzoeksvraag. Dit hoeft nog niet de perfecte vraag te zijn. We werken hier morgen aan verder. 
+- Een potentieel antwoordmodel, zoals we in de groepsopdracht hebben gemaakt. 
+- Een beschrijving van de dataset die hiervoor gebruikt zal worden. 
+- In ieder geval 1 beperking die nu al voorzien kan worden. 
+
+De paragraaf waaraan we in de individuele opdracht werken zal dienen als de basis voor de introductie en onderzoeksvraag sectie in het Research Report. In de komende gecombineerde hoor- en werk-colleges zullen we toewerken naar een completer einddocument. 

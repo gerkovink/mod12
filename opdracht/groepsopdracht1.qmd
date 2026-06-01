@@ -1,0 +1,203 @@
+---
+title: Groepsopdracht 1
+subtitle: "Van breed onderwerp naar beantwoordbare onderzoeksvraag"
+author: 
+  - name: "Gerko Vink"
+    orcid: "0000-0001-9767-1924"
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+---
+
+# Structuur
+| Onderdeel | Beschrijving |
+|---|---|
+| **Duur** | 1 uur |
+| **Werkvorm** | Groepswerk in groepen van 3–4 studenten. Het is wenselijk dat studenten met verschillende inhoudelijke interesses in één groep zitten, zodat zij elkaar kunnen helpen om aannames, onduidelijkheden en te sterke claims te herkennen. |
+| **Product** | Aangescherpte onderzoeksvraag, voorlopig antwoordformat en bewuste afbakening van wat het onderzoek niet kan concluderen |
+
+Aan het einde van de opdracht levert iedere student een korte uitwerking op met:
+
+1. een aangescherpte onderzoeksvraag;
+2. een voorlopig antwoordformat;
+3. één zin over wat het onderzoek niet kan concluderen;
+4. een eerste idee van welke data, variabelen en vergelijking nodig zijn.
+
+Dit eindproduct vormt de basis voor de verdere uitwerking van het onderzoeksproject, het analyseplan en uiteindelijk het Research Project Report.
+
+# Opdracht
+In deze opdracht werken we in groepen aan een bewuste en gestructureerde opzet van het ontwerpen van een onderzoeksvraag. Dit doen we aan de hand van een aantal voorbeeldonderwerpen. Aan het eind van de opdracht hebben we het volgende: 
+
+1. een aangescherpte onderzoeksvraag;
+2. een voorlopig antwoordformat;
+3. één zin over wat het onderzoek niet kan concluderen;
+4. een eerste idee van welke data, variabelen en vergelijking nodig zijn.
+
+Voor deze opdracht gebruiken we de onderstaande uitwerktabel.
+
+## Uitwerktabel
+
+| Onderdeel | Uitwerking |
+|---|---|
+| **Naam student** |  |
+| **Oorspronkelijk onderwerp** |  |
+| **Maatschappelijk of wetenschappelijk probleem** |  |
+| **Relevantie voor Suriname/Zuid-Amerika/beleid/ontwikkeling/klimaat/natuur** |  |
+| **Populatie of onderzoekseenheid** |  |
+| **Uitkomstvariabele** |  |
+| **Belangrijkste verklarende variabele, voorspeller of groepsindeling** |  |
+| **Mogelijke achtergrondvariabelen of verstorende factoren** |  |
+| **Relevante tijdsperiode** |  |
+| **Beschikbaar of gewenst databestand** |  |
+| **Type onderzoeksvraag** | ○ Beschrijvend <br> ○ Vergelijkend <br> ○ Verklarend <br> ○ Voorspellend <br> ○ Causaal<br> ○ Validerend |
+| **Motivatie voor keuze van het type onderzoeksvraag** |  |
+| **Centrale vergelijking** |  |
+| **Eerste versie van de onderzoeksvraag** |  |
+| **Aangescherpte onderzoeksvraag** |  |
+| **Voorlopig antwoordformat** |  |
+| **Wat kan dit onderzoek niet concluderen?** |  |
+| **Belangrijkste beperking van data/design** |  |
+| **Eerste vervolgstap** |  |
+
+Deze tabel is ook beschikbaar als invulbaar [Word bestand](../documents/mt1/Groepsopdracht1.docx) of [Excel bestand](../documents/mt1/Groepsopdracht1.xlsx).
+
+De opdracht bestaat uit de volgende vier stappen.
+
+## Stap 1 — Individuele eerste uitwerking (20 minuten)
+
+Kies één onderwerp en vul individueel zoveel mogelijk velden van de tabel in. Dit mag een eigen onderwerp zijn of één van de voorbeeldonderwerpen onderaan deze opdracht.
+
+In deze stap hoeft de formulering nog niet perfect te zijn. Het doel is om zichtbaar te maken welke onderdelen van het onderzoek al duidelijk zijn en welke onderdelen nog ontbreken.
+
+## Stap 2 — Groepsdiagnose (20 minuten)
+
+Binnen de groep bespreekt iedereen kort zijn of haar onderwerp. De groep helpt om te controleren of de onderzoeksvraag voldoende onderzoekbaar is.
+
+Gebruik daarbij de volgende vragen:
+
+* Is de populatie of onderzoekseenheid duidelijk?
+* Is de uitkomstvariabele meetbaar?
+* Is duidelijk welke verklarende variabele, voorspeller of groepsvergelijking centraal staat?
+* Is er een relevante tijdsperiode genoemd?
+* Is er een databestand dat deze vraag plausibel kan beantwoorden?
+* Is de conclusie die men wil trekken niet sterker dan het onderzoeksdesign toelaat?
+* Is duidelijk welke achtergrondvariabelen of verstorende factoren mogelijk belangrijk zijn?
+
+De groep moet vooral kritisch letten op te brede formuleringen zoals “de invloed van”, “het effect van” of “de impact van”. Zulke termen suggereren vaak causaliteit, terwijl veel datasets vooral beschrijvende, vergelijkende, associatieve of voorspellende conclusies toelaten.
+
+## Stap 3 — Herschrijven van de onderzoeksvraag (10 minuten)
+
+Op basis van de discussie met je groepsgenoten is het misschien nodig om je onderzoeksvraag aan te scherpen. Herschrijf je onderzoeksvraag met behulp van het onderstaande format:
+
+_Onder [populatie of onderzoekseenheden], in welke mate is [X] geassocieerd met / voorspellend voor / verschillend tussen [Y], gedurende [periode], op basis van [databestand], rekening houdend met [belangrijke achtergrondvariabelen]?_
+
+Je hoeft de zin niet letterlijk over te nemen, maar denk wel na over de mogelijke confounders die op je onderzoek van toepassing zouden kunnen zijn. 
+
+::: callout-tip
+## Voorbeeld
+Onder ...
+:::
+
+Als je hier mee klaar bent, maak dan een voorlopig antwoordformat. Dti format stelt je in staat om alvast na te denken over de antwoordopties die je onderzoek kan aannemen. Bijvoorbeeld:
+
+_De analyse laat zien dat [X] wel/niet samenhangt met [Y] onder [populatie]. Onder de aannames van [onderzoeksdesign/model] suggereert dit dat [interpretatie]. Deze conclusie is echter beperkt door [belangrijkste beperking]._
+
+::: callout-tip
+## Voorbeeld
+De analyse laat zien dat...
+:::
+
+Tot slot formuleert je één zin over wat het onderzoek niet kan concluderen:
+
+_Dit onderzoek kan niet aantonen dat [sterkere claim], omdat [reden]._
+
+::: callout-tip
+## Voorbeeld
+Dit onderzoek kan niet aantonen dat taalvaardigheid betere rekenprestaties veroorzaakt, omdat de analyse gebaseerd is op observationele surveydata en niet op een experimenteel ontwerp.
+:::
+
+## Stap 4 — Plenaire nabespreking (10 minuten)
+
+Enkele studenten presenteren kort mondeling hun oorspronkelijke en herschreven onderzoeksvraag. In de groep bespreken we klassikaal wat er is veranderd en waarom de nieuwe formulering beter onderzoekbaar is.
+
+Bij de bespreking wordt vooral gelet op:
+
+* duidelijkheid van de populatie;
+* meetbaarheid van de uitkomst;
+* passendheid van de data;
+* realistische claim;
+* helderheid van de voorlopige antwoordzin.
+
+
+
+# Voorbeeldonderwerpen (Nog verder uit te werken)
+
+Studenten mogen hun eigen onderwerp gebruiken, maar kunnen ook oefenen met één van de onderstaande voorbeeldonderwerpen.
+
+## Onderwerp 1: Klimaatverandering en wateroverlast in Suriname
+
+Breed onderwerp:
+Klimaatverandering en wateroverlast in stedelijke gebieden van Suriname.
+
+Mogelijke onderzoeksvraag:
+In welke mate hangt de frequentie van gerapporteerde wateroverlast in stedelijke gebieden van Suriname samen met neerslagpatronen, ruimtelijke kenmerken en huishoudkenmerken gedurende de afgelopen jaren?
+
+Mogelijke data:
+Meteorologische neerslagdata, districts- of buurtgegevens, huishoudonderzoeken, meldingen van wateroverlast, geografische data of administratieve gegevens van relevante ministeries.
+
+Let op:
+Met observationele data kan vaak wel een samenhang worden onderzocht, maar niet zonder meer worden geconcludeerd dat klimaatverandering een specifieke lokale overstroming heeft veroorzaakt.
+
+
+
+## Onderwerp 2: Ontbossing, mijnbouw en natuurbehoud
+
+Breed onderwerp:
+De relatie tussen mijnbouwactiviteiten en ontbossing in Suriname.
+
+Mogelijke onderzoeksvraag:
+In welke mate verschillen ontbossingspatronen tussen gebieden met en zonder mijnbouwactiviteit in Suriname gedurende een specifieke periode, op basis van satellietdata of administratieve gegevens?
+
+Mogelijke data:
+Satellietbeelden, geografische databestanden, gegevens over mijnbouwconcessies, bosbedekkingsdata, milieu- of natuurbeheerdata.
+
+Let op:
+Een verschil tussen gebieden met en zonder mijnbouwactiviteit bewijst niet automatisch dat mijnbouw de enige oorzaak is van ontbossing. Andere factoren, zoals infrastructuur, landbouw, bereikbaarheid en regelgeving, kunnen ook een rol spelen.
+
+
+## Onderwerp 3: Onderwijs, taalvaardigheid en leerprestaties
+
+Breed onderwerp:
+De rol van Nederlandse taalvaardigheid in schoolprestaties van leerlingen in Suriname.
+
+Mogelijke onderzoeksvraag:
+In welke mate is Nederlandse taalvaardigheid geassocieerd met rekenprestaties van basisschoolleerlingen in Suriname, rekening houdend met achtergrondkenmerken zoals leeftijd, geslacht, district, opleidingsniveau van ouders en sociaaleconomische positie?
+
+Mogelijke data:
+MICS-data, onderwijsdata, toetsgegevens, schoolregistraties of surveydata over huishoudens en kinderen.
+
+Let op:
+Een associatie tussen taalvaardigheid en rekenprestaties betekent niet automatisch dat taalvaardigheid de oorzaak is van betere of slechtere rekenprestaties. Er kunnen andere verklarende factoren zijn, zoals schoolkwaliteit, thuissituatie of toegang tot leermiddelen.
+
+
+## Onderwerp 4: Publiek vertrouwen, corruptieperceptie en economisch gedrag
+
+Breed onderwerp:
+De relatie tussen corruptieperceptie en vertrouwen in overheid of economisch gedrag in Suriname.
+
+Mogelijke onderzoeksvraag:
+In welke mate zijn ervaringen met of percepties van corruptie geassocieerd met vertrouwen in overheidsinstellingen en economisch vertrouwen onder burgers in Suriname, op basis van surveydata?
+
+Mogelijke data:
+LAPOP-data, publieke opinieonderzoeken, administratieve gegevens, economische indicatoren of surveydata over vertrouwen, instituties en gedrag.
+
+Let op:
+Surveydata kunnen laten zien of burgers met bepaalde ervaringen of percepties ook minder vertrouwen rapporteren, maar zijn meestal onvoldoende om zonder verdere aannames harde causale uitspraken te doen over het effect van corruptie op economisch gedrag.
+
+

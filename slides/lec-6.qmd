@@ -1,0 +1,459 @@
+---
+title: "Geavanceerde data technieken"
+author: 
+  - name: Gerko Vink
+    orcid: 0000-0001-9767-1924
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+date: 10 June 2025
+date-format: "D MMM YYYY"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    theme: [solarized, gerko.scss]
+    embed-resources: true
+    progress: true
+    margin: 0.075
+    logo: logo.png 
+    toc: false
+    toc-depth: 1
+    toc-title: Outline
+    slide-number: true
+    scrollable: false
+    width: 1200
+    reference-location: margin
+    footer: Gerko Vink @ Anton de Kom Universiteit, Paramaribo
+    #standalone: true
+---
+
+## Disclaimer {.smaller}
+I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.
+
+Images are either directly linked, or generated with StableDiffusion or DALL-E. That said, there is no information in this presentation that exceeds legal use of copyright materials in academic settings, or that should not be part of the public domain. 
+
+::: {.callout-warning}
+You **may use** any and all content in this presentation - including my name - and submit it as input to generative AI tools, with the following **exception**:
+
+- You must ensure that the content is not used for further training of the model
+:::
+
+## Slide materials and source code
+::: callout-tip
+# Materials
+- lecture slides on Moodle
+- course page: [www.gerkovink.com/sur](https://www.gerkovink.com/sur)
+- source: [github.com/gerkovink/sur](https://github.com/gerkovink/sur)
+:::
+
+## Recap
+
+Gisteren hebben we deze onderwerpen behandeld:
+
+- Zelf functies ontwikkelen, gebruiken en debuggen
+- Map / Reduce workflows
+- Binaire operators
+- Trekken uit verdelingen
+- Random number generation
+
+## Today
+Vandaag behandelen we de volgende onderwerpen:
+
+- Ontbrekende waarden
+- Synthetische imputaties maken
+
+## Packages we use
+```{r}
+library(purrr)    # for functional programming
+library(dplyr)    # for data manipulation
+library(magrittr) # for the pipe operator
+library(mice)     # for multiple imputation
+library(ggmice)   # for visualizing mice objects
+
+set.seed(123) # for reproducibilitysqrt
+```
+
+# Anatomy of an Answer
+
+## At the start
+
+Let's start with the core:
+
+::: {.callout-note appearance="simple"}
+# Statistical inference
+Statistical inference is the process of drawing conclusions from **truths**
+:::
+
+Truths are boring, but they are convenient. 
+
+- however, for most problems truths require a lot of calculations, tallying or a complete census. 
+- therefore, a proxy of the truth is in most cases sufficient 
+- An example for such a proxy is a **sample**
+- Samples are widely used and have been for a long time
+
+## Do we need data?
+Without any data we can still come up with a statistically valid answer. 
+
+ - The answer will not be very *informative*. 
+ - In order for our answer to be more informative, we need more **information**
+
+Some sources of information can already tremendously guide the precision of our answer. 
+
+::: {.callout-tip}
+# In Short
+Information bridges the answer to the truth. Too little information may lead you to a *false truth*. 
+:::
+
+## Being wrong about the truth
+::::{.columns}
+:::{.column width="40%"}
+![](img/lec-6/2. missingness_problem.png){width=90%}
+:::
+
+:::{.column width="60%"}
+- The population is the truth
+- The sample comes from the population, but is generally smaller in size
+- This means that not all cases from the population can be in our sample
+- If not all information from the population is in the sample, then our sample may be *wrong*
+
+::: {.callout-note}
+# Good questions to ask yourself
+1. Why is it important that our sample is not wrong?<br>
+2. How do we know that our sample is not wrong?
+:::
+:::
+::::
+
+## Solving the missingness problem
+::::{.columns}
+:::{.column width="40%"}
+![](img/lec-6/3. random_sampling.png){width=90%}
+:::
+
+:::{.column width="60%"}
+- There are many flavours of sampling
+- If we give every unit in the population the same probability to be sampled, we do **random sampling**
+- The convenience with random sampling is that the missingness problem can be ignored
+- The missingness problem would in this case be: **not every unit in the population has been observed in the sample**
+
+::: {.callout-warning}
+# Hmmm...
+Would that mean that if we simply observe every potential unit, we would be unbiased about the truth?
+:::
+
+:::
+::::
+
+<!-- ## Sidestep -->
+<!-- ::::{.columns} -->
+<!-- :::{.column width="50%"} -->
+<!-- ![](img/lec-6/4. sidestep1.png){width=90%} -->
+<!-- ::: -->
+
+<!-- :::{.column width="50%"} -->
+<!-- - The problem is a bit larger -->
+<!-- - We have three entities at play, here: -->
+
+<!--   1. The truth we're interested in -->
+<!--   2. The proxy that we have (e.g. sample) -->
+<!--   3. The model that we're running -->
+
+<!-- - The more features we use, the more we capture about the outcome for the cases in the data -->
+<!-- - The more cases we have, the more we approach the true information -->
+<!-- <br><br><br> -->
+<!-- All these things are related to uncertainty. Our model can still yield biased results when fitted to $\infty$ features. Our inference can still be wrong when obtained on $\infty$ cases.  -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ## Sidestep -->
+<!-- ::::{.columns} -->
+<!-- :::{.column width="50%"} -->
+<!-- ![](img/lec-6/5. sidestep2.png){width=90%} -->
+<!-- ::: -->
+
+<!-- :::{.column width="50%"} -->
+<!-- - The problem is a bit larger -->
+<!-- - We have three entities at play, here: -->
+
+<!--   1. The truth we're interested in -->
+<!--   2. The proxy that we have (e.g. sample) -->
+<!--   3. The model that we're running -->
+
+<!-- - The more features we use, the more we capture about the outcome for the cases in the data -->
+<!-- - The more cases we have, the more we approach the true information -->
+<!-- <br><br><br> -->
+
+<!-- **Core assumption: all observations are bonafide** -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ## Uncertainty simplified -->
+<!-- ::::{.columns} -->
+<!-- :::{.column width="70%"} -->
+<!-- ![](img/lec-6/6. Sample_uncertainty.png){width=90%} -->
+<!-- ::: -->
+
+<!-- :::{.column width="30%"} -->
+<!-- When we do not have all information ... -->
+
+<!-- 1. We need to accept that we are probably wrong -->
+<!-- 2. We just have to quantify how wrong we are -->
+
+<!-- <br> -->
+<!-- In some cases we estimate that we are only a bit wrong. In other cases we estimate that we could be very wrong. This is the purpose of testing.  -->
+<!-- <br><br> -->
+<!-- The uncertainty measures about our estimates can be used to create intervals -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ## Confidence in the answer -->
+<!-- ::::{.columns} -->
+<!-- :::{.column width="60%"} -->
+<!-- ![](img/lec-6/7. confidence_intervals.png){width="90%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column width="40%"} -->
+<!-- An intuitive approach to evaluating an answer is confidence. In statistics, we often use confidence intervals. Discussing confidence can be hugely informative! -->
+
+<!-- If we sample 100 samples from a population, then a *95% CI* will cover the **true** population value [at least 95 out of 100 times]{style="text-decoration: underline;"}.  -->
+
+<!-- - If the coverage <95: bad estimation process with risk of errors and invalid inference -->
+<!-- - If the coverage >95: inefficient estimation process, but correct conclusions and valid inference. Lower statistical power.  -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ::: footer  -->
+<!-- Neyman, J. (1934). On the Two Different Aspects of the Representative Method: The Method of Stratified Sampling and the Method of Purposive Selection. <br> Journal of the Royal Statistical Society Series A: Statistics in Society, 97(4), 558-606. -->
+<!-- ::: -->
+
+## How do we know that our sample is not....
+::::{.columns}
+:::{.column width="60%"}
+![](img/lec-6/15. replication.png){width="90%"}
+:::
+
+::: {.column width="40%"}
+We can replicate our sample. 
+
+- A replication would be a new sample from the same population or true data generating model obtained by the same data generating process.
+- If we would sample 100 times, we would get 100 different samples
+- If we would estimate 100 times, we would get 100 different estimates with 100 different confidence intervals (e.g. 95% CI)
+- Out of these 100 different intervals, we would expect a nominal coverage. For a 95% CI we'd expect 95 of them to cover the true population value. 
+:::
+::::
+
+## Case: Spaceshuttle Challenger
+36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed.
+
+::::{.columns}
+:::{.column width="40%"}
+![](img/lec-6/chal.jpg){width=90%}
+:::
+:::{.column width="60%"}
+```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6}
+library(tidyverse)
+library(ggplot2)
+library(alr4)
+set.seed(123)
+Challeng %>% 
+  filter(fail > 0) %>% 
+  ggplot(aes(temp, fail)) +
+  geom_point() +
+  #geom_(height = .1, width = .01) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) + 
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") + 
+  theme_classic()
+```
+:::
+::::
+
+## Nothing happened, so we ignored it
+
+::::{.columns}
+:::{.column width="50%"}
+```{r darkdata, echo = FALSE, message=FALSE, warning=FALSE, fig.width = 5}
+set.seed(123)
+Challeng %>% 
+  ggplot(aes(temp, fail)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) + 
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") + 
+  theme_classic()
+```
+:::
+:::{.column width="50%"}
+In the decision to proceed with the launch, there was a presence of dark data. And no-one noticed!
+
+Dark data
+: Information that is not available but necessary to arrive at the correct answer.
+
+This missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled!
+
+::: {.callout-warning appearance="simple"}
+If you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision.
+:::
+
+:::
+::::
+
+## In Practice
+::::{.columns}
+:::{.column width="30%"}
+![](img/lec-6/9.missingness.png){width=60%}
+:::
+
+::: {.column width="70%"}
+
+We now have a new problem:
+
+- we do not have the whole truth; but merely a sample of the truth
+- we do not even have the whole sample, but merely a sample of the sample of the truth. 
+
+
+::: {.callout-tip appearance="simple"}
+What would be a simple solution to allowing for valid inferences on the incomplete sample? Would that solution work in practice?
+:::
+
+
+:::
+::::
+
+## How to fix the missingness problem
+::::{.columns}
+:::{.column width="50%"}
+![](img/lec-6/11. missingness_solved.png){width=80%}
+:::
+
+::: {.column width="50%"}
+There are two sources of uncertainty that we need to cover when analyzing incomplete data:
+
+1. **Uncertainty about the data values we don't have**:<br>when we don't know what the true observed value should be, we must create a distribution of values with proper variance (uncertainty).
+2. **Uncertainty about the process that generated the values we do have**:<br>nothing can guarantee that our sample is the one true sample. So it is reasonable to assume that the parameters obtained on our sample are biased. 
+
+A straightforward and intuitive solution for analyzing incomplete data in such scenarios is *multiple imputation* (Rubin, 1987).
+:::
+::::
+
+::: footer 
+Rubin, D. B. (1987). Multiple imputation for nonresponse in surveys. John Wiley & Sons.
+:::
+
+# Multiple imputation with `mice`
+
+## Inspect the missingness
+```{r}
+plot_pattern(boys)
+```
+
+## Impute boys
+```{r}
+imp <- mice(boys)
+```
+
+## Default arguments
+```{r eval=FALSE}
+mice(
+  data,
+  m = 5,
+  method = NULL,
+  predictorMatrix,
+  ignore = NULL,
+  where = NULL,
+  blocks,
+  visitSequence = NULL,
+  formulas,
+  calltype = NULL,
+  blots = NULL,
+  post = NULL,
+  defaultMethod = c("pmm", "logreg", "polyreg", "polr"),
+  maxit = 5,
+  printFlag = TRUE,
+  seed = NA,
+  data.init = NULL,
+  ...
+)
+```
+
+For this course we do not go beyond the default imputation methods in `mice`. 
+
+## Inspect the imputed data
+```{r}
+mice::stripplot(imp)
+```
+
+## Inspect the imputed data
+```{r}
+ggmice::densityplot(imp)
+```
+
+## Inspect the convergence
+```{r}
+plot_trace(imp, vrb = "tv")
+```
+
+## Run more iterations
+```{r}
+imp <- mice(boys, 
+            maxit = 20, # increase the number of iterations to 20
+            printFlag = FALSE) # do not print the iteration history
+```
+```{r}
+plot_trace(imp, vrb = "tv")
+```
+
+## Calculate estimates: create a list of imputed data sets
+```{r}
+imp %>% 
+  complete("all") # creates a list of the imputed data sets
+```
+
+## Calculate estimates: mean of `tv`
+```{r}
+imp %>% 
+  complete("all") %>% # list of imputed data sets
+  map(~.x %$% mean(tv)) # calculate the means for every completed data set
+```
+
+## Pooling the means
+```{r}
+imp %>% 
+  complete("all") %>% # list of completed data sets
+  map(~.x %$% mean(tv)) %>% # calculate the means for every completed data set
+  reduce(`+`) / imp$m # divide the sum by the number of imputations `m`
+```
+
+The mean in the observed data was:
+```{r}
+boys %>% # start with the boys data 
+  select(tv) %>% # select only tv
+  colMeans(na.rm = TRUE) # calculate the mean, excluding NAs
+```
+
+## Pooling a regression model
+```{r}
+imp %>% 
+  complete("all") %>% # list of completed data sets
+  map(~.x %$% # start the map with data so we can use the %$% pipe
+        lm(tv ~ age)) %>% # fit a linear model to each imputed data set
+  pool() # mice internal pooling function for model objects
+```
+
+The `pool()` functions calculates the average over the estimates and pools the variances of the estimates according to Rubin's rules. Rubin's rules are a set of rules for combining estimates and variances from multiple imputed datasets to obtain a single estimate and variance that accounts for the uncertainty introduced by the missing data process.
+
+## Pooling a regression model: summary
+```{r}
+imp %>% 
+  complete("all") %>% # list of completed data sets
+  map(~.x %$% # start the map with data so we can use the %$% pipe
+        lm(tv ~ age)) %>% # fit a linear model to each imputed data set
+  pool() %>% # mice internal pooling function for model objects
+  summary(conf.int = TRUE) # print the summary of the pooled model
+```
+
+
+# Practical

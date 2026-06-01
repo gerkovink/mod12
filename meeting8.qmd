@@ -1,0 +1,28 @@
+# Presentaties {#sec-mt8}
+
+---
+subtitle: "subtitle"
+author: 
+  - name: "Gerko Vink"
+    orcid: "0000-0001-9767-1924"
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+---
+
+::: callout-tip
+## Hoorcollege 15 juni 2026
+
+We beginnen vandaag met `R` en `RStudio`. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met `storytelling` en zullen daar het publicatieplatform [`Quarto`]() voor gebruiken. De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+:::
+
+## Groepsopdracht
+hier de groepsopdracht tekst
+
+## Individuele opdracht
+hier de individuele opdracht tekst

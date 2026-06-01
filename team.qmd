@@ -1,0 +1,27 @@
+# Teaching team {.unnumbered}
+
+## Docent
+![](images/team/gerko.png){style="float:right;padding: 0 0 0 10px;" fig-alt="Headshot of Gerko" width="200"}
+
+Als psycholoog ben ik per ongeluk
+statisticus geworden. Ik heb een
+voorliefde voor het overbrengen van
+informatie en lesgeven, en doe dit
+vooral over mijn expertise in rekenen,
+wiskunde, programmeren en
+kunstmatige intelligentie (AI). Ik geef
+lezingen en cursussen over de hele
+wereld, maar vooral in Utrecht.
+Daarnaast maak ik als wetenschapper
+software en web-apps zodat
+studenten, overheden en
+onderzoekers die niet zoveel kaas
+hebben gegeten van lastige
+wiskundige modellen, toch de
+state-of-the-art kunnen gebruiken of
+begrijpen. Ook geef ik in Utrecht
+leiding aan het universiteitsbrede
+consortium over de impact van AI in
+onderwijs. Je kunt me bereiken via e-mail: [g.vink@uu.nl](mailto:g.vink@uu.nl)
+
+---

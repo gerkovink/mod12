@@ -1,0 +1,104 @@
+---
+title: "Data Processing and modelling in R"
+author: "Valentien Moe Soe Let"
+format: html
+editor: visual
+---
+
+# College 2
+
+## Data Management / Manipulatie
+
+Werken met pipes in R: wat erin gaat, komt eruit. Verlaagt de te gebruiken processing power, om sneller te werken.
+
+tab: gebruik om de functies op te roepen
+
+?sd : hiermee kom je snel in de help over sd
+
+??sd: alles wat met sd te maken heeft
+
+Je kunt ook werken in R script, maar is minder makkelijk om te delen met mensen. Quarto stelt je in staat om extra tekst en uitleg mee te nemen.
+
+\$ kun je zien als doosjes, vb van dataset\$gender = doosje gender uit de dataset
+
+! : betekent het omgekeerde bijv != betekent niet gelijk aan
+
+*\~ tilde operator*: iets berekenen obv iets anders. vb BMI \~ weight: BMI maken obv gewicht OF BMI \~ I(weight/height\^2)
+
+*Toetsen*: t.test,
+
+Labels
+
+Gebruik nieuwe packages package:: haven:: laat alle functies beschikbaar in haven package:::
+
+## Practical 2: Pipes
+
+Pipes: chain together multiple operations in a more ordened way. %\>% (in margriet library) or \|\> (in R).
+
+Other pipes: %\$% (exposition pipe), %\<\>% (assignment pipe)
+
+*Libaries/packages we use*
+
+```{r}
+library(tibble)   # tibbles variation on data frames
+library(dplyr)    # data manipulation
+library(haven)    # in/exporting data (from STATTA/SPSS)
+library(magrittr) # pipes
+library(labelled) # labelled data manipulation
+library(tidyr)    # data tidying
+library(broom)    # tidying model outputs
+library(mice)
+```
+
+Importing data: STATA data
+
+```{r}
+# Import SPSS dataset
+spss_data <- read_sav("SUR_2023_LAPOP_AmericasBarometer_v1.0_w_orginal.sav")
+# Import Stata dataset
+stata_data <- read_dta("03-poverty-analysis-data-2022-rt001-housing-plus.dta")
+```
+
+Using pipes: 1. Draw 1000 values from a normal distribution with mean = 5 and sd = 1.
+
+```{r}
+set.seed(123) #for same results as this sample, when sharing
+```
+
+```{r}
+rnorm(1000, 5) %>%
+  matrix(ncol = 2) %>%
+  plot()
+```
+
+Calculate correlation matrix for poverty dataset
+
+```{r}
+cor_stata <- stata_data %>%
+  as_factor() %>% # to be sure that we deal with factors
+  select(where(is.numeric)) %>% # Only numeric selection
+  cor(use = "pairwise.complete.obs") # use all info from complete pairs
+```
+
+Explore maximum correlation (first, set diagonal to zero)
+
+```{r}
+diag(cor_stata) <- 0 # iedere variabele correleert met zichzeld, dus de diagonaal is 1 en zetten we om in 0
+max_cor_value <- max(cor_stata, na.rm = TRUE) # remove missings
+which_max <- which(cor_stata == max_cor_value, arr.ind = TRUE) # get indices of rows and columns
+which_max
+```
+
+```{r}
+stata_data %>%
+  select(CPI_2017_22, CPI_june2022) %>%
+  cor(use = "pairwise.complete.obs")
+```
+
+Correlation for pairs using pipes (ascombe dataset)
+
+```{r}
+ascombe %>%
+  subset(select = c(x4, y4)) %>%
+  cor()
+```

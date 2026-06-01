@@ -1,0 +1,107 @@
+# Deliverables {.unnumbered}
+---
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 4
+---
+
+Voor deze module werken studenten aan een toegepast statistisch onderzoeksproject. Het eindproduct bestaat uit een schriftelijk Research Project Report en een mondelinge presentatie. Deze producten worden beoordeeld door de docenten en vormen samen het eindcijfer voor de module.
+
+Het Research Project Report telt voor 90% mee in het eindcijfer. De mondelinge presentatie telt voor 10% mee.
+
+## Doel van het deliverable 
+
+Het doel van het deliverable is dat studenten laten zien dat zij een maatschappelijk of wetenschappelijk relevant probleem kunnen vertalen naar een uitvoerbaar statistisch onderzoeksproject. Daarbij tonen zij aan dat zij zelfstandig en op academisch niveau kunnen werken met literatuur, data, statistische analyse, interpretatie, rapportage en reflectie.
+
+Het project bereidt studenten voor op het zelfstandig uitvoeren van onderzoek, zoals verwacht wordt bij de masterthesis en in professionele statistische functies binnen overheid, NGO’s, onderzoeksinstituten of vergelijkbare organisaties.
+
+## Onderzoeksproject {#sec-deliv}
+
+Studenten werken aan een onderzoeksvraag die aansluit bij een relevant maatschappelijk, beleidsmatig of wetenschappelijk thema. De onderzoeksvraag wordt uitgewerkt aan de hand van beschikbare empirische data of secundaire databestanden. Het project kan bijvoorbeeld betrekking hebben op thema’s als officiële statistiek, onderwijs, volksgezondheid, economie, publieke financiën, milieu, ecologie, watermanagement, arbeidsmarkt, bestuur of maatschappelijke ontwikkeling.
+
+De student moet aantonen dat de gekozen onderzoeksvraag past bij de beschikbare data en dat de gebruikte statistische aanpak geschikt is om de onderzoeksvraag op een verantwoorde manier te beantwoorden.
+
+### Schriftelijk Research Project Report {#sec-resrep}
+
+Het schriftelijke rapport is het belangrijkste eindproduct van de module. Het rapport moet een samenhangend academisch onderzoeksverslag zijn, waarin de student duidelijk maakt wat is onderzocht, waarom dit relevant is, welke data zijn gebruikt, welke analyses zijn uitgevoerd, wat de resultaten betekenen en welke conclusies verantwoord kunnen worden getrokken.
+
+Het rapport bevat ten minste de volgende onderdelen:
+
+  1. Titel en samenvatting (abstract): <br>
+*Een duidelijke titel en een korte samenvatting van het onderzoek, de gebruikte data, de belangrijkste resultaten en de conclusie.* 
+  2. Introductie en probleemstelling: <br>
+*Een beschrijving van het maatschappelijke, beleidsmatige of wetenschappelijke probleem dat centraal staat. De student legt uit waarom het onderwerp relevant is en voor wie het onderzoek van belang is.*
+  3. Onderzoeksvraag en doelstelling: <br>
+*Een heldere formulering van de centrale onderzoeksvraag en eventuele deelvragen. De vraag moet onderzoekbaar zijn met de beschikbare data en moet aansluiten bij het gekozen thema.*
+  4. Literatuur en theoretisch kader: <br>
+*Een beknopte bespreking van relevante literatuur, theorieën, eerdere onderzoeken en/of beleidsdocumenten. De student laat zien hoe bestaande kennis helpt om de onderzoeksvraag, variabelen, verwachtingen en analysekeuzes te onderbouwen.*
+  5. Data en datakwaliteit: <br>
+*Een beschrijving van het gebruikte databestand of de gebruikte databestanden. Hierbij wordt aandacht besteed aan de herkomst van de data, de populatie, de steekproef of selectie, de meetinstrumenten, de belangrijkste variabelen, ontbrekende waarden, eventuele wegingen, beperkingen en andere aspecten van datakwaliteit.*
+  6. Methode en analyseplan: <br> 
+*Een uitleg van de gekozen statistische aanpak. De student verantwoordt waarom de gebruikte methode past bij de onderzoeksvraag, de aard van de data en het type conclusie dat men wil trekken. Ook wordt beschreven hoe de data zijn voorbereid, opgeschoond en geanalyseerd.*
+  7. Resultaten: 
+*Een overzichtelijke presentatie van de belangrijkste resultaten, met relevante tabellen en/of figuren. De student presenteert niet alleen statistische output, maar geeft ook een duidelijke interpretatie van wat de resultaten betekenen.*
+  8. Discussie: <br>
+*Een kritische bespreking van de resultaten in relatie tot de onderzoeksvraag, literatuur en maatschappelijke context. De student bespreekt mogelijke verklaringen, beperkingen van het onderzoek, aannames, onzekerheden en alternatieve interpretaties.*
+  9. Conclusie en aanbevelingen: Een beknopt antwoord op de onderzoeksvraag.<br> 
+*De conclusie moet volgen uit de data en analyses. Waar passend formuleert de student aanbevelingen voor beleid, praktijk, vervolgonderzoek of dataverzameling.*
+  10. Reflectie op reproduceerbaarheid en wetenschappelijke integriteit: <br> 
+*De student beschrijft hoe het onderzoek reproduceerbaar en controleerbaar is gemaakt. Denk aan een duidelijke projectstructuur, documentatie van databewerkingen, analysecode of syntax, beslislogboek, bronvermelding en verantwoording van keuzes. Ook wordt aandacht besteed aan ethiek, vertrouwelijkheid en verantwoord gebruik van data.*
+  11. Referenties en bijlagen: <br>
+*Alle gebruikte literatuur, datasets, rapporten en andere bronnen worden correct vermeld. Bijlagen kunnen bestaan uit aanvullende tabellen, codeboeken, analysecode, syntax, logboeken of extra documentatie.*
+
+### Reproduceerbaar onderzoeksarchief {#sec-archive}
+
+Naast het geschreven rapport wordt verwacht dat studenten hun onderzoeksproces voldoende documenteren. De docent moet kunnen nagaan hoe de student van ruwe data en onderzoeksvraag tot resultaten en conclusie is gekomen.
+
+Het onderzoeksarchief bevat idealiter:
+
+* een korte README met uitleg over de projectstructuur;
+* het gebruikte databestand, of een duidelijke verwijzing naar de bron als de data niet gedeeld mogen worden;
+* een codeboek of beschrijving van de gebruikte variabelen;
+* analysecode, syntax of een duidelijk stappenplan van de uitgevoerde analyses;
+* een logboek van databewerkingen, hercoderingen en gemaakte keuzes;
+* tabellen en figuren die in het rapport zijn gebruikt;
+* de definitieve versie van het rapport en de presentatie.
+
+Wanneer data vertrouwelijk zijn of niet gedeeld mogen worden, beschrijft de student duidelijk hoe toegang tot de data is geregeld en welke onderdelen van het archief wel gedeeld kunnen worden.
+
+### Mondelinge presentatie {#sec-pres}
+
+Aan het einde van de gecombineerde hoor- en werk-collegereeks presenteren studenten hun (voorlopig) onderzoek aan docenten en medestudenten. De presentatie is bedoeld om de kern van het onderzoek helder, professioneel en academisch verantwoord over te brengen.
+
+De presentatie bevat ten minste:
+
+* het onderwerp en de relevantie van het onderzoek;
+* de centrale onderzoeksvraag;
+* een korte beschrijving van de gebruikte data;
+* de gekozen analysemethode;
+* de belangrijkste resultaten;
+* de conclusie;
+* de beperkingen van het onderzoek;
+* eventuele aanbevelingen;
+* beantwoording van vragen uit het publiek.
+
+De presentatie moet begrijpelijk zijn voor een academisch publiek, maar hoeft niet onnodig technisch te zijn. Studenten moeten laten zien dat zij hun eigen analyse kunnen uitleggen, verdedigen en kritisch kunnen bespreken.
+
+## Beoordeling
+
+Bij de beoordeling wordt onder andere gelet op:
+
+* helderheid en relevantie van de onderzoeksvraag;
+* kwaliteit van het onderzoeksdesign;
+* gebruik en verwerking van relevante literatuur;
+* correcte omgang met data en datakwaliteit;
+* passende toepassing van statistische methoden;
+* juistheid en helderheid van de interpretatie;
+* kwaliteit van tabellen, figuren en rapportage;
+* kritische reflectie op aannames, beperkingen en onzekerheid;
+* reproduceerbaarheid en transparantie van het onderzoeksproces;
+* wetenschappelijke integriteit en zorgvuldig brongebruik;
+* maatschappelijke en/of wetenschappelijke relevantie;
+* academische schrijfstijl en structuur;
+* kwaliteit van de mondelinge presentatie en beantwoording van vragen.
+
+Een goed report en een kundige presentatie geven niet alleen statistische resultaten, maar laat ook zien waarom de analyse een verantwoord antwoord geeft op de onderzoeksvraag, wat de beperkingen van dat antwoord zijn, en hoe het onderzoek gecontroleerd of gereproduceerd kan worden.
