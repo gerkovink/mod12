@@ -1,6 +1,6 @@
 ---
-title: Groepsopdracht 2
-subtitle: "Van maatschappelijk probleem naar onderderzoeksontwerp"
+title: Groepsopdracht 2 — AI als assistent
+subtitle: "Hoe gebruik je AI prompts op een goede manier"
 author: 
   - name: "Gerko Vink"
     orcid: "0000-0001-9767-1924"
@@ -19,109 +19,228 @@ format:
 | Onderdeel | Beschrijving |
 |---|---|
 | **Duur** | 1 uur |
-| **Werkvorm** | Groepswerk in groepen van 3–4 studenten. Het is wenselijk dat je met verschillende inhoudelijke interesses in één groep zit, zodat jullie elkaar kunnen helpen om aannames, onduidelijkheden en te sterke claims te herkennen. Twee weten immers meer dan één! |
+| **Werkvorm** | Groepswerk in groepen van 3–4 studenten. Het is wenselijk dat je met verschillende inhoudelijke interesses in één groep zit, zodat jullie van elkaar kunnen leren. Twee weten immers meer dan één! |
 
-Aan het einde van de groepsopdracht heb je een korte research design card met:
 
-1. het oorspronkelijke onderwerp;
-2. een aangescherpte onderzoeksvraag;
-3. het type onderzoeksvraag;
-4. 3–5 zoektermen of zoekopdrachten;
-5. een mini-literatuurkaart met ten minste één bron of gepland brontype;
-6. belangrijke begrippen en variabelen die uit de literatuur naar voren komen;
-7. een claimgrens: wat het onderzoek wel en niet kan concluderen.
+# Doel van de opdracht
 
-De inzichten die je vandaag opdoet zul je later kunnen gebruiken om je Research Report veel scherper te kunnen formuleren. 
+In deze opdracht gebruiken jullie een AI-tool als onderzoeksassistent. Het doel is niet om AI blind te vertrouwen, maar om te ervaren hoe de kwaliteit van een AI-antwoord verandert wanneer je betere instructies geeft, kritischer doorvraagt en de output systematisch beoordeelt. De opdracht helpt jullie om later hetzelfde proces toe te passen op literatuur voor je eigen onderzoeksproject.
 
-# Opdracht
+Jullie werken met het artikel:
 
-## Stap 1: Begin bij het begin
+[Oberman, H. I., & Vink, G. (2024). Toward a standardized evaluation of imputation methodology. Biometrical Journal, 66, 2200107](https://onlinelibrary.wiley.com/doi/full/10.1002/bimj.202200107)
 
-Lees de onderstaande tekst en probeer goed duidelijk te krijgen wat het onderwerp van dit onderzoek zal zijn. 
+Dit artikel bespreekt waarom er meer standaardisatie nodig is bij het evalueren van imputatie methodologie. Het laat zien dat keuzes in simulatieopzet, data-generatie, missingness-generatie en performance-evaluatie grote invloed kunnen hebben op de conclusies over de kwaliteit van imputatie methoden.
 
-::: callout-note
-### Oefencasus: wateroverlast en kwetsbaarheid van huishoudens in Suriname
-In veel kustgebieden in Suriname spelen veranderingen in neerslag, waterstanden en landgebruik een steeds grotere rol in het dagelijks leven van bewoners. In sommige gemeenschappen wordt vaker melding gemaakt van wateroverlast na hevige regenval. Dit kan gevolgen hebben voor bereikbaarheid, gezondheid, schoolbezoek, werk, landbouwactiviteiten en schade aan woningen of infrastructuur.
+Aan het einde van deze opdracht heb je:
 
-Tegelijkertijd is het niet altijd duidelijk waardoor wateroverlast precies ontstaat. Hevige neerslag kan een rol spelen, maar ook de ligging van een gebied, de kwaliteit van afwatering, verstedelijking, bodemgebruik, nabijheid van rivieren of kreken, en sociaaleconomische omstandigheden van huishoudens kunnen van belang zijn. Ook kan het zijn dat bepaalde groepen bewoners vaker wateroverlast rapporteren, bijvoorbeeld omdat zij in kwetsbaardere gebieden wonen of minder mogelijkheden hebben om schade te voorkomen.
+1. ervaren wat het verschil is tussen een simpele prompt en een gestructureerde prompt
+2. een AI-samenvatting van ongeveer 200 woorden kritisch verbeterd
+3. gezocht naar literatuur die relevant is voor het artikel
+4. een mini-literatuurkaart gemaakt met ten minste drie relevante bronnen
+5. een Zotero-bibliotheek aangemaakt waarin deze bronnen zijn opgenomen
+6. een eerste vertaalslag gemaakt naar je eigen project
+
+# Wat heb je nodig
+
+- Het artikel van Oberman & Vink over evaluatie van imputation methodology
+- Een AI-tool naar keuze
+- Toegang tot internet of een wetenschappelijke zoekmachine
+- Zotero, met eventueel de Zotero browser connector
+- Een gedeeld document waarin je groep de antwoorden noteert
+
+# De opdracht
+
+## Stap 1: Begin met een minimale prompt
+
+Open een AI-tool en geef alleen de volgende prompt:
+
+_Summarize this in 200 words._
+
+Gebruik hierbij de tekst of PDF van het artikel.
+
+Lees de output kritisch. Bespreek in je groep:
+
+- Is de samenvatting inhoudelijk correct?
+- Is duidelijk wat het doel van het artikel is?
+- Worden de belangrijkste onderdelen van het artikel genoemd?
+- Is duidelijk voor welk publiek de samenvatting bedoeld is?
+- Worden beperkingen, context of kernbegrippen goed uitgelegd?
+- Zijn er uitspraken die te algemeen, vaag of mogelijk onjuist zijn?
+
+Noteer kort wat goed is aan de samenvatting en wat ontbreekt.
+
+## Stap 2: Maak de prompt beter met BRAVE(R)
+
+Nu bouw je de prompt opnieuw op. Gebruik hiervoor de BRAVE(R)-techniek zoals besproken in het college. Het doel is om AI niet alleen te vragen om “een samenvatting”, maar om een beter gesitueerde, controleerbare en bruikbare academische output te maken.
+
+![](img/Picture2BRAVER (1).jpg)
+
+Gebruik de volgende onderdelen als houvast:
+
+| Onderdeel | Betekenis | Vraag die je jezelf stelt |
+|---|---|---|
+| --B — Boundaries-- | Grenzen en randvoorwaarden | Welke grenzen stel je aan de output, zoals lengte, format, taal, detailniveau of beperkingen? |
+| --R — Role-- | Rol of perspectief | Welke rol moet de AI aannemen, bijvoorbeeld statisticus, methodoloog, reviewer of onderzoeksassistent? |
+| --A — Audience-- | Doelgroep | Voor wie is de output bedoeld, en welke toon, stijl en voorkennis passen daarbij? |
+| --V — Variables-- | Belangrijke details | Welke kernbegrippen, variabelen, onderdelen of aandachtspunten moeten zeker worden meegenomen? |
+| --E — Expectations-- | Verwachte uitkomst | Wat moet de AI precies opleveren, met welk doel en in welke vorm? |
+| --(R) — Refine-- | Verbeteren en bijsturen | Welke feedback geef je om de output te verbeteren of een volgende versie scherper te maken? |
+
+Maak nu samen een betere prompt. De prompt moet in ieder geval duidelijk maken dat:
+
+- de samenvatting ongeveer 200 woorden moet zijn
+- de output academisch, maar begrijpelijk moet zijn
+- de AI optreedt als onderzoeksassistent of methodologisch adviseur
+- de samenvatting bedoeld is voor masterstudenten Applied Statistics
+- de kernbijdrage van het artikel moet worden uitgelegd
+- begrippen zoals inference, prediction, simulation design, missingness generation en performance evaluation waar relevant moeten worden meegenomen
+- de samenvatting geen ongecontroleerde claims mag bevatten
+- de AI na afloop kort moet aangeven welke onderdelen mogelijk gecontroleerd moeten worden in de originele tekst.
+
+::: {.callout-tip appearance="simple" collapse=true}
+## HINT: Voorbeeld van een betere prompt:
+
+You are acting as a methodological research assistant for master students in Applied Statistics.
+
+Summarize the attached article by Oberman and Vink in approximately 200 words. The summary should be written in clear academic English for students who understand basic statistics but are not yet experts in missing data methodology.
+
+The summary should explain the main problem, the purpose of the article, the central argument, and the practical relevance for evaluating imputation methods. Include, where relevant, the distinction between statistical inference and prediction, and mention why simulation design, missingness generation, and performance measures matter.
+
+Do not invent details that are not in the article. Avoid unnecessary jargon. After the summary, list three points that should be checked in the original article before the summary is used in a report.
+
 :::
 
-[NOG DOEN: DATABESTAND UITWERKEN EN AANLEVEREN]
-Stel dat jullie toegang hebben tot een databestand waarin huishoudens uit verschillende districten in Suriname zijn bevraagd over wateroverlast in hun woonomgeving. In dit databestand staan ook gegevens over kenmerken van het huishouden, het type woning, de locatie, toegang tot afwatering, sociaaleconomische omstandigheden en eventuele gevolgen van wateroverlast. Daarnaast is er informatie beschikbaar over neerslag per district in dezelfde periode.
+Voer jullie verbeterde prompt uit en vergelijk de nieuwe samenvatting met de samenvatting die jullie eerst hadden.Vergelijk deze prompt met de eerste prompt: -Summarize this in 200 words-. Bespreek in je groep:
 
-Gebruik deze tekst als startpunt voor Groepsopdracht 2. Probeer eerst duidelijk te krijgen wat het onderwerp van dit onderzoek zou kunnen zijn. Schrijf het onderwerp op zoals jullie denken dat het is. 
+- Welke grenzen zijn nu duidelijker?
+- Welke rol heeft de AI gekregen?
+- Voor welk publiek is de samenvatting geschreven?
+- Welke belangrijke variabelen, begrippen of onderdelen zijn toegevoegd?
+- Wat is de verwachte output?
+- Welke vervolgvraag of feedback zou je geven om de samenvatting verder te verbeteren?
 
-Maak daarna de structuur van het onderwerp zichtbaar. Benoem ten minste:
+## Stap 3: Beoordeel de AI-output met RACCCA
 
-* de populatie of onderzoekseenheden;
-* de uitkomstvariabele;
-* de belangrijkste verklarende variabele, voorspeller of groepsindeling;
-* de context;
-* mogelijke achtergrondvariabelen.
+Gebruik nu -RACCCA- om de samenvatting te beoordelen. Het doel is om niet alleen te kijken of de tekst mooi klinkt, maar of de inhoud bruikbaar is voor wetenschappelijk werk. Gebruik hiervoor de volgende beoordelingsvragen:
 
-Het doel van deze stap is om het onderwerp zichtbaar te maken als onderzoeksstructuur, en niet alleen als interessant thema.
-
-## Stap 2: Classificeer het type onderzoeksvraag
-
-Bepaal daarna welk type vraag je vooral stelt. Kies één primair type, ook als je onderwerp meerdere elementen bevat.
-
-| Type onderzoeksvraag | Voorbeeld van de claim |
+| Criterium | Vraag |
 |---|---|
-| Beschrijvend | Hoe vaak komt X voor? |
-| Vergelijkend | Verschillen groepen in Y? |
-| Verklarend of associatief | Is X geassocieerd met Y, rekening houdend met Z? |
-| Voorspellend | Hoe goed kunnen we Y voorspellen op basis van X en Z? |
-| Causaal | Wat is het effect van X op Y? |
-| Validerend of meetkundig | Komt meetmethode A overeen met meetmethode B? |
+| --R — Relevance-- | Beantwoordt de output de vraag die gesteld is of de opdracht die gegeven is? |
+| --A — Accuracy-- | Geeft de output correcte, betrouwbare informatie die gebaseerd is op feiten? <br> -Dit betekent dat de correctheid van de output wordt gecontroleerd door de tekst te vergelijken met andere bronnen-. |
+| --C — Completeness-- | Zijn de belangrijkste onderdelen en aspecten van het onderwerp of de vraag voldoende meegenomen? |
+| --C — Clarity-- | Is de tekst helder en begrijpelijk? <br> Is de output ook gemakkelijk te begrijpen voor het beoogde publiek? |
+| --C — Coherence-- | Heeft de output een logische structuur? <br> Is de output overzichtelijk ingedeeld? <br> Is de output gemakkelijk te lezen en loopt de tekst vloeiend van het ene punt naar het andere? |
+| --A — Appropriateness-- | Is de output geschikt voor het beoogde publiek en de context? <br> Hoe gepast en respectvol is de toon en inhoud van de output? |
 
-Deze classificatie is belangrijk omdat je onderzoeksontwerp, analyse en conclusie moeten passen bij het type vraag dat je stelt.
+Geef de AI-samenvatting per criterium een korte beoordeling en gebruik of bespreek daarvoor de onderstaande tabel:
 
-## Stap 3: Maak een eerste literatuurzoekstrategie
+| Criterium | Beoordeling | Wat moet beter? |
+|---|---|---|
+| Relevance |  |  |
+| Accuracy |  |  |
+| Completeness |  |  |
+| Clarity |  |  |
+| Coherence |  |  |
+| Appropriateness |  |  |		
 
-Formuleer vervolgens zoektermen voor relevante literatuur. Het doel is niet om tijdens deze opdracht meteen de perfecte artikelen te vinden. Het doel is om doelgericht te leren zoeken.
+Herschrijf daarna de samenvatting zelf tot een definitieve versie van ongeveer 200 woorden. Deze versie mag gebaseerd zijn op AI-output, maar bedenk wel dat je als groep altijd verantwoordelijk bent voor de uiteindelijke formulering. Neem AI output dus nooit over zonder te kijken!
 
-Maak voor je onderwerp drie soorten zoekopdrachten:
+## Stap 4: Zoek kritische literatuur rond het artikel
 
-1. Inhoudelijke zoekopdracht
-    Gericht op het concrete onderwerp en de context.
-2. Conceptuele of theoretische zoekopdracht
-    Gericht op begrippen, mechanismen en theorie.
-3. Methodologische of data-gerichte zoekopdracht
-    Gericht op methode, meetinstrumenten of databron.
+Nu gebruik je AI en wetenschappelijke zoekmachines om relevante literatuur rond het artikel te vinden. Het doel is om literatuur te vinden die niet aan bod is gekomen in deze publicatie. Dat kan zijn omdat de auteurs het bijvoorbeeld gemist, of niet nodig hebben gevonden. Maar dat kan ook zijn omdat er sinds de verschijning van dit manuscript nieuwe relevante artikelen of publicaties zijn verschenen. De vraag is dus niet alleen: 
 
-Zoek niet alleen naar artikelen die precies over Suriname gaan. Begin daar wel, maar verbreed je zoekactie als je weinig vindt. Gebruik literatuur uit vergelijkbare regio’s of contexten om begrippen, mechanismen, variabelen en methoden te herkennen. Let er wel op dat je steeds kritisch blijft: literatuur uit een andere regio kan helpen bij je denkkader, maar is niet automatisch direct toepasbaar op Suriname.
+_Welke artikelen lijken hierop?_ 
 
-## Stap 4: Maak een mini-literatuurkaart
+De vraag is vooral:
 
-Maak nu een kleine literatuurkaart. Idealiter bevat deze uiteindelijk 3–5 bronnen. Tijdens deze opdracht is het voldoende om de structuur van de literatuurkaart te maken en, als internettoegang beschikbaar is, één of twee bronnen alvast in te vullen.
+_Welke literatuur helpt om dit artikel beter te begrijpen, te bekritiseren, aan te vullen of te actualiseren?_
 
-| Bron | Wat draagt deze bron bij? | Begrippen/variabelen | Methode/design | Gebruikte analyse techniek | Nut voor mijn project |
-|---|---|---|---|---|
-| Studie 1 |  |  |  |  |
-| Studie 2 |  |  |  |  |
-| Datasetdocumentatie |  |  |  |  |
+Zoek naar drie soorten literatuur:
 
-Let er op dat je de bronnen niet te willekeurig samenvat. Bronnen moeten wel een functie hebben binnen het project. Een bron kan bijvoorbeeld helpen bij:
+1. Fundamentele literatuur: Literatuur die belangrijk is voor de basis van het onderwerp. Denk aan missing data, multiple imputation, simulation studies en performance evaluation.
+2. Kritische of aanvullende literatuur: Literatuur die een ander perspectief geeft, bijvoorbeeld over causal inference, prediction, simulation protocols, benchmarking of missing-data assumptions.
+3. Recentere literatuur: Literatuur die na publicatie van het artikel is verschenen of die nieuwe ontwikkelingen bevat.
 
-* het definiëren van een begrip;
-* het herkennen van een mogelijk mechanisme;
-* het kiezen van variabelen;
-* het verantwoorden van achtergrondvariabelen of confounders;
-* het kiezen van een methode;
-* het vergelijken van bevindingen;
-* het aanwijzen van een kennislacune;
-* het begrenzen van je claim.
+Gebruik minimaal drie zoekstrategieën:
 
-## Stap 5: Scherp de onderzoeksvraag aan
+| Zoekstrategie | Voorbeeld |
+|---|---|
+| Inhoudelijk | `standardized evaluation imputation methodology simulation studies` |
+| Methodologisch | `simulation studies statistical methods performance measures missing data` |
+| Recent | `multiple imputation evaluation simulation study 2024 2025` |
+| Citerend | Zoek welke artikelen het paper citeren |
+| Achterwaarts | Bekijk de referentielijst van het paper |
+| Voorwaarts | Zoek nieuwere artikelen via Google Scholar, Semantic Scholar, Scopus of Web of Science |
 
-Gebruik je mini-literatuurkaart om je onderzoeksvraag opnieuw te formuleren, indien nodig. Geef ook het antwoordformat. Gebruik hiervoor ook de structuur die je in stap 1 hebt gemaakt. 
+Gebruik AI niet als enige bron. AI mag helpen bij het formuleren van zoektermen, het uitleggen van abstracts en het vergelijken van artikelen, maar de bronnen moeten worden gecontroleerd in een wetenschappelijke database of op de website van het tijdschrift, de uitgever of de auteurs.
 
-## Stap 6: Formuleer de claimgrens
+⸻
 
-Schrijf tot slot twee zinnen:
+## Stap 5: Maak een mini-literatuurkaart
 
-1. Dit onderzoek kan mogelijk concluderen dat ...
-2. Dit onderzoek kan niet concluderen dat ...
+Kies ten minste drie relevante bronnen die je hebt gevonden. Vul daarna de literatuurkaart in.
 
+Elke bron moet een duidelijke functie hebben. Een bron is niet alleen relevant omdat die “ook over missing data gaat”. De bron moet helpen bij een specifieke taak, bijvoorbeeld:
 
+- een kernbegrip definiëren
+- de methode beter begrijpen
+- het artikel in een bredere literatuur plaatsen
+- een beperking van het artikel herkennen
+- een kritische noot plaatsen
+- een nieuwe ontwikkeling toevoegen
+- een alternatieve evaluatiebenadering vinden
+- een toepassing in beleid of praktijk begrijpen.
 
+Vul de tabel in:
+
+| Bron | Wat draagt deze bron bij? | Begrippen/variabelen | Methode/design | Gebruikte analyse- of evaluatietechniek | Nut voor dit artikel |
+|---|---|---|---|---|---|
+| Bron 1 |  |  |  |  |  |
+| Bron 2 |  |  |  |  |  |
+| Bron 3 |  |  |  |  |  |			
+
+Schrijf daarna één korte conclusie:
+
+_Deze literatuurkaart helpt ons om het artikel van Oberman & Vink beter te begrijpen, omdat $\dots$_
+
+## Stap 6: Maak een Zotero-bibliotheek
+
+Maak nu een kleine Zotero-bibliotheek voor deze opdracht.
+
+De bibliotheek moet minimaal bevatten:
+
+1. het artikel van Oberman & Vink
+2. ten minste drie aanvullende artikelen uit de literatuurkaart
+3. correcte metadata voor elke bron
+4. indien mogelijk de PDF van de bron
+5. één korte notitie per bron waarin staat waarom deze bron relevant is.
+
+Maak in Zotero een collectie met een duidelijke naam, bijvoorbeeld:
+
+ASmodule12_Groepsopdracht_2
+
+Controleer per bron:
+
+- auteur(s)
+- jaar
+- titel
+- tijdschrift of uitgever
+- DOI of URL
+- PDF of toegangsinformatie
+- korte notitie over het nut van de bron.
+
+Wanneer een PDF niet beschikbaar is, noteer dan waar de bron gevonden is en waarom deze toch relevant lijkt.
+
+# Eindproduct van de groepsopdracht
+
+Aan het einde van de opdracht heb je als groep het volgende verkregen:
+
+1. de eerste AI-samenvatting op basis van de korte prompt
+2. de verbeterde BRAVE(R)-prompt
+3. de definitieve samenvatting van ongeveer 200 woorden
+4. een korte RACCCA-beoordeling van de AI-output
+5. een literatuurkaart met ten minste drie relevante bronnen
+6. een Zotero-collectie met het artikel en de aanvullende bronnen
+
+De belangrijkste les van deze opdracht is dat AI nuttig kan zijn als onderzoeksassistent, maar alleen wanneer je zelf de regie houdt. AI kan je ook heel goed helpen om dingen vorm te geven. Een goede prompt maakt verschil, maar een kritische onderzoeker maakt het echte verschil!

@@ -267,11 +267,10 @@ Whenever I evaluate something, I tend to look at three things:
 - uncertainty/variance (how wide is my interval)
 - coverage (how often do I cover the truth with my interval)
 
-<br>
 As a function of model complexity in specific modeling efforts, these components play a role in the bias/variance tradeoff
 
 <center>
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bias_and_variance_contributing_to_total_error.svg/2560px-Bias_and_variance_contributing_to_total_error.svg.png){width=40%}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bias_and_variance_contributing_to_total_error.svg/3840px-Bias_and_variance_contributing_to_total_error.svg.png){width=40%}
 </center>
 
 ## On the individual level
@@ -297,63 +296,63 @@ It does not mean that the answer is correct!
 :::
 ::::
 
-## Case: Spaceshuttle Challenger
-36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed.
+<!-- ## Case: Spaceshuttle Challenger -->
+<!-- 36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed. -->
 
-::::{.columns}
-:::{.column width="40%"}
-![](img/lec-1/chal.jpg){width=90%}
-:::
-:::{.column width="60%"}
-```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6}
-library(tidyverse)
-library(ggplot2)
-library(alr4)
-set.seed(123)
-Challeng %>% 
-  filter(fail > 0) %>% 
-  ggplot(aes(temp, fail)) +
-  geom_point() +
-  #geom_(height = .1, width = .01) + 
-  geom_smooth(method = "lm", se = FALSE) +
-  ylim(0, 5) + xlim(52, 76) + 
-  ylab("Number of distressed O−rings at each launch") +
-  xlab("Temperature in degrees Fahrenheit") + 
-  theme_classic()
-```
-:::
-::::
+<!-- ::::{.columns} -->
+<!-- :::{.column width="40%"} -->
+<!-- ![](img/lec-1/chal.jpg){width=90%} -->
+<!-- ::: -->
+<!-- :::{.column width="60%"} -->
+<!-- ```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6} -->
+<!-- library(tidyverse) -->
+<!-- library(ggplot2) -->
+<!-- library(alr4) -->
+<!-- set.seed(123) -->
+<!-- Challeng %>%  -->
+<!--   filter(fail > 0) %>%  -->
+<!--   ggplot(aes(temp, fail)) + -->
+<!--   geom_point() + -->
+<!--   #geom_(height = .1, width = .01) +  -->
+<!--   geom_smooth(method = "lm", se = FALSE) + -->
+<!--   ylim(0, 5) + xlim(52, 76) +  -->
+<!--   ylab("Number of distressed O−rings at each launch") + -->
+<!--   xlab("Temperature in degrees Fahrenheit") +  -->
+<!--   theme_classic() -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
 
-## Nothing happened, so we ignored it
+<!-- ## Nothing happened, so we ignored it -->
 
-::::{.columns}
-:::{.column width="50%"}
-```{r darkdata, echo = FALSE, message=FALSE, warning=FALSE, fig.width = 5}
-set.seed(123)
-Challeng %>% 
-  ggplot(aes(temp, fail)) +
-  geom_point() + 
-  geom_smooth(method = "lm", se = FALSE) +
-  ylim(0, 5) + xlim(52, 76) + 
-  ylab("Number of distressed O−rings at each launch") +
-  xlab("Temperature in degrees Fahrenheit") + 
-  theme_classic()
-```
-:::
-:::{.column width="50%"}
-In the decision to proceed with the launch, there was a presence of dark data. And no-one noticed!
+<!-- ::::{.columns} -->
+<!-- :::{.column width="50%"} -->
+<!-- ```{r darkdata, echo = FALSE, message=FALSE, warning=FALSE, fig.width = 5} -->
+<!-- set.seed(123) -->
+<!-- Challeng %>%  -->
+<!--   ggplot(aes(temp, fail)) + -->
+<!--   geom_point() +  -->
+<!--   geom_smooth(method = "lm", se = FALSE) + -->
+<!--   ylim(0, 5) + xlim(52, 76) +  -->
+<!--   ylab("Number of distressed O−rings at each launch") + -->
+<!--   xlab("Temperature in degrees Fahrenheit") +  -->
+<!--   theme_classic() -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::{.column width="50%"} -->
+<!-- In the decision to proceed with the launch, there was a presence of dark data. And no-one noticed! -->
 
-Dark data
-: Information that is not available but necessary to arrive at the correct answer.
+<!-- Dark data -->
+<!-- : Information that is not available but necessary to arrive at the correct answer. -->
 
-This missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled!
+<!-- This missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled! -->
 
-::: {.callout-warning appearance="simple"}
-If you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision.
-:::
+<!-- ::: {.callout-warning appearance="simple"} -->
+<!-- If you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision. -->
+<!-- ::: -->
 
-:::
-::::
+<!-- ::: -->
+<!-- :::: -->
 
 
 
@@ -535,7 +534,5 @@ In this case the choice was made to make a **deliberate error**. The estimates o
 
 ## To conclude
 
-<center>
-<iframe width="790" height="475" src="https://www.youtube.com/embed/GiPe1OiKQuk?si=JRskAvV-ObldIOfO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GiPe1OiKQuk?si=oea4rM1vOJqp4nh9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

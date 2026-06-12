@@ -7,9 +7,11 @@ format:
     toc-depth: 4
 ---
 
+[TOEVOEGEN: REFLECTIE OP DE CURSUS, HET PROCES EN DE SAMENWERKING MET MEDESTUDENTEN]
+
 Voor deze module werken studenten aan een toegepast statistisch onderzoeksproject. Het eindproduct bestaat uit een schriftelijk Research Project Report en een mondelinge presentatie. Deze producten worden beoordeeld door de docenten en vormen samen het eindcijfer voor de module.
 
-Het Research Project Report telt voor 90% mee in het eindcijfer. De mondelinge presentatie telt voor 10% mee.
+Het Research Project Report telt voor 85% mee in het eindcijfer. REFLECTIE 5%. De mondelinge presentatie telt voor 10% mee.
 
 ## Doel van het deliverable 
 

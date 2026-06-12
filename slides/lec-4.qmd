@@ -56,5 +56,440 @@ Yesterday we learned
 
 ## Today
 
+## Today's core idea
 
-# Groepsopdracht
+::: {.callout-note appearance="simple"}
+# Reproducible research archive
+A reproducible research archive is a structured collection of files that allows another person — or your future self — to understand, check, and rerun the path from **data** to **answer**.
+:::
+
+A statistical result becomes more trustworthy when the path to it is transparent.
+
+- Not because the result is automatically correct
+- But because others can inspect **what was done**
+- And because you can inspect your own choices later
+
+## Reproducibility is not neatness
+
+::::{.columns}
+:::{.column width="50%"}
+A neat project:
+
+- looks clean
+- has pretty filenames
+- feels organized
+- may still be impossible to audit
+:::
+
+:::{.column width="50%"}
+A reproducible project:
+
+- records decisions
+- separates raw and cleaned data
+- connects scripts to outputs
+- makes tables and figures traceable
+- documents limitations
+:::
+::::
+
+::: {.callout-tip}
+# In Short
+Reproducibility is scientific integrity made visible.
+:::
+
+## Why it matters
+
+::::{.columns}
+:::{.column width="50%"}
+For science:
+
+- credibility
+- error detection
+- clear assumptions
+- evidence that can be checked
+- learning from mistakes
+:::
+
+:::{.column width="50%"}
+For public-sector statistics:
+
+- accountability
+- continuity when staff change
+- supervision and review
+- defensible reporting
+- transparent policy evidence
+:::
+::::
+
+::: footer
+The Turing Way describes reproducible research as work that can be independently verified and emphasizes sharing data and code where possible: [The Turing Way](https://www.turing.ac.uk/research/research-projects/turing-way).
+:::
+
+## The problem: output without a trail
+
+Imagine a report says:
+
+> Households without adequate drainage report wateroverlast more often than households with adequate drainage.
+
+Good. But now ask:
+
+1. Which data file was used?
+2. How was *adequate drainage* coded?
+3. Were missing values removed or recoded?
+4. Were survey weights used?
+5. Which script produced the table?
+6. Was the figure updated after the final model?
+
+::: {.callout-warning}
+# If the trail is missing
+The result may be correct, but it is hard to trust.
+:::
+
+## The archive documents the answer
+
+A good research archive documents five things:
+
+1. **Reasoning**: why this question, design and analysis?
+2. **Data**: what data, from where, and under what restrictions?
+3. **Processing**: how did raw data become analysis data?
+4. **Outputs**: where did each table and figure come from?
+5. **Report**: how does the final answer follow from the evidence?
+
+::: {.callout-note}
+# Good question to ask yourself
+Could a supervisor locate the exact code, syntax, or spreadsheet step behind Table 2 in your report?
+:::
+
+## Minimum viable archive
+
+For this course, aim for a **minimum viable archive**:
+
+```text
+project-name/
+├── README.md
+├── data-access-note.md
+├── data_raw/              # or placeholder if data cannot be shared
+├── data_clean/
+├── code/                  # R scripts, SPSS syntax, Stata do-files, notes
+├── output/
+│   ├── tables/
+│   └── figures/
+├── report/
+├── slides/
+├── codebook/
+└── decision-log.md
+```
+
+::: footer
+The Turing Way provides practical guidance and templates for reproducible project structures: [Reproducible project template](https://github.com/the-turing-way/reproducible-project-template).
+:::
+
+## README: the front door
+
+The README is the first file someone should open.
+
+It should answer:
+
+- What is this project about?
+- Who created it?
+- What data are used?
+- Which files should be opened first?
+- How can the analysis be rerun?
+- What software is needed?
+- Which parts are private or restricted?
+
+::: {.callout-tip}
+# Rule of thumb
+If someone cannot start from your README, they cannot audit your project.
+:::
+
+## Data access note
+
+Sometimes data cannot be shared.
+
+This is common in:
+
+- government data
+- survey microdata
+- administrative records
+- health data
+- education data
+- confidential NGO data
+
+A data access note should explain:
+
+- what the data are
+- who owns them
+- whether they can be shared
+- how access is arranged
+- what anonymization or restrictions apply
+
+::: footer
+UK Data Service guidance emphasizes privacy protection and ethical/legal considerations when preparing data that include information about people: [UK Data Service](https://ukdataservice.ac.uk/help/deposit-data/prepare-your-data-for-deposit/).
+:::
+
+## Never overwrite raw data
+
+::::{.columns}
+:::{.column width="45%"}
+Bad workflow:
+
+```text
+mics2018.xlsx
+mics2018_new.xlsx
+mics2018_final.xlsx
+mics2018_final2.xlsx
+mics2018_REALFINAL.xlsx
+```
+:::
+
+:::{.column width="55%"}
+Better workflow:
+
+```text
+data_raw/mics2018_original.sav
+code/01_clean_data.R
+data_clean/mics2018_clean.rds
+code/02_analysis.R
+output/tables/table1_descriptives.csv
+```
+:::
+::::
+
+::: {.callout-warning}
+# Be careful
+Raw data are evidence. Once overwritten, the original data-generating trace may be gone.
+:::
+
+## Number your scripts
+
+Scripts should tell a story in order.
+
+```text
+code/
+├── 00_setup.R
+├── 01_import_data.R
+├── 02_clean_variables.R
+├── 03_descriptives.R
+├── 04_model_wateroverlast.R
+├── 05_robustness_checks.R
+└── 06_make_figures.R
+```
+
+The same principle works in other software:
+
+- `01_clean_data.sps`
+- `02_descriptives.sps`
+- `03_models.sps`
+- `04_figures.sps`
+
+::: {.callout-tip}
+# In Short
+Order is a form of documentation.
+:::
+
+## Separate cleaning from analysis
+
+Cleaning asks:
+
+- Which variables do we use?
+- Which values are impossible?
+- How do we recode categories?
+- How do we handle missingness?
+- How do we define the analytic sample?
+
+Analysis asks:
+
+- What comparison answers the question?
+- Which model or table do we need?
+- Which result supports the claim?
+- Which robustness check is needed?
+
+::: {.callout-note}
+# Why separate them?
+If cleaning and analysis are mixed, it becomes hard to know whether a result came from the data, the model, or an unnoticed recoding decision.
+:::
+
+## Decision log
+
+A decision log records subjective choices.
+
+| Date | Decision | Reason | Effect |
+|---|---|---|---|
+| 19 Jun | Recoded `don't know` to missing | Not a substantive answer | Reduces complete cases |
+| 20 Jun | Combined two education categories | Small cell sizes | More stable estimates |
+| 21 Jun | Used survey weights | MICS sample design | Population-relevant estimates |
+
+::: {.callout-important}
+# There is no such thing as a neutral workflow
+If a choice changes the answer, it belongs in the decision log.
+:::
+
+## Codebook or variable dictionary
+
+A codebook connects **columns** to **meaning**.
+
+| Variable | Meaning | Values | Notes |
+|---|---|---|---|
+| `flood_report` | Household reports wateroverlast | 0 = no, 1 = yes | Self-reported |
+| `district` | District of residence | 1–10 | Check labels |
+| `drainage` | Access to drainage | 0 = no, 1 = yes | May be observed or reported |
+| `weight` | Survey weight | numeric | Use for population estimates |
+
+::: {.callout-tip}
+# Columns are not concepts
+A variable is a measurement of a construct. The codebook explains the distance between them.
+:::
+
+## Make output traceable
+
+Every table and figure in the report should have a known origin.
+
+```text
+report/table1_descriptives.qmd
+    ↑ uses
+output/tables/table1_descriptives.csv
+    ↑ produced by
+code/03_descriptives.R
+    ↑ uses
+data_clean/project_clean.rds
+    ↑ produced by
+code/02_clean_variables.R
+```
+
+::: {.callout-note}
+# Good question to ask yourself
+If I change the cleaning rule today, do I know which tables and figures need to be updated?
+:::
+
+## Reproducibility without perfection
+
+You may work in:
+
+- R
+- SPSS
+- Stata
+- Excel
+- Quarto or Word
+- mixed workflows
+
+That is fine.
+
+The core principle is **traceability**:
+
+<center>What was done? Why was it done? Where did the output come from?</center>
+
+::: {.callout-warning}
+# Be careful
+A perfectly coded analysis with undocumented data access and unclear decisions is still not reproducible.
+:::
+
+## Excel is allowed, but it needs a trail
+
+If you use Excel:
+
+- keep the original file unchanged
+- create a separate cleaned file
+- document every recoding or formula
+- avoid manual copy-paste without notes
+- export tables with clear names
+- keep a log of filters and exclusions
+
+Bad:
+
+> I selected some rows and made a graph.
+
+Better:
+
+> I filtered to households with complete drainage and wateroverlast variables; the filtering rule is recorded in `decision-log.md` and the resulting table is stored as `output/tables/table2_by_drainage.xlsx`.
+
+## Case: MICS-style survey project
+
+Suppose your project uses household survey data.
+
+A minimum archive may include:
+
+```text
+mics_project/
+├── README.md
+├── data-access-note.md
+├── data_raw/README_raw_data_not_shared.md
+├── data_clean/households_clean.rds
+├── code/01_import_sav.R
+├── code/02_clean_child_variables.R
+├── code/03_weighted_descriptives.R
+├── output/tables/table1_sample.csv
+├── output/figures/figure1_dropout_by_mother_education.png
+├── report/research-report.qmd
+└── decision-log.md
+```
+
+::: footer
+UNICEF MICS surveys provide questionnaires, reports and microdata documentation for many countries, including Suriname: [MICS surveys](https://mics.unicef.org/surveys).
+:::
+
+## FAIR is a useful mindset
+
+The FAIR principles ask whether digital research objects are:
+
+- **Findable**
+- **Accessible**
+- **Interoperable**
+- **Reusable**
+
+FAIR does not mean everything must be public.
+
+It means that people with appropriate permission can find, understand, access, and reuse what is ethically and legally shareable.
+
+::: footer
+Wilkinson et al. (2016) introduced the FAIR Guiding Principles for scientific data management and stewardship in *Scientific Data*: [Nature Scientific Data](https://www.nature.com/articles/sdata201618).
+:::
+
+## What goes into the report?
+
+Your report should not simply say:
+
+> The data were cleaned and analyzed.
+
+It should explain:
+
+- which data were used
+- how the analytic sample was created
+- how key variables were defined
+- how missing values were handled
+- which software or workflow was used
+- what limitations remain
+
+::: {.callout-tip}
+# In Short
+The archive is the evidence trail. The report is the argument built on that trail.
+:::
+
+## Before you submit
+
+Ask yourself:
+
+1. Can someone identify the final dataset?
+2. Can someone find the code or syntax behind each table?
+3. Are subjective decisions documented?
+4. Are raw data protected from accidental changes?
+5. Are restrictions and privacy issues clear?
+6. Could your future self continue the project in six months?
+
+::: {.callout-important}
+# Final principle
+A statistical answer is not only a number. It is a traceable route from question to evidence to claim.
+:::
+
+## To conclude
+
+Reproducibility is not about being perfect.
+
+It is about making your research accountable.
+
+- A clear archive makes supervision easier
+- A clear archive makes collaboration easier
+- A clear archive makes mistakes easier to find
+- A clear archive makes your final answer more credible
+
+

@@ -17,12 +17,16 @@ format:
 
 ::: callout-tip
 ## Hoorcollege 16 juni 2026
++ Refereren toevoegen 
+
 Vandaag werken we verder aan de stap van maatschappelijk probleem naar onderzoeksontwerp. We kijken vooral naar het soort vraag dat je stelt en naar het soort antwoord dat je onderzoek redelijkerwijs kan geven. We besteden aandacht aan
 
 - verschillende typen statistische onderzoeksvragen
 - het verschil tussen beschrijven, vergelijken, verklaren, voorspellen, causaliteit en valideren
 - waarom onderzoeksontwerp vóór analysemethode komt
 - de rol van literatuur bij het aanscherpen van je onderzoeksvraag
+- hoe AI modellen werken en je kunnen assisteren
+- goede AI prompts schrijven en de output evalueren
 - het zoeken naar inhoudelijke, theoretische en methodologische literatuur
 - de grenzen van wat je met een dataset kunt concluderen
 - het verschil tussen “samenhang”, “voorspelling”, “verklaring” en “oorzaak”
@@ -33,56 +37,254 @@ De slides voor het hoorcollege kunt je [hier vinden](slides/lec-2.html).
 :::
 
 ## Groepsopdracht
-Tijdens de groepsopdracht werk je verder aan de onderzoeksvraag die je gisteren hebt aangescherpt. Vandaag staat niet alleen de formulering van de vraag centraal, maar vooral het type vraag dat je stelt, de literatuur die helpt om je vraag te onderbouwen, en de claim die je met je onderzoek wel of niet kunt maken.
+In de groepsopdracht onderzoeken we hoe een AI-tool kan worden gebruikt als onderzoeksassistent. Het doel is niet om AI een kant-en-klaar antwoord te laten maken, maar om te leren hoe je AI gericht, kritisch en verantwoord kunt inzetten bij het lezen, samenvatten en verkennen van wetenschappelijke literatuur.
 
-Een statistisch onderzoek kan verschillende soorten antwoorden opleveren. Soms wil je vooral beschrijven hoe vaak iets voorkomt of hoe een trend zich ontwikkelt. Soms wil je groepen vergelijken. Soms wil je onderzoeken of variabelen met elkaar samenhangen, of je een uitkomst kunt voorspellen, of een meetmethode valide is. In sommige gevallen wil je een causale uitspraak doen, maar daarvoor is meestal een sterker onderzoeksontwerp nodig dan alleen een observationeel databestand.
+We werken vandaag met een wetenschappelijk artikel over de evaluatie van imputatiemethoden. Je begint met een minimale prompt:
 
-In deze opdracht gebruik je literatuur niet als decoratie voor het rapport, maar als instrument om je onderzoek beter te maken. Literatuur helpt om je begrippen scherper te definiëren, relevante variabelen en achtergrondkenmerken te kiezen, mogelijke mechanismen te herkennen, geschikte mehtoden te vinden en te beplaen welke conclusie je onderzoek wel of niet kan dragen.
+_Summarize this in 200 words_
+
+Daarna bouwen we deze prompt stap voor stap uit met behulp van de BRAVE(R)-techniek. We onderzoeken hoe de kwaliteit van de output verandert wanneer we duidelijker aangeven wat we verwachten van de AI. Ook beoordelen we de AI-output met behulp van RACCCA. Daarbij kijken we niet alleen of de tekst prettig leest, maar vooral of de output relevant, accuraat, volledig, helder, coherent en passend is.
+
+Daarna gebruik we AI en wetenschappelijke zoekmachines om relevante literatuur rond het artikel te vinden. We zoeken niet alleen naar bronnen die *ook over hetzelfde onderwerp gaan*, maar naar bronnen met een duidelijke functie. Een bron kan bijvoorbeeld helpen om een begrip te definiëren, een methode te begrijpen, een beperking te herkennen, een nieuwere ontwikkeling toe te voegen of een claim beter te begrenzen.
 
 Het doel is dat je aan het einde van de opdracht beschikt over:
 
-1. een aangescherpte onderzoeksvraag;
-2. een classificatie van je onderzoeksvraag;
-3. een eerste zoekstrategie voor relevante literatuur;
-4. een mini-literatuurkaart;
-5. een beschrijving van de sterkste claim die je met je data kunt ondersteunen;
-6. een waarschuwingszin over de claim die je onderzoek niet kan dragen.
+1. een eerste AI-samenvatting op basis van een minimale prompt;
+2. een verbeterde BRAVE(R)-prompt;
+3. een definitieve samenvatting van ongeveer 200 woorden;
+4. een RACCCA-beoordeling van de AI-output;
+5. een mini-literatuurkaart met ten minste drie relevante bronnen;
+6. een Zotero-collectie met het artikel en de aanvullende bronnen;
+7. een workflow die je kunt toepassen op het eigen onderzoeksproject.
 
-De nadruk ligt op het kritisch bekijken van je eigen vraag. Welke conclusie zou je graag willen trekken? En welke conclusie mag je, gegeven je data en onderzoeksontwerp, daadwerkelijk trekken?
+De nadruk ligt op kritisch en verantwoord gebruik van AI. Een goede prompt kan de output sterk verbeteren, maar als onderzoeker blijf je altijd zelf verantwoordelijk voor de inhoud, de broncontrole en de uiteindelijke interpretatie.
 
 De opdracht [staat hier](opdracht/groepsopdracht2.html). De uitwerktabel voor de literatuurkaart voor Groepsopdracht 2 is beschikbaar als invulbaar [Word bestand]() of [Excel bestand]().
 
 ## Individuele opdracht
-Na de groepsopdracht pas je de inzichten uit het hoorcollege en de groepsopdracht toe op je eigen onderzoeksproject. Je voegt vandaag een nieuwe paragraaf toe aan je projectdocument met de focus "Onderzoeksontwerp, literatuur en type claim."
 
-In deze paragraaf werk je de volgende onderdelen uit:
+Na de groepsopdracht pas je de werkwijze toe op je eigen onderzoeksproject. Vandaag werk je aan de eerste versie van je literatuurstudie. Het doel is dat je niet alleen bronnen verzamelt, maar ook begint na te denken over de functie van die bronnen in je onderzoek.
 
-1. Welk type onderzoeksvraag stel je?
-    - Beschrijvend
-    - Vergelijkend
-    - Verklarend of associatief
-    - Voorspellend
-    - Causaal
-    - Validerend of meetkundig
-2. Waarom past jouw vraag bij dit type?
-3. Welke literatuur heb je nodig om je vraag beter te maken?
-    - Inhoudelijke literatuur over het onderwerp
-    - Theoretische literatuur over relevante begrippen of mechanismen
-    - Methodologische literatuur over data, meetinstrumenten of analysemethoden
-    - Datasetdocumentatie of codeboeken
-4. Welke 3–5 zoektermen of zoekopdrachten ga je gebruiken?
-5. Welke begrippen, variabelen of achtergrondkenmerken verwacht je uit de literatuur te halen?
-6. Welk onderzoeksontwerp volgt uit je dataset?
-    - Is je dataset bijvoorbeeld cross-sectioneel, longitudinaal, administratief, survey-gebaseerd, experimenteel, geografisch of gebaseerd op metingen?
-7. Wat is de sterkste claim die je studie kan ondersteunen?
-8. Welke sterkere claim kan je studie niet ondersteunen?
-9. Welke kenmerken van je data of onderzoeksontwerp beperken je conclusie?
-10. Wat zou er nodig zijn om een sterkere conclusie te kunnen trekken?
+Literatuur is geen losse verzameling samenvattingen. Een goede literatuurstudie helpt je om je onderzoeksvraag scherper te formuleren, begrippen te definiëren, relevante variabelen te kiezen, eerdere bevindingen te begrijpen, je methode te onderbouwen en de grenzen van je eigen onderzoek te bepalen.
 
-Deze paragraaf helpt je om realistischer en preciezer te formuleren wat je onderzoek kan opleveren. De tekst die je vandaag schrijft, kan later gebruikt worden in de introductie, het theoretisch kader, de methode-, discussie- en discussieparagraaf van het Research Report.
+Aan het einde van deze individuele opdracht heb je:
+
+1. een eerste literatuurarchief in Zotero
+2. een opzet voor de literatuurkaart voor je eigen onderzoeksproject
+3. een eerste geschreven versie van je literatuurstudie
+4. een korte beschrijving van hoe je AI wel en niet hebt gebruikt in je literatuuronderzoek
+
+### Stap 1 — Maak een Zotero-collectie voor je project
+
+Maak in Zotero een collectie aan voor je onderzoeksproject. Geef de collectie een duidelijke naam, bijvoorbeeld:
+
+> MAS Research Project — [jouw onderwerp]
+
+Voeg minimaal vijf relevante bronnen toe. Probeer verschillende typen bronnen op te nemen:
+
+- inhoudelijke literatuur over je onderwerp;
+- theoretische of conceptuele literatuur over belangrijke begrippen of mechanismen;
+- methodologische literatuur over data, meetinstrumenten of analysemethoden;
+- datasetdocumentatie, codeboeken of technische rapporten;
+- beleidsrapporten of officiële statistische publicaties, indien relevant.
+
+Controleer bij elke bron of de metadata correct zijn:
+
+- auteur(s);
+- jaar;
+- titel;
+- tijdschrift, uitgever of organisatie;
+- DOI, URL of andere vindplaats;
+- PDF of toegangsinformatie, indien beschikbaar.
+
+Als je de informatie in Zotero automatisch verkrijgt, bijvoorbeeld door de browser plugin, dan klopt dit automatisch. Voeg bij elke bron een korte notitie toe waarin je aangeeft waarom deze bron relevant is voor je project. Dit kan ook later obv je literatuurkaart. 
+
+### Stap 2 — Maak een literatuurkaart
+
+Maak vervolgens een literatuurkaart voor je eigen project. De literatuurkaart helpt je om per bron vast te leggen wat de functie is van die bron. Een bron is niet alleen relevant omdat die “over hetzelfde onderwerp” gaat. Elke bron moet iets doen in je onderzoek.
+
+Gebruik hiervoor de volgende structuur:
+
+| Bron | Wat draagt deze bron bij? | Begrippen/variabelen | Methode/design | Gebruikte analyse- of evaluatietechniek | Nut voor mijn project |
+|---|---|---|---|---|---|
+| Bron 1 |  |  |  |  |  |
+| Bron 2 |  |  |  |  |  |
+| Bron 3 |  |  |  |  |  |
+| Bron 4 |  |  |  |  |  |
+| Bron 5 |  |  |  |  |  |
+
+Probeer in je literatuurkaart duidelijk te maken of een bron helpt bij bijvoorbeeld:
+
+- het definiëren van een begrip;
+- het herkennen van een theoretisch mechanisme;
+- het kiezen van variabelen;
+- het verantwoorden van achtergrondvariabelen of confounders;
+- het kiezen van een analysemethode;
+- het begrijpen van de dataset;
+- het vergelijken van bevindingen;
+- het herkennen van beperkingen;
+- het begrenzen van je claim.
+
+### Stap 3 — Begin met het schrijven van je literatuurstudie
+
+Open je projectdocument en maak een nieuwe paragraaf met de titel:
+
+> Literatuurstudie
+
+Schrijf een eerste versie van ongeveer 500–800 woorden. Deze tekst hoeft nog niet perfect te zijn, maar moet wel een duidelijke structuur hebben. Gebruik je literatuurkaart als basis.
+
+Je literatuurstudie bevat in ieder geval:
+
+1. Introductie van het onderwerp  <br>
+   Wat is het maatschappelijke, beleidsmatige of wetenschappelijke probleem?
+
+2. Belangrijke begrippen  <br>
+   Welke begrippen zijn belangrijk en hoe worden die in de literatuur gedefinieerd?
+
+3. Eerdere bevindingen  <br>
+   Wat is al bekend over dit onderwerp? Welke patronen, relaties of verschillen zijn eerder gevonden?
+
+4. Relevante variabelen en mechanismen  <br>
+   Welke variabelen, achtergrondkenmerken of verklaringen komen uit de literatuur naar voren?
+
+5. Methodologische aanwijzingen  <br>
+   Welke data, meetinstrumenten of analysemethoden worden in eerdere studies gebruikt?
+
+6. Aansluiting op jouw onderzoek  <br>
+   Hoe helpt de literatuur om jouw onderzoeksvraag, variabelen, methode of claimgrens te onderbouwen?
+
+7. Open vraag of kennislacune  <br>
+   Wat blijft onduidelijk? Waar sluit jouw onderzoek op aan?
+
+
+### Stap 4 — Beschrijf de rol van AI in je literatuuronderzoek
+
+Het is belangrijk om open en transparant te zijn over het proces waarmee je onderzoeksconclusies zijn verkregen. Schrijf daarom altijd op hoe je AI hebt gebruikt. Voeg aan het einde van je report document een korte aparte alinea met de titel:
+
+> Gebruik van AI bij het onderzoek
+
+In deze alinea beschrijf je hoe je AI hebt gebruikt en welke controles je hebt uitgevoerd. AI mag helpen bij het formuleren van zoektermen, het structureren van een literatuurkaart, het samenvatten van abstracts of het vergelijken van bronnen. AI mag echter niet de verantwoordelijkheid overnemen voor bronselectie, interpretatie of wetenschappelijke claims.
+
+Beantwoord in deze alinea kort de volgende vragen:
+
+1. Waarvoor heb je AI gebruikt?
+2. Welke prompts of typen vragen heb je gesteld?
+3. Hoe heb je gecontroleerd of de AI-output klopte?
+4. Welke bronnen heb je zelf geverifieerd?
+5. Welke onderdelen heb je bewust niet aan AI overgelaten?
+6. Hoe zorg je ervoor dat jij verantwoordelijk blijft voor de uiteindelijke tekst?
 
 Een mogelijke formulering is:
 
-_Dit onderzoek stelt een [type] onderzoeksvraag, omdat het gericht is op [doel van de analyse]. De literatuur helpt om [begrippen/variabelen/mechanismen] te definiëren en om [achtergrondvariabelen/methode/claimgrens] te onderbouwen. Op basis van [dataset] kan dit onderzoek uitspraken doen over [toegestane claim]. Het onderzoek kan echter niet aantonen dat [niet-toegestane claim], omdat [beperking van design of data]._
+> AI is in dit literatuuronderzoek gebruikt als hulpmiddel om zoektermen te formuleren, abstracts samen te vatten en mogelijke verbanden tussen bronnen te verkennen. De geselecteerde bronnen zijn gecontroleerd via [Google Scholar/Zotero/Scopus/Web of Science/officiële rapporten/uitgeverspagina’s]. AI-output is niet zonder controle overgenomen. Claims, citaties en inhoudelijke interpretaties zijn vergeleken met de oorspronkelijke bronnen. De uiteindelijke selectie, interpretatie en formulering van de literatuurstudie zijn mijn eigen verantwoordelijkheid.
 
-Aan het einde van vandaag heb je dus niet alleen een betere onderzoeksvraag, maar ook een eerste literatuurkaart en een scherper beeld van de grenzen van je eigen onderzoeksontwerp.
+### Eindproduct van de individuele opdracht
+
+Aan het einde van deze opdracht heb je:
+
+1. een Zotero-collectie met minimaal vijf relevante bronnen;
+2. korte notities bij de bronnen in Zotero;
+3. een ingevulde literatuurkaart;
+4. een eerste geschreven versie van de literatuurstudie;
+5. een korte verantwoording van het gebruik van AI.
+
+Deze producten vormen de basis voor het theoretisch kader en de literatuursectie van je Research Project Report.
+
+
+<!-- ## Groepsopdracht -->
+<!-- Tijdens de groepsopdracht werk je verder aan de onderzoeksvraag die je gisteren hebt aangescherpt. Vandaag staat niet alleen de formulering van de vraag centraal, maar vooral het type vraag dat je stelt, de literatuur die helpt om je vraag te onderbouwen, en de claim die je met je onderzoek wel of niet kunt maken. -->
+
+<!-- Een statistisch onderzoek kan verschillende soorten antwoorden opleveren. Soms wil je vooral beschrijven hoe vaak iets voorkomt of hoe een trend zich ontwikkelt. Soms wil je groepen vergelijken. Soms wil je onderzoeken of variabelen met elkaar samenhangen, of je een uitkomst kunt voorspellen, of een meetmethode valide is. In sommige gevallen wil je een causale uitspraak doen, maar daarvoor is meestal een sterker onderzoeksontwerp nodig dan alleen een observationeel databestand. -->
+
+<!-- In deze opdracht gebruik je literatuur niet als decoratie voor het rapport, maar als instrument om je onderzoek beter te maken. Literatuur helpt om je begrippen scherper te definiëren, relevante variabelen en achtergrondkenmerken te kiezen, mogelijke mechanismen te herkennen, geschikte mehtoden te vinden en te beplaen welke conclusie je onderzoek wel of niet kan dragen. -->
+
+<!-- Het doel is dat je aan het einde van de opdracht beschikt over: -->
+
+<!-- 1. een aangescherpte onderzoeksvraag; -->
+<!-- 2. een classificatie van je onderzoeksvraag; -->
+<!-- 3. een eerste zoekstrategie voor relevante literatuur; -->
+<!-- 4. een mini-literatuurkaart; -->
+<!-- 5. een beschrijving van de sterkste claim die je met je data kunt ondersteunen; -->
+<!-- 6. een waarschuwingszin over de claim die je onderzoek niet kan dragen. -->
+
+<!-- De nadruk ligt op het kritisch bekijken van je eigen vraag. Welke conclusie zou je graag willen trekken? En welke conclusie mag je, gegeven je data en onderzoeksontwerp, daadwerkelijk trekken? -->
+
+<!-- De opdracht [staat hier](opdracht/groepsopdracht2.html). De uitwerktabel voor de literatuurkaart voor Groepsopdracht 2 is beschikbaar als invulbaar [Word bestand]() of [Excel bestand](). -->
+
+<!-- ## Individuele opdracht -->
+<!-- Na de groepsopdracht pas je de inzichten uit het hoorcollege en de groepsopdracht toe op je eigen onderzoeksproject. Je voegt vandaag een nieuwe paragraaf toe aan je projectdocument met de focus "Onderzoeksontwerp, literatuur en type claim." -->
+
+<!-- In deze paragraaf werk je de volgende onderdelen uit: -->
+
+<!-- 1. Welk type onderzoeksvraag stel je? -->
+<!--     - Beschrijvend -->
+<!--     - Vergelijkend -->
+<!--     - Verklarend of associatief -->
+<!--     - Voorspellend -->
+<!--     - Causaal -->
+<!--     - Validerend of meetkundig -->
+<!-- 2. Waarom past jouw vraag bij dit type? -->
+<!-- 3. Welke literatuur heb je nodig om je vraag beter te maken? -->
+<!--     - Inhoudelijke literatuur over het onderwerp -->
+<!--     - Theoretische literatuur over relevante begrippen of mechanismen -->
+<!--     - Methodologische literatuur over data, meetinstrumenten of analysemethoden -->
+<!--     - Datasetdocumentatie of codeboeken -->
+<!-- 4. Welke 3–5 zoektermen of zoekopdrachten ga je gebruiken? -->
+<!-- 5. Welke begrippen, variabelen of achtergrondkenmerken verwacht je uit de literatuur te halen? -->
+<!-- 6. Welk onderzoeksontwerp volgt uit je dataset? -->
+<!--     - Is je dataset bijvoorbeeld cross-sectioneel, longitudinaal, administratief, survey-gebaseerd, experimenteel, geografisch of gebaseerd op metingen? -->
+<!-- 7. Wat is de sterkste claim die je studie kan ondersteunen? -->
+<!-- 8. Welke sterkere claim kan je studie niet ondersteunen? -->
+<!-- 9. Welke kenmerken van je data of onderzoeksontwerp beperken je conclusie? -->
+<!-- 10. Wat zou er nodig zijn om een sterkere conclusie te kunnen trekken? -->
+
+<!-- Deze paragraaf helpt je om realistischer en preciezer te formuleren wat je onderzoek kan opleveren. De tekst die je vandaag schrijft, kan later gebruikt worden in de introductie, het theoretisch kader, de methode-, discussie- en discussieparagraaf van het Research Report. -->
+
+<!-- Een mogelijke formulering is: -->
+
+<!-- _Dit onderzoek stelt een [type] onderzoeksvraag, omdat het gericht is op [doel van de analyse]. De literatuur helpt om [begrippen/variabelen/mechanismen] te definiëren en om [achtergrondvariabelen/methode/claimgrens] te onderbouwen. Op basis van [dataset] kan dit onderzoek uitspraken doen over [toegestane claim]. Het onderzoek kan echter niet aantonen dat [niet-toegestane claim], omdat [beperking van design of data]._ -->
+
+<!-- Aan het einde van vandaag heb je dus niet alleen een betere onderzoeksvraag, maar ook een eerste literatuurkaart en een scherper beeld van de grenzen van je eigen onderzoeksontwerp. -->
+
+<!-- Werk in deze paragraaf de volgende onderdelen uit: -->
+
+<!-- 1. Wat is je eigen onderzoeksonderwerp? -->
+<!-- 2. Welke soorten literatuur heb je nodig? -->
+<!--     * Inhoudelijke literatuur over het maatschappelijke of wetenschappelijke onderwerp -->
+<!--     * Theoretische of conceptuele literatuur over relevante begrippen of mechanismen -->
+<!--     * Methodologische literatuur over data, meetinstrumenten of analysemethoden -->
+<!--     * Datasetdocumentatie, codeboeken of technische rapporten -->
+<!-- 3. Welke zoektermen of zoekopdrachten ga je gebruiken? -->
+<!--     * Minimaal één inhoudelijke zoekopdracht -->
+<!--     * Minimaal één theoretische of conceptuele zoekopdracht -->
+<!--     * Minimaal één methodologische of data-gerichte zoekopdracht -->
+<!-- 4. Hoe kan AI je helpen bij dit zoekproces? -->
+<!--     * Bijvoorbeeld bij het verbeteren van zoektermen -->
+<!--     * Het samenvatten van abstracts -->
+<!--     * Het vergelijken van bronnen -->
+<!--     * Het herkennen van relevante begrippen -->
+<!--     * Het formuleren van vervolgvraagstukken -->
+<!-- 5. Welke controles voer je uit op AI-output? -->
+<!--     * Controleer je bronnen in wetenschappelijke databases, Google Scholar, Semantic Scholar, Scopus, Web of Science, uitgeverspagina’s of officiële rapporten -->
+<!--     * Controleer of citaties echt bestaan -->
+<!--     * Controleer of de AI-samenvatting overeenkomt met de oorspronkelijke bron -->
+<!--     * Controleer of claims niet sterker zijn dan de literatuur ondersteunt -->
+<!-- 6. Welke bronnen neem je op in Zotero? -->
+<!--     * Minimaal drie relevante bronnen -->
+<!--     * Waar mogelijk inclusief DOI, URL of PDF -->
+<!--     * Met een korte notitie per bron over het nut voor je project -->
+<!-- 7. Hoe helpt deze literatuur je onderzoek beter te maken? -->
+<!--     * Helpt de literatuur om begrippen te definiëren? -->
+<!--     * Helpt de literatuur om variabelen of achtergrondkenmerken te kiezen? -->
+<!--     * Helpt de literatuur om een methode te kiezen? -->
+<!--     * Helpt de literatuur om je onderzoeksvraag scherper te maken? -->
+<!--     * Helpt de literatuur om je claim te begrenzen? -->
+
+<!-- Deze paragraaf helpt je om systematisch en controleerbaar aan je literatuuronderzoek te beginnen. De tekst die je vandaag schrijft, kan later gebruikt worden in de introductie, het theoretisch kader, de methodeparagraaf en de discussie van het Research Report. -->
+
+<!-- Een mogelijke formulering is: -->
+
+<!-- _In dit project gebruik ik literatuur om [begrippen/theorie/methode/dataset] beter te begrijpen en mijn onderzoeksvraag scherper te formuleren. Ik zoek naar inhoudelijke literatuur met zoektermen zoals [zoektermen], naar theoretische literatuur met zoektermen zoals [zoektermen], en naar methodologische of data-gerichte literatuur met zoektermen zoals [zoektermen]. AI wordt gebruikt als hulpmiddel om zoektermen te verbeteren, bronnen te vergelijken en samenvattingen kritisch te bespreken. Alle bronnen worden gecontroleerd in wetenschappelijke databases of via officiële publicatiekanalen en opgenomen in Zotero. De literatuur helpt mij om [variabelen/methode/claimgrens] beter te onderbouwen._ -->
+
+<!-- Aan het einde van vandaag heb je dus niet alleen geoefend met AI als onderzoeksassistent, maar ook een eerste literatuurstrategie en Zotero-bibliotheek voor je eigen onderzoeksproject. -->
+

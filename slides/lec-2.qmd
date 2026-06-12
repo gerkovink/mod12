@@ -56,5 +56,569 @@ Yesterday we learned
 
 ## Today
 
+::::{.columns}
+:::{.column width="45%"}
+::: {.callout-note appearance="simple"}
+# Core idea
+A good answer starts before the analysis.
+:::
+:::
 
-# Groepsopdracht
+:::{.column width="55%"}
+Today we move from a *topic* to a *research design*.
+
+- What kind of question are we asking?
+- What kind of answer can our data support?
+- What claim would be too strong?
+- How can literature and AI help us think better?
+:::
+::::
+
+## Terms I may use
+
+- **Topic**: a broad theme of interest
+- **Research question**: an answerable question about a population, outcome, comparison and context
+- **Design**: the structure that connects data to a claim
+- **Method**: the analytical tool used within that design
+- **Claim**: the statement we want to make after the analysis
+- **Claim boundary**: the line between what the study can and cannot conclude
+- **Literature map**: a structured overview of how sources help the project
+- **AI assistant**: a tool for scaffolding thinking, not a replacement for judgment
+
+## At the start
+
+Let's start with the core:
+
+::: {.callout-note appearance="simple"}
+# Research design
+Research design is the process of deciding what kind of answer your data can legitimately produce.
+:::
+
+A method cannot save a vague question.
+
+- A regression model is not a research design
+- A p-value is not an argument
+- A dataset is not automatically evidence
+- An answer is only as strong as the bridge from question to data to claim
+
+## From societal problem to statistical answer
+
+::::{.columns}
+:::{.column width="45%"}
+### Societal problem
+Wateroverlast affects households in coastal areas.
+
+### Topic
+Climate change and flooding in Suriname.
+
+### Research question
+Which household and area characteristics are associated with reported wateroverlast?
+:::
+
+:::{.column width="55%"}
+### Research design
+Use household survey data, district-level rainfall information and drainage indicators.
+
+### Analysis
+Describe prevalence, compare groups, model associations.
+
+### Claim
+The data suggest which households are more vulnerable; they do not prove that one factor caused wateroverlast.
+:::
+::::
+
+::: {.callout-tip}
+# In short
+A topic becomes research when we define the population, outcome, comparison, data and allowed claim.
+:::
+
+## Six types of statistical questions
+
+| Type | Main question | Typical answer |
+|---|---|---|
+| Descriptive | What is happening? | Prevalence, distribution, trend |
+| Comparative | How do groups differ? | Difference in means, proportions, rates |
+| Associational | Which variables are related? | Association conditional on covariates |
+| Predictive | How well can we predict? | Prediction error, classification, risk score |
+| Causal | What would change under intervention? | Effect estimate under assumptions |
+| Measurement/validation | Does A measure the same as B? | Agreement, calibration, accuracy |
+
+## Descriptive questions
+
+::: {.callout-note appearance="simple"}
+# Descriptive
+What is the prevalence, distribution or trend?
+:::
+
+Examples:
+
+- What percentage of children aged 7--14 show foundational reading skills in Suriname?
+- How has government revenue changed from 2010 to 2025?
+- How common is reported wateroverlast among households in different districts?
+
+Descriptive does not mean simple. A good description may require weights, definitions, metadata and careful uncertainty.
+
+::: footer
+UNICEF MICS Suriname 2018: [mics.unicef.org](https://mics.unicef.org/sites/mics/files/2024-08/Suriname%202018%20MICS%20Survey%20Findings%20Report_English.pdf)
+:::
+
+## Comparative questions
+
+::: {.callout-note appearance="simple"}
+# Comparative
+Do groups differ?
+:::
+
+Examples:
+
+- Do children in urban and rural areas differ in school attendance?
+- Do households with and without access to drainage report different levels of wateroverlast?
+- Do perceptions of corruption differ by age group or education level?
+
+Comparisons need a clear grouping variable and a clear outcome.
+
+::: {.callout-warning}
+# Be careful
+A difference between groups is not automatically an effect of group membership.
+:::
+
+## Associational or explanatory questions
+
+::: {.callout-note appearance="simple"}
+# Associational / explanatory
+Is X related to Y, accounting for Z?
+:::
+
+Examples:
+
+- Is Dutch language proficiency associated with math performance, accounting for household background?
+- Are corruption perceptions associated with trust in government institutions?
+- Is access to drainage associated with reported wateroverlast, accounting for district and household characteristics?
+
+These questions often support *suggests* better than *demonstrates*.
+
+## Predictive questions
+
+::: {.callout-note appearance="simple"}
+# Predictive
+How well can we predict Y from X?
+:::
+
+Examples:
+
+- Can lifestyle factors predict hypertension risk among workers?
+- Can ULS measurements predict forest-inventory biomass estimates?
+- Can household and location characteristics predict flood vulnerability?
+
+Prediction is about performance on new or unseen cases.
+
+::: {.callout-tip}
+# Key question
+Would this model still work for the next household, the next district, or the next year?
+:::
+
+## Causal questions
+
+::: {.callout-note appearance="simple"}
+# Causal
+What would change if we intervened?
+:::
+
+Examples:
+
+- What would happen to school dropout if maternal education increased?
+- What would happen to wateroverlast if drainage infrastructure were improved?
+- What would happen to trust if corruption experiences were reduced?
+
+Causal questions need more than association. They need a defensible comparison between what happened and what would have happened otherwise.
+
+::: {.callout-warning}
+# Hmmm...
+Most observational datasets do not automatically answer causal questions.
+:::
+
+## Measurement or validation questions
+
+::: {.callout-note appearance="simple"}
+# Measurement / validation
+Does one measurement system agree with, replace or improve another?
+:::
+
+Examples:
+
+- Can ULS data replace forest inventories for estimating mangrove biomass?
+- Does a short survey scale measure the same construct as a longer scale?
+- Do administrative categories match the scientific construct we want to study?
+
+Validation is not merely correlation. It often requires agreement, bias, precision and error assessment.
+
+## Design before method
+
+::::{.columns}
+:::{.column width="50%"}
+::: {.callout-important}
+# Method-first thinking
+"I want to use regression. What question can I answer?"
+:::
+:::
+
+:::{.column width="50%"}
+::: {.callout-tip}
+# Design-first thinking
+"What comparison answers my question, and what method supports that comparison?"
+:::
+:::
+::::
+
+A method cannot repair a vague design.
+
+- The same dataset can support some claims and not others
+- The strongest statistical model is still weak if the design cannot support the claim
+- The right method depends on the question, outcome, unit and data structure
+
+## The same dataset, different questions
+
+Take a household survey such as MICS.
+
+| Question | Type | Possible claim |
+|---|---|---|
+| How many children attend school? | Descriptive | Prevalence in the target population |
+| Do districts differ in attendance? | Comparative | District differences |
+| Is household wealth associated with attendance? | Associational | Association after adjustment |
+| Can we predict non-attendance? | Predictive | Expected prediction performance |
+| Does wealth cause attendance? | Causal | Only with extra design/assumptions |
+
+::: footer
+MICS is an international household survey programme developed by UNICEF. Suriname MICS 2018 documentation: [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/3531)
+:::
+
+## Claim boundaries
+
+Words matter.
+
+| Stronger word | Safer word |
+|---|---|
+| causes | is associated with |
+| proves | suggests |
+| explains | is consistent with |
+| predicts | is predictive of, in this dataset |
+| the population | the observed sample / target population under sampling assumptions |
+| demonstrates | provides evidence compatible with |
+
+::: {.callout-tip}
+# In short
+A responsible answer says what it can say, and what it cannot say.
+:::
+
+## Claim ladder
+
+Use a claim ladder when writing conclusions.
+
+1. We observed ...
+2. We estimated ...
+3. The data suggest ...
+4. Under the assumption that ...
+5. A plausible interpretation is ...
+6. We cannot conclude ...
+7. A responsible next step is ...
+
+::: {.callout-note}
+# Good answers are modest
+Scientific modesty is not weakness. It is precision.
+:::
+
+## Case: Language proficiency and math performance
+
+::::{.columns}
+:::{.column width="45%"}
+### Weak question
+Does Dutch language proficiency influence math performance?
+
+### Better question
+To what extent is Dutch language proficiency associated with math performance among primary-school pupils in Suriname, accounting for selected household and educational background characteristics?
+:::
+
+:::{.column width="55%"}
+### Claim boundary
+We may estimate whether language proficiency is associated with math performance.
+
+We cannot conclude that language proficiency causes better math performance unless the design and assumptions justify causal interpretation.
+:::
+::::
+
+::: footer
+UNICEF reported Suriname MICS 2018 indicators on foundational learning skills. See UNICEF Guyana & Suriname: [unicef.org/guyanasuriname](https://www.unicef.org/guyanasuriname/press-releases/insufficient-level-reading-proficiency-among-children-suriname)
+:::
+
+## Case: Corruption perceptions and trust
+
+::::{.columns}
+:::{.column width="48%"}
+### Topic
+Corruption perceptions and economic trust.
+
+### Dataset
+LAPOP AmericasBarometer Suriname 2023.
+
+### Safe question
+Are corruption experiences and perceptions associated with trust in government institutions or economic confidence?
+:::
+
+:::{.column width="52%"}
+### Claim boundary
+This can support an associational claim.
+
+It cannot, by itself, demonstrate that corruption perceptions caused lower economic trust.
+
+::: {.callout-warning}
+# Why?
+Cross-sectional survey responses are snapshots. Direction, timing and unmeasured confounding remain difficult.
+:::
+:::
+::::
+
+::: footer
+LAPOP Suriname 2023 country information and questionnaires: [vanderbilt.edu/lapop/suriname.php](https://www.vanderbilt.edu/lapop/suriname.php)
+:::
+
+## Case: ULS and mangrove biomass
+
+::::{.columns}
+:::{.column width="50%"}
+### Topic
+Estimating mangrove aboveground biomass using ULS.
+
+### Question type
+Measurement / validation and prediction.
+
+### Possible question
+Can ULS-derived metrics predict or replace forest-inventory estimates of aboveground biomass in Surinamese mangroves?
+:::
+
+:::{.column width="50%"}
+### Claim boundary
+A good validation study can show agreement, calibration and prediction accuracy.
+
+It should not claim replacement unless error, uncertainty, sampling conditions and use-case requirements are acceptable.
+:::
+::::
+
+## AI as a research assistant
+
+::: {.callout-note appearance="simple"}
+# AI assistant
+Use AI to make thinking visible, not to outsource responsibility.
+:::
+
+AI can help with:
+
+- rewriting broad topics into research questions
+- generating search terms
+- creating a literature map template
+- identifying possible variables and confounders
+- translating technical output into careful language
+- challenging overclaims
+- scaffolding a report structure
+
+AI cannot take responsibility for truth, citations, validity, ethics or your final claim.
+
+## How AI models work: the useful cartoon
+
+::::{.columns}
+:::{.column width="45%"}
+Large language models are trained to predict plausible text from patterns in large text collections.
+
+They are very good at language, structure and analogy.
+:::
+
+:::{.column width="55%"}
+They are not databases of verified truth.
+
+- They may invent citations
+- They may smooth over uncertainty
+- They may sound confident when wrong
+- They may miss local context
+- They may reproduce biases in training data
+:::
+::::
+
+::: {.callout-warning}
+# Be careful
+Fluent text is not the same thing as valid evidence.
+:::
+
+## What to look out for
+
+AI is most dangerous when it is most comfortable.
+
+- It gives an elegant answer to a vague question
+- It turns uncertainty into certainty
+- It invents plausible references
+- It suggests methods without understanding your design
+- It ignores missing data and sampling limitations
+- It changes your claim from *associated with* to *causes*
+
+::: {.callout-tip}
+# Good practice
+Ask AI to disagree with you. Ask it to list assumptions, limitations and alternative interpretations.
+:::
+
+## BRAVE(R) prompting
+
+A useful prompt is a research instruction, not a wish.
+
+| Element | Prompting question |
+|---|---|
+| **B**ackground | What is the project context? |
+| **R**ole | What role should the AI take? |
+| **A**im | What task should it perform? |
+| **V**ariables / evidence | What data, variables or text should it use? |
+| **E**xpectation | What format and level of detail do you want? |
+| **R**eflection | Ask for limitations, assumptions or checks |
+
+::: {.callout-note}
+# Example
+"Act as a critical statistics supervisor. Given this research question and dataset description, identify the question type, possible overclaims, and three design limitations."
+:::
+
+## RACCCA prompt evaluation
+
+Before using an AI answer, evaluate it.
+
+| Criterion | Question |
+|---|---|
+| **R**elevance | Does it answer my actual question? |
+| **A**ccuracy | Are factual claims and references correct? |
+| **C**ompleteness | What important part is missing? |
+| **C**larity | Is the reasoning understandable? |
+| **C**laim control | Does it avoid overclaiming? |
+| **A**ctionability | Can I use this to improve my project? |
+
+::: {.callout-important}
+# Rule
+Never copy an AI answer into your report unless you can defend it yourself.
+:::
+
+## Scaffolding with AI
+
+AI works best when you ask it to help with one layer at a time.
+
+1. Identify the population, outcome and predictor
+2. Classify the question type
+3. Generate search terms
+4. Suggest possible literature functions
+5. Identify assumptions and claim boundaries
+6. Draft alternative formulations
+7. Critique the result
+
+::: {.callout-tip}
+# In short
+Do not ask: "Write my literature review."  
+Ask: "Help me build a structure for a literature review that supports this research question."
+:::
+
+## Searching for literature
+
+Search deliberately.
+
+For each project, create three search routes:
+
+1. **Substantive search**: topic and context  
+   `wateroverlast households Suriname`
+
+2. **Conceptual search**: mechanisms and theory  
+   `household flood vulnerability socioeconomic factors`
+
+3. **Methodological search**: method, design or data  
+   `household survey flood risk logistic regression`
+
+If Suriname-specific literature is scarce, widen the circle:
+
+<center>Suriname $\rightarrow$ Caribbean $\rightarrow$ Latin America $\rightarrow$ LMICs $\rightarrow$ international literature</center>
+
+## Literature maps
+
+::: {.callout-note appearance="simple"}
+# Literature map
+A literature map shows what each source *does* for your project.
+:::
+
+Do not summarize papers randomly.
+
+A source can help you:
+
+- define a concept
+- identify a mechanism
+- select variables
+- justify covariates
+- choose a method
+- compare findings
+- identify a gap
+- limit a claim
+
+## Literature map template
+
+| Source | What it contributes | Concepts / variables | Method / design | Use for my project |
+|---|---|---|---|---|
+| Study 1 |  |  |  |  |
+| Study 2 |  |  |  |  |
+| Dataset documentation |  |  |  |  |
+
+::: {.callout-warning}
+# Hmmm...
+If a source has no clear job in your project, why is it in the report?
+:::
+
+## Example: wateroverlast and vulnerability
+
+| Source | Contribution | Use |
+|---|---|---|
+| Paramaribo Strategic Flood Risk Assessment | Context on flooding, drainage and risk in Paramaribo | Societal relevance and risk factors |
+| Suriname National Adaptation Plan | National climate adaptation context | Policy relevance |
+| Household survey documentation | Population, variables, sampling and weights | Operationalization and limitations |
+
+A good literature map connects context, concept, method and data.
+
+::: footer
+World Bank, Paramaribo Strategic Flood Risk Assessment: [documents.worldbank.org](https://documents.worldbank.org/pt/publication/documents-reports/documentdetail/463821538552629012/paramaribo-strategic-flood-risk-assessment-final-report). Suriname National Adaptation Plan: [unfccc.int](https://unfccc.int/sites/default/files/resource/NAP-Suriname-2020.pdf)
+:::
+
+## Exercise: research design card
+
+In groups, choose one topic and produce a research design card.
+
+1. Original topic
+2. Refined research question
+3. Question type
+4. Search terms or search strings
+5. Mini literature map
+6. Key concepts and variables suggested by literature
+7. Claim boundary: what can and cannot be concluded
+
+::: {.callout-tip}
+# Product
+A better question, a better literature strategy and a more responsible claim.
+:::
+
+## To conclude
+
+A good research design answers four questions:
+
+1. What kind of question am I asking?
+2. What kind of evidence do my data provide?
+3. What does the literature help me define, justify or limit?
+4. What can I responsibly conclude?
+
+::: {.callout-important}
+# Final thought
+Good science is not the art of sounding certain.  
+Good science is the art of being precise about uncertainty.
+:::
+
+## References and examples
+
+- UNICEF MICS Suriname 2018: [https://mics.unicef.org/sites/mics/files/2024-08/Suriname%202018%20MICS%20Survey%20Findings%20Report_English.pdf](https://mics.unicef.org/sites/mics/files/2024-08/Suriname%202018%20MICS%20Survey%20Findings%20Report_English.pdf)
+- World Bank Microdata Library, Suriname MICS 2018: [https://microdata.worldbank.org/index.php/catalog/3531](https://microdata.worldbank.org/index.php/catalog/3531)
+- LAPOP Suriname 2023: [https://www.vanderbilt.edu/lapop/suriname.php](https://www.vanderbilt.edu/lapop/suriname.php)
+- World Bank, Paramaribo Strategic Flood Risk Assessment: [https://documents.worldbank.org/pt/publication/documents-reports/documentdetail/463821538552629012/paramaribo-strategic-flood-risk-assessment-final-report](https://documents.worldbank.org/pt/publication/documents-reports/documentdetail/463821538552629012/paramaribo-strategic-flood-risk-assessment-final-report)
+- Suriname National Adaptation Plan: [https://unfccc.int/sites/default/files/resource/NAP-Suriname-2020.pdf](https://unfccc.int/sites/default/files/resource/NAP-Suriname-2020.pdf)

@@ -1,0 +1,127 @@
+---
+title: Groepsopdracht 2
+subtitle: "Van maatschappelijk probleem naar onderderzoeksontwerp"
+author: 
+  - name: "Gerko Vink"
+    orcid: "0000-0001-9767-1924"
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+---
+
+# Structuur
+| Onderdeel | Beschrijving |
+|---|---|
+| **Duur** | 1 uur |
+| **Werkvorm** | Groepswerk in groepen van 3–4 studenten. Het is wenselijk dat je met verschillende inhoudelijke interesses in één groep zit, zodat jullie elkaar kunnen helpen om aannames, onduidelijkheden en te sterke claims te herkennen. Twee weten immers meer dan één! |
+
+Aan het einde van de groepsopdracht heb je een korte research design card met:
+
+1. het oorspronkelijke onderwerp;
+2. een aangescherpte onderzoeksvraag;
+3. het type onderzoeksvraag;
+4. 3–5 zoektermen of zoekopdrachten;
+5. een mini-literatuurkaart met ten minste één bron of gepland brontype;
+6. belangrijke begrippen en variabelen die uit de literatuur naar voren komen;
+7. een claimgrens: wat het onderzoek wel en niet kan concluderen.
+
+De inzichten die je vandaag opdoet zul je later kunnen gebruiken om je Research Report veel scherper te kunnen formuleren. 
+
+# Opdracht
+
+## Stap 1: Begin bij het begin
+
+Lees de onderstaande tekst en probeer goed duidelijk te krijgen wat het onderwerp van dit onderzoek zal zijn. 
+
+::: callout-note
+### Oefencasus: wateroverlast en kwetsbaarheid van huishoudens in Suriname
+In veel kustgebieden in Suriname spelen veranderingen in neerslag, waterstanden en landgebruik een steeds grotere rol in het dagelijks leven van bewoners. In sommige gemeenschappen wordt vaker melding gemaakt van wateroverlast na hevige regenval. Dit kan gevolgen hebben voor bereikbaarheid, gezondheid, schoolbezoek, werk, landbouwactiviteiten en schade aan woningen of infrastructuur.
+
+Tegelijkertijd is het niet altijd duidelijk waardoor wateroverlast precies ontstaat. Hevige neerslag kan een rol spelen, maar ook de ligging van een gebied, de kwaliteit van afwatering, verstedelijking, bodemgebruik, nabijheid van rivieren of kreken, en sociaaleconomische omstandigheden van huishoudens kunnen van belang zijn. Ook kan het zijn dat bepaalde groepen bewoners vaker wateroverlast rapporteren, bijvoorbeeld omdat zij in kwetsbaardere gebieden wonen of minder mogelijkheden hebben om schade te voorkomen.
+:::
+
+[NOG DOEN: DATABESTAND UITWERKEN EN AANLEVEREN]
+Stel dat jullie toegang hebben tot een databestand waarin huishoudens uit verschillende districten in Suriname zijn bevraagd over wateroverlast in hun woonomgeving. In dit databestand staan ook gegevens over kenmerken van het huishouden, het type woning, de locatie, toegang tot afwatering, sociaaleconomische omstandigheden en eventuele gevolgen van wateroverlast. Daarnaast is er informatie beschikbaar over neerslag per district in dezelfde periode.
+
+Gebruik deze tekst als startpunt voor Groepsopdracht 2. Probeer eerst duidelijk te krijgen wat het onderwerp van dit onderzoek zou kunnen zijn. Schrijf het onderwerp op zoals jullie denken dat het is. 
+
+Maak daarna de structuur van het onderwerp zichtbaar. Benoem ten minste:
+
+* de populatie of onderzoekseenheden;
+* de uitkomstvariabele;
+* de belangrijkste verklarende variabele, voorspeller of groepsindeling;
+* de context;
+* mogelijke achtergrondvariabelen.
+
+Het doel van deze stap is om het onderwerp zichtbaar te maken als onderzoeksstructuur, en niet alleen als interessant thema.
+
+## Stap 2: Classificeer het type onderzoeksvraag
+
+Bepaal daarna welk type vraag je vooral stelt. Kies één primair type, ook als je onderwerp meerdere elementen bevat.
+
+| Type onderzoeksvraag | Voorbeeld van de claim |
+|---|---|
+| Beschrijvend | Hoe vaak komt X voor? |
+| Vergelijkend | Verschillen groepen in Y? |
+| Verklarend of associatief | Is X geassocieerd met Y, rekening houdend met Z? |
+| Voorspellend | Hoe goed kunnen we Y voorspellen op basis van X en Z? |
+| Causaal | Wat is het effect van X op Y? |
+| Validerend of meetkundig | Komt meetmethode A overeen met meetmethode B? |
+
+Deze classificatie is belangrijk omdat je onderzoeksontwerp, analyse en conclusie moeten passen bij het type vraag dat je stelt.
+
+## Stap 3: Maak een eerste literatuurzoekstrategie
+
+Formuleer vervolgens zoektermen voor relevante literatuur. Het doel is niet om tijdens deze opdracht meteen de perfecte artikelen te vinden. Het doel is om doelgericht te leren zoeken.
+
+Maak voor je onderwerp drie soorten zoekopdrachten:
+
+1. Inhoudelijke zoekopdracht
+    Gericht op het concrete onderwerp en de context.
+2. Conceptuele of theoretische zoekopdracht
+    Gericht op begrippen, mechanismen en theorie.
+3. Methodologische of data-gerichte zoekopdracht
+    Gericht op methode, meetinstrumenten of databron.
+
+Zoek niet alleen naar artikelen die precies over Suriname gaan. Begin daar wel, maar verbreed je zoekactie als je weinig vindt. Gebruik literatuur uit vergelijkbare regio’s of contexten om begrippen, mechanismen, variabelen en methoden te herkennen. Let er wel op dat je steeds kritisch blijft: literatuur uit een andere regio kan helpen bij je denkkader, maar is niet automatisch direct toepasbaar op Suriname.
+
+## Stap 4: Maak een mini-literatuurkaart
+
+Maak nu een kleine literatuurkaart. Idealiter bevat deze uiteindelijk 3–5 bronnen. Tijdens deze opdracht is het voldoende om de structuur van de literatuurkaart te maken en, als internettoegang beschikbaar is, één of twee bronnen alvast in te vullen.
+
+| Bron | Wat draagt deze bron bij? | Begrippen/variabelen | Methode/design | Gebruikte analyse techniek | Nut voor mijn project |
+|---|---|---|---|---|
+| Studie 1 |  |  |  |  |
+| Studie 2 |  |  |  |  |
+| Datasetdocumentatie |  |  |  |  |
+
+Let er op dat je de bronnen niet te willekeurig samenvat. Bronnen moeten wel een functie hebben binnen het project. Een bron kan bijvoorbeeld helpen bij:
+
+* het definiëren van een begrip;
+* het herkennen van een mogelijk mechanisme;
+* het kiezen van variabelen;
+* het verantwoorden van achtergrondvariabelen of confounders;
+* het kiezen van een methode;
+* het vergelijken van bevindingen;
+* het aanwijzen van een kennislacune;
+* het begrenzen van je claim.
+
+## Stap 5: Scherp de onderzoeksvraag aan
+
+Gebruik je mini-literatuurkaart om je onderzoeksvraag opnieuw te formuleren, indien nodig. Geef ook het antwoordformat. Gebruik hiervoor ook de structuur die je in stap 1 hebt gemaakt. 
+
+## Stap 6: Formuleer de claimgrens
+
+Schrijf tot slot twee zinnen:
+
+1. Dit onderzoek kan mogelijk concluderen dat ...
+2. Dit onderzoek kan niet concluderen dat ...
+
+
+
