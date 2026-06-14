@@ -1,0 +1,464 @@
+---
+title: "5. Preparation Imputed Datasets"
+author: "Maarten Cruyff"
+output: 
+  html_document:
+   toc: true
+   toc_float: true
+   toc_depth: 5
+   theme: paper
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 8px;
+}
+
+</style>
+
+
+
+---
+
+This documents prepares the 50 imputed data sets for statistical analysis.
+
+---
+
+# Packages used
+
+```{r message=F}
+library(dplyr)
+library(purrr)
+library(magrittr)
+library(mice)
+library(psych)
+library(kableExtra)
+```
+
+# Importing data
+
+Loading the workspace with the `3. Data imputation.Rdata` with the 50 imputed data sets.
+
+```{r}
+load("../Workspaces/3. Data imputation.Rdata")
+```
+
+---
+
+# Make data object
+
+Storing the 50 imputed data sets in the list `d50`.
+
+```{r}
+d50 <- imp %>% 
+  complete("all") 
+```
+
+---
+
+
+# Deleting unused variables
+
+```{r}
+d50 <- d50 %>% 
+  map(select, -ID, -FinishDate, -IC1, -IC2, -D1, -V, -RRtest1, -RRtest2)
+```
+
+
+---
+
+# Names RRP's and QRP's
+
+Vectors that will be used to rename RP1 to RP22 in intelligible names for the RPPs (starting with the letter R) and QRPs (starting with the letter Q)
+
+```{r}
+rrp <- c("RDisclFunds", "RCorrectPub", "RAuthorship", "ROpenData", "RKeepRecord", 
+         "RPreReg", "RDataManage", "ROpenAccess", "RCiteSource", "ROpenCode", "RErrorCheck")
+qrp <- c("QAttention", "QSupervision", "QResDesign", "QUnfairRev", "QUnsubstClaims", 
+         "QCiteSource", "QResNotes", "QConcealDetails", "QNoReSubmit", "QConcealFlaws", "QSelectCites")
+```
+
+
+# Relocating and renaming variables
+
+Order data sets on (old names in parenthesis):
+
+1. Background variables (5): "Field", "Rank", "Gender", "Research", "Support" (Group)
+
+2. Explanatory variables (75): ordered from 1 to 75
+
+3. RRP variables (11): names in `rrp` with suffix `_raw` to indicate that Not Applicable are coded 0.
+
+4. QRP variables (11): names in `rrp` with suffix `_raw` to indicate that Not Applicable are coded 0.
+
+5. RR variables (2): "RRfabr" (RR1) and "RRfals" (RR2)
+
+```{r}
+d50 <- d50 %>% 
+  map(~ .x %>% 
+        relocate(F1:F18, .before = F19)%>% 
+        relocate(Group,  .before = F1) %>% 
+        relocate(RP1, RP2, RP4, RP6, RP9, RP12, RP15, RP16, RP17, RP19, RP21, .before = RP3) %>%  
+        rename_at(vars(D2:Group), ~ c("Field", "Rank", "Gender", "Research", "Support")) %>%  
+        rename_at(vars(RP1:RP21), ~ paste0(rrp, "_raw")) %>% 
+        rename_at(vars(RP3:RP22), ~ paste0(qrp, "_raw")) %>%
+        rename_at(vars(RR1, RR2), ~ c("RRfabr", "RRfals")))
+names(d50[[1]])
+```
+
+---
+
+
+# Recoding variables
+
+
+## Background variables
+
+Shortening labels of background variables for use in tables and graphs.
+
+
+
+
+
+```{r}
+d50 <- d50 %>%  
+  map(~ .x %>% 
+        mutate_at(vars(Field), 
+                  recode_factor, 
+                  `Biomedical and Life Sciences` = "Bio & Life",
+                  `Social and Behavioral Sciences` = "Soc & Beh",
+                  `Arts and Humanities` = "Arts & Hum",
+                  `Engineering and Natural Sciences` = "Eng & Nat") %>% 
+        mutate_at(vars(Rank), 
+                  recode_factor, 
+                  `Postdoctoral researcher, Assistant Professor, Physician Researcher or Lecturer Researcher` = "Postdoc",
+                  `PhD student or junior researcher` = "PhD",
+                  `Associate Professor or Full Professor` = "Prof") %>% 
+        mutate_at(vars(Gender), 
+                  recode_factor, 
+                  `Other / Do not wish to disclose` = "Undisclosed")%>%  
+        mutate_at(vars(Support), 
+                  recode_factor, 
+                  `Non-joining group` = "No",
+                  `Joining group` = "Yes")  
+         )
+```
+
+
+```{r}
+d50 <- d50 %>%  
+  map(~ .x %>% 
+        mutate_at(vars(Field), 
+                  recode_factor, 
+                  `Social and Behavioral Sciences` = "Soc & Beh",
+                  `Arts and Humanities` = "Arts & Hum",
+                  `Engineering and Natural Sciences` = "Eng & Nat",
+                  `Biomedical and Life Sciences` = "Bio & Life") %>% 
+        mutate_at(vars(Rank), 
+                  recode_factor, 
+                  `PhD student or junior researcher` = "PhD",
+                  `Postdoctoral researcher, Assistant Professor, Physician Researcher or Lecturer Researcher` = "Postdoc",
+                  `Associate Professor or Full Professor` = "Prof") %>% 
+        mutate_at(vars(Gender), 
+                  recode_factor, 
+                  `Other / Do not wish to disclose` = "Undisclosed")%>%  
+        mutate_at(vars(Support), 
+                  recode_factor, 
+                  `Joining group` = "Yes",
+                  `Non-joining group` = "No"))
+```
+
+
+
+---
+
+
+## Explanatory variables 
+
+Set Not Applicable (score = 0) to `NA`, and reverse scores of contra-indicative items.
+
+```{r}
+d50 <- d50 %>%  
+  map(~ .x %>% 
+        mutate_at(vars(F1:F75), na_if, 0) %>% 
+        mutate_at(vars(F19, F28, F32, F40, F44, F45, F53, F54, F58, F61), ~{8 - .}))
+```
+
+---
+
+
+## RR variables
+
+
+Recoding the answers "triangle"  and "circle" of the randomized response items into 0 (no) and 1 (yes).
+
+```{r}
+d50 <- d50 %>% 
+  map(~ .x %>% 
+        mutate_at(vars(RRfabr), recode, `circle` = 0, `triangle` = 1) %>% 
+        mutate_at(vars(RRfals), recode, `circle` = 1, `triangle` = 0))
+```
+
+---
+
+
+
+# Adding new variables
+
+Recoding the 0 scores (Not Applicable) in the raw RRP/QRP variables into 1 ("Never")
+
+```{r}
+d50 <- d50 %>% 
+  map(~ .x %>% 
+        mutate_at(vars(!!!syms(paste0(rrp, "_raw"))), list(r = ~ recode(., `0` = 1))) %>% 
+        rename_at(vars(ends_with(("_raw_r"))), ~ gsub("_raw_r", "", .x)) %>% 
+        mutate_at(vars(!!!syms(paste0(qrp, "_raw"))), list(q = ~ recode(., `0` = 1))) %>% 
+        rename_at(vars(ends_with(("_raw_q"))), ~ gsub("_raw_q", "", .x))) 
+```
+
+---
+
+
+
+## Mean scores RRP/QRP's
+
+Computation of the mean score scores on the RRPs and the QRPs:
+
+- "RRP": average score on RRP's, with `NA` with one or more score missing (Not Available) 
+
+- "QRP": average score on QRP's, with `NA` with one or more score missing (Not Available) 
+
+
+```{r}
+d50 <- d50 %>% 
+  map(~ .x %>% 
+        mutate(RRP_ave = rowMeans(cbind(!!!syms(rrp)), na.rm = T)) %>% 
+        mutate(QRP_ave = rowMeans(cbind(!!!syms(qrp)), na.rm = T))) 
+```
+
+---
+
+
+## At least one QRP
+
+- "QRP_1": takes value 1 if at any of the QRPs has a score > 4, and 0 otherwise 
+
+```{r}
+d50 <- d50 %>% 
+  map(~ .x %>% 
+        mutate(QRP_1 = rowSums(cbind(!!!syms(qrp)) > 4)) %>% 
+        mutate(QRP_1 = if_else(QRP_1 == 0, 0, 1)))
+```
+
+
+---
+
+
+## Explanatory variable scales
+
+Explanatory variables scales are computed as the 1st component of the PCA of the corresponding items, where: 
+
+- the component score are based on the pairwise correlations between the items
+
+- the component scores are a weighed average of the item scores
+
+- with the weights determined such that the scale optimally discriminates between subjects
+
+- cases with an Not Applicable on any of the scale items will get an `NA` (missing value) score on the corresponding scale
+
+
+
+
+
+```{r}
+d50 <- d50 %>% 
+  map(~ .x %>% 
+        mutate(principal(cbind( F1,  F2,  F3,  F4,  F5, F6, F7,  F8, F9)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(SciNorms = "PC1"),
+               principal(cbind(F10, F11, F12, F13, F14, F15, F16, F17, F18)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(PeerNorms = "PC1"), 
+               principal(cbind(F19, F20, F21)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(WorkPress = "PC1"), 
+               principal(cbind(F22, F23, F24, F25, F26, F27)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(PubPress = "PC1"), 
+               principal(cbind(F28, F29, F30, F31, F32, F33)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(FundPress = "PC1"), 
+               principal(cbind(F40, F41, F42, F43, F44, F45)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(Competitive = "PC1"), 
+               principal(cbind(F64, F65, F66, F67, F68, F69)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(DetectCol = "PC1"), 
+               principal(cbind(F70, F71, F72, F73, F74, F75)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(DetectRev = "PC1"),
+               principal(cbind(F34, F35, F36, F37, F38, F39, 
+                               F46, F47, F48, F49, F50, F51)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(Mentoring = "PC1"), 
+               principal(cbind(F52, F53, F54, F55, F56, F57, F58, F59, 
+                               F60, F61, F62, F63)) %>% 
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(OrgJust = "PC1"),
+               principal(cbind(F34, F35, F36, F37, F38, F39)) %>%
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(MentSurv = "PC1"),
+               principal(cbind(F46, F47, F48, F49, F50, F51)) %>%
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(MentResp = "PC1"),
+               principal(cbind(F52, F53, F54, F55, F56, F57)) %>%
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(DistJust = "PC1"),
+               principal(cbind(F58, F59, F60, F61, F62, F63)) %>%
+                 pluck("scores") %>% as.data.frame %>% 
+                 rename(ProcJust = "PC1")
+               ))
+
+```
+
+
+In contrast to the original data analysis plan 10 instead 12 scales are computed
+
+- `Mentoring`  is composed of the 12 items of the original scales `RespMent` + `SurvMent`
+
+- `OrgJust` is composed of the 12 items of the original scales `DistJust` + `ProcJust`
+
+The reason for this is that the original scales are highly correlated (see below), which 
+
+- means that they measure similar constructs and
+
+- that including these scales separately in regression analyses may result in multicollinearity problems
+
+```{r}
+d50[[1]] %$% cor(cbind(OrgJust, DistJust, ProcJust)) %>% round(., 2)
+```
+
+```{r}
+d50[[1]] %$% cor(cbind(Mentoring, MentSurv, MentResp)) %>% round(., 2)
+```
+
+
+
+
+---
+
+
+## Replacement scale missings 
+
+Missing values on the scales due to Not Applicables are replaced by the means of the corresponding scaled items, ignoring the Not Applicables.  
+
+```{r}
+d50 <- d50 %>% 
+  map(~ .x %>% 
+        mutate_at(vars(F28:F75), list(s = ~ scale(.))) %>% 
+        mutate(m         = rowMeans(cbind(F28_s, F29_s, F30_s, F31_s, F32_s, F33_s), 
+                                    na.rm = T),
+               FundPress = if_else(is.na(FundPress), m, FundPress),
+               m         = rowMeans(cbind(F64_s, F65_s, F66_s, F67_s, F68_s, F69_s), 
+                                    na.rm = T),
+               DetectCol = if_else(is.na(DetectCol), m, DetectCol),
+               m         = rowMeans(cbind(F70_s, F71_s, F72_s, F73_s, F74_s, F75_s), 
+                                    na.rm = T),
+               DetectRev = if_else(is.na(DetectRev), m, DetectRev),
+               m         = rowMeans(cbind(F34_s, F35_s, F36_s, F37_s, F38_s, F39_s, 
+                                          F46_s, F47_s, F48_s, F49_s, F50_s, F51_s), 
+                                    na.rm = T),
+               Mentoring = if_else(is.na(Mentoring), m, Mentoring),
+               m         = rowMeans(cbind(F34_s, F35_s, F36_s, F37_s, F38_s, F39_s),
+                                    na.rm = T),
+               MentSurv  = if_else(is.na(MentSurv), m, MentSurv),
+               m         = rowMeans(cbind(F46_s, F47_s, F48_s, F49_s, F50_s, F51_s),
+                                    na.rm = T),
+               MentResp  = if_else(is.na(MentResp), m, MentResp),
+               m         = rowMeans(cbind(F52_s, F53_s, F54_s, F55_s, F56_s, F57_s, 
+                                          F58_s, F59_s, F60_s, F61_s, F62_s, F63_s),  
+                                    na.rm = T),
+               OrgJust   = if_else(is.na(OrgJust), m, OrgJust),
+               m         = rowMeans(cbind(F52_s, F53_s, F54_s, F55_s, F56_s, F57_s),  
+                                    na.rm = T),
+               DistJust   = if_else(is.na(DistJust), m, DistJust),
+               m         = rowMeans(cbind(F58_s, F59_s, F60_s, F61_s, F62_s, F63_s),  
+                                    na.rm = T),
+               ProcJust   = if_else(is.na(ProcJust), m, ProcJust)) %>% 
+        select(-(F28_s:F75_s), -m))
+```
+
+
+# correlations EVS
+
+```{r}
+fisher.trans <- function(x) 1/2 * log((1 + x) / (1 - x))
+fisher.backtrans <- function(x) (exp(2 * x) - 1) / (exp(2 * x) + 1)
+
+cor <- d50 %>%
+  map(~.x %>% 
+        select(SciNorms, PeerNorms, WorkPress, PubPress, FundPress, Competitive, DetectCol, DetectRev, Mentoring, MentSurv, MentResp, OrgJust, DistJust, ProcJust) %>% 
+        stats::cor(use = "pairwise.complete.obs") %>%
+        fisher.trans)
+cor.rect <- Reduce("+", cor) / length(cor) # m is equal to the length of the list
+z <- fisher.backtrans(cor.rect)
+diag(z) <- 1
+z <- round(z, 2)
+
+z[upper.tri(z)] <- ""
+
+
+ z %>% kbl(caption = "Correlation matrix (pairwise), averaged over 50 completed data sets") %>% 
+  kable_styling(font_size = 10, position = "left")  
+
+ 
+ cor <- d50 %>%
+  map(~.x %>% 
+        select(SciNorms, PeerNorms, WorkPress, PubPress, FundPress, Competitive, DetectCol, DetectRev, Mentoring, MentSurv, MentResp, OrgJust, DistJust, ProcJust) %>% 
+        stats::cor(use = "complete") %>%
+        fisher.trans)
+cor.rect <- Reduce("+", cor) / length(cor) # m is equal to the length of the list
+z <- fisher.backtrans(cor.rect)
+diag(z) <- 1
+z <- round(z, 2)
+
+z[upper.tri(z)] <- ""
+
+
+ z %>% kbl(caption = "Correlation matrix, averaged over 50 completed data sets") %>% 
+  kable_styling(font_size = 10, position = "left")  
+ 
+```
+
+Deleting the 4 superfluous scales
+
+```{r}
+d50 <- d50 %>% 
+  map(select, - MentSurv, -MentResp, -DistJust, - ProcJust)
+```
+
+
+```{r}
+sessionInfo()
+```
+

@@ -17,9 +17,7 @@ format:
 
 ::: callout-tip
 ## Hoorcollege 22 juni 2026
-+ Artikelen als voorbeeld
-
-Vandaag kijken we naar statistische modellering als een vorm van gedisciplineerd vergelijken. We beginnen dus niet met de vraag “welke toets wil ik gebruiken?”, maar met de vraag “welke vergelijking is nodig om mijn onderzoeksvraag te beantwoorden?” We besteden aandacht aan
+Vandaag kijken we naar statistische modellering als een vorm van *gedisciplineerd vergelijken*. We beginnen dus niet met de vraag “welke toets wil ik gebruiken?”, maar met de vraag “welke vergelijking is nodig om mijn onderzoeksvraag te beantwoorden?” We besteden aandacht aan
 
 - een model zien als gestructureerde vergelijking
 - bepalen van de uitkomst die je wilt beschrijven, verklaren of voorspellen
@@ -36,41 +34,67 @@ De slides voor het hoorcollege kunt je [hier vinden](slides/lec-5.html).
 :::
 
 ## Groepsopdracht
-Analyseplan maken
+De groepsopdracht [staat hier](opdracht/Groepsopdracht5.html).
 
-- tabel template geven:
+<!-- ## Groepsopdracht -->
+<!-- Analyseplan maken -->
 
-| Element | Uitwerking door de student |
-|---|---|
-| Onderzoeksvraag |  |
-| Analyse-eenheid |  |
-| Uitkomstvariabele |  |
-| Type uitkomst |  |
-| Belangrijkste verklarende variabele(n) |  |
-| Belangrijke covariaten/achtergrondvariabelen |  |
-| Subgroepen of vergelijkingen |  |
-| Beschrijvende analyses |  |
-| Belangrijkste statistische methode |  |
-| Alternatieve of eenvoudigere methode |  |
-| Diagnostiek of controles |  |
-| Geplande tabellen en figuren |  |
-| Beoogde interpretatie |  |
+<!-- - tabel template geven: -->
 
-1. vars in kaart brengen
-2. methode zoeken + backup methode
-3. mogelijke interpretatie
-4. welke output nodig?
-5. vervolg test nodig of test vooraf? alles ok?
+<!-- | Element | Uitwerking door de student | -->
+<!-- |---|---| -->
+<!-- | Onderzoeksvraag |  | -->
+<!-- | Analyse-eenheid |  | -->
+<!-- | Uitkomstvariabele |  | -->
+<!-- | Type uitkomst |  | -->
+<!-- | Belangrijkste verklarende variabele(n) |  | -->
+<!-- | Belangrijke covariaten/achtergrondvariabelen |  | -->
+<!-- | Subgroepen of vergelijkingen |  | -->
+<!-- | Beschrijvende analyses |  | -->
+<!-- | Belangrijkste statistische methode |  | -->
+<!-- | Alternatieve of eenvoudigere methode |  | -->
+<!-- | Diagnostiek of controles |  | -->
+<!-- | Geplande tabellen en figuren |  | -->
+<!-- | Beoogde interpretatie |  | -->
 
-Plenair nabespreken
+<!-- 1. vars in kaart brengen -->
+<!-- 2. methode zoeken + backup methode -->
+<!-- 3. mogelijke interpretatie -->
+<!-- 4. welke output nodig? -->
+<!-- 5. vervolg test nodig of test vooraf? alles ok? -->
+
+<!-- Plenair nabespreken -->
 
 ## Individuele opdracht
-toevoegen van statistical analysis plan, zoals hierboven beschreven. 
+Ga nu verder met het uitvoeren van je analyseplan. Maar niet voordat je de onderstaande checklist hebt doorgelopen.
 
-- uitkomsten/predictoren
-- belangrijkste vergelijking
-- voorgestelde descriptives
-- method + backup daarvoor
-- interpretatie van de params, coefs, diffs en metrics
-- planning van tabellen of figuren die nodig zijn voor analyse overbrengen op publiek?
+### Checklist voor je analyseplan
+
+Gebruik deze checklist voordat je het analyseplan gaat uitvoeren. Zelf gebruik ik altijd de regel: 
+
+> Je weet pas waar je het over hebt, als je het kan uitleggen aan een ander. 
+
+Gebruik deze tabel om te controleren of je analyseplan klaar is om uitgevoerd te worden. Als je twijfelt over een van de punten, bespreek dat dan met een medestudent of één van de docenten voordat je aan de analyse begint.
+
+| Check | Ja / Nee / Twijfel |
+|---|---|
+| Mijn onderzoeksvraag is concreet genoeg om een analyse te kiezen |  |
+| Mijn analyse-eenheid is duidelijk |  |
+| Mijn uitkomstvariabele is duidelijk |  |
+| Ik weet welk type uitkomst ik heb |  |
+| Ik weet welke vergelijking centraal staat |  |
+| Ik heb relevante achtergrondvariabelen in beeld |  |
+| Mijn hoofdmethoden past bij de onderzoeksvraag |  |
+| Ik heb een eenvoudigere backup-methode |  |
+| Ik heb diagnostiek of controles gepland |  |
+| Ik weet welke output, estimates, tabellen en figuren ik straks nodig heb |  |
+| Mijn beoogde interpretatie is niet sterker dan mijn data toelaten |  |
+| Ik weet welke vraag ik nog moet bespreken met een andere *stakeholder* in het onderzoek | |
+
+::: {.callout-important}
+## Kernidee
+
+Start niet met de methode. Start altijd vanuit de beoogde vergelijking of je onderzoeksprobleem. Een goed analyseplan laat zien wat je wilt vergelijken, waarom die vergelijking nodig is, welke data daarvoor beschikbaar zijn en welke methode daar verantwoord bij past.
+:::
+
 

@@ -1,0 +1,165 @@
+---
+title: "A10 Prevalence of F2 Falsification"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptives
+library(tibble)   # Dataframes on steroids
+library(gtools)   # Useful tools
+library(DT)       # HTML tables
+library(RRreg)    # Randomized Response
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../Workspaces/3. Data imputation.Rdata")
+load(file = "../Workspaces/2. Data inspection.Rdata")
+```
+
+---
+## Prevalence
+
+---
+
+### Overall
+We calculate the prevalence of any Falsification as
+```{r}
+# Use RRreg::RRuni
+raw_data %$% #F1 has no missings - so use first imputed set
+  RRuni(RR2 - 1, model = "Warner", p = 1/6) #-1 because RRuni needs vector of 0 and 1 - not 1 and 2
+
+# Custom function
+RResp <- function(input, prob){
+  yes <- input %>% table %>% prop.table %>% .[1]
+  true <- (yes + prob - 1) / (2 * prob - 1)
+  return(true)
+}
+
+RResp(raw_data$RR2, prob = 5/6)
+
+table(raw_data$RR2)
+```
+
+---
+
+### By disciplinary field
+We calculate the prevalence of any Falsification as
+```{r}
+mice::complete(imp, 1) %>% #F1 has no missings - so use first imputed set
+  group_by(D2) %>% 
+  summarise(true_proportion = RResp(RR2, prob = 5/6)) 
+```
+
+---
+
+### By rank
+We calculate the prevalence of any Falsification as
+```{r}
+mice::complete(imp, 1) %>% #F1 has no missings - so use first imputed set
+  group_by(D3) %>% 
+  summarise(true_proportion = RResp(RR2, prob = 5/6)) 
+```
+
+---
+
+### By gender identification
+We calculate the prevalence of any Falsification as
+```{r}
+mice::complete(imp, 1) %>% #F1 has no missings - so use first imputed set
+  group_by(D4) %>% 
+  summarise(true_proportion = RResp(RR2, prob = 5/6)) 
+```
+---
+
+### By  empirical research engagement
+We calculate the prevalence of any Falsification as
+```{r}
+mice::complete(imp, 1) %>% #F1 has no missings - so use first imputed set
+  group_by(D5) %>% 
+  summarise(true_proportion = RResp(RR2, prob = 5/6)) 
+```
+
+---
+
+### By institutional support
+We calculate the prevalence of any Falsification as
+```{r}
+mice::complete(imp, 1) %>% #F1 has no missings - so use first imputed set
+  group_by(Group) %>% 
+  summarise(true_proportion = RResp(RR2, prob = 5/6)) 
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT
+
+

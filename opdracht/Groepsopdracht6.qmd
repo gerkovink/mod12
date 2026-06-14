@@ -1,0 +1,241 @@
+---
+title: Groepsopdracht 6 - Stress-test je conclusie
+subtitle: "Onzekerheid, aannames en robuustheid"
+author: 
+  - name: "Gerko Vink"
+    orcid: "0000-0001-9767-1924"
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+  # docx:
+  #   number-sections: false
+  #   toc: true
+  #   toc-depth: 3
+---
+
+# Structuur
+
+| Onderdeel | Beschrijving |
+|---|---|
+| **Duur** | 1 uur |
+| **Werkvorm** | Individueel schrijven binnen groepen van 3–4 studenten. Iedere student schrijft eerst een voorlopige conclusie voor het eigen project. Daarna geven studenten hun werk door binnen de groep. Student A reviewt B, B reviewt C, C reviewt D en D reviewt A. In groepen van 3 reviewt C het werk van A. |
+| **Product** | Aan het einde van de groepsopdracht heeft iedere student een stress-test werkblad met drie aannames, één belangrijke bedreiging voor validiteit, één haalbare robuustheids- of sensitiviteitscheck en een verantwoordelijk geformuleerde of opnieuw geformuleerde conclusie. |
+
+# Doel van de opdracht
+
+In deze opdracht oefenen we met **kritisch kijken naar het eigen onderzoek**. Een statistische analyse levert niet vanzelf een sterke conclusie op. Iedere conclusie hangt af van aannames over de data, de meting, het model en de onderzoekssituatie.
+
+Vandaag kijken we daarom niet alleen naar de vraag: _wat laat mijn analyse zien?_ We kijken vooral naar de vraag: 
+
+>Onder welke aannames mag ik deze conclusie trekken?
+
+Een goede onderzoeker kan uitleggen:
+
+1. welke conclusie men graag zou willen trekken
+2. welke aannames nodig zijn om die conclusie te ondersteunen
+3. welke bedreigingen voor validiteit de conclusie kunnen verzwakken
+4. hoe gevoelig de conclusie is voor keuzes in data, meting of model
+5. welke (eenvoudige) robuustheids- of sensitiviteitscheck haalbaar is
+6. hoe de conclusie voorzichtig en eerlijk geformuleerd kan worden
+
+In deze opdracht nemen jullie ook de rol van **sceptische reviewer** aan. Een goede reviewer probeert het onderzoek niet af te breken, maar helpt om de conclusie scherper, eerlijker en beter verdedigbaar te maken.
+
+Aan het einde van deze opdracht hebben we:
+
+1. een voorlopige hoofdconclusie geschreven
+2. expliciet gemaakt welke aannames achter die conclusie zitten
+3. een belangrijke bedreiging voor validiteit benoemd
+4. nagedacht over wat die bedreiging kan betekenen voor de interpretatie
+5. één haalbare robuustheids- of sensitiviteitscheck gepland
+6. benoemd wat (bijv. welk resultaat) het vertrouwen zou vergroten of verkleinen
+7. de conclusie geschreven of herschreven in verantwoord taalgebruik
+8. feedback gegeven als sceptische reviewer op het werk van een medestudent
+
+# Wat hebben we nodig?
+
+- Je eigen onderzoeksvraag
+- Het analyseplan uit de vorige groepsopdracht en de (voorlopige) analyseresultaten
+- Informatie over de data, variabelen en geplande methode
+- Eventueel een codeboek, metadata, vragenlijst of datadocumentatie
+- Een gedeeld document of eigen notities om het stress-test werkblad in te vullen
+- De slides van het hoorcollege: [Lecture 6](slides/lec-6.html)
+
+# De opdracht
+
+## Stap 1: Schrijf je voorlopige hoofdconclusie
+
+Werk eerst individueel. Schrijf de conclusie die je hoopt te kunnen trekken op basis van je analyse. Deze conclusie hoeft nog niet definitief te zijn, maar mag zeker al gebaseerd zijn op je resultaten of voorlopige resultaten. Het doel is om te onderzoeken of de conclusie te sterk, te vaag of juist goed verdedigbaar is.
+
+| Vraag | Uitwerking door de student |
+|---|---|
+| **Naam student** |  |
+| **Onderzoeksonderwerp** |  |
+| **Onderzoeksvraag** |  |
+| **Voorlopige hoofdconclusie** |  |
+| **Is deze conclusie beschrijvend, verklarend, voorspellend of causaal?** |  |
+| **Welke vergelijking of analyse ondersteunt deze conclusie?** |  |
+
+Gebruik bij voorkeur één duidelijke zin. Bijvoorbeeld:
+
+> De resultaten suggereren dat leerlingen met een hogere taalvaardigheid gemiddeld betere rekenscores behalen dan leerlingen met een lagere taalvaardigheid.
+
+Of:
+
+> In deze data komt hypertensie vaker voor bij oudere respondenten dan bij jongere respondenten.
+
+Of:
+
+> De beschikbare jaarcijfers wijzen op een afname van fiscale stabiliteit, maar het beperkte aantal meetmomenten maakt sterke conclusies onzeker.
+
+::: {.callout-warning}
+## Let op
+
+Schrijf niet meteen een te sterke conclusie. Woorden zoals **bewijst**, **veroorzaakt**, **leidt tot**, **effect** en **verklaart** vragen om sterke onderbouwing. Vaak is voorzichtiger taalgebruik beter, zoals **suggereert**, **hangt samen met**, **is consistent met** of **wijst op**. Tenzij je een heel sterk bewijs hebt, natuurlijk. 
+:::
+
+## Stap 2: Maak de aannames zichtbaar
+Iedere conclusie in statistisch onderzoek hangt af van aannames. Probeer daarom minimaal drie aannames te bedenken die belangrijk zijn voor jouw conclusie. Denk bijvoorbeeld aan aannames over:
+
+- representativiteit van de steekproef
+- normaliteit van de verdeling van de data
+- lineariteit van de relatie
+- kwaliteit van de metingen
+- vergelijkbaarheid van groepen
+- ontbrekende waarden die het antwoord wel of niet vertekenen
+- mogelijke confounding van variabelen binnen of buiten de data
+- stabiliteit van definities over tijd
+- voldoende aantal observaties
+- correcte codering of opschoning van variabelen
+- onafhankelijkheid van observaties
+
+| Aanname | Waarom is deze aanname belangrijk voor de conclusie? | Hoe kwetsbaar is deze aanname? |
+|---|---|---|
+| **Aanname 1** |  | Laag / Middel / Hoog |
+| **Aanname 2** |  | Laag / Middel / Hoog |
+| **Aanname 3** |  | Laag / Middel / Hoog |
+
+::: {.callout-tip}
+## Voorbeeld
+
+Als je concludeert dat kinderen van moeders met een hoger opleidingsniveau minder vaak schooluitval hebben, dan is een belangrijke aanname dat het verband niet (volledig) wordt verklaard door andere achtergrondfactoren, zoals inkomen, woonplaats of toegang tot onderwijs.
+:::
+
+## Stap 3: Geef je werk door aan jouw sceptische reviewer
+
+Geef je voorlopige conclusie en aannames door aan een groepsgenoot. De reviewer leest het werk en vult de onderstaande reviewvragen in. De student die het werk heeft geschreven, verdedigt het plan nog niet. Eerst luistert de student en maakt aantekeningen.
+
+| Reviewvraag | Antwoord |
+|---|---|
+| **Wat is de hoofdconclusie die je medestudent wil trekken?** |  |
+| **Welke aanname lijkt het belangrijkst?** |  |
+| **Welke aanname ontbreekt mogelijk nog?** |  |
+| **Wat is de grootste bedreiging voor validiteit?** |  |
+| **Hoe kan deze bedreiging de conclusie veranderen of verzwakken?** |  |
+| **Is de conclusie te sterk, te zwak of passend geformuleerd?** |  |
+| **Welke formulering zou volgens jou beter, voorzichtiger of eerlijker zijn?** |  |
+
+Mogelijke bedreigingen voor validiteit zijn:
+
+- **selectiebias**: de onderzochte groep is niet vergelijkbaar met de groep waarover je iets wilt zeggen
+- **confounding**: een derde variabele verklaart mogelijk het verband
+- **reverse causality**: de richting van het verband is onduidelijk
+- **nonrespons**: mensen die niet meedoen verschillen mogelijk van mensen die wel meedoen
+- **meetfout**: de variabele meet niet precies wat je denkt dat die meet
+- **missing data**: ontbrekende waarden zijn mogelijk niet willekeurig
+- **kleine steekproef**: de data bevat te weinig informatie voor een sterke conclusie
+- **inconsistente definities**: begrippen of metingen betekenen niet overal hetzelfde
+- **outliers of uitzonderlijke cases**: één groep of case bepaalt mogelijk het resultaat
+
+::: {.callout-important}
+## Let goed op de rol van de reviewer
+Een sceptische reviewer is kritisch, maar constructief. Het doel is niet om te zeggen dat het onderzoek slecht is. Het doel is om te helpen bepalen welke conclusie verantwoord is met deze data en welke extra controle het onderzoek sterker kan maken.
+:::
+
+## Stap 4: Plan één robuustheids- of sensitiviteitscheck
+Geef het werk terug aan je medestudent. Gebruik de feedback die je hebt gekregen om na te denken over een mogelijke haalbare check of controle te kiezen. Deze check moet realistisch zijn binnen de tijd, data en vaardigheden die beschikbaar zijn. Voorbeelden van voor de hand liggende checks:
+
+- analyse opnieuw uitvoeren met en zonder een twijfelachtige variabele or met een andere vermoedelijke confounder
+- uitkomstvariabele op een alternatieve manier coderen
+- resultaten vergelijken met en zonder outliers of erg invloedrijke cases. Of deze cases minder gewicht geven in de analyse
+- complete cases vergelijken met de bredere steekproef
+- gewogen en ongewogen resultaten vergelijken, als gewichten beschikbaar zijn
+- een eenvoudigere methode gebruiken als controle op een complexer model. Vind je hetzelfde resultaat of niet?
+- resultaten apart bekijken voor één of meer subgroepen
+- beschrijvende resultaten vergelijken met modelresultaten
+- analyses uitvoeren met en zonder imputaties, of met verschillende aannames over de geimputeerde waarden
+
+| Vraag | Uitwerking |
+|---|---|
+| **Gekozen robuustheids- of sensitiviteitscheck** |  |
+| **Waarom is deze check relevant?** |  |
+| **Welke aanname of bedreiging wordt hiermee onderzocht?** |  |
+| **Is deze check haalbaar met de beschikbare data? En lukt dat binnen de tijd?** |  |
+| **Wat zou je vertrouwen in de conclusie vergroten?** |  |
+| **Wat zou je vertrouwen in de conclusie verkleinen?** |  |
+
+::: {.callout-tip}
+## Denk praktisch
+
+Een robuustheidscheck hoeft niet ingewikkeld te zijn. Een simpele tabel, figuur of vergelijking kan al helpen om te zien of je conclusie stevig is of juist sterk afhankelijk is van één keuze.
+:::
+
+## Stap 5: Herschrijf je conclusie in verantwoordelijk taalgebruik
+
+Gebruik nu de feedback en de geplande check om je conclusie opnieuw te formuleren. De nieuwe conclusie moet duidelijk maken wat de resultaten kunnen laten zien, maar ook waar de grenzen liggen.
+
+| Onderdeel | Uitwerking |
+|---|---|
+| **Oorspronkelijke conclusie** |  |
+| **Belangrijkste aanname achter deze conclusie** |  |
+| **Belangrijkste bedreiging voor validiteit** |  |
+| **Verantwoord herschreven conclusie** |  |
+
+Gebruik bijvoorbeeld formuleringen zoals:
+
+- _De resultaten suggereren dat ..._
+- _Onder de aanname dat ..., wijst dit patroon op ..._
+- _Deze bevinding is consistent met ..., maar bewijst niet dat ..._
+- _De data laten een verband zien tussen ..., maar de richting van dit verband blijft onzeker, omdat ..._
+- _Door het beperkte aantal observaties moet deze conclusie voorzichtig worden geïnterpreteerd._
+- _De resultaten zijn gevoelig voor ..., daarom rapporteren ik dit als een mogelijke verklaring en niet als definitief bewijs._
+
+Voorbeeld:
+
+| Te sterk | Verantwoord geformuleerd |
+|---|---|
+| Taalvaardigheid veroorzaakt betere rekenscores. | De resultaten suggereren dat hogere taalvaardigheid samenhangt met hogere rekenscores. Deze interpretatie veronderstelt dat belangrijke achtergrondverschillen tussen leerlingen voldoende zijn meegenomen. |
+| Het beleid heeft fiscale stabiliteit verbeterd. | De jaarcijfers zijn consistent met een verbetering van fiscale stabiliteit na de beleidswijziging, maar het beperkte aantal meetmomenten maakt het moeilijk om deze verandering eenduidig aan het beleid toe te schrijven. |
+| Moeders opleiding bepaalt schooluitval. | In deze data komt schooluitval minder vaak voor bij kinderen van moeders met een hoger opleidingsniveau. Dit verband kan echter mede worden beïnvloed door andere achtergrondfactoren. |
+
+# Korte synthese in de groep
+Na het invullen van het werkblad bespreekt iedereen kort in de groep hoe de ontvangen feedback heeft geleid tot de aangepaste conclusie. Neem hiervoor niet teveel tijd, anders is het college zo voorbij. Bespreek per conclusie:
+
+1. Wat was de oorspronkelijke conclusie?
+2. Welke aanname of bedreiging vond degene die je conclusie reviewde het belangrijkst?
+3. Welke robuustheids- of sensitiviteitscheck is gekozen?
+4. Is de conclusie verandert? Zo ja, hoe?
+5. Denk na of de volgende twee zinnen op je conclusie van toepassing zijn en vul ze aan:
+
+> Mijn conclusie wordt sterker als ik kan laten zien dat ... <br>
+> Mijn conclusie moet voorzichtiger worden geformuleerd als/omdat ...
+
+
+<!-- ::: {.callout-note} -->
+<!-- ## Feedbackregels -->
+
+<!-- Geef feedback op de conclusie, de aannames en de geplande check. Geef geen algemene feedback zoals _goed gedaan_ of _ik snap het niet_. Maak je feedback concreet: -->
+
+<!-- - Welke aanname ontbreekt? -->
+<!-- - Welke bedreiging is het meest serieus? -->
+<!-- - Welke conclusie is te sterk? -->
+<!-- - Welke check is haalbaar? -->
+<!-- - Welke formulering is eerlijker? -->
+<!-- ::: -->
+
+

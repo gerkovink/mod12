@@ -1,0 +1,149 @@
+---
+title: "Table 1"
+author: "Gerko Vink"
+date: Characteristics of respondents by background variables and by the 10 explanatory
+  variable scales
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(tibble)   # Tibbles
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+```
+
+
+---
+
+# Z-scores
+```{r}
+Z <- d50 %>% map(~.x %>% 
+                   group_by(Field) %>% 
+                   summarise(across(evs, ~ mean(.x, na.rm = TRUE))) %>% 
+                   column_to_rownames("Field")) %>% 
+  Reduce("+", .) / 50
+round(Z, 2)
+```
+
+---
+
+```{r alpha , eval = FALSE}
+alpha <- bind_rows(
+  d50 %>% map(select, F1:F9) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F10:F18) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F19:F21) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F22:F27) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F28:F33) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F40:F45) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F64:F69) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F70:F75) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F34:F39) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F46:F51) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used"),
+  d50 %>% map(select, F52:F63) %>% 
+    map(~alpha(.) %>% pluck("total") %>% pluck("std.alpha")) %>% as.data.frame %>%  
+    mutate(alpha = rowMeans(.), .keep = "used")
+)  
+```
+
+```{r eval = FALSE}
+data.frame(alpha,
+           row.names = evs) %>% round(2)
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

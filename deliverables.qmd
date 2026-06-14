@@ -7,15 +7,20 @@ format:
     toc-depth: 4
 ---
 
-[TOEVOEGEN: REFLECTIE OP DE CURSUS, HET PROCES EN DE SAMENWERKING MET MEDESTUDENTEN]
 
-Voor deze module werken studenten aan een toegepast statistisch onderzoeksproject. Het eindproduct bestaat uit een schriftelijk Research Project Report en een mondelinge presentatie. Deze producten worden beoordeeld door de docenten en vormen samen het eindcijfer voor de module.
+Voor deze module werken studenten aan een toegepast statistisch onderzoeksproject. Het eindproduct bestaat uit:
 
-Het Research Project Report telt voor 85% mee in het eindcijfer. REFLECTIE 5%. De mondelinge presentatie telt voor 10% mee.
+- een schriftelijk research project report
+- een reflectie op de cursus, het proces en de samenwerking met medestudenten 
+- een mondelinge presentatie
 
-## Doel van het deliverable 
+Deze producten worden beoordeeld door de docenten en vormen samen het eindcijfer voor de module.
 
-Het doel van het deliverable is dat studenten laten zien dat zij een maatschappelijk of wetenschappelijk relevant probleem kunnen vertalen naar een uitvoerbaar statistisch onderzoeksproject. Daarbij tonen zij aan dat zij zelfstandig en op academisch niveau kunnen werken met literatuur, data, statistische analyse, interpretatie, rapportage en reflectie.
+Het research project report telt voor 85% mee in het eindcijfer. De reflectie voor 5%. De mondelinge presentatie telt voor 10% mee.
+
+## Doel van de deliverables 
+
+Het doel van het deliverables is dat studenten laten zien dat zij een maatschappelijk of wetenschappelijk relevant probleem kunnen vertalen naar een uitvoerbaar statistisch onderzoeksproject. Daarbij moeten ze aantonen dat zij zelfstandig en op academisch niveau kunnen werken met literatuur, data, statistische analyse, interpretatie, rapportage en reflectie.
 
 Het project bereidt studenten voor op het zelfstandig uitvoeren van onderzoek, zoals verwacht wordt bij de masterthesis en in professionele statistische functies binnen overheid, NGO’s, onderzoeksinstituten of vergelijkbare organisaties.
 
@@ -87,6 +92,9 @@ De presentatie bevat ten minste:
 * beantwoording van vragen uit het publiek.
 
 De presentatie moet begrijpelijk zijn voor een academisch publiek, maar hoeft niet onnodig technisch te zijn. Studenten moeten laten zien dat zij hun eigen analyse kunnen uitleggen, verdedigen en kritisch kunnen bespreken.
+
+### Persoonlijke reflectie {#sec-refl}
+Studenten wordt ook geacht om een persoonlijke reflectie op het vak en op de samenwerking met medestudenten in te leveren. In deze reflectie moet worden aangegeven hoe men het vak heeft ervaren, wat men geleerd en ervaren heeft uit de lesstof, de hoorcolleges, het project, de presentatie en de samenwerking met medestudenten. 
 
 ## Beoordeling
 

@@ -1,0 +1,292 @@
+---
+title: Groepsopdracht 4
+subtitle: "Van rommelige map naar begrijpelijk onderzoeksarchief"
+author: 
+  - name: "Gerko Vink"
+    orcid: "0000-0001-9767-1924"
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+  # docx:
+  #   number-sections: false
+  #   toc: true
+  #   toc-depth: 3
+---
+
+# Structuur
+
+| Onderdeel | Beschrijving |
+|---|---|
+| **Duur** | 1 uur |
+| **Werkvorm** | Groepswerk in duo's. Je werkt steeds met één rommelig archief en probeert dat zo te ordenen dat een andere onderzoeker begrijpt wat er in het archief staat, wat de bestanden betekenen en welke keuzes jullie hebben gemaakt. |
+| **Product** | Aan het eind van de groepsopdracht heb je een overzichtelijk onderzoeksarchief met mapstructuur, een README en een Data Decision Log. Daarna geeft een ander duo feedback op jullie archief. |
+
+# Doel van de opdracht
+
+In deze opdracht werken we niet aan een nieuwe analyse, maar aan de **reproduceerbaarheid van een onderzoeksproject**. Een onderzoeksarchief is reproduceerbaar wanneer iemand anders kan begrijpen:
+
+1. waar het project over gaat
+2. welke bestanden erbij horen
+3. welke bestanden originele data zijn
+4. welke bestanden bewerkte data, code, output of documentatie zijn
+5. welke keuzes zijn gemaakt tijdens het ordenen of bewerken van de data
+6. wat iemand moet doen om het project opnieuw te begrijpen of uit te voeren
+
+Een rommelige map maakt onderzoek kwetsbaar. Bestanden met namen zoals `data_final2.csv`, `new_analysis.R`, `copy_table.xlsx` of `figuur_definitief_echt.png` lijken misschien duidelijk op het moment dat je ermee werkt, maar zijn later vaak moeilijk te begrijpen. Ook voor andere onderzoekers, begeleiders, reviewers of beleidsmakers is het dan onduidelijk wat de juiste versie is, welke data oorspronkelijk waren en welke stappen zijn gezet.
+
+Vandaag oefenen we met het verbeteren van zo'n rommelig archief. Het doel is niet om één perfecte structuur te vinden. Het doel is om bewuste keuzes te maken, die keuzes te documenteren en het archief begrijpelijker te maken voor iemand anders.
+
+Aan het einde van deze opdracht hebben we:
+
+1. een rommelige map omgezet naar een overzichtelijke archiefstructuur
+2. duidelijke bestandsnamen gekozen, indien nodig
+3. onderscheid gemaakt tussen ruwe data, bewerkte data, code, output en documentatie
+4. een README geschreven
+5. minimaal één entry toegevoegd aan een Data Decision Log
+6. feedback gegeven op het archief van een ander duo
+7. klassikaal besproken welke keuzes helpen of juist verwarring veroorzaken
+
+# Wat hebben we nodig?
+
+- Het bestand `messyArchive.zip`
+- Een computer waarop je bestanden en mappen kunt maken
+- Een teksteditor, bijvoorbeeld Notepad, VS Code, RStudio, Word of een andere editor
+- Een gedeelde plek om het archief op te slaan
+- Een duo waarmee je samenwerkt
+- Een ander duo voor de peer review
+
+# De opdracht
+
+## Stap 1: Bekijk de rommelige map
+
+Pak `messyArchive.zip` uit. Open de map en bekijk eerst rustig wat erin zit. Verplaats nog niets.
+
+Maak samen een korte inventarisatie van de bestanden. Probeer per bestand te bepalen wat de functie waarschijnlijk is. Doe dit op basis van het onderstaande schema voor een paar bestanden die duidelijk van naam verschillen (niet voor de hele map! - dat duurt te lang). 
+
+| Bestandsnaam | Wat denken we dat dit bestand is? | Zekerheid | Wat maakt dit onduidelijk? |
+|---|---|---|---|
+|  |  | Hoog / Middel / Laag |  |
+|  |  | Hoog / Middel / Laag |  |
+|  |  | Hoog / Middel / Laag |  |
+|  |  | Hoog / Middel / Laag |  |
+|  |  | Hoog / Middel / Laag |  |
+
+Let vooral op:
+
+- bestanden die lijken op ruwe data
+- bestanden die lijken op bewerkte data
+- scripts of codebestanden
+- figuren of tabellen
+- rapporten, notities of documentatie
+- dubbele bestanden of oude versies
+- bestanden waarvan de functie onduidelijk is
+
+::: {.callout-tip}
+## Tip
+
+Open bestanden alleen als dat nodig is om hun functie te begrijpen. Het doel is niet om de analyse inhoudelijk helemaal te controleren, maar om te begrijpen hoe het archief is opgebouwd, wat de functie van een bestand is (analyse, output, codebook, etcetera) en waarom de huidige structuur problematisch is.
+:::
+
+## Stap 2: Ontwerp een duidelijke mapstructuur
+
+Maak nu een nieuwe map met een duidelijke naam, bijvoorbeeld:
+
+```text
+reproducibleArchive/
+├── README.md              # uitleg over het project en hoe het archief gebruikt moet worden
+├── decision_log.md        # overzicht van belangrijke keuzes tijdens het structureren
+├── data/
+│   ├── raw/               # originele, onbewerkte databestanden
+│   └── processed/         # opgeschoonde of bewerkte databestanden
+├── code/                  # scripts voor opschonen, analyse of reproductie
+├── output/
+│   ├── figures/           # grafieken en figuren
+│   └── tables/            # tabellen en resultaten
+├── documentation/         # codeboek, metadata en extra uitleg
+├── report/                # verslag, paper of presentatie
+└── archive/               # oude versies of bestanden die niet actief gebruikt worden
+```
+
+Deze structuur hoeft niet altijd precies zo te zijn. Soms zijn minder mappen genoeg. Soms is een extra map handig. Belangrijk is dat de structuur logisch is en dat jullie kunnen uitleggen waarom jullie deze structuur gekozen hebben.
+
+Bespreek samen welke bestanden waar horen. Bijvoorbeeld:
+
+- Welke bestanden horen bij ruwe data?
+- Welke bestanden zijn bewerkte data?
+- Welke bestanden zijn code?
+- Welke bestanden zijn output?
+- Welke bestanden zijn documentatie?
+- Welke bestanden zijn oude versies of twijfelgevallen? Is alles nog nodig?
+- Welke bestanden mogen niet zomaar worden verwijderd of verplaatst? 
+
+::: {.callout-warning}
+## Belangrijk
+
+Verwijder geen bestanden uit het oorspronkelijke archief. Als je denkt dat een bestand oud, dubbel of overbodig is, plaats het dan in een map zoals `archive/` of `unclear/`, en leg uit waarom. Als het later je eigen dataarchief is, kun je altijd nog beslissen om bestanden te verwijderen. Voor nu is het belangrijk dat je keuzes kunt uitleggen op een archief dat je niet kent, en daarbij is het belangrijk dat je de bestanden van anderen niet zomaar weggooit.
+:::
+
+## Stap 3: Hernoem een aantal bestanden
+
+Geef bestanden duidelijke, consistente namen. Gebruik namen die ook over drie maanden nog begrijpelijk zijn.
+
+Goede bestandsnamen zijn meestal:
+
+- kort maar informatief
+- zonder spaties
+- zonder speciale tekens, behalve bijvoorbeeld met een underscore `_` (bijvoorbeeld `survey_raw.csv` of `fig_income_by_district.png`) of in camelCase (bijvoorbeeld `surveyRaw.csv` of `figIncomeByDistrict.png`)
+- consistent in taal en stijl
+- voorzien van een datum of versienummer **als dat echt nodig is**
+- begrijpelijk zonder dat je het bestand hoeft te openen
+
+Voorbeelden:
+
+| Minder duidelijk | Duidelijker |
+|---|---|
+| `data final.csv` | `survey_raw.csv` |
+| `data final clean echt.csv` | `survey_clean.csv` |
+| `script.R` | `01_clean_data.R` |
+| `script2.R` | `02_make_tables.R` |
+| `graph.png` | `fig_income_by_district.png` |
+| `table.xlsx` | `table_summary_statistics.xlsx` |
+
+Maak een korte vertaaltabel van oude naar nieuwe bestandsnamen.
+
+| Oude bestandsnaam | Nieuwe bestandsnaam | Reden voor wijziging |
+|---|---|---|
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+
+## Stap 4: Schrijf een README
+
+Maak in de hoofdmap een bestand `README.md` of `README.txt`.
+
+De README hoeft niet lang te zijn. De README moet vooral helpen om het archief te begrijpen. Schrijf alsof een andere student, onderzoeker of docent deze map opent zonder verdere uitleg.
+
+De README moet minimaal de volgende onderdelen bevatten:
+
+| Onderdeel | Uitleg |
+|---|---|
+| **Projecttitel** | Korte titel van het project of archief |
+| **Korte beschrijving** | Waar gaat dit project ongeveer over? |
+| **Inhoud van het archief** | Welke mappen zijn er en wat staat erin? |
+| **Data** | Welke data zijn beschikbaar? Wat is raw en wat is processed? |
+| **Code** | Welke scripts zijn er en in welke volgorde moeten ze eventueel worden gebruikt? |
+| **Output** | Welke tabellen, figuren of resultaten zijn aanwezig? |
+| **Documentatie** | Welke bestanden helpen om de data te begrijpen? |
+| **Belangrijke keuzes** | Welke keuzes hebben jullie gemaakt bij het ordenen? |
+| **Onzekerheden** | Welke bestanden of keuzes zijn nog onduidelijk? |
+| **Contact of auteurs** | Namen van de studenten in het duo |
+
+::: {.callout-tip}
+## Voorbeeldtekst
+
+Dit archief bevat een kleine onderzoeksmap met data, code en output. De oorspronkelijke map was ongestructureerd. We hebben de bestanden geordend in ruwe data (`data/raw`), bewerkte data (`data/processed`), code (`code`), output (`output/figures` en `output/tables`) en documentatie `documents`. Bestanden waarvan de functie onduidelijk was, zijn niet verwijderd maar apart geplaatst in de map `archive/`.
+:::
+
+## Stap 5: Maak een Data Decision Log
+
+Maak in de hoofdmap een bestand `decision_log.md`, `decision_log.txt` of `decision_log.docx`. Dit is je beslislogboek waarin je belangrijke keuzes documenteert.
+
+Een beslislogboek is een kort overzicht van belangrijke keuzes die je maakt bij het werken met data of onderzoeksbestanden. Het doel is dat iemand later kan terugzien wat jullie besloten hebben en waarom. Dit is belangrijk, want keuzes kunnen grote gevolgen hebben voor de wijze waarop je het onderzoek uitvoert en daarmee op de validiteit van de conclusies die je trekt. 
+
+Voeg minimaal één entry toe. Gebruik hiervoor de volgende structuur.
+
+| Datum | Besluit | Reden | Gevolg of verwacht gevolg | Effect op interpretatie of onderzoeksvraag |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+Denk bijvoorbeeld aan beslissingen zoals:
+
+- we hebben één bestand als ruwe data aangemerkt
+- we hebben een oudere versie in `archive/` geplaatst
+- we hebben de databestanden verplaatst
+- we hebben kolommen getransformeerd
+- we hebben rijen verwijderd
+- we hebben de analyse beperkt op een subset van de data
+
+
+::: {.callout-tip}
+## Voorbeeld
+
+| Datum | Besluit | Reden | Gevolg of verwacht gevolg | Effect op interpretatie of onderzoeksvraag |
+|---|---|---|---|---|
+| 2026-06-13 | `data_final.csv` is geplaatst in `data/processed/` en niet in `data/raw/`. | Het bestand lijkt al opgeschoond en bevat minder missende waarden dan het oorspronkelijke databestand. | Analyses moeten niet worden gepresenteerd alsof ze direct op ruwe data zijn uitgevoerd. | Interpretaties moeten vermelden dat er waarschijnlijk al databewerking heeft plaatsgevonden. |
+:::
+
+## Stap 6: Peer review van een ander archief
+
+Geef jullie nieuwe archief aan een ander duo. Jullie ontvangen ook het archief van een ander duo.Bekijk het archief alsof jullie het project later zelf moeten begrijpen of reproduceren. Geef korte, concrete feedback.
+
+Gebruik de onderstaande checklist.
+
+| Vraag | Ja / Nee / Deels | Feedback |
+|---|---|---|
+| Is de hoofdmap duidelijk genoemd? |  |  |
+| Is de mapstructuur logisch? |  |  |
+| Is duidelijk waar de ruwe data staan? |  |  |
+| Is duidelijk waar de bewerkte data staan? |  |  |
+| Is duidelijk waar code, output en documentatie staan? |  |  |
+| Zijn bestandsnamen begrijpelijk? |  |  |
+| Is er een README? |  |  |
+| Helpt de README om het archief te begrijpen? |  |  |
+| Is er een Data Decision Log? |  |  |
+| Is minstens één belangrijke keuze goed uitgelegd? |  |  |
+| Zijn er nog bestanden waarvan de functie onduidelijk is? |  |  |
+| Zou je als buitenstaander met dit archief kunnen werken? |  |  |
+
+Schrijf daarna drie korte feedbackpunten:
+
+1. Het sterkste punt van dit archief is ...
+2. De belangrijkste verbetering is ...
+3. Eén vraag die wij nog hebben is ...
+
+## Stap 7: Verbeter het eigen archief
+
+Bespreek de feedback die jullie hebben ontvangen. Pas waar nodig het eigen archief aan.
+Noteer kort welke feedback jullie hebben overgenomen en welke niet.
+
+| Feedback ontvangen | Overgenomen? | Wat hebben we aangepast of waarom niet? |
+|---|---|---|
+|  | Ja / Nee / Deels |  |
+|  | Ja / Nee / Deels |  |
+|  | Ja / Nee / Deels |  |
+
+Wanneer jullie een belangrijke aanpassing doen, voeg dan ook een nieuwe regel toe aan de Data Decision Log.
+
+## Stap 8: Plenaire bespreking
+
+We sluiten af met een korte klassikale bespreking.
+
+Bereid als duo één voorbeeld voor van:
+
+1. een bestandsnaam die voor verwarring zorgde
+2. een keuze over mapstructuur die jullie moesten maken
+3. een beslissing die jullie in de Data Decision Log hebben gezet
+4. één punt feedback dat nuttig was
+5. één regel of gewoonte die jullie willen meenemen naar jullie eigen onderzoeksproject
+
+De belangrijkste les van deze opdracht is dat reproduceerbaarheid niet alleen gaat over code of statistiek. Reproduceerbaarheid begint ook bij eenvoudige gewoontes: duidelijke namen, logische mappen, documentatie en het opschrijven van beslissingen. Een goed archief helpt anderen om je onderzoek te begrijpen, maar helpt vooral ook je toekomstige zelf.
+
+# Eindproduct van de groepsopdracht
+
+Aan het einde van de opdracht lever je als duo een geordend archief in `.zip` formaat in. Dit archief bevat minimaal:
+
+1. een duidelijke hoofdmap
+2. een logische mapstructuur
+3. hernoemde bestanden waar nodig
+4. een README
+5. een Data Decision Log met minimaal één entry
+6. eventueel een map `archive/` of `unclear/` voor oude of twijfelachtige bestanden die jullie lastig te plaatsen vonden
+7. korte peer-reviewfeedback op het archief van een ander duo
+8. eventuele andere inbreng die je nuttig vindt voor reproduceerbaarheid
+
+Gebruik deze drop folder link om het`.zip` bestand van je duo in te leveren: [Drop folder - Groepsopdracht 4](https://surfdrive.surf.nl/s/2AdTde3eBxYEcZk)
+

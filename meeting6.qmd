@@ -16,7 +16,7 @@ format:
 ---
 
 ::: callout-tip
-## Hoorcollege 15 juni 2026
+## Hoorcollege 23 juni 2026
 
 Vandaag kijken we naar onzekerheid, aannames en robuustheid. Ieder statistisch antwoord hangt af van aannames over de data, de meting, het model en de onderzoekssituatie. In dit college leren we hoe je die aannames zichtbaar kunt maken en hoe je eenvoudige controles kunt plannen om te onderzoeken hoe stevig of robuust je conclusies zijn. We besteden aandacht aan:
 
@@ -33,30 +33,26 @@ De slides voor het hoorcollege kunt je [hier vinden](slides/lec-6.html).
 
 :::
 
+<!-- ## Groepsopdracht -->
+<!-- sceptische reviewer opdracht.  -->
+
+<!-- -> krijg tekst -->
+<!-- -> schrijf conclusie -->
+<!-- -> geef door + doe review -->
+<!-- -> robustness check + suggestie -->
+<!-- -> herschrijven conclusie -->
+
+<!-- - hoofconclusie (intended) -->
+<!-- - aannames -->
+<!-- - grootste bedreiging voor validiteti? -->
+<!-- - effect bedreiging op conclusie? -->
+<!-- - 1 mogelijke robusstheid of sensitiviteitscheck -->
+<!-- - welk resultatt brengt vertrouwen omhoog? -->
+<!-- - welk res naar beneden? -->
+<!-- - verantwoord rephrasen van conclusie nodig? -->
+
 ## Groepsopdracht
-sceptische reviewer opdracht. 
-
---> krijg tekst
---> schrijf conclusie
---> geef door + doe review
---> robustness check + suggestie
---> herschrijven conclusie
-
-- hoofconclusie (intended)
-- aannames
-- grootste bedreiging voor validiteti?
-- effect bedreiging op conclusie?
-- 1 mogelijke robusstheid of sensitiviteitscheck
-- welk resultatt brengt vertrouwen omhoog?
-- welk res naar beneden?
-- verantwoord rephrasen van conclusie nodig?
-
+De groepsopdracht [staat hier](opdracht/Groepsopdracht6.html).
 
 ## Individuele opdracht
-Bsis voor aannames en beperkingen sectie
-
-1. aannames voor primaire conclusie
-2. mogelijke bronnen bias en oinzekerheid
-3. robustness chekc plan maken
-4. Hoe ga je onzekerhjeid rapporteren?
-5. welke conclusie wordt vermeden of kan dat beter worden?
+Overmorgen gaan we in gesprek over het presenteren van je eigen werk. Op vrijdag presenteer je je eigen project aan de groep. Gebruik de resterende tijd vandaag om je (voorlopige) resultaten en conclusies nog eens aan te scherpen. Begin alvast met het maken van een presentatie of de opzet daarvan en denk na over een goede manier om je resultaten en conclusie te verwoorden of te presernteren. 

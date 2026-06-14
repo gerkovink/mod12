@@ -1,0 +1,642 @@
+---
+title: "Table 1"
+author: "Gerko Vink"
+date: Characteristics of respondents by background variables and by the 10 explanatory
+  variable scales
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(tibble)   # Tibbles
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+```
+
+---
+
+# Female
+```{r echo = FALSE}
+# Gender
+r1a <- d50[[1]] %$% table(Gender, Field)[, c(4, 1, 3, 2)]
+r1b <- d50[[1]] %$% table(Gender, Rank)
+Overall <- d50[[1]] %$% table(Gender)
+r2a <- d50[[1]] %$% table(Gender, Field) %>% prop.table(margin = 2) %>% .[, c(4, 1, 3, 2)]*100 
+r2b <- d50[[1]] %$% table(Gender, Rank) %>% prop.table(margin = 2) %>% .[, c(1:3)]*100 
+r2c <- d50[[1]] %$% table(Gender) %>% prop.table
+Row1 <- rbind(cbind(r1a, r1b, Overall), 
+              cbind(r2a, r2b, r2c*100)) %>% round(1)
+rownames(Row1) <- c("Undisclosed N", "Female N", "Male N", "Undisclosed %", "Female %", "Male %")
+# Research
+r1a <- d50[[1]] %$% table(Research, Field)["Yes", c(4, 1, 3, 2)]
+r1b <- d50[[1]] %$% table(Research, Rank)["Yes",]
+r1c <- d50[[1]] %$% table(Research)["Yes"]
+r2a <- d50[[1]] %$% table(Research, Field) %>% prop.table(margin = 2) %>% .["Yes", c(4, 1, 3, 2)]*100 
+r2b <- d50[[1]] %$% table(Research, Rank) %>% prop.table(margin = 2) %>% .["Yes",]*100 
+r2c <- d50[[1]] %$% table(Research) %>% prop.table %>% .["Yes"]*100  
+Row2 <- rbind(c(r1a, r1b, r1c), paste0("(", round(c(r2a, r2b, r2c), 1),")"))
+rownames(Row2) <- c("Empirical N", "Empirical %")
+# Support
+r1a <- d50[[1]] %$% table(Support, Field)["Yes", c(4, 1, 3, 2)]
+r1b <- d50[[1]] %$% table(Support, Rank)["Yes",]
+r1c <- d50[[1]] %$% table(Support)["Yes"]
+r2a <- d50[[1]] %$% table(Support, Field) %>% prop.table(margin = 2) %>% .["Yes", c(4, 1, 3, 2)]*100 
+r2b <- d50[[1]] %$% table(Support, Rank) %>% prop.table(margin = 2) %>% .["Yes",]*100 
+r2c <- d50[[1]] %$% table(Support) %>% prop.table %>% .["Yes"]*100  
+Row3 <- rbind(c(r1a, r1b, r1c), paste0("(", round(c(r2a, r2b, r2c), 1),")"))
+rownames(Row3) <- c("Support N", "Support %")
+# Means
+evs  <- c("SciNorms", "PeerNorms", "WorkPress", "PubPress", "FundPress",
+         "Competitive","DetectCol", "DetectRev", "MentSurv", "MentResp", "OrgJust")
+#
+msd <- function(x){
+  rm <- rowMeans(x, na.rm = TRUE)
+  mean <- mean(rm, na.rm = TRUE)
+  sd <- sd(rm, na.rm = TRUE)
+  c(mean = mean, sd = sd)
+}
+#Overall
+Overall <- rbind(
+  d50 %>% map(select, F1:F9) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F10:F18) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F19:F21) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F22:F27) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F28:F33) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F40:F45) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F64:F69) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F70:F75)%>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F34:F39) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F46:F51) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F52:F63) %>% 
+  map(msd) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame()
+rownames(Overall) <- evs
+m.overall <- Overall$mean
+sd.overall <- Overall$sd
+#biomed
+bio <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F1:F9) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F10:F18) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F19:F21) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F22:F27) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F28:F33) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F40:F45) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F64:F69) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F70:F75) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F34:F39) %>% 
+               msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+               filter(Field == "Bio & Life") %>% 
+               select(F46:F51) %>% 
+               msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F52:F63) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame()
+rownames(bio) <- evs
+m.bio <- bio$mean
+sd.bio <- bio$sd
+
+
+
+
+#socialmed
+social <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F1:F9) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F10:F18) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F19:F21) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F22:F27) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F28:F33) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F40:F45) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F64:F69) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F70:F75) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F34:F39) %>% 
+               msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F46:F51) %>% 
+               msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F52:F63) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame()
+rownames(social) <- evs
+m.social <- social$mean
+sd.social <- social$sd
+
+
+
+#artshummed
+artshum <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F1:F9) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F10:F18) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F19:F21) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F22:F27) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F28:F33) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F40:F45) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F64:F69) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F70:F75) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F34:F39) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+ d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F46:F51) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F52:F63) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame()
+rownames(artshum) <- evs
+m.artshum <- artshum$mean
+sd.artshum <- artshum$sd
+
+
+
+
+
+#Eng & Nat
+engnat <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F1:F9) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F10:F18) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F19:F21) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F22:F27) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F28:F33) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F40:F45) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F64:F69) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F70:F75) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F34:F39) %>% 
+              msd()) %>% 
+   Reduce("+", .) / 50,
+ d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F46:F51) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F52:F63) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame()
+rownames(engnat) <- evs
+m.engnat <- engnat$mean
+sd.engnat <- engnat$sd
+
+
+#Phd
+phd <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F1:F9) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F10:F18) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F19:F21) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F22:F27) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F28:F33) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F40:F45) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F64:F69) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F70:F75) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F34:F39) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F46:F51) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F52:F63) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame() 
+rownames(phd) <- evs
+m.phd <- phd$mean
+sd.phd <- phd$sd
+
+
+
+
+#Postdoc
+postdoc <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F1:F9) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F10:F18) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F19:F21) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F22:F27) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F28:F33) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F40:F45) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F64:F69) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F70:F75) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F34:F39) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F46:F51) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F52:F63) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame() 
+rownames(postdoc) <- evs
+m.postdoc <- postdoc$mean
+sd.postdoc <- postdoc$sd
+
+#Prof
+prof <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F1:F9) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F10:F18) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F19:F21) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F22:F27) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F28:F33) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F40:F45) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F64:F69) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F70:F75) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F34:F39) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F46:F51) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F52:F63) %>% 
+              msd()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(1) %>% as.data.frame() 
+rownames(prof) <- evs
+m.prof <- prof$mean
+sd.prof <- prof$sd
+
+MeanSD <- cbind(
+c(rbind(m.bio, sd.bio)),
+c(rbind(m.social, sd.social)),
+c(rbind(m.engnat, sd.engnat)),
+c(rbind(m.artshum, sd.artshum)),
+c(rbind(m.phd, sd.phd)),
+c(rbind(m.postdoc, sd.postdoc)),
+c(rbind(m.prof, sd.prof)), 
+c(rbind(m.overall, sd.overall))
+)
+rownames(MeanSD) <- c(rbind(paste(evs, "MEAN", sep = "_"),
+                            paste(evs, "SD", sep = "_")))
+MeanSD <- MeanSD[c(5:10, 17:18, 11:12, 1:4, 19:20, 13:16), ]
+
+options(DT.options = list(pageLength = 50))
+rbind(Row1, Row2, Row3, MeanSD) %>% 
+  datatable(options = )
+
+rbind(Row1, Row2, Row3, MeanSD) %>% 
+  as.data.frame() 
+```
+
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

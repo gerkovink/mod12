@@ -253,10 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>GENAI use en log</li>
-</ul>
-<p>Vandaag kijken we naar reproduceerbaar onderzoek. We leren ho we er voor kunnen zorgen dat de route van ruwe data naar eindrapport transparant, controleerbaar en begrijpelijk is? We behandelen reproduceerbaarheid niet alleen als tecnhische netheid, maar als onderdeel van wetenschappelijke integriteit en professioneel statistisch werk. We besteden aandacht aan:</p>
+<p>Vandaag kijken we naar reproduceerbaar onderzoek. We leren hoe we er voor kunnen zorgen dat de route van ruwe data naar eindrapport transparant, controleerbaar en begrijpelijk is? We behandelen reproduceerbaarheid niet alleen als tecnhische netheid, maar als onderdeel van wetenschappelijke integriteit en professioneel statistisch werk. We besteden aandacht aan:</p>
 <ul>
 <li>wat een reproduceerbaar onderzoeksarchief is</li>
 <li>waarom transparantie belangrijk is voor geloofwaardigheid, samenwerking en begeleiding</li>
@@ -265,6 +262,7 @@ ul.task-list li input[type="checkbox"] {
 <li>het verschil tussen ruwe data, opgeschoonde data, scripts, output, rapport en presentatie</li>
 <li>het belang van een README, (evt datatoegangsnotitie), codeboek en beslislogboek</li>
 <li>principes voor een transparante workflow, zoals het niet overschrijven van ruwe data</li>
+<li>verklaren welke invloed AI heeft gehad in het project</li>
 </ul>
 <p>Ook besteden we aandacht aan het idee dat reproduceerbaarheid niet perfect hoeft te zijn om waardevol te zijn. Het belangrijkste is traceerbaarheid: wat is er gedaan, waarom is dat gedaan, waar staat het beschreven, en waar komt de output in het rapport vandaan?</p>
 <p>De slides voor het hoorcollege kunt je <a href="slides/lec-4.html">hier vinden</a>.</p>
@@ -272,25 +270,47 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="groepsopdracht" class="level2">
 <h2 class="anchored" data-anchor-id="groepsopdracht">Groepsopdracht</h2>
-<p>In duo’s</p>
-<p>–&gt; krijg een folder <br> –&gt; maak een overzichtelijk archief <br> –&gt; breng structuur aan <br> –&gt; voeg readme toe <br> –&gt; maak een decision log entry <br></p>
-<ul>
-<li>datum</li>
-<li>besluit</li>
-<li>reden</li>
-<li>gevolg (verwacht gevolg iig)</li>
-<li>effect op interpretatie/RQ</li>
-</ul>
-<p>–&gt; peer review: geef archief aan ander duo en geef feedback <br> –&gt; plenaire bespreking van de feedback <br></p>
-<p>Deliverable is archief met mapstructuur, readme en DDL</p>
+<p>De groepsopdracht <a href="opdracht/Groepsopdracht4.html">staat hier</a>.</p>
 </section>
 <section id="individuele-opdracht" class="level2">
 <h2 class="anchored" data-anchor-id="individuele-opdracht">Individuele opdracht</h2>
+<p>Gebruik nu het geleerde om een eigen structuur voor je onderzoeksarchief te maken. Je kunt dit doen door een nieuwe map aan te maken en daarin de volgende onderdelen te plaatsen:</p>
 <ul>
-<li>Pas geleerde toe</li>
-<li>maak structuur en DDL</li>
-<li>maak codeboek als het er nog niet is</li>
+<li>Een duidelijke mapstructuur. Let op: je hoeft niet alles te vullen, maar maak wel de mappen aan. Bijvoorbeeld:</li>
 </ul>
+<pre class="text"><code>clean_project/
+├── README.md
+├── license.txt
+├── AI_use.md
+├── data/
+│   ├── raw/
+│   │   └── suriname_households_raw.csv
+│   └── processed/
+│       └── suriname_households_clean.csv
+├── documentation/
+|   ├── data_decision_log.md
+│   └── codebook.md
+├── code/
+│   ├── 01_clean_data.R
+│   └── 02_make_table.R
+├── output/
+│   ├── tables/
+│   │   └── table_household_summary.csv
+│   └── figures/
+│       └── fig_income_by_district.png
+└── report/
+    └── short_report.docx
+    </code></pre>
+<p>Je kunt dit altijd later aanpassen en uitbreiden als blijkt dat de structuur die je tot nu toe hebt aangehouden niet meer toereikend is. Het is echter wel verstandig om zo spoedig mogelijk in een duidelijke structuur te werken, zodat je niet later voor verrassingen komt te staan. We hebben in de groepsopdracht gezien hoe lastig het kan zijn om de structuur achteraf nog te bepalen.</p>
+<ul>
+<li>maak een beslislogboek (data decision log) om te documenteren welke keuzes je hebt gemaakt bij het verkrijgen van data, het opschonen van data, en het analyseren van data. Dit logboek helpt niet alleen om transparant te zijn over je keuzes, maar ook om later terug te kunnen kijken op waarom bepaalde beslissingen zijn genomen.</li>
+<li>maak codeboek als het er nog niet is.</li>
+<li>maak een README waarin je de structuur van je project uitlegt.</li>
+<li>maak een AI log waarin je aangeeft welke invloed AI heeft gehad in het project en (indien van toepassing) hoe je AI hebt gebruikt. Bijvoorbeeld met een logboek waarin de gebruikte prompts staan.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>TIP:</strong> Je kunt hiervoor ook de beschrijving uit de individuele opdracht bij de tweede bijeenkomst gebruiken.</p>
+</blockquote>
 
 
 </section>

@@ -16,7 +16,7 @@ format:
 ---
 
 ::: callout-tip
-## Hoorcollege 15 juni 2026
+## Hoorcollege 26 juni 2026
 
 We beginnen vandaag met `R` en `RStudio`. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met `storytelling` en zullen daar het publicatieplatform [`Quarto`]() voor gebruiken. De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
 :::

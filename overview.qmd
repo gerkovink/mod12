@@ -34,8 +34,10 @@ In deze handleiding zijn tevens de leerdoelen van de module opgenomen, evenals e
 De beoordeling van Module 12 (Research Project) vindt plaats op basis van een groepsgericht onderzoeksproject dat bestaat uit een schriftelijk onderzoeksrapport en een mondelinge presentatie. Gedurende de module werken studenten in groepen aan het opzetten, uitvoeren, analyseren en rapporteren van een wetenschappelijk onderzoekstraject.
 
 Het eindcijfer van de module wordt als volgt vastgesteld:
-•	Research Project Report: 90% 
-•	Mondelinge presentatie: 10% 
+
+-	Research Project Report: 85%
+- Persoonlijke reflectie op de cursus, het proces en de samenwerking met medestudenten: 5%
+-	Mondelinge presentatie: 10% 
 
 Het onderzoeksrapport vormt het belangrijkste onderdeel van de beoordeling en omvat onder andere de probleemstelling, onderzoeksvragen, theoretisch kader, methodologie, dataverzameling en -analyse, interpretatie van resultaten, discussie en conclusies. Bij de beoordeling wordt gelet op de methodologische kwaliteit van het onderzoek, de correcte toepassing van statistische analysetechnieken, de wetenschappelijke onderbouwing, de interpretatie van resultaten, de academische schrijfstijl en de mate van kritische reflectie.
 

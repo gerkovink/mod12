@@ -1,0 +1,270 @@
+---
+title: "Table 3"
+author: "Gerko Vink"
+date: Linear, Logistic and Proportional Odds Regression Coefficients (95% CI) of RRPs, any RRP^^ and any FF  by Explanatory Variable Scales
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptive tables
+library(tibble)   # Tibbles
+library(RRreg)    # Randomized Response
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+options(DT.options = list(pageLength = 50)) # table options
+```
+
+---
+
+```{r echo=FALSE}
+d50 %<>% 
+  map(~.x %>% mutate(Gender = relevel(Gender, ref = "Male"),
+                     Rank = relevel(Rank, ref = "Postdoc"),
+                     Field = relevel(Field, ref = "Bio & Life"), 
+                     Support = relevel(Support, ref = "No")))
+```
+
+---
+
+# Linear model with NA = never
+```{r echo = FALSE, cache = FALSE}
+A <- d50 %>% 
+  map(lm, 
+      formula = RRP_ave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% 
+  summary(conf.int = TRUE) %>% 
+  mutate(Bci = paste(round(estimate, 2),
+        paste("(", round(`2.5 %`, 2), ",", round(`97.5 %`, 2), ")", sep = ""))) %>% 
+  select(term, Bci) 
+datatable(A)
+
+d50 %>% 
+  map(lm, 
+      formula = RRP_ave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% 
+  summary(conf.int = TRUE) %>% 
+  mutate(Bci = paste(round(estimate, 2),
+        paste("(", round(`2.5 %`, 2), ",", round(`97.5 %`, 2), ")", sep = ""))) %>% 
+  datatable()
+
+d50 %>% 
+  map(lm, 
+      formula = RRP_ave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared
+d50 %>% 
+  map(lm, 
+      formula = RRP_ave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared(adjusted = TRUE)
+```
+
+# Linear model with NA = 7
+```{r echo = FALSE, cache = FALSE}
+rrp <- c("RDisclFunds", "RCorrectPub", "RAuthorship", "ROpenData", "RKeepRecord", 
+         "RPreReg", "RDataManage", "ROpenAccess", "RCiteSource", "ROpenCode", "RErrorCheck")
+
+Q <- d50
+Q <- Q %>% 
+  map(~ .x %>% 
+        mutate_at(paste(rrp, "_raw", sep = ""), ~ recode(., `0` = 7))) %>% 
+  map(~.x %>% 
+        mutate(RRPave = rowMeans(select(., 81:91), na.rm = TRUE)))
+
+B <- Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% 
+  summary(conf.int = TRUE) %>% 
+  mutate(Bci = paste(round(estimate, 2),
+        paste("(", round(`2.5 %`, 2), ",", round(`97.5 %`, 2), ")", sep = ""))) %>% 
+  select(term, Bci)
+datatable(B)
+
+Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared
+Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared(adjusted = TRUE)
+```
+
+
+# Linear model with NA = 4
+```{r echo = FALSE, cache = FALSE}
+rrp <- c("RDisclFunds", "RCorrectPub", "RAuthorship", "ROpenData", "RKeepRecord", 
+         "RPreReg", "RDataManage", "ROpenAccess", "RCiteSource", "ROpenCode", "RErrorCheck")
+
+Q <- d50
+Q <- Q %>% 
+  map(~ .x %>% 
+        mutate_at(paste(rrp, "_raw", sep = ""), ~ recode(., `0` = 4))) %>% 
+  map(~.x %>% 
+        mutate(RRPave = rowMeans(select(., 81:91), na.rm = TRUE)))
+
+C <- Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% 
+  summary(conf.int = TRUE) %>% 
+  mutate(Bci = paste(round(estimate, 2),
+        paste("(", round(`2.5 %`, 2), ",", round(`97.5 %`, 2), ")", sep = ""))) %>% 
+  select(term, Bci)
+datatable(C)
+
+
+Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared
+Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared(adjusted = TRUE)
+```
+
+# Linear model with NA = missing
+```{r echo = FALSE, cache = FALSE}
+rrp <- c("RDisclFunds", "RCorrectPub", "RAuthorship", "ROpenData", "RKeepRecord", 
+         "RPreReg", "RDataManage", "ROpenAccess", "RCiteSource", "ROpenCode", "RErrorCheck")
+
+Q <- d50
+Q <- Q %>% 
+  map(~ .x %>% 
+        mutate_at(paste(rrp, "_raw", sep = ""), ~ na_if(., 0))) %>% 
+  map(~.x %>% 
+        mutate(RRPave = rowMeans(select(., 81:91), na.rm = FALSE)))
+
+D <- Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% 
+  summary(conf.int = TRUE) %>% 
+  mutate(Bci = paste(round(estimate, 2),
+        paste("(", round(`2.5 %`, 2), ",", round(`97.5 %`, 2), ")", sep = ""))) %>% 
+  select(term, Bci)
+  
+datatable(D)
+ 
+
+
+Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared
+Q %>% 
+  map(lm, 
+      formula = RRPave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared(adjusted = TRUE)
+```
+
+---
+
+# Comparison of models / simple sensitivity analysis
+
+The following models are compared side-by-side:
+
+- **never**: *not applicable* recoded as `1 (never)`
+
+  - Pro: If a practice is not applicable, it has semantical similarities to never
+  - Consequence: An underestimation of the use of responsible practices in all groups. The level of underestimation depends on the prevalence of NA's within the groups
+  
+- **always**: *not applicable* recoded as `7 (always)`
+
+  - Pro: I cannot think of a pro here, other than that you do not lull the reader into a false sense of underperformance for some groups where NA's are overrepresented. 
+  - Consequence: An overestimation of the use of responsible practices in all groups, especially in groups where NA's are more prevalent
+  
+- **as4**: *not applicable* recoded as `4 (neutral)`
+
+  - Pro: I cannot think of a pro here.
+  - Consequence: An false sense of RRP because of an arbitrary choice of coding
+  
+- **remove**: any row with *not applicable* removed before analysis
+
+  - Pro: removing rows has no pro, except for a single scenario (see Consequence)
+  - Consequence: A strict and explicit assumption that the NA's are randomly distributed over all measured and unmeasured covariates. We know that this is not the case!
+
+```{r}
+data.frame(term = A[, 1],
+           never = A[, 2],
+           always = B[, 2],
+           as4 = C[, 2],
+           remove = D[, 2]) %>% 
+  datatable()
+```
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

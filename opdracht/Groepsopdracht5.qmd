@@ -1,0 +1,293 @@
+---
+title: Groepsopdracht 5 - Maak een analyseplan
+subtitle: "Van onderzoeksvraag naar gedisciplineerde vergelijking"
+author: 
+  - name: "Gerko Vink"
+    orcid: "0000-0001-9767-1924"
+    email: g.vink@uu.nl
+    affiliations:
+      - name: Methodology & Statistics @ Utrecht University
+format:
+  html:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+  docx:
+    number-sections: false
+    toc: true
+    toc-depth: 3
+---
+
+# Structuur
+
+| Onderdeel | Beschrijving |
+|---|---|
+| **Duur** | 1 uur |
+| **Werkvorm** | Individueel voorbereiden binnen groepen van 3–4 studenten. Iedere student maakt eerst een eigen analyseplan en legt dat daarna voor aan groepsgenoten. Student A geeft feedback op B, B op C, C op D en D op A. In groepen van 3 geeft C feedback op A. |
+| **Product** | Aan het eind van de groepsopdracht heeft iedere student een ingevuld analyseplan-tabel, feedback van een medestudent en een verbeterpunt voor het eigen analyseplan. |
+
+# Doel van de opdracht
+
+In deze opdracht maken we de stap van **onderzoeksvraag** naar **analyseplan**. We beginnen dus niet met de vraag: _welke toets wil ik gebruiken?_ We beginnen met de vraag: **welke vergelijking is nodig om mijn onderzoeksvraag te beantwoorden?**
+
+Een statistisch model is geen trucje dat je achteraf op data toepast. Een model is een manier om een vergelijking gestructureerd te maken. Je vergelijkt bijvoorbeeld groepen, risico's, gemiddelden, trends, voorspellingen of metingen. De methode die je kiest moet passen bij:
+
+1. de onderzoeksvraag
+2. de analyse-eenheid
+3. de uitkomstvariabele
+4. het type uitkomst
+5. de belangrijkste verklarende variabele of variablen
+6. de achtergrondvariabelen die nodig zijn voor een *eerlijkere* vergelijking
+7. de hoeveelheid en structuur van de data
+8. de interpretatie die je uiteindelijk wilt geven
+
+Het doel van deze opdracht is om **method-first thinking** te voorkomen. Je begint dus niet met: _ik wil regressie doen_, _ik wil een t-test doen_ of _ik wil een geavanceerd model gebruiken_. Je begint met: _wat moet ik vergelijken om mijn onderzoeksvraag te beantwoorden?_ Daarna kies je pas een methode die bij die vergelijking past.
+
+Aan het einde van deze opdracht hebben we:
+
+1. de belangrijkste variabelen van het eigen project in kaart gebracht
+2. bepaald welk type uitkomstvariabele centraal staat
+3. een hoofdmethoden gekozen die past bij de onderzoeksvraag
+4. een eenvoudigere backup-methode gekozen
+5. nagedacht over diagnostiek of controles
+6. bepaald welke tabellen en figuren nodig zijn
+7. een eerste interpretatiezin geschreven
+8. feedback gegeven op het analyseplan van een medestudent
+9. één concrete verbetering voor het eigen analyseplan geformuleerd
+
+# Wat hebben we nodig?
+
+- Je eigen onderzoeksvraag
+- Je data biography uit les 2
+- Informatie over de belangrijkste variabelen in het eigen databestand
+- Eventueel een codeboek, vragenlijst, metadata of datadocumentatie. Als je dat nog niet hebt, is het niet erg - dan moet je gewoon wat meer nadenken of gissen over de variabelen die je nodig hebt.
+- Een gedeeld document of eigen notities om de analyseplan-tabel in te vullen
+- De slides van het hoorcollege: [Lecture 5](slides/lec-5.html) zijn ook handig om bij de hand te houden. 
+
+# De opdracht
+
+## Stap 1: Breng je variabelen in kaart
+
+Werk eerst individueel. Vul de eerste helft van de analyseplan-tabel in voor je eigen project. Het gaat nog niet om de perfecte methode, maar om helder krijgen wat je precies wilt vergelijken.
+
+| Element | Uitwerking  |
+|---|---|
+| **Naam student** |  |
+| **Onderzoeksonderwerp** |  |
+| **Onderzoeksvraag** |  |
+| **Analyse-eenheid** |  |
+| **Uitkomstvariabele** |  |
+| **Type uitkomst** |  |
+| **Belangrijkste verklarende variabele(n)** |  |
+| **Belangrijke covariaten/achtergrondvariabelen** |  |
+| **Subgroepen of vergelijkingen** |  |
+
+Let vooral op het verschil tussen de **observatie-eenheid** en de **analyse-eenheid**. Soms staan de data op persoonsniveau, maar gaat de onderzoeksvraag over huishoudens, scholen, districten, bedrijven of jaren. Als de analyse-eenheid niet goed aansluit op de onderzoeksvraag, wordt de interpretatie later onduidelijk.
+
+::: {.callout-tip}
+## Denk vanuit de vergelijking
+
+Vraag jezelf steeds af:
+
+- Vergelijk ik twee of meer groepen?
+- Vergelijk ik mensen, huishoudens, districten, organisaties of jaren?
+- Wil ik een gemiddelde, proportie, risico, trend, voorspelling of associatie vergelijken?
+- Welke achtergrondvariabelen zijn nodig om de vergelijking eerlijker te maken?
+- Misschien doe je wel iets totaal anders. Vraag dan gerust hulp aan de docenten!
+:::
+
+## Stap 2: Bepaal welk type uitkomst je hebt
+
+Het type uitkomstvariabele geeft richting aan de analysemethode. Vul daarom expliciet in wat voor type uitkomst je hebt.
+
+| Type uitkomst | Voorbeeld | Mogelijke eerste analysemethode |
+|---|---|---|
+| **Continue uitkomst** | inkomen, toetsscore, biomassa, leeftijd | Gemiddelden, spreidingsmaten, lineaire regressie |
+| **Binaire uitkomst** | wel/niet hypertensie, wel/niet schooluitval | Proporties, risicoverschillen, logistische regressie |
+| **Categorische uitkomst** | type opleiding, regio, arbeidsstatus | Kruistabellen, chi-kwadraat, multinomiale modellen |
+| **Ordinale uitkomst** | laag/middel/hoog, Likert-schaal | Kruistabellen, rangordemethoden, ordinale modellen |
+| **Tellingen** | aantal bezoeken, aantal incidenten | Rates, count models, Poisson-achtige modellen |
+| **Tijdreeks of herhaalde metingen** | ontwikkeling over jaren, metingen per maand | Trends, change scores, eenvoudige visualisatie, voorzichtigheid bij kleine N |
+| **Meetvergelijking of validatie** | satellietschatting versus veldmeting | Agreement, correlatie, voorspelfout, kalibratie |
+
+Beschrijf daarna in één zin waarom dit type uitkomst past bij je onderzoeksvraag.
+
+| Vraag | Antwoord |
+|---|---|
+| Welk type uitkomst heb ik? |  |
+| Waarom past dit type uitkomst bij mijn onderzoeksvraag? |  |
+| Wat betekent dit voor de mogelijke analysemethode? |  |
+
+::: {.callout-warning}
+## Let op
+
+Een complexere methode geeft niet automatisch een beter antwoord. Een eenvoudige analyse die goed aansluit op de onderzoeksvraag, zorgvuldig is uitgevoerd en helder wordt geïnterpreteerd, is vaak sterker dan een geavanceerd model dat niet goed past bij de data, aannames of claim. Non-parametrische mehoden kunnen ook een goed antwoord geven, met als bijkomend voordeel dat er geen  aannames zijn over de parametriciteit van de data. Let wel op: parametrische methoden geven vaak scherprere inferenties dan non-parametrische methoden wanneer de aannames niet worden geschonden. Ook kan het zijn dat je juist parameterschattingen nodig hebt - en die krijg je niet zonder meer bij non-parametrische methoden.   
+:::
+
+## Stap 3: Kies een hoofdmethode en een backup-methode
+Kies nu een statistische methode die past bij de vergelijking die je nodig hebt. Kies daarnaast ook een eenvoudigere, non-parametrische of alternatieve backup-methode. Die backup-methode is belangrijk, omdat sommige projecten te weinig data, te veel missing values of te weinig variatie hebben voor een complexer model.
+
+| Element | Uitwerking |
+|---|---|
+| **Beschrijvende analyses** |  |
+| **Belangrijkste statistische methode** |  |
+| **Waarom past deze methode bij de onderzoeksvraag?** |  |
+| **Alternatieve of eenvoudigere methode** |  |
+| **Wanneer zou je de backup-methode gebruiken?** |  |
+| **Diagnostiek of controles** |  |
+
+Voorbeelden van diagnostiek of controles zijn:
+
+- controleren hoeveel observaties beschikbaar zijn
+- controleren hoeveel missing values er zijn
+- controleren of groepen groot genoeg zijn
+- controleren of de uitkomst voldoende variatie heeft
+- controleren of extreme waarden de resultaten sterk beïnvloeden
+- controleren of de gekozen methode past bij het meetniveau
+- controleren of belangrijke covariaten beschikbaar zijn
+- controleren of de aannames niet geschonden worden
+- controleren of er tests vooraf gedaan moeten worden en of die tests goed uitpakken
+- controleren of de conclusie niet te sterk wordt geformuleerd
+
+::: {.callout-tip}
+## Voorbeelden
+
+Bij een onderzoek naar hypertensie als `ja/nee-uitkomst` kan logistische regressie een passende hoofdmethode zijn. Een eenvoudigere backup-methode kan een tabel zijn met percentages hypertensie per risicogroep. Als er statistisch getoetst moet worden, dan kan een chi-kwadraat test of een Fisher's exact test een goede backup-methode zijn. Als correct voorspellen van hypertensie het doel is, dan zou een non-parametrische methode als een regression tree goed kunnen passen, of een random forest. Die modellen hebben geen aannames over de vorm van de data. Je krijgt dan ook geen parameterschattingen, maar dat is misschien ook niet nodig.
+
+Bij een onderzoek naar rekenprestaties als score kan lineaire regressie passend zijn. Een eenvoudigere backup-methode kan een vergelijking van gemiddelde scores tussen groepen zijn. Als lineaire modellen niet toereikend zijn, dan zou je een regressie met een hogere orde polynomiaal, zoals een kwadratisch model, cubistisch model of een splice kunnen overwegen. Als er te weinig data zijn voor een complexer model, dan kan een vergelijking van gemiddelden of een non-parametrische test zoals de Mann-Whitney U-test een goed alternatief zijn.
+
+Bij een onderzoek naar fiscale stabiliteit over een klein aantal jaren kan een complexe tijdreeksanalyse te veel zijn. Een grafiek met trends en een voorzichtige beschrijvende analyse kan dan sterker zijn.
+:::
+
+## Stap 4: Schrijf een interpretatiezin
+
+Schrijf nu één voorlopige zin die beschrijft hoe je het belangrijkste resultaat zou interpreteren. Deze zin hoeft nog niet inhoudelijk waar te zijn, want je hebt de analyse nog niet uitgevoerd. Het doel is om te testen of de methode, variabelen en claim logisch bij elkaar passen.
+
+| Onderdeel | Uitwerking |
+|---|---|
+| **Voorlopige interpretatiezin** |  |
+| **Welke vergelijking zit in deze zin?** |  |
+| **Welke claim maak je?** | Beschrijvend / verklarend / voorspellend / causaal / anders |
+| **Is deze claim verantwoord met de gekozen data en methode?** |  |
+
+Gebruik bijvoorbeeld een zin zoals:
+
+> Als de analyse laat zien dat studenten met hogere taalvaardigheid gemiddeld hogere rekenscores hebben, dan interpreteren we dit als een associatie tussen taalvaardigheid en rekenprestatie, niet automatisch als bewijs dat taalvaardigheid de oorzaak is van betere rekenprestaties.
+
+Bespreek of je interpretatiezin niet te sterk is. Let vooral op woorden zoals **effect**, **oorzaak**, **verklaart**, **voorspelt**, **leidt tot** en **bewijst**. Die woorden vragen vaak om meer onderbouwing dan een eenvoudige analyse kan geven.
+
+## Stap 5: Bepaal welke output nodig is
+
+Bepaal nu welke minimale output je nodig hebt om je analyse later duidelijk te rapporteren. Denk niet alleen aan een modeltabel. Vaak zijn beschrijvende tabellen en figuren minstens zo belangrijk.
+
+| Output | Nodig? | Korte toelichting |
+|---|---|---|
+| Beschrijving van de steekproef of cases | Ja / Nee |  |
+| Tabel met belangrijkste variabelen | Ja / Nee |  |
+| Kruistabel of groepsvergelijking | Ja / Nee |  |
+| Figuur van de uitkomstvariabele | Ja / Nee |  |
+| Figuur van de centrale vergelijking | Ja / Nee |  |
+| Modeltabel | Ja / Nee |  |
+| Diagnostische tabel of figuur | Ja / Nee |  |
+| Sensitiviteitsanalyse of backup-analyse | Ja / Nee |  |
+
+Schrijf daarna op welke twee tabellen of figuren volgens jou het belangrijkst zijn voor je Research Report.
+
+| Belangrijkste output | Waarom is deze nodig? |
+|---|---|
+| Tabel/figuur 1 |  |
+| Tabel/figuur 2 |  |
+
+## Stap 6: Vul nu de volledige analyseplan-tabel in
+
+Gebruik de informatie uit de vorige stappen om je analyseplan compleet te maken.
+
+| Element | Uitwerking door de student |
+|---|---|
+| **Onderzoeksvraag** |  |
+| **Analyse-eenheid** |  |
+| **Uitkomstvariabele** |  |
+| **Type uitkomst** |  |
+| **Belangrijkste verklarende variabele(n)** |  |
+| **Belangrijke covariaten/achtergrondvariabelen** |  |
+| **Subgroepen of vergelijkingen** |  |
+| **Beschrijvende analyses** |  |
+| **Belangrijkste statistische methode** |  |
+| **Alternatieve of eenvoudigere methode** |  |
+| **Diagnostiek of controles** |  |
+| **Geplande tabellen en figuren** |  |
+| **Beoogde interpretatie** |  |
+
+# Peer review in de groep
+
+## Stap 7: Bespreek je analyseplan duo's
+Geef je analyseplan aan je duo groepsgenoot. Laat de ander het plan eerst lezen. Bespreek daarna om beurten je eigen plan. Leg vooral uit waarom je bepaalde keuzes hebt gemaakt. De ander luistert of leest vooral op de vraag: **past de gekozen methode bij de onderzoeksvraag en de vergelijking die nodig is?**
+
+## Stap 8: Review nu het analyseplan van je duo partner
+
+Gebruik de onderstaande reviewtabel. Geef concrete feedback. Schrijf niet alleen _goed_ of _onduidelijk_, maar leg uit wat sterker kan.
+
+| Reviewvraag | Feedback van reviewer |
+|---|---|
+| Is de onderzoeksvraag duidelijk genoeg om een analyse te kiezen? |  |
+| Is de analyse-eenheid duidelijk? |  |
+| Is de uitkomstvariabele duidelijk benoemd? |  |
+| Klopt het type uitkomst bij de variabele? |  |
+| Is duidelijk wat de centrale vergelijking is? |  |
+| Zijn de belangrijkste covariaten of achtergrondvariabelen logisch gekozen? |  |
+| Past de hoofdmethoden bij de onderzoeksvraag en het type uitkomst? |  |
+| Is de backup-methode eenvoudiger en bruikbaar? |  |
+| Zijn de diagnostiek of controles concreet genoeg? |  |
+| Zijn de geplande tabellen en figuren voldoende om het resultaat uit te leggen? |  |
+| Is de beoogde interpretatie niet te sterk geformuleerd? |  |
+| Wat is de belangrijkste verbetering die nodig is? |  |
+
+::: {.callout-note}
+## Rol van de reviewer
+Je hoeft niet de perfecte statistische methode te kennen! Je taak is vooral om kritisch te controleren of het plan logisch is. Stel bijvoorbeeld vragen zoals:
+
+- Wat wordt hier precies vergeleken?
+- Is deze methode nodig, of kan het eenvoudiger?
+- Kan de data deze claim dragen?
+- Welke tabel of figuur zou mij overtuigen? Leg uit waarom. 
+- Wat zou mis kunnen gaan bij deze analyse?
+:::
+
+## Stap 9: Verwerk de feedback
+
+Geef het analyseplan terug aan de eigenaar. De eigenaar leest de feedback en vult de onderstaande korte reflectie in.
+
+| Vraag | Antwoord |
+|---|---|
+| Welke feedback kreeg ik? |  |
+| Welke feedback neem ik over? |  |
+| Welke feedback neem ik niet over, en waarom niet? |  |
+| Wat is mijn belangrijkste aanpassing aan het analyseplan? |  |
+| Welke vraag moet ik nog stellen aan de docent of begeleider? |  |
+
+# Plenaire bespreking
+
+Aan het einde bespreken we enkele voorbeelden plenair. We kijken naar één analyseplan dat al sterk is en één analyseplan dat nog revisie nodig heeft.
+
+Bij de bespreking letten we op:
+
+- Is de onderzoeksvraag concreet genoeg?
+- Is duidelijk wat de analyse-eenheid is?
+- Past de uitkomstvariabele bij de onderzoeksvraag?
+- Past het type uitkomst bij de gekozen methode?
+- Is de centrale vergelijking duidelijk?
+- Zijn de achtergrondvariabelen logisch gekozen?
+- Is de methode niet onnodig complex?
+- Is er een bruikbare backup-methode?
+- Is de interpretatie voorzichtig genoeg?
+- Is duidelijk welke output nodig is?
+
+# Deliverable
+Aan het einde van de groepsopdracht lever je het volgende in als `jouwnaam.zip` bestand:
+
+1. je ingevulde analyseplan-tabel
+2. je ingevulde peer-reviewtabel van een groepsgenoot
+3. eventueel één concrete aanpassing die je gaat maken aan je analyseplan
+
+Gebruik deze drop folder link om je `.zip` bestand in te leveren: [Drop folder - Groepsopdracht 5](https://surfdrive.surf.nl/s/2AdTde3eBxYEcZk)
