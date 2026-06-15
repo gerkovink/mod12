@@ -39,7 +39,7 @@ Het doel is dat iedereen aan het einde van de opdracht beschikt over:
 
 De nadruk ligt niet op het vinden van het perfecte antwoord, maar op het formuleren van een vraag die met beschikbare data op een verantwoorde manier onderzocht kan worden.
 
-De opdracht [staat hier](opdracht/groepsopdracht1.html). De uitwerktabel voor Groepsopdracht 1 is beschikbaar als invulbaar [Word bestand](documents/mt1/Groepsopdracht1.docx) of [Excel bestand](documents/mt1/Groepsopdracht1.xlsx).
+De opdracht [staat hier](opdracht/groepsopdracht1.html). De uitwerktabel voor Groepsopdracht 1 is beschikbaar als invulbaar MS Word bestand op Moodle. 
 
 ## Individuele opdracht
 In de komende twee weken werken we naar de structuur van een eindproduct toe. Informatie over dit eindproduct (i.e. de deliverables @sec-resrep, @sec-archive, @sec-refl en @sec-pres) staat beschreven in het hoofdstuk @sec-deliv. Om een eerste begin te maken, zullen we vandaag de volgende stappen volgen:
