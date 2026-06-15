@@ -6,7 +6,7 @@ author:
     email: g.vink@uu.nl
     affiliations:
       - name: Methodology & Statistics @ Utrecht University
-date: 31 May 2026
+date: 15 June 2026
 date-format: "D MMM YYYY"
 execute: 
   echo: true
@@ -681,6 +681,4 @@ Statistiek begint niet bij software. Statistiek begint bij een goed geformuleerd
 <!-- In this case the choice was made to make a **deliberate error**. The estimates obtained would serve as an underestimation of *true behaviour* and can be considered a lower bound estimation.  -->
 
 ## To conclude
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GiPe1OiKQuk?si=oea4rM1vOJqp4nh9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+{{< video https://www.youtube.com/embed/GiPe1OiKQuk?si=oea4rM1vOJqp4nh9 width="800" height="600" >}}
