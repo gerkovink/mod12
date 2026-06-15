@@ -37,8 +37,18 @@ Scientific references are in the footer. Opinions and figures are my own, AI-gen
 ::: callout-tip
 # Materials
 - source: [github.com/gerkovink/mod12](https://github.com/gerkovink/mod12)
+- website: [www.gerkovink.com/mod12](https://www.gerkovink.com/mod12)
 :::
 
+## Schema van de cursus
+![](img/lec-1/schema.png)
+
+## Becijfering
+Het eindcijfer van de module wordt als volgt vastgesteld:
+
+-	Research Project Report: 85%
+- Persoonlijke reflectie op de cursus, het proces en de samenwerking met medestudenten: 5%
+-	Mondelinge presentatie: 10% 
 
 ## Terms I may use
 
@@ -75,7 +85,6 @@ Truths are boring, but they are convenient.
 ::: footer 
 $^1$ See [Jelke Bethlehem's CBS discussion paper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjkyPTCs4L3AhUCuKQKHUpmBvIQFnoECAMQAw&url=https%3A%2F%2Fwww.cbs.nl%2F-%2Fmedia%2Fimported%2Fdocuments%2F2009%2F07%2F2009-15-x10-pub.pdf&usg=AOvVaw3BpUW2s_k0MB5yH1o-QGf2) for an overview of the history of survey sampling
 :::
-
 
 ## Do we need data?
 Without any data we can still come up with a statistically valid answer. 
@@ -269,9 +278,17 @@ Whenever I evaluate something, I tend to look at three things:
 
 As a function of model complexity in specific modeling efforts, these components play a role in the bias/variance tradeoff
 
-<center>
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bias_and_variance_contributing_to_total_error.svg/3840px-Bias_and_variance_contributing_to_total_error.svg.png){width=40%}
-</center>
+:::: {.columns}
+
+::: {.column width="40%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bias_and_variance_contributing_to_total_error.svg/3840px-Bias_and_variance_contributing_to_total_error.svg.png)
+:::
+
+::: {.column width="60%"}
+![](https://towardsdatascience.com/wp-content/uploads/2020/09/1BVhTW4c1FPFa41ReTqIBXQ.jpeg){width=40%}
+:::
+
+::::
 
 ## On the individual level
 ::::{.columns}
@@ -296,66 +313,63 @@ It does not mean that the answer is correct!
 :::
 ::::
 
-<!-- ## Case: Spaceshuttle Challenger -->
-<!-- 36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed. -->
+## Case: Spaceshuttle Challenger
+36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed.
 
-<!-- ::::{.columns} -->
-<!-- :::{.column width="40%"} -->
-<!-- ![](img/lec-1/chal.jpg){width=90%} -->
-<!-- ::: -->
-<!-- :::{.column width="60%"} -->
-<!-- ```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6} -->
-<!-- library(tidyverse) -->
-<!-- library(ggplot2) -->
-<!-- library(alr4) -->
-<!-- set.seed(123) -->
-<!-- Challeng %>%  -->
-<!--   filter(fail > 0) %>%  -->
-<!--   ggplot(aes(temp, fail)) + -->
-<!--   geom_point() + -->
-<!--   #geom_(height = .1, width = .01) +  -->
-<!--   geom_smooth(method = "lm", se = FALSE) + -->
-<!--   ylim(0, 5) + xlim(52, 76) +  -->
-<!--   ylab("Number of distressed O−rings at each launch") + -->
-<!--   xlab("Temperature in degrees Fahrenheit") +  -->
-<!--   theme_classic() -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- :::: -->
+::::{.columns}
+:::{.column width="40%"}
+![](img/lec-1/chal.jpg){width=90%}
+:::
+:::{.column width="60%"}
+```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6}
+library(tidyverse)
+library(ggplot2)
+library(alr4)
+set.seed(123)
+Challeng %>%
+  filter(fail > 0) %>%
+  ggplot(aes(temp, fail)) +
+  geom_point() +
+  #geom_(height = .1, width = .01) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) +
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") +
+  theme_classic()
+```
+:::
+::::
 
-<!-- ## Nothing happened, so we ignored it -->
+## Nothing happened, so we ignored it
 
-<!-- ::::{.columns} -->
-<!-- :::{.column width="50%"} -->
-<!-- ```{r darkdata, echo = FALSE, message=FALSE, warning=FALSE, fig.width = 5} -->
-<!-- set.seed(123) -->
-<!-- Challeng %>%  -->
-<!--   ggplot(aes(temp, fail)) + -->
-<!--   geom_point() +  -->
-<!--   geom_smooth(method = "lm", se = FALSE) + -->
-<!--   ylim(0, 5) + xlim(52, 76) +  -->
-<!--   ylab("Number of distressed O−rings at each launch") + -->
-<!--   xlab("Temperature in degrees Fahrenheit") +  -->
-<!--   theme_classic() -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- :::{.column width="50%"} -->
-<!-- In the decision to proceed with the launch, there was a presence of dark data. And no-one noticed! -->
+::::{.columns}
+:::{.column width="50%"}
+```{r darkdata, echo = FALSE, message=FALSE, warning=FALSE, fig.width = 5}
+set.seed(123)
+Challeng %>%
+  ggplot(aes(temp, fail)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) +
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") +
+  theme_classic()
+```
+:::
+:::{.column width="50%"}
+In the decision to proceed with the launch, there was a presence of dark data. And no-one noticed!
 
-<!-- Dark data -->
-<!-- : Information that is not available but necessary to arrive at the correct answer. -->
+Dark data
+: Information that is not available but necessary to arrive at the correct answer.
 
-<!-- This missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled! -->
+This missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled!
 
-<!-- ::: {.callout-warning appearance="simple"} -->
-<!-- If you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision. -->
-<!-- ::: -->
+::: {.callout-warning appearance="simple"}
+If you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision.
+:::
 
-<!-- ::: -->
-<!-- :::: -->
-
-
-
+:::
+::::
 
 ## In Practice
 ::::{.columns}
@@ -414,123 +428,257 @@ For example:
 5. Appealing to a new customer base with only data about existing customers
 6. Mixing bonafide observations with bonafide non-observations
 
-# Case 1: How to evaluate without a truth?
+# Wat is dan de anatomie van een antwoord?
+## De anatomie van een antwoord
 
-## Scenario 
-Let's assume that we have an incomplete data set and that we can impute (fill in) the incomplete values under multiple candidate models
+Een statistisch antwoord is meer dan een getal, tabel of modeloutput.
 
-**Challenge**<br>
-Imputing this data set under one model may yield different results than imputing this data set under another model. Identify the best model!
-
-**Problem**<br>
-We have no idea about validity of either model's results: we would need either the true observed values or the estimand before we can judge the performance and validity of the imputation model.
-
-::: callout-important
-# Not all is lost
-We do have a constant in our problem: **the observed values**
+::: {.callout-note appearance="simple"}
+# Een goed antwoord
+Een goed antwoord verbindt een **vraag**, een **databron**, een **methode**, een **claim** en houdt in het hele proces rekening met **beperkingen**.
 :::
 
-## Solution - overimpute the observed values
+Daarom vragen we steeds:
+
+1. Wat willen we weten?
+2. Welke data kunnen daarover iets zeggen?
+3. Welke vergelijking of schatting is nodig?
+4. Welke aannames maken we?
+5. Wat mogen we wel en niet concluderen?
+
+> Het is daarbij ook heel belangrijk om regelmatig met alle stakeholders in een onderzoek rond de tafel te gaan zitten. 
+
+## Waarom statistische antwoorden falen
+
+Statistische antwoorden falen vaak niet omdat de software kapot is!
+
+Ze falen omdat:
+
+- de vraag te vaag is
+- de data niet passen bij de vraag
+- de methode niet past bij het design
+- belangrijke informatie ontbreekt
+- de interpretatie sterker is dan de analyse toelaat
+- beperkingen pas achteraf worden genoemd.
+- niet alle betrokken stakeholders ook echt betrokken zijn in het hele proces
+
+> **Een model kan geen onduidelijke vraag repareren!**
+
+## Antwoord of output?
+
 ::::{.columns}
 :::{.column width="50%"}
-![](img/lec-1/12. PPC_quadratic.png){width=80%}
+### Output
+
+- een regressietabel
+- een p-waarde
+- een grafiek
+- een gemiddelde
+- een classificatie
+- een AI-samenvatting
 :::
+
 :::{.column width="50%"}
-![](img/lec-1/13. PPC_linear.png){width=80%}
+### Antwoord
+
+- gericht op een vraag
+- gekoppeld aan data
+- onderbouwd met methode
+- begrensd door aannames
+- voorzichtig geïnterpreteerd
+- bruikbaar voor besluitvorming
 :::
-
-
 ::::
 
-::: footer
-Cai, M., van Buuren, S., & Vink, G. (2022). Graphical and numerical diagnostic tools to assess multiple imputation models by posterior predictive checking. 
+::: {.callout-note appearance="simple"}
+Welke output heb je in jouw project nodig om de vraag te kunnen beantwoorden?
 :::
 
-# Case 2: When you suspect your model is wrong
+## Van onderwerp naar onderzoeksvraag
 
-## Scenario
+Een onderwerp is nog geen onderzoeksvraag.
 
-- 1236 citizens of Leiden who were 85 years or older on December 1, 1986 (Lagaay, Van der Meij, and Hijmans 1992). 
-- Visited by a physician between January 1987 and May 1989. 
-- A full medical history, information on current use of drugs, a venous blood sample, and other health-related data were obtained. 
-- BP was routinely measured during the visit. 
-  - Apart from some individuals who were bedridden, BP was measured while seated. 
-  - An Hg manometer was used and BP was rounded to the nearest 5 mmHg. 
-- The mortality status of each individual on March 1, 1994 was retrieved from administrative sources.
+| Breed onderwerp | Onderzoekbare vraag |
+|---|---|
+| Wateroverlast in Suriname | In welke mate is gerapporteerde wateroverlast onder huishoudens geassocieerd met afwatering, locatie en sociaaleconomische kenmerken? |
+| Corruptie en vertrouwen | In welke mate hangen corruptiepercepties samen met vertrouwen in overheidsinstellingen? |
+| Taal en rekenprestaties | In welke mate voorspelt Nederlandse taalvaardigheid rekenprestaties, gecontroleerd voor achtergrondkenmerken? |
 
-::: footer
-Lagaay, A. M., J. C. Van der Meij, and W. Hijmans. 1992. “Validation of Medical History Taking as Part of a Population Based Survey in Subjects Aged 85 and over.” British Medical Journal 304 (6834): 1091–2.
+::: {.callout-note appearance="simple"}
+# Vuistregel
+Een onderzoeksvraag houdt rekening met minimaal: **populatie**, **uitkomst**, **verklarende variabele of vergelijking**, **context**, **data** en **claim**.
 :::
 
+## Claim boundaries
+Let er op dat statistiek het domein van wiskunde is waar we probability density functies moeten gebruiken om een antwoord te formuleren.
 
-## Problem
-- BP was measured less frequently for very old persons and for persons with health problems. 
-- BP was measured more often if the BP was too high, for example if the respondent indicated a previous diagnosis of hypertension, or if the respondent used any medication against hypertension. 
-- The missing data rate of BP also varied during the period of data collection. 
-  - The rate gradually increases during the first seven months of the sampling period from 5 to 40 percent of the cases, and then suddenly drops to a fairly constant level of 10–15 percent. 
-  - A complicating factor here is that the sequence in which the respondents were interviewed was not random. 
-  - High-risk groups, that is, elderly in hospitals and nursing homes and those over 95, were visited first.
+> Taal maakt het verschil. Zorg dat je conclusie niet sterker is dan dat het design toelaat.
 
-## Survival rate
-![](img/lec-1/leiden_km.png)
+| Sterkere claim | Voorzichtigere claim |
+|---|---|
+| X causes Y | X hangt samen met Y |
+| X explains Y | X is geassocieerd met Y, gegeven Z |
+| X predict Y | X heeft voorspellende waarde voor Y |
+| Dit geldt voor Suriname | Dit geldt voor de geobserveerde populatie of steekproef |
+| De analyse bewijst dat... | De analyse suggereert dat... |
 
-::: footer
-Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2
-:::
 
-## Missingness
-![](img/lec-1/leiden_tab.png){width=50%}
+*Goed onderzoek houdt niet alleen rekening met wat we weten of meten, maar ook wat we* **niet** *weten of meten.*
 
-::: footer
-Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2
-:::
+## Voorbeeld: wateroverlast
 
-## Sensitivity analysis
-![](img/lec-1/leiden-delta.png){width="70%"}
+**Onderwerp**  
+Wateroverlast en kwetsbaarheid van huishoudens in Suriname.
 
-::: footer
-Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2
-:::
+**Mogelijke vraag**  
+In welke mate is gerapporteerde wateroverlast onder huishoudens in verschillende districten van Suriname geassocieerd met neerslag, toegang tot afwatering, woningkenmerken en sociaaleconomische huishoudkenmerken?
 
-# Case 3: When you know you're wrong
+**Mogelijke claim**  
+De analyse kan laten zien welke kenmerken samenhangen met gerapporteerde wateroverlast.
 
-## Scenario
+**Claimgrens**  
+De analyse kan niet zonder aanvullend causaal (experimenteel) design aantonen dat één specifieke factor de wateroverlast veroorzaakt.
 
-In a survey about research integrity and fraud we surveyed behaviours and practices in the following format. 
+## Antwoordkwaliteit
 
-<center>
-![](img/lec-1/14. not_applicable.png){width=60%}
-</center>
-<br>
-Many behaviours were surveyed over multiple groups of people. Some findings:
+Een goed statistisch antwoord is:
 
-- In most groups similar behavioural prevalence was observed. 
-- When looking at subgroups, prevalences differ between subgroups.
-- Not applicables were much more prevalent in one group than in other groups
-- There are too few cases and too many patterns with `Not Applicable`'s over features to allow for a pattern-wise analysis (stratified analysis).
-- There are too many `Not Applicables` to allow for *listwise deletion*.
+- **relevant**: het beantwoordt de vraag
+- **juist**: het volgt uit de data en methode
+- **volledig genoeg**: het noemt wat nodig is om het antwoord te begrijpen
+- **transparant**: keuzes en beperkingen zijn zichtbaar
+- **reproduceerbaar**: de route van data naar resultaat is navolgbaar
+- **bescheiden**: de claim is niet sterker dan het design.
 
-## Some background
-We know: 
+> **Antwoordkwaliteit is een vorm van wetenschappelijke integriteit.**
 
-1. `Not Applicable` is not randomly distributed over the data. Removing them is therefore not valid!
-2. `Not Applicable` are bonafide missing values: there should be no observations.
+## Take-home message
 
-::: callout-important
-# There's no such thing as a free lunch
+Statistiek begint niet bij software. Statistiek begint bij een goed geformuleerde vraag, passende data, een eerlijke methode en een verantwoord antwoord. Een goed antwoord is niet alleen correct uitgerekend, maar ook 
 
-Every imputation will bias the results. For some we know the direction of the bias, for some we have no idea. We do not have access to the truth.
-:::
+- voldoende begrensd, 
+- voldoende onderbouwd
+- voldoende reproduceerbaar
 
-### What would you do?
 
-## Our solution
-We chose to impute the data as `1 (never)`. There are a couple of reasons why we think that this is the best defendable scenario.
 
-1. `Never` has a semantic similarity to a behaviour not being applicable. However,  `Never` implies intentionality; `Not Applicable` does not.
-2. We know the effect the imputation has on the inference: Filling in `Never` will underestimate intentional behaviours. 
+<!-- # Case 1: How to evaluate without a truth? -->
 
-In this case the choice was made to make a **deliberate error**. The estimates obtained would serve as an underestimation of *true behaviour* and can be considered a lower bound estimation. 
+<!-- ## Scenario  -->
+<!-- Let's assume that we have an incomplete data set and that we can impute (fill in) the incomplete values under multiple candidate models -->
+
+<!-- **Challenge**<br> -->
+<!-- Imputing this data set under one model may yield different results than imputing this data set under another model. Identify the best model! -->
+
+<!-- **Problem**<br> -->
+<!-- We have no idea about validity of either model's results: we would need either the true observed values or the estimand before we can judge the performance and validity of the imputation model. -->
+
+<!-- ::: callout-important -->
+<!-- # Not all is lost -->
+<!-- We do have a constant in our problem: **the observed values** -->
+<!-- ::: -->
+
+<!-- ## Solution - overimpute the observed values -->
+<!-- ::::{.columns} -->
+<!-- :::{.column width="50%"} -->
+<!-- ![](img/lec-1/12. PPC_quadratic.png){width=80%} -->
+<!-- ::: -->
+<!-- :::{.column width="50%"} -->
+<!-- ![](img/lec-1/13. PPC_linear.png){width=80%} -->
+<!-- ::: -->
+
+
+<!-- :::: -->
+
+<!-- ::: footer -->
+<!-- Cai, M., van Buuren, S., & Vink, G. (2022). Graphical and numerical diagnostic tools to assess multiple imputation models by posterior predictive checking.  -->
+<!-- ::: -->
+
+<!-- # Case 2: When you suspect your model is wrong -->
+
+<!-- ## Scenario -->
+
+<!-- - 1236 citizens of Leiden who were 85 years or older on December 1, 1986 (Lagaay, Van der Meij, and Hijmans 1992).  -->
+<!-- - Visited by a physician between January 1987 and May 1989.  -->
+<!-- - A full medical history, information on current use of drugs, a venous blood sample, and other health-related data were obtained.  -->
+<!-- - BP was routinely measured during the visit.  -->
+<!--   - Apart from some individuals who were bedridden, BP was measured while seated.  -->
+<!--   - An Hg manometer was used and BP was rounded to the nearest 5 mmHg.  -->
+<!-- - The mortality status of each individual on March 1, 1994 was retrieved from administrative sources. -->
+
+<!-- ::: footer -->
+<!-- Lagaay, A. M., J. C. Van der Meij, and W. Hijmans. 1992. “Validation of Medical History Taking as Part of a Population Based Survey in Subjects Aged 85 and over.” British Medical Journal 304 (6834): 1091–2. -->
+<!-- ::: -->
+
+
+<!-- ## Problem -->
+<!-- - BP was measured less frequently for very old persons and for persons with health problems.  -->
+<!-- - BP was measured more often if the BP was too high, for example if the respondent indicated a previous diagnosis of hypertension, or if the respondent used any medication against hypertension.  -->
+<!-- - The missing data rate of BP also varied during the period of data collection.  -->
+<!--   - The rate gradually increases during the first seven months of the sampling period from 5 to 40 percent of the cases, and then suddenly drops to a fairly constant level of 10–15 percent.  -->
+<!--   - A complicating factor here is that the sequence in which the respondents were interviewed was not random.  -->
+<!--   - High-risk groups, that is, elderly in hospitals and nursing homes and those over 95, were visited first. -->
+
+<!-- ## Survival rate -->
+<!-- ![](img/lec-1/leiden_km.png) -->
+
+<!-- ::: footer -->
+<!-- Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2 -->
+<!-- ::: -->
+
+<!-- ## Missingness -->
+<!-- ![](img/lec-1/leiden_tab.png){width=50%} -->
+
+<!-- ::: footer -->
+<!-- Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2 -->
+<!-- ::: -->
+
+<!-- ## Sensitivity analysis -->
+<!-- ![](img/lec-1/leiden-delta.png){width="70%"} -->
+
+<!-- ::: footer -->
+<!-- Van Buuren, S. (2018). Flexible imputation of missing data. CRC press. Chapter 9.2 -->
+<!-- ::: -->
+
+<!-- # Case 3: When you know you're wrong -->
+
+<!-- ## Scenario -->
+
+<!-- In a survey about research integrity and fraud we surveyed behaviours and practices in the following format.  -->
+
+<!-- <center> -->
+<!-- ![](img/lec-1/14. not_applicable.png){width=60%} -->
+<!-- </center> -->
+<!-- <br> -->
+<!-- Many behaviours were surveyed over multiple groups of people. Some findings: -->
+
+<!-- - In most groups similar behavioural prevalence was observed.  -->
+<!-- - When looking at subgroups, prevalences differ between subgroups. -->
+<!-- - Not applicables were much more prevalent in one group than in other groups -->
+<!-- - There are too few cases and too many patterns with `Not Applicable`'s over features to allow for a pattern-wise analysis (stratified analysis). -->
+<!-- - There are too many `Not Applicables` to allow for *listwise deletion*. -->
+
+<!-- ## Some background -->
+<!-- We know:  -->
+
+<!-- 1. `Not Applicable` is not randomly distributed over the data. Removing them is therefore not valid! -->
+<!-- 2. `Not Applicable` are bonafide missing values: there should be no observations. -->
+
+<!-- ::: callout-important -->
+<!-- # There's no such thing as a free lunch -->
+
+<!-- Every imputation will bias the results. For some we know the direction of the bias, for some we have no idea. We do not have access to the truth. -->
+<!-- ::: -->
+
+<!-- ### What would you do? -->
+
+<!-- ## Our solution -->
+<!-- We chose to impute the data as `1 (never)`. There are a couple of reasons why we think that this is the best defendable scenario. -->
+
+<!-- 1. `Never` has a semantic similarity to a behaviour not being applicable. However,  `Never` implies intentionality; `Not Applicable` does not. -->
+<!-- 2. We know the effect the imputation has on the inference: Filling in `Never` will underestimate intentional behaviours.  -->
+
+<!-- In this case the choice was made to make a **deliberate error**. The estimates obtained would serve as an underestimation of *true behaviour* and can be considered a lower bound estimation.  -->
 
 ## To conclude
 

@@ -13,6 +13,10 @@ format:
     toc: true
     toc-depth: 3
     embed-resources: true
+  docx:
+    number-sections: false
+    toc: true
+    toc-depth: 3
 ---
 
 # Structuur
@@ -39,7 +43,7 @@ In deze opdracht werken je in groepen aan een bewuste en gestructureerde opzet v
 3. één zin over wat het onderzoek niet kan concluderen;
 4. een eerste idee van welke data, variabelen en vergelijking nodig zijn.
 
-Voor deze opdracht gebruiken we de onderstaande uitwerktabel.
+Voor deze opdracht gebruiken we de onderstaande uitwerktabel. Er is ook een MS Word versie van dit document op Moodle beschikbaar, zodat je deze kunt invullen. Je kunt ook een eigen document gebruiken en de tabel er in kopieren, zolang je maar alle onderdelen van de tabel behandelt.
 
 ## Uitwerktabel
 
@@ -65,8 +69,6 @@ Voor deze opdracht gebruiken we de onderstaande uitwerktabel.
 | **Belangrijkste beperking van data/design** |  |
 | **Eerste vervolgstap** |  |
 
-Deze tabel is ook beschikbaar als invulbaar [Word bestand](../documents/mt1/Groepsopdracht1.docx) of [Excel bestand](../documents/mt1/Groepsopdracht1.xlsx).
-
 De opdracht bestaat uit de volgende vier stappen.
 
 ## Stap 1 — Individuele eerste uitwerking (20 minuten)
@@ -85,15 +87,15 @@ Gebruik daarbij de volgende vragen:
 * Is de uitkomstvariabele meetbaar?
 * Is duidelijk welke verklarende variabele, voorspeller of groepsvergelijking centraal staat?
 * Is er een relevante tijdsperiode genoemd?
-* Is er een databestand dat deze vraag plausibel kan beantwoorden?
-* Is de conclusie die men wil trekken niet sterker dan het onderzoeksdesign toelaat?
+* Is er een databestand dat deze vraag plausibel kan beantwoorden? Waarom denk dat de data geschikt is?
+* Is de conclusie die je wilt trekken niet sterker dan het onderzoeksdesign toelaat?
 * Is duidelijk welke achtergrondvariabelen of verstorende factoren mogelijk belangrijk zijn?
 
-De groep moet vooral kritisch letten op te brede formuleringen zoals “de invloed van”, “het effect van” of “de impact van”. Zulke termen suggereren vaak causaliteit, terwijl veel datasets vooral beschrijvende, vergelijkende, associatieve of voorspellende conclusies toelaten.
+Als groep moet je vooral kritisch letten op te brede formuleringen zoals “de invloed van”, “het effect van” of “de impact van”. Zulke termen suggereren vaak causaliteit, terwijl veel datasets vooral beschrijvende, vergelijkende, associatieve of voorspellende conclusies toelaten.
 
 ## Stap 3 — Herschrijven van de onderzoeksvraag (10 minuten)
 
-Op basis van de discussie met je groepsgenoten is het misschien nodig om je onderzoeksvraag aan te scherpen. Herschrijf je onderzoeksvraag met behulp van het onderstaande format:
+Op basis van de discussie met je groepsgenoten is het misschien nodig om je onderzoeksvraag aan te scherpen of te herschrijven. Herschrijf je onderzoeksvraag met behulp van het onderstaande format:
 
 _Onder [populatie of onderzoekseenheden], in welke mate is [X] geassocieerd met / voorspellend voor / verschillend tussen [Y], gedurende [periode], op basis van [databestand], rekening houdend met [belangrijke achtergrondvariabelen]?_
 
@@ -101,7 +103,9 @@ Je hoeft de zin niet letterlijk over te nemen, maar denk wel na over de mogelijk
 
 ::: callout-tip
 ## Voorbeeld
-Onder ...
+Onder Nederlandse jongeren op de middelbare school, wat is de relatie tussen aantal uren werk in een bijbaan en schoolprestaties, gedurende het schooljaar 2023-2024, op basis van een survey onder middelbare scholieren. 
+
+En de vervolgvraag: Verandert deze relatie wanneer we rekening houden/controleren voor het opleidingsniveau van ouders, sociaaleconomische status en/of de keuze van het studieprofiel?
 :::
 
 Als je hier mee klaar bent, maak dan een voorlopig antwoordformat. Dti format stelt je in staat om alvast na te denken over de antwoordopties die je onderzoek kan aannemen. Bijvoorbeeld:
@@ -110,7 +114,9 @@ _De analyse laat zien dat [X] wel/niet samenhangt met [Y] onder [populatie]. Ond
 
 ::: callout-tip
 ## Voorbeeld
-De analyse laat zien dat...
+De analyse laat zien dat het aantal uren werk in een bijbaan samenhangt met schoolprestaties onder Nederlandse jongeren op de middelbare school. Onder de aannames van een observationeel design suggereert dit dat werken in een bijbaan mogelijk invloed heeft op schoolprestaties, maar deze conclusie is beperkt door het feit dat er mogelijk andere factoren meespelen, zoals het opleidingsniveau van ouders, sociaaleconomische status en de keuze van het studieprofiel.
+
+Wanneer we controleren voor deze factoren, blijft er nog steeds een samenhang tussen werken in een bijbaan en schoolprestaties, maar de sterkte van deze samenhang neemt af. Dit suggereert dat sommige van de geobserveerde relatie mogelijk kan worden verklaard door deze achtergrondvariabelen, maar er blijft nog steeds een onafhankelijke associatie over tussen werken in een bijbaan en schoolprestaties.
 :::
 
 Tot slot formuleert je één zin over wat het onderzoek niet kan concluderen:
@@ -119,11 +125,10 @@ _Dit onderzoek kan niet aantonen dat [sterkere claim], omdat [reden]._
 
 ::: callout-tip
 ## Voorbeeld
-Dit onderzoek kan niet aantonen dat taalvaardigheid betere rekenprestaties veroorzaakt, omdat de analyse gebaseerd is op observationele surveydata en niet op een experimenteel ontwerp.
+Dit onderzoek kan niet aantonen dat meer of minder werken in een bijbaan de oorzaak is van veranderingen in schoolprestaties - of vice versa, omdat het een observationeel design betreft en er mogelijk andere factoren meespelen die zowel het werken in een bijbaan als schoolprestaties beïnvloeden.
 :::
 
 ## Stap 4 — Plenaire nabespreking (10 minuten)
-
 Enkele studenten presenteren kort mondeling hun oorspronkelijke en herschreven onderzoeksvraag. In de groep bespreken we klassikaal wat er is veranderd en waarom de nieuwe formulering beter onderzoekbaar is.
 
 Bij de bespreking wordt vooral gelet op:
@@ -135,8 +140,7 @@ Bij de bespreking wordt vooral gelet op:
 * helderheid van de voorlopige antwoordzin.
 
 
-
-# Voorbeeldonderwerpen (Nog verder uit te werken)
+# Voorbeeldonderwerpen 
 
 
 ## Onderwerp 1: Klimaatverandering en wateroverlast in Suriname

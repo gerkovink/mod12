@@ -29,9 +29,9 @@ De slides voor het hoorcollege kun je [hier vinden](slides/lec-1.html).
 :::
 
 ## Groepsopdracht
-In deze opdracht leren studenten om een breed maatschappelijk of wetenschappelijk onderwerp om te vormen tot een concrete, onderzoekbare statistische vraag. Veel onderzoek begint met een interessant thema, maar een thema is nog geen onderzoeksvraag. Een goede onderzoeksvraag maakt duidelijk over welke populatie of eenheden het onderzoek gaat, welke uitkomst wordt onderzocht, welke verklarende variabele of vergelijking centraal staat, welke periode relevant is en welk databestand gebruikt kan worden.
+In deze opdracht oefenen we met een breed maatschappelijk of wetenschappelijk onderwerp om te vormen tot een concrete, onderzoekbare statistische vraag. Veel onderzoek begint met een interessant thema, maar een thema is nog geen onderzoeksvraag. Een goede onderzoeksvraag maakt duidelijk over welke populatie of eenheden het onderzoek gaat, welke uitkomst wordt onderzocht, welke verklarende variabele of vergelijking centraal staat, welke periode relevant is en welk databestand gebruikt kan worden.
 
-Het doel is dat iedere student aan het einde van de opdracht beschikt over:
+Het doel is dat iedereen aan het einde van de opdracht beschikt over:
 
 1. een aangescherpte onderzoeksvraag;
 2. een voorlopig format voor het beantwoorden van die vraag;
@@ -42,7 +42,7 @@ De nadruk ligt niet op het vinden van het perfecte antwoord, maar op het formule
 De opdracht [staat hier](opdracht/groepsopdracht1.html). De uitwerktabel voor Groepsopdracht 1 is beschikbaar als invulbaar [Word bestand](documents/mt1/Groepsopdracht1.docx) of [Excel bestand](documents/mt1/Groepsopdracht1.xlsx).
 
 ## Individuele opdracht
-In de komende twee weken werken we naar de structuur van een eindproduct toe. Informatie over dit eindproduct (i.e. de deliverables @sec-resrep, @sec-archive en @sec-pres) staat beschreven in het hoofdstuk @sec-deliv. Om een eerste begin te maken, zullen we vandaag de volgende stappen volgen:
+In de komende twee weken werken we naar de structuur van een eindproduct toe. Informatie over dit eindproduct (i.e. de deliverables @sec-resrep, @sec-archive, @sec-refl en @sec-pres) staat beschreven in het hoofdstuk @sec-deliv. Om een eerste begin te maken, zullen we vandaag de volgende stappen volgen:
 
 1. Start met een projectdocument. Bijvoorbeeld in Word of Quarto.
 2. Begin te schrijven aan een paragraaf **Onderzoeksvraag** waarin het volgende aan bod komt:
