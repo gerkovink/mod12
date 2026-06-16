@@ -1,5 +1,5 @@
 ---
-title: "Placeholder Lecture 2"
+title: "Van probleem naar onderwerp"
 author: 
   - name: Gerko Vink
     orcid: 0000-0001-9767-1924
@@ -25,9 +25,10 @@ format:
     slide-number: true
     scrollable: false
     width: 1200
-    reference-location: margin
     footer: Gerko Vink @ Anton de Kom Universiteit, Paramaribo
     standalone: true
+    reference-location: margin
+    bibliography: references.bib
 ---
 
 ## Disclaimer {.smaller}
@@ -41,38 +42,131 @@ You **may use** any and all content in this presentation - including my name - a
 - You must ensure that the content is not used for further training of the model
 :::
 
-## Slide materials and source code
-::: callout-tip
-# Materials
+### Materials
 - lecture slides on Moodle
 - course page: [www.gerkovink.com/mod12](https://www.gerkovink.com/mod12)
 - source: [github.com/gerkovink/mod12](https://github.com/gerkovink/mod12)
-:::
 
 ## Recap
+Yesterday we learned:
 
-Yesterday we learned
-
+1. Statistical inference connects an answer to a truth through information.
+2. Samples are proxies for the truth, so missing information creates uncertainty.
+3. Valid answers require checking bias, variance/uncertainty, and coverage.
+4. Missing or “dark” data can mislead both humans and AI.
+5. A good statistical answer links question, data, method, claim, and limitations.
 
 ## Today
 
-::::{.columns}
-:::{.column width="45%"}
 ::: {.callout-note appearance="simple"}
 # Core idea
-A good answer starts before the analysis.
-:::
+A good answer starts before the analysis begins.
 :::
 
-:::{.column width="55%"}
 Today we move from a *topic* to a *research design*.
 
 - What kind of question are we asking?
 - What kind of answer can our data support?
 - What claim would be too strong?
 - How can literature and AI help us think better?
+
+
+## First of all
+::: {.callout-tip}
+## Education is a universal right
+<q>*Everyone has the right to education. Education shall be free, at least in the elementary and fundamental stages. Elementary education shall be compulsory. Technical and professional education shall be made generally available and higher education shall be equally accessible to all on the basis of merit*</q> <br><br>
+Source: [Universal Declaration of Human Rights](https://www.un.org/sites/un2.un.org/files/2021/03/udhr.pdf) as declared by the United Nations in 1948.
 :::
-::::
+
+## Second of all
+<center>
+<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C8YnYyUMkAg/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/C8YnYyUMkAg/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/C8YnYyUMkAg/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Marcy Cortega (@marcycortega)</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
+</center>
+
+# Introduction to gen AI
+
+## What does genAI *think* it is? 
+![](img/lec-2/gpt1.png) 
+
+
+## What does it *think* it looks like?
+
+![](img/lec-2/gpt2.png)
+
+## What does it *think* it looks like?
+
+![](img/lec-2/gpt3.png)
+
+## Does it *think* it is smart?
+![](img/lec-2/gpt4.png)
+
+## No need for humans, then?
+
+![](img/lec-2/gpt5.png)
+
+## What does this tell us?
+
+
+## What about other AI tools?
+
+![](img/lec-2/sdf1.png)
+
+## With a bit of replication
+
+![](img/lec-2/sdf2.png) 
+
+## And hallucination
+
+![](img/lec-2/sdf3.png)
+
+## How does AI make math simpler?
+
+[thispersondoesnotexist.com](https://www.thispersondoesnotexist.com)
+
+```{mermaid}
+flowchart LR
+    A["Generator<br/>creates an image"] --> B["Generated image"]
+    B --> C["Discriminator<br/>checks the image"]
+    C --> D{"Is it real or fake?"}
+    D --> E["Real"]
+    D --> F["Fake"]
+```
+
+## How Do AI Tools Work (in 10 steps)?
+
+1. Machine learning enables computers to learn from data, identify patterns, and make decisions with varying levels of human intervention.
+2. Machine learning methods often work by means of training, for example to perform a single task or set of tasks.
+3. Some forms of models are not specifically programmed to perform certain tasks and learn withouth human intervention. 
+4. The domain of machine learning that focuses on such human brain-like deep learning strategies is called neural networks (NNs).
+5. Transformers ([Vaswani et al. 2017](https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html)) are a type of neural network that have advanced deep learning, particularly in the domain of natural language processing.
+6. Instead of modeling words one after another, transformers can look at whole sentences or paragraphs at once and take the context of text into account. 
+7. It is not hard to imagine that contextual understanding allows for better learning and more flexible applications.
+
+::: {.footer}
+[Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017).<br>Attention is all you need. Advances in neural information processing systems, 30.](https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html)
+:::
+
+## How Do AI Tools Work (in 10 steps)?
+::: {.columns}
+::: {.column width="60%"}
+<br>
+
+8. Generative AI tools, such as Gemini, chatGPT or GitHub Copilot are applications of transformers.
+9. These tools have been trained on extremely large amounts of data (mostly text) and have learned from the structure, meaning and nuances of the language.
+10. After training, these tools can generate new text that both coherent an contextually relevant.
+<br><br>
+Don't be fooled! It's just a prediction model
+:::
+::: {.column width="40%"}
+<br>
+![](img/lec-2/ai_train.webp){width="100%"}
+:::
+:::
+
+::: {.footer}
+Image prompt: *generate an image of an AI in android form training with weights in a gym*
+:::
+  
 
 ## Terms I may use
 
@@ -86,13 +180,7 @@ Today we move from a *topic* to a *research design*.
 - **AI assistant**: a tool for scaffolding thinking, not a replacement for judgment
 
 ## At the start
-
-Let's start with the core:
-
-::: {.callout-note appearance="simple"}
-# Research design
-Research design is the process of deciding what kind of answer your data can legitimately produce.
-:::
+>Research design is the process of deciding what kind of answer your data can legitimately produce.
 
 A method cannot save a vague question.
 
@@ -143,115 +231,6 @@ A topic becomes research when we define the population, outcome, comparison, dat
 | Causal | What would change under intervention? | Effect estimate under assumptions |
 | Measurement/validation | Does A measure the same as B? | Agreement, calibration, accuracy |
 
-## Descriptive questions
-
-::: {.callout-note appearance="simple"}
-# Descriptive
-What is the prevalence, distribution or trend?
-:::
-
-Examples:
-
-- What percentage of children aged 7--14 show foundational reading skills in Suriname?
-- How has government revenue changed from 2010 to 2025?
-- How common is reported wateroverlast among households in different districts?
-
-Descriptive does not mean simple. A good description may require weights, definitions, metadata and careful uncertainty.
-
-::: footer
-UNICEF MICS Suriname 2018: [mics.unicef.org](https://mics.unicef.org/sites/mics/files/2024-08/Suriname%202018%20MICS%20Survey%20Findings%20Report_English.pdf)
-:::
-
-## Comparative questions
-
-::: {.callout-note appearance="simple"}
-# Comparative
-Do groups differ?
-:::
-
-Examples:
-
-- Do children in urban and rural areas differ in school attendance?
-- Do households with and without access to drainage report different levels of wateroverlast?
-- Do perceptions of corruption differ by age group or education level?
-
-Comparisons need a clear grouping variable and a clear outcome.
-
-::: {.callout-warning}
-# Be careful
-A difference between groups is not automatically an effect of group membership.
-:::
-
-## Associational or explanatory questions
-
-::: {.callout-note appearance="simple"}
-# Associational / explanatory
-Is X related to Y, accounting for Z?
-:::
-
-Examples:
-
-- Is Dutch language proficiency associated with math performance, accounting for household background?
-- Are corruption perceptions associated with trust in government institutions?
-- Is access to drainage associated with reported wateroverlast, accounting for district and household characteristics?
-
-These questions often support *suggests* better than *demonstrates*.
-
-## Predictive questions
-
-::: {.callout-note appearance="simple"}
-# Predictive
-How well can we predict Y from X?
-:::
-
-Examples:
-
-- Can lifestyle factors predict hypertension risk among workers?
-- Can ULS measurements predict forest-inventory biomass estimates?
-- Can household and location characteristics predict flood vulnerability?
-
-Prediction is about performance on new or unseen cases.
-
-::: {.callout-tip}
-# Key question
-Would this model still work for the next household, the next district, or the next year?
-:::
-
-## Causal questions
-
-::: {.callout-note appearance="simple"}
-# Causal
-What would change if we intervened?
-:::
-
-Examples:
-
-- What would happen to school dropout if maternal education increased?
-- What would happen to wateroverlast if drainage infrastructure were improved?
-- What would happen to trust if corruption experiences were reduced?
-
-Causal questions need more than association. They need a defensible comparison between what happened and what would have happened otherwise.
-
-::: {.callout-warning}
-# Hmmm...
-Most observational datasets do not automatically answer causal questions.
-:::
-
-## Measurement or validation questions
-
-::: {.callout-note appearance="simple"}
-# Measurement / validation
-Does one measurement system agree with, replace or improve another?
-:::
-
-Examples:
-
-- Can ULS data replace forest inventories for estimating mangrove biomass?
-- Does a short survey scale measure the same construct as a longer scale?
-- Do administrative categories match the scientific construct we want to study?
-
-Validation is not merely correlation. It often requires agreement, bias, precision and error assessment.
-
 ## Design before method
 
 ::::{.columns}
@@ -270,7 +249,7 @@ Validation is not merely correlation. It often requires agreement, bias, precisi
 :::
 ::::
 
-A method cannot repair a vague design.
+A method cannot repair a vague or inefficient design.
 
 - The same dataset can support some claims and not others
 - The strongest statistical model is still weak if the design cannot support the claim
@@ -292,117 +271,6 @@ Take a household survey such as MICS.
 MICS is an international household survey programme developed by UNICEF. Suriname MICS 2018 documentation: [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/3531)
 :::
 
-## Claim boundaries
-
-Words matter.
-
-| Stronger word | Safer word |
-|---|---|
-| causes | is associated with |
-| proves | suggests |
-| explains | is consistent with |
-| predicts | is predictive of, in this dataset |
-| the population | the observed sample / target population under sampling assumptions |
-| demonstrates | provides evidence compatible with |
-
-::: {.callout-tip}
-# In short
-A responsible answer says what it can say, and what it cannot say.
-:::
-
-## Claim ladder
-
-Use a claim ladder when writing conclusions.
-
-1. We observed ...
-2. We estimated ...
-3. The data suggest ...
-4. Under the assumption that ...
-5. A plausible interpretation is ...
-6. We cannot conclude ...
-7. A responsible next step is ...
-
-::: {.callout-note}
-# Good answers are modest
-Scientific modesty is not weakness. It is precision.
-:::
-
-## Case: Language proficiency and math performance
-
-::::{.columns}
-:::{.column width="45%"}
-### Weak question
-Does Dutch language proficiency influence math performance?
-
-### Better question
-To what extent is Dutch language proficiency associated with math performance among primary-school pupils in Suriname, accounting for selected household and educational background characteristics?
-:::
-
-:::{.column width="55%"}
-### Claim boundary
-We may estimate whether language proficiency is associated with math performance.
-
-We cannot conclude that language proficiency causes better math performance unless the design and assumptions justify causal interpretation.
-:::
-::::
-
-::: footer
-UNICEF reported Suriname MICS 2018 indicators on foundational learning skills. See UNICEF Guyana & Suriname: [unicef.org/guyanasuriname](https://www.unicef.org/guyanasuriname/press-releases/insufficient-level-reading-proficiency-among-children-suriname)
-:::
-
-## Case: Corruption perceptions and trust
-
-::::{.columns}
-:::{.column width="48%"}
-### Topic
-Corruption perceptions and economic trust.
-
-### Dataset
-LAPOP AmericasBarometer Suriname 2023.
-
-### Safe question
-Are corruption experiences and perceptions associated with trust in government institutions or economic confidence?
-:::
-
-:::{.column width="52%"}
-### Claim boundary
-This can support an associational claim.
-
-It cannot, by itself, demonstrate that corruption perceptions caused lower economic trust.
-
-::: {.callout-warning}
-# Why?
-Cross-sectional survey responses are snapshots. Direction, timing and unmeasured confounding remain difficult.
-:::
-:::
-::::
-
-::: footer
-LAPOP Suriname 2023 country information and questionnaires: [vanderbilt.edu/lapop/suriname.php](https://www.vanderbilt.edu/lapop/suriname.php)
-:::
-
-## Case: ULS and mangrove biomass
-
-::::{.columns}
-:::{.column width="50%"}
-### Topic
-Estimating mangrove aboveground biomass using ULS.
-
-### Question type
-Measurement / validation and prediction.
-
-### Possible question
-Can ULS-derived metrics predict or replace forest-inventory estimates of aboveground biomass in Surinamese mangroves?
-:::
-
-:::{.column width="50%"}
-### Claim boundary
-A good validation study can show agreement, calibration and prediction accuracy.
-
-It should not claim replacement unless error, uncertainty, sampling conditions and use-case requirements are acceptable.
-:::
-::::
-
 ## AI as a research assistant
 
 ::: {.callout-note appearance="simple"}
@@ -422,31 +290,6 @@ AI can help with:
 
 AI cannot take responsibility for truth, citations, validity, ethics or your final claim.
 
-## How AI models work: the useful cartoon
-
-::::{.columns}
-:::{.column width="45%"}
-Large language models are trained to predict plausible text from patterns in large text collections.
-
-They are very good at language, structure and analogy.
-:::
-
-:::{.column width="55%"}
-They are not databases of verified truth.
-
-- They may invent citations
-- They may smooth over uncertainty
-- They may sound confident when wrong
-- They may miss local context
-- They may reproduce biases in training data
-:::
-::::
-
-::: {.callout-warning}
-# Be careful
-Fluent text is not the same thing as valid evidence.
-:::
-
 ## What to look out for
 
 AI is most dangerous when it is most comfortable.
@@ -463,58 +306,34 @@ AI is most dangerous when it is most comfortable.
 Ask AI to disagree with you. Ask it to list assumptions, limitations and alternative interpretations.
 :::
 
-## BRAVE(R) prompting
+## BRAVE(R) voor prompting
+| Onderdeel | Betekenis | Vraag die je jezelf stelt |
+|---|---|---|
+| --B — Boundaries-- | Grenzen en randvoorwaarden | Welke grenzen stel je aan de output, zoals lengte, format, taal, detailniveau of beperkingen? |
+| --R — Role-- | Rol of perspectief | Welke rol moet de AI aannemen, bijvoorbeeld statisticus, methodoloog, reviewer of onderzoeksassistent? |
+| --A — Audience-- | Doelgroep | Voor wie is de output bedoeld, en welke toon, stijl en voorkennis passen daarbij? |
+| --V — Variables-- | Belangrijke details | Welke kernbegrippen, variabelen, onderdelen of aandachtspunten moeten zeker worden meegenomen? |
+| --E — Expectations-- | Verwachte uitkomst | Wat moet de AI precies opleveren, met welk doel en in welke vorm? |
+| --(R) — Refine-- | Verbeteren en bijsturen | Welke feedback geef je om de output te verbeteren of een volgende versie scherper te maken? |
 
-A useful prompt is a research instruction, not a wish.
+## BRAVE(R) example
 
-| Element | Prompting question |
-|---|---|
-| **B**ackground | What is the project context? |
-| **R**ole | What role should the AI take? |
-| **A**im | What task should it perform? |
-| **V**ariables / evidence | What data, variables or text should it use? |
-| **E**xpectation | What format and level of detail do you want? |
-| **R**eflection | Ask for limitations, assumptions or checks |
+> "Act as a critical statistics supervisor. Given this research question and dataset description, identify the question type, possible overclaims, and three design limitations. then suggest how to improve the design and what method would be most appropriate for the question type. Return the output as a structured list with clear headings and bullet points. Do not use emoticons or informal language." 
 
-::: {.callout-note}
-# Example
-"Act as a critical statistics supervisor. Given this research question and dataset description, identify the question type, possible overclaims, and three design limitations."
-:::
 
 ## RACCCA prompt evaluation
-
-Before using an AI answer, evaluate it.
-
-| Criterion | Question |
+| Criterium | Vraag |
 |---|---|
-| **R**elevance | Does it answer my actual question? |
-| **A**ccuracy | Are factual claims and references correct? |
-| **C**ompleteness | What important part is missing? |
-| **C**larity | Is the reasoning understandable? |
-| **C**laim control | Does it avoid overclaiming? |
-| **A**ctionability | Can I use this to improve my project? |
+| --R — Relevance-- | Beantwoordt de output de vraag die gesteld is of de opdracht die gegeven is? |
+| --A — Accuracy-- | Geeft de output correcte, betrouwbare informatie die gebaseerd is op feiten? <br> -Dit betekent dat de correctheid van de output wordt gecontroleerd door de tekst te vergelijken met andere bronnen-. |
+| --C — Completeness-- | Zijn de belangrijkste onderdelen en aspecten van het onderwerp of de vraag voldoende meegenomen? |
+| --C — Clarity-- | Is de tekst helder en begrijpelijk? <br> Is de output ook gemakkelijk te begrijpen voor het beoogde publiek? |
+| --C — Coherence-- | Heeft de output een logische structuur? <br> Is de output overzichtelijk ingedeeld? <br> Is de output gemakkelijk te lezen en loopt de tekst vloeiend van het ene punt naar het andere? |
+| --A — Appropriateness-- | Is de output geschikt voor het beoogde publiek en de context? <br> Hoe gepast en respectvol is de toon en inhoud van de output? |
 
-::: {.callout-important}
-# Rule
-Never copy an AI answer into your report unless you can defend it yourself.
-:::
-
-## Scaffolding with AI
-
-AI works best when you ask it to help with one layer at a time.
-
-1. Identify the population, outcome and predictor
-2. Classify the question type
-3. Generate search terms
-4. Suggest possible literature functions
-5. Identify assumptions and claim boundaries
-6. Draft alternative formulations
-7. Critique the result
-
-::: {.callout-tip}
-# In short
-Do not ask: "Write my literature review."  
-Ask: "Help me build a structure for a literature review that supports this research question."
+## Never forget
+::: {.callout-warning}
+Never copy an AI answer into your report unless you can explain or defend it yourself.
 :::
 
 ## Searching for literature
@@ -532,9 +351,8 @@ For each project, create three search routes:
 3. **Methodological search**: method, design or data  
    `household survey flood risk logistic regression`
 
-If Suriname-specific literature is scarce, widen the circle:
+If specific literature is scarce, widen the search circle. 
 
-<center>Suriname $\rightarrow$ Caribbean $\rightarrow$ Latin America $\rightarrow$ LMICs $\rightarrow$ international literature</center>
 
 ## Literature maps
 
@@ -564,61 +382,178 @@ A source can help you:
 | Study 2 |  |  |  |  |
 | Dataset documentation |  |  |  |  |
 
-::: {.callout-warning}
-# Hmmm...
-If a source has no clear job in your project, why is it in the report?
+## Referencing examples
+
+**Parenthetical citation**
+
+> Statistical learning depends on estimating patterns from data (James et al., 2021).
+
+**Narrative citation**
+
+> James et al. (2021) explain that statistical learning methods are used to model relationships in data.
+
+**Direct quote**
+
+> “All models are wrong, but some are useful” (Box, 1976, p. 792).
+
+## Reference list
+
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021).  
+*An introduction to statistical learning: With applications in R*  
+(2nd ed.). Springer.
+
+Box, G. E. P. (1976). Science and statistics.  
+*Journal of the American Statistical Association, 71*(356), 791–799.
+
+
+## Don't forget
+If you are referring to an idea from another work but **NOT** directly quoting the material, or making reference to an entire book, article or other work, you only have to make reference to the author and year of publication and not the page number in your in-text reference.
+
+On the other hand, if you are directly quoting or borrowing from another work, you should include the page number at the end of the parenthetical citation. 
+
+- Use the abbreviation “p.” (for one page) or “pp.” (for multiple pages) before listing the page number(s)
+- Use a dash for page ranges. For example, you might write (James, 2021, p. 234) or (Box, 1976, pp. 792-793)
+
+# Impact of generative AI
+
+## Who develops generative AI tools
+
+- Generative AI technologies are often developed by publicly traded companies with:
+    - Deep pockets
+    - Shareholders
+    - Motives and goals that may diverge from academic or public interests
+
+- These technologies also require significant computing resources for training and operation
+  - This skews access and development to those with substantial resources.
+  - If you feel sad or overwhelmed by the low sense of control, read [Choose Your Weapon:
+Survival Strategies for Depressed AI Academics](https://ieeexplore.ieee.org/abstract/document/10458714)
+
+::: {.footer}
+Togelius, J., & Yannakakis, G. N. (2024). Choose Your Weapon: Survival Strategies for Depressed AI Academics [Point of View]. Proceedings of the IEEE, 112(1), 4-11.
 :::
 
-## Example: wateroverlast and vulnerability
+## Impact on education
 
-| Source | Contribution | Use |
-|---|---|---|
-| Paramaribo Strategic Flood Risk Assessment | Context on flooding, drainage and risk in Paramaribo | Societal relevance and risk factors |
-| Suriname National Adaptation Plan | National climate adaptation context | Policy relevance |
-| Household survey documentation | Population, variables, sampling and weights | Operationalization and limitations |
+There is a finite number of options for dealing with generative AI in education. These options translate to the following *stages of AI grief*:
 
-A good literature map connects context, concept, method and data.
-
-::: footer
-World Bank, Paramaribo Strategic Flood Risk Assessment: [documents.worldbank.org](https://documents.worldbank.org/pt/publication/documents-reports/documentdetail/463821538552629012/paramaribo-strategic-flood-risk-assessment-final-report). Suriname National Adaptation Plan: [unfccc.int](https://unfccc.int/sites/default/files/resource/NAP-Suriname-2020.pdf)
+::: {.columns}
+::: {.column width="50%"}
+1. **Ignore** the existence of generative AI
+2. **Forbid** the use of generative AI
+3. **Circumnavigate** generative AI by using offline assessment modes like pen/paper exams or oral exams
+4. **Test around** Let students perform tasks that generative AI struggles with
+5. **Embrace** generative AI and allow it in course work
+6. **Rethink** the way we assess students and develop new assessment methodologies
+:::
+::: {.column width="50%"}
+![](https://respage.com/wp-content/uploads/2022/01/Why-Human-and-AI-Leasing-Agents-Need-Each-Other-to-Deliver-Excellent-Customer-Service-to-Prospects-1024x683.png){width="100%"}
+:::
 :::
 
-## Exercise: research design card
-
-In groups, choose one topic and produce a research design card.
-
-1. Original topic
-2. Refined research question
-3. Question type
-4. Search terms or search strings
-5. Mini literature map
-6. Key concepts and variables suggested by literature
-7. Claim boundary: what can and cannot be concluded
-
-::: {.callout-tip}
-# Product
-A better question, a better literature strategy and a more responsible claim.
+## Futureproof education?
+::: {.callout-important appearance="simple"}
+# Could it be
+That our defined learning goals, our evaluations and the skills that we teach are not aligned with the future professional needs for our student body?
 :::
 
-## To conclude
+Lots of promises have been made for decades about the potential of AI to revolutionize education. Little proof is available.
 
-A good research design answers four questions:
+## Impact of AI on Cognitive Performance
 
-1. What kind of question am I asking?
-2. What kind of evidence do my data provide?
-3. What does the literature help me define, justify or limit?
-4. What can I responsibly conclude?
+![](img/lec-2/cogn1.png)
 
-::: {.callout-important}
-# Final thought
-Good science is not the art of sounding certain.  
-Good science is the art of being precise about uncertainty.
+::: {.footer}
+[Heersmink, R. Use of large language models might affect our cognitive skills. Nat Hum Behav (2024)](https://doi.org/10.1038/s41562-024-01859-y)
 :::
 
-## References and examples
+## Impact of AI on Cognitive Performance
+::: {.columns}
+::: {.column width="50%"}
+![](img/lec-2/cogn4.png)
+:::
+::: {.column width="50%"}
+![](img/lec-2/balance.webp)
+:::
+:::
 
-- UNICEF MICS Suriname 2018: [https://mics.unicef.org/sites/mics/files/2024-08/Suriname%202018%20MICS%20Survey%20Findings%20Report_English.pdf](https://mics.unicef.org/sites/mics/files/2024-08/Suriname%202018%20MICS%20Survey%20Findings%20Report_English.pdf)
-- World Bank Microdata Library, Suriname MICS 2018: [https://microdata.worldbank.org/index.php/catalog/3531](https://microdata.worldbank.org/index.php/catalog/3531)
-- LAPOP Suriname 2023: [https://www.vanderbilt.edu/lapop/suriname.php](https://www.vanderbilt.edu/lapop/suriname.php)
-- World Bank, Paramaribo Strategic Flood Risk Assessment: [https://documents.worldbank.org/pt/publication/documents-reports/documentdetail/463821538552629012/paramaribo-strategic-flood-risk-assessment-final-report](https://documents.worldbank.org/pt/publication/documents-reports/documentdetail/463821538552629012/paramaribo-strategic-flood-risk-assessment-final-report)
-- Suriname National Adaptation Plan: [https://unfccc.int/sites/default/files/resource/NAP-Suriname-2020.pdf](https://unfccc.int/sites/default/files/resource/NAP-Suriname-2020.pdf)
+::: {.footer}
+[Habib, S., Vogel, T., Anli, X., & Thorne, E. (2024). How does generative artificial intelligence impact student creativity?. Journal of Creativity, 34(1), 100072.](https://doi.org/10.1016/j.yjoc.2023.100072)
+:::
+
+## Impact of AI on cognitive performance
+![](img/lec-2/cogn2.png)
+![](img/lec-2/cogn3.png)
+
+::: {.footer}
+[Abbas, M., Jam, F.A. & Khan, T.I. Is it harmful or helpful? Examining the causes and consequences of generative AI usage among university students. <br> Int J Educ Technol High Educ 21, 10 (2024).]( https://doi.org/10.1186/s41239-024-00444-7)
+:::
+
+## Ethical impact
+
+Many people are unaware of the ethical implications of using AI tools, apart from presenting AI-generated work as your own product. 
+
+1. AI tools are often trained on data that is biased or incomplete, which can lead to biased or incorrect results. 
+2. AI tools have demonstrated to yield inaccurate, incomplete or false information. 
+  - This can happen when the AI tool perceives patterns or objects that are nonexistent, resulting in nonsensical or inaccurate output, often referred to as hallucinations [@ziwei; @alkaissi2023artificial; @athaluri2023exploring].
+  - Some resistance against the term hallucinations has emerged [@Ostergaard2023]. 
+
+It is important to always use multiple sources to verify any bit of information. As a user of AI tools you should accept that **only you are responsible** for using, interpreting and curating AI-generated output. 
+
+The age-old adage garbage in, garbage out holds here too: old biases and ideas may unwantedly be perpetuated by AI tools, thereby fueling divides, biases and stereotypes that we have tried so hard to remove.
+
+## Legal impact
+AI tools are often trained on data that is copyrighted or patented, which can lead to legal issues if the data is used without permission. To avoid such issues, when interacting with AI tools, users should protect intellectual property rights and copyright. 
+
+When submitting prompts as **input to AI tools** it is important to ensure that
+
+- you are allowed to share the information in the prompt or have explicit permission
+- you are not infringing on any right associated with the information in the prompt
+
+Likewise, it is important to realize that no intellectual property or copyright may be infringed with using the **output of the AI tool**. The training of the AI tool happened on a large set of data; some of that data may have been used illegitimately. By using AI generated output you may plagiarize existing work or otherwise infringe on intellectual property rights.
+
+This is a tricky scenario, as the nontransparent training of AI tools makes it challenging to prove that no IP is infringed with the realized output. However, one could argue that embedding AI tools in a normal scientific knowledge discovery scenario would minimize the change of any infringement. Such a route would result in a process where information from multiple sources is processed and curated by an actual human.
+
+## Environmental impact
+Are you aware of the impact that contemporary AI tools may have on the environment?
+
+- Together with e.g. cloud storage and e-mail traffic, AI tools constitute a *hidden carbon footprint* that often escapes our awareness. 
+
+While it is not as apparent as airline travel, the impact of using AI tools may be far greater than you think! 
+
+- Decarbonizing the energy usage alone is not enough to sustainably implement AI tools in our everyday life [@berthelot2023]. 
+- Using generative AI Tools has been estimated to account for up to 25 times the energy emissions that are generated from training the models [@chien2023]. 
+
+While the environmental impact can ultimately be significantly lowered by moving from server-based generative AI to on-chip generative AI, there will always be a cost of using AI tools. 
+
+<!-- Many people have thought about how AI will impact human life and Hollywood has monetized its threat to human existence. Not many may have realized that our lives may currently be at risk through AI-induced global warming. -->
+
+
+## Social impact
+In recent years many idealistic promises have been made about the potential of AI to improve human life. 
+
+- Widespread access for everyone to AI models and tools has been said to contribute to equality, allowing everybody to access high quality information and interact witht the same technology. 
+- AI tools are neutral and can be used to harm people and spread misinformation. 
+- AI tools can be used to manipulate people, to deepen existing biases, to incite hate speech or to discriminate against people, evidence of which has been found in the use of AI tools in hiring processes and the potential for election manipulation [@baldassarre2023; @lyttonAIHiringTools2024; @aliswensonElectionDisinformationTakes2024; @mekelapanditharatneHowAIPuts2023]. 
+
+Aside from the potential for AI to incite societal harm on a fundamental level, it can also disrupt society on a more existential level. The widespread use of AI tools may lead to a loss of jobs, as AI tools can automate tasks that were previously done by humans. This can lead to a loss of income and a decrease in the quality of life for many people. 
+
+The zeitgeist of contemporary AI tools pairs a strong call for regulatory action with a warning for over-regulation. 
+
+## Human rights and labor rights
+There is [evidence](https://time.com/6247678/openai-chatgpt-kenya-workers/) that the workers who curate these models are treated unfairly or even inhumanely by their employers. 
+
+- This [interview](https://blogs.lse.ac.uk/businessreview/2024/03/25/madhumita-murgia-ai-can-do-harm-when-people-dont-have-a-voice/) also paints a good picture of how and where AI work can harm people. 
+
+This means that the use of AI tools may not only effect the networks of the people who use them, but also have an effect on the people who curate the models behind these tools. 
+
+## So far: Impact on society
+- Ethical impact
+- Legal impact
+- Environmental impact
+- Social impact
+- Human rights and labor rights
+- The Dunning-Kruger effect
+
+![](https://resilienceshield.com/app/uploads/2021/05/Mt-Stupid-1-1.png){width="25%"}
+
+## References

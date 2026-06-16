@@ -79,8 +79,7 @@ Truths are boring, but they are convenient.
 - however, for most problems truths require a lot of calculations, tallying or a complete census. 
 - therefore, a proxy of the truth is in most cases sufficient 
 - An example for such a proxy is a **sample**
-- Samples are widely used and have been for a long time<footnote>See [Jelke Bethlehem's CBS discussion paper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjkyPTCs4L3AhUCuKQKHUpmBvIQFnoECAMQAw&url=https%3A%2F%2Fwww.cbs.nl%2F-%2Fmedia%2Fimported%2Fdocuments%2F2009%2F07%2F2009-15-x10-pub.pdf&usg=AOvVaw3BpUW2s_k0MB5yH1o-QGf2) for an overview of the history of sampling within survey statistics</footnote>
-
+- Samples are widely used and have been for a long time$^1$
 
 ::: footer 
 $^1$ See [Jelke Bethlehem's CBS discussion paper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjkyPTCs4L3AhUCuKQKHUpmBvIQFnoECAMQAw&url=https%3A%2F%2Fwww.cbs.nl%2F-%2Fmedia%2Fimported%2Fdocuments%2F2009%2F07%2F2009-15-x10-pub.pdf&usg=AOvVaw3BpUW2s_k0MB5yH1o-QGf2) for an overview of the history of survey sampling
@@ -389,7 +388,6 @@ We now have a new problem:
 What would be a simple solution to allowing for valid inferences on the incomplete sample? Would that solution work in practice?
 :::
 
-
 :::
 ::::
 
@@ -429,6 +427,7 @@ For example:
 6. Mixing bonafide observations with bonafide non-observations
 
 # Wat is dan de anatomie van een antwoord?
+
 ## De anatomie van een antwoord
 
 Een statistisch antwoord is meer dan een getal, tabel of modeloutput.

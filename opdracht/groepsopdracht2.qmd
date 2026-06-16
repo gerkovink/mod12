@@ -13,6 +13,10 @@ format:
     toc: true
     toc-depth: 3
     embed-resources: true
+  docx:
+    number-sections: false
+    toc: true
+    toc-depth: 3
 ---
 
 # Structuur

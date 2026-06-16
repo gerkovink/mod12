@@ -17,8 +17,6 @@ format:
 
 ::: callout-tip
 ## Hoorcollege 16 juni 2026
-+ Refereren toevoegen 
-
 Vandaag werken we verder aan de stap van maatschappelijk probleem naar onderzoeksontwerp. We kijken vooral naar het soort vraag dat je stelt en naar het soort antwoord dat je onderzoek redelijkerwijs kan geven. We besteden aandacht aan
 
 - verschillende typen statistische onderzoeksvragen
