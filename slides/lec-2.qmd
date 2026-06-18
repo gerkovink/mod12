@@ -414,146 +414,146 @@ On the other hand, if you are directly quoting or borrowing from another work, y
 - Use the abbreviation “p.” (for one page) or “pp.” (for multiple pages) before listing the page number(s)
 - Use a dash for page ranges. For example, you might write (James, 2021, p. 234) or (Box, 1976, pp. 792-793)
 
-# Impact of generative AI
+<!-- # Impact of generative AI -->
 
-## Who develops generative AI tools
+<!-- ## Who develops generative AI tools -->
 
-- Generative AI technologies are often developed by publicly traded companies with:
-    - Deep pockets
-    - Shareholders
-    - Motives and goals that may diverge from academic or public interests
+<!-- - Generative AI technologies are often developed by publicly traded companies with: -->
+<!--     - Deep pockets -->
+<!--     - Shareholders -->
+<!--     - Motives and goals that may diverge from academic or public interests -->
 
-- These technologies also require significant computing resources for training and operation
-  - This skews access and development to those with substantial resources.
-  - If you feel sad or overwhelmed by the low sense of control, read [Choose Your Weapon:
-Survival Strategies for Depressed AI Academics](https://ieeexplore.ieee.org/abstract/document/10458714)
+<!-- - These technologies also require significant computing resources for training and operation -->
+<!--   - This skews access and development to those with substantial resources. -->
+<!--   - If you feel sad or overwhelmed by the low sense of control, read [Choose Your Weapon: -->
+<!-- Survival Strategies for Depressed AI Academics](https://ieeexplore.ieee.org/abstract/document/10458714) -->
 
-::: {.footer}
-Togelius, J., & Yannakakis, G. N. (2024). Choose Your Weapon: Survival Strategies for Depressed AI Academics [Point of View]. Proceedings of the IEEE, 112(1), 4-11.
-:::
+<!-- ::: {.footer} -->
+<!-- Togelius, J., & Yannakakis, G. N. (2024). Choose Your Weapon: Survival Strategies for Depressed AI Academics [Point of View]. Proceedings of the IEEE, 112(1), 4-11. -->
+<!-- ::: -->
 
-## Impact on education
+<!-- ## Impact on education -->
 
-There is a finite number of options for dealing with generative AI in education. These options translate to the following *stages of AI grief*:
+<!-- There is a finite number of options for dealing with generative AI in education. These options translate to the following *stages of AI grief*: -->
 
-::: {.columns}
-::: {.column width="50%"}
-1. **Ignore** the existence of generative AI
-2. **Forbid** the use of generative AI
-3. **Circumnavigate** generative AI by using offline assessment modes like pen/paper exams or oral exams
-4. **Test around** Let students perform tasks that generative AI struggles with
-5. **Embrace** generative AI and allow it in course work
-6. **Rethink** the way we assess students and develop new assessment methodologies
-:::
-::: {.column width="50%"}
-![](https://respage.com/wp-content/uploads/2022/01/Why-Human-and-AI-Leasing-Agents-Need-Each-Other-to-Deliver-Excellent-Customer-Service-to-Prospects-1024x683.png){width="100%"}
-:::
-:::
+<!-- ::: {.columns} -->
+<!-- ::: {.column width="50%"} -->
+<!-- 1. **Ignore** the existence of generative AI -->
+<!-- 2. **Forbid** the use of generative AI -->
+<!-- 3. **Circumnavigate** generative AI by using offline assessment modes like pen/paper exams or oral exams -->
+<!-- 4. **Test around** Let students perform tasks that generative AI struggles with -->
+<!-- 5. **Embrace** generative AI and allow it in course work -->
+<!-- 6. **Rethink** the way we assess students and develop new assessment methodologies -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- ![](https://respage.com/wp-content/uploads/2022/01/Why-Human-and-AI-Leasing-Agents-Need-Each-Other-to-Deliver-Excellent-Customer-Service-to-Prospects-1024x683.png){width="100%"} -->
+<!-- ::: -->
+<!-- ::: -->
 
-## Futureproof education?
-::: {.callout-important appearance="simple"}
-# Could it be
-That our defined learning goals, our evaluations and the skills that we teach are not aligned with the future professional needs for our student body?
-:::
+<!-- ## Futureproof education? -->
+<!-- ::: {.callout-important appearance="simple"} -->
+<!-- # Could it be -->
+<!-- That our defined learning goals, our evaluations and the skills that we teach are not aligned with the future professional needs for our student body? -->
+<!-- ::: -->
 
-Lots of promises have been made for decades about the potential of AI to revolutionize education. Little proof is available.
+<!-- Lots of promises have been made for decades about the potential of AI to revolutionize education. Little proof is available. -->
 
-## Impact of AI on Cognitive Performance
+<!-- ## Impact of AI on Cognitive Performance -->
 
-![](img/lec-2/cogn1.png)
+<!-- ![](img/lec-2/cogn1.png) -->
 
-::: {.footer}
-[Heersmink, R. Use of large language models might affect our cognitive skills. Nat Hum Behav (2024)](https://doi.org/10.1038/s41562-024-01859-y)
-:::
+<!-- ::: {.footer} -->
+<!-- [Heersmink, R. Use of large language models might affect our cognitive skills. Nat Hum Behav (2024)](https://doi.org/10.1038/s41562-024-01859-y) -->
+<!-- ::: -->
 
-## Impact of AI on Cognitive Performance
-::: {.columns}
-::: {.column width="50%"}
-![](img/lec-2/cogn4.png)
-:::
-::: {.column width="50%"}
-![](img/lec-2/balance.webp)
-:::
-:::
+<!-- ## Impact of AI on Cognitive Performance -->
+<!-- ::: {.columns} -->
+<!-- ::: {.column width="50%"} -->
+<!-- ![](img/lec-2/cogn4.png) -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- ![](img/lec-2/balance.webp) -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.footer}
-[Habib, S., Vogel, T., Anli, X., & Thorne, E. (2024). How does generative artificial intelligence impact student creativity?. Journal of Creativity, 34(1), 100072.](https://doi.org/10.1016/j.yjoc.2023.100072)
-:::
+<!-- ::: {.footer} -->
+<!-- [Habib, S., Vogel, T., Anli, X., & Thorne, E. (2024). How does generative artificial intelligence impact student creativity?. Journal of Creativity, 34(1), 100072.](https://doi.org/10.1016/j.yjoc.2023.100072) -->
+<!-- ::: -->
 
-## Impact of AI on cognitive performance
-![](img/lec-2/cogn2.png)
-![](img/lec-2/cogn3.png)
+<!-- ## Impact of AI on cognitive performance -->
+<!-- ![](img/lec-2/cogn2.png) -->
+<!-- ![](img/lec-2/cogn3.png) -->
 
-::: {.footer}
-[Abbas, M., Jam, F.A. & Khan, T.I. Is it harmful or helpful? Examining the causes and consequences of generative AI usage among university students. <br> Int J Educ Technol High Educ 21, 10 (2024).]( https://doi.org/10.1186/s41239-024-00444-7)
-:::
+<!-- ::: {.footer} -->
+<!-- [Abbas, M., Jam, F.A. & Khan, T.I. Is it harmful or helpful? Examining the causes and consequences of generative AI usage among university students. <br> Int J Educ Technol High Educ 21, 10 (2024).]( https://doi.org/10.1186/s41239-024-00444-7) -->
+<!-- ::: -->
 
-## Ethical impact
+<!-- ## Ethical impact -->
 
-Many people are unaware of the ethical implications of using AI tools, apart from presenting AI-generated work as your own product. 
+<!-- Many people are unaware of the ethical implications of using AI tools, apart from presenting AI-generated work as your own product.  -->
 
-1. AI tools are often trained on data that is biased or incomplete, which can lead to biased or incorrect results. 
-2. AI tools have demonstrated to yield inaccurate, incomplete or false information. 
-  - This can happen when the AI tool perceives patterns or objects that are nonexistent, resulting in nonsensical or inaccurate output, often referred to as hallucinations [@ziwei; @alkaissi2023artificial; @athaluri2023exploring].
-  - Some resistance against the term hallucinations has emerged [@Ostergaard2023]. 
+<!-- 1. AI tools are often trained on data that is biased or incomplete, which can lead to biased or incorrect results.  -->
+<!-- 2. AI tools have demonstrated to yield inaccurate, incomplete or false information.  -->
+<!--   - This can happen when the AI tool perceives patterns or objects that are nonexistent, resulting in nonsensical or inaccurate output, often referred to as hallucinations [@ziwei; @alkaissi2023artificial; @athaluri2023exploring]. -->
+<!--   - Some resistance against the term hallucinations has emerged [@Ostergaard2023].  -->
 
-It is important to always use multiple sources to verify any bit of information. As a user of AI tools you should accept that **only you are responsible** for using, interpreting and curating AI-generated output. 
+<!-- It is important to always use multiple sources to verify any bit of information. As a user of AI tools you should accept that **only you are responsible** for using, interpreting and curating AI-generated output.  -->
 
-The age-old adage garbage in, garbage out holds here too: old biases and ideas may unwantedly be perpetuated by AI tools, thereby fueling divides, biases and stereotypes that we have tried so hard to remove.
+<!-- The age-old adage garbage in, garbage out holds here too: old biases and ideas may unwantedly be perpetuated by AI tools, thereby fueling divides, biases and stereotypes that we have tried so hard to remove. -->
 
-## Legal impact
-AI tools are often trained on data that is copyrighted or patented, which can lead to legal issues if the data is used without permission. To avoid such issues, when interacting with AI tools, users should protect intellectual property rights and copyright. 
+<!-- ## Legal impact -->
+<!-- AI tools are often trained on data that is copyrighted or patented, which can lead to legal issues if the data is used without permission. To avoid such issues, when interacting with AI tools, users should protect intellectual property rights and copyright.  -->
 
-When submitting prompts as **input to AI tools** it is important to ensure that
+<!-- When submitting prompts as **input to AI tools** it is important to ensure that -->
 
-- you are allowed to share the information in the prompt or have explicit permission
-- you are not infringing on any right associated with the information in the prompt
+<!-- - you are allowed to share the information in the prompt or have explicit permission -->
+<!-- - you are not infringing on any right associated with the information in the prompt -->
 
-Likewise, it is important to realize that no intellectual property or copyright may be infringed with using the **output of the AI tool**. The training of the AI tool happened on a large set of data; some of that data may have been used illegitimately. By using AI generated output you may plagiarize existing work or otherwise infringe on intellectual property rights.
+<!-- Likewise, it is important to realize that no intellectual property or copyright may be infringed with using the **output of the AI tool**. The training of the AI tool happened on a large set of data; some of that data may have been used illegitimately. By using AI generated output you may plagiarize existing work or otherwise infringe on intellectual property rights. -->
 
-This is a tricky scenario, as the nontransparent training of AI tools makes it challenging to prove that no IP is infringed with the realized output. However, one could argue that embedding AI tools in a normal scientific knowledge discovery scenario would minimize the change of any infringement. Such a route would result in a process where information from multiple sources is processed and curated by an actual human.
+<!-- This is a tricky scenario, as the nontransparent training of AI tools makes it challenging to prove that no IP is infringed with the realized output. However, one could argue that embedding AI tools in a normal scientific knowledge discovery scenario would minimize the change of any infringement. Such a route would result in a process where information from multiple sources is processed and curated by an actual human. -->
 
-## Environmental impact
-Are you aware of the impact that contemporary AI tools may have on the environment?
+<!-- ## Environmental impact -->
+<!-- Are you aware of the impact that contemporary AI tools may have on the environment? -->
 
-- Together with e.g. cloud storage and e-mail traffic, AI tools constitute a *hidden carbon footprint* that often escapes our awareness. 
+<!-- - Together with e.g. cloud storage and e-mail traffic, AI tools constitute a *hidden carbon footprint* that often escapes our awareness.  -->
 
-While it is not as apparent as airline travel, the impact of using AI tools may be far greater than you think! 
+<!-- While it is not as apparent as airline travel, the impact of using AI tools may be far greater than you think!  -->
 
-- Decarbonizing the energy usage alone is not enough to sustainably implement AI tools in our everyday life [@berthelot2023]. 
-- Using generative AI Tools has been estimated to account for up to 25 times the energy emissions that are generated from training the models [@chien2023]. 
+<!-- - Decarbonizing the energy usage alone is not enough to sustainably implement AI tools in our everyday life [@berthelot2023].  -->
+<!-- - Using generative AI Tools has been estimated to account for up to 25 times the energy emissions that are generated from training the models [@chien2023].  -->
 
-While the environmental impact can ultimately be significantly lowered by moving from server-based generative AI to on-chip generative AI, there will always be a cost of using AI tools. 
+<!-- While the environmental impact can ultimately be significantly lowered by moving from server-based generative AI to on-chip generative AI, there will always be a cost of using AI tools.  -->
 
-<!-- Many people have thought about how AI will impact human life and Hollywood has monetized its threat to human existence. Not many may have realized that our lives may currently be at risk through AI-induced global warming. -->
+<!-- <!-- Many people have thought about how AI will impact human life and Hollywood has monetized its threat to human existence. Not many may have realized that our lives may currently be at risk through AI-induced global warming. --> -->
 
 
-## Social impact
-In recent years many idealistic promises have been made about the potential of AI to improve human life. 
+<!-- ## Social impact -->
+<!-- In recent years many idealistic promises have been made about the potential of AI to improve human life.  -->
 
-- Widespread access for everyone to AI models and tools has been said to contribute to equality, allowing everybody to access high quality information and interact witht the same technology. 
-- AI tools are neutral and can be used to harm people and spread misinformation. 
-- AI tools can be used to manipulate people, to deepen existing biases, to incite hate speech or to discriminate against people, evidence of which has been found in the use of AI tools in hiring processes and the potential for election manipulation [@baldassarre2023; @lyttonAIHiringTools2024; @aliswensonElectionDisinformationTakes2024; @mekelapanditharatneHowAIPuts2023]. 
+<!-- - Widespread access for everyone to AI models and tools has been said to contribute to equality, allowing everybody to access high quality information and interact witht the same technology.  -->
+<!-- - AI tools are neutral and can be used to harm people and spread misinformation.  -->
+<!-- - AI tools can be used to manipulate people, to deepen existing biases, to incite hate speech or to discriminate against people, evidence of which has been found in the use of AI tools in hiring processes and the potential for election manipulation [@baldassarre2023; @lyttonAIHiringTools2024; @aliswensonElectionDisinformationTakes2024; @mekelapanditharatneHowAIPuts2023].  -->
 
-Aside from the potential for AI to incite societal harm on a fundamental level, it can also disrupt society on a more existential level. The widespread use of AI tools may lead to a loss of jobs, as AI tools can automate tasks that were previously done by humans. This can lead to a loss of income and a decrease in the quality of life for many people. 
+<!-- Aside from the potential for AI to incite societal harm on a fundamental level, it can also disrupt society on a more existential level. The widespread use of AI tools may lead to a loss of jobs, as AI tools can automate tasks that were previously done by humans. This can lead to a loss of income and a decrease in the quality of life for many people.  -->
 
-The zeitgeist of contemporary AI tools pairs a strong call for regulatory action with a warning for over-regulation. 
+<!-- The zeitgeist of contemporary AI tools pairs a strong call for regulatory action with a warning for over-regulation.  -->
 
-## Human rights and labor rights
-There is [evidence](https://time.com/6247678/openai-chatgpt-kenya-workers/) that the workers who curate these models are treated unfairly or even inhumanely by their employers. 
+<!-- ## Human rights and labor rights -->
+<!-- There is [evidence](https://time.com/6247678/openai-chatgpt-kenya-workers/) that the workers who curate these models are treated unfairly or even inhumanely by their employers.  -->
 
-- This [interview](https://blogs.lse.ac.uk/businessreview/2024/03/25/madhumita-murgia-ai-can-do-harm-when-people-dont-have-a-voice/) also paints a good picture of how and where AI work can harm people. 
+<!-- - This [interview](https://blogs.lse.ac.uk/businessreview/2024/03/25/madhumita-murgia-ai-can-do-harm-when-people-dont-have-a-voice/) also paints a good picture of how and where AI work can harm people.  -->
 
-This means that the use of AI tools may not only effect the networks of the people who use them, but also have an effect on the people who curate the models behind these tools. 
+<!-- This means that the use of AI tools may not only effect the networks of the people who use them, but also have an effect on the people who curate the models behind these tools.  -->
 
-## So far: Impact on society
-- Ethical impact
-- Legal impact
-- Environmental impact
-- Social impact
-- Human rights and labor rights
-- The Dunning-Kruger effect
+<!-- ## So far: Impact on society -->
+<!-- - Ethical impact -->
+<!-- - Legal impact -->
+<!-- - Environmental impact -->
+<!-- - Social impact -->
+<!-- - Human rights and labor rights -->
+<!-- - The Dunning-Kruger effect -->
 
-![](https://resilienceshield.com/app/uploads/2021/05/Mt-Stupid-1-1.png){width="25%"}
+<!-- ![](https://resilienceshield.com/app/uploads/2021/05/Mt-Stupid-1-1.png){width="25%"} -->
 
-## References
+<!-- ## References -->
