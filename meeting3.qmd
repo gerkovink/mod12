@@ -29,7 +29,7 @@ Vandaag besteden we aandacht aan data. We zullen zien dat data niet altijd te ve
 
 In het vorige hoorcollege hebben we al stil gestaan bij mogelijke beperkingen. Vandaag gaan we daarom in dat dergelijke beperkingen onderdeel zouden moeten zijn van het onderzoek, en niet enkel een -afterthought- in de discussie van ons onderzoeksverslag.
 
-De slides voor het hoorcollege kunt je [hier vinden](slides/lec-3.html).
+De slides voor het hoorcollege kunt je [hier vinden](slides/lec-4.html).
 
 :::
 

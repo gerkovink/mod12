@@ -30,7 +30,7 @@ Vandaag kijken we naar reproduceerbaar onderzoek. We leren hoe we er voor kunnen
 
 Ook besteden we aandacht aan het idee dat reproduceerbaarheid niet perfect hoeft te zijn om waardevol te zijn. Het belangrijkste is traceerbaarheid: wat is er gedaan, waarom is dat gedaan, waar staat het beschreven, en waar komt de output in het rapport vandaan?
 
-De slides voor het hoorcollege kunt je [hier vinden](slides/lec-4.html).
+De slides voor het hoorcollege kunt je [hier vinden](slides/lec-3.html).
 :::
 
 ## Groepsopdracht
