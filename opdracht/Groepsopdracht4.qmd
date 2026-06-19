@@ -1,6 +1,6 @@
 ---
 title: Groepsopdracht 4
-subtitle: "Van rommelige map naar begrijpelijk onderzoeksarchief"
+subtitle: "Van rommelige map naar inzichtelijk onderzoeksarchief"
 author: 
   - name: "Gerko Vink"
     orcid: "0000-0001-9767-1924"
@@ -13,10 +13,10 @@ format:
     toc: true
     toc-depth: 3
     embed-resources: true
-  # docx:
-  #   number-sections: false
-  #   toc: true
-  #   toc-depth: 3
+  docx:
+    number-sections: false
+    toc: true
+    toc-depth: 3
 ---
 
 # Structuur

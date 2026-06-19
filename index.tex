@@ -1,0 +1,1781 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Module 12: Research Project},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Module 12: Research Project}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{subtitle}
+\author{Gerko Vink}
+\date{2026-06-19}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\bookmarksetup{startatroot}
+
+\chapter*{Studieprogramma}\label{studieprogramma}
+\addcontentsline{toc}{chapter}{Studieprogramma}
+
+\markboth{Studieprogramma}{Studieprogramma}
+
+Dit \href{https://quarto.org}{Quarto} boek bevat het cursusmateriaal en
+de informatie voor \textbf{Module 12: Research Project}. De genummerde
+hoofdstukken in dit boek komen overeen met de gecombineerde hoor- en
+werk-colleges.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Week 1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Datum
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Locatie
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Chapter~\ref{sec-mt1} & 15 Juni & IGSR \\
+Hoorcollege uitgevallen & 16 Juni & IGSR \\
+Geen Hoorcollege & 17 Juni & - \\
+Chapter~\ref{sec-mt2} & 18 Juni & IGSR \\
+Chapter~\ref{sec-mt4} & 19 Juni & IGSR \\
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Week 2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Datum
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Locatie
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Chapter~\ref{sec-mt3} & 22 Juni & IGSR \\
+Chapter~\ref{sec-mt5} Chapter~\ref{sec-mt6} & 23 Juni & IGSR \\
+Geen Hoorcollege & 24 Juni & - \\
+Chapter~\ref{sec-mt7} & 25 Juni & IGSR \\
+Chapter~\ref{sec-mt8} & 26 Juni & IGSR \\
+\end{longtable}
+}
+
+\bookmarksetup{startatroot}
+
+\chapter*{Module handleiding}\label{module-handleiding}
+\addcontentsline{toc}{chapter}{Module handleiding}
+
+\markboth{Module handleiding}{Module handleiding}
+
+\section*{Cursusgegevens}\label{cursusgegevens}
+\addcontentsline{toc}{section}{Cursusgegevens}
+
+\markright{Cursusgegevens}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2982}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7018}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Vakcode & AS\_12 \\
+Opleiding & Master Applied Statistics \\
+Leerlijn/Vakgroep/Discipline & Data-Analyse \\
+Aantal studiepunten & 8 ECTs \\
+Semester en studiefase & Jaar 2, semester 2 \\
+Contacturen per semester & 40 \\
+College periode & 15 juni -- 26 juni 2026 \\
+Werkcolleges+studievrije periode & 29 juni -- 24 juli 2026 \\
+Onderwijsvrij en Tentamen & \\
+Hertentamenperiode & Niet van toepassing \\
+Vereiste voorkennis & Afgeronde Wetenschappelijke Bachelor/ Premaster
+Wetenschappelijke Vorming IGSR \\
+Docent(en) + contactgegevens & Dr.Gerko Vink,
+\href{mailto:g.vink@uu.nl}{\nolinkurl{g.vink@uu.nl}} \\
+Spreekuur docent(en) & Op afspraak \\
+\end{longtable}
+}
+
+\section*{Inleiding}\label{inleiding}
+\addcontentsline{toc}{section}{Inleiding}
+
+\markright{Inleiding}
+
+Deze studiehandleiding beschrijft de module Research Project (AS-12) van
+de masteropleiding Applied Statistics. Deze module vormt een belangrijk
+sluitstuk van de opleiding en heeft als doel studenten op een praktische
+en geïntegreerde wijze voor te bereiden op het uitvoeren van zelfstandig
+wetenschappelijk onderzoek en de verdere uitwerking van hun
+masterthesis. Binnen deze module passen studenten de kennis en
+vaardigheden toe die zij gedurende de opleiding hebben opgedaan, met
+bijzondere aandacht voor onderzoeksopzet, dataverzameling, statistische
+analyse en wetenschappelijke rapportage.
+
+Het Research Project is opgezet middels een combinatie van een
+groepsopdracht en individuele opdrachten waarbij studenten zowel
+gezamenlijk een relevant onderzoeksthema selecteren en vervolgens zowel
+individueel als in groepsverband dit nader uitwerken. Studenten
+verkennen verschillende onderwerpen van wetenschappelijke en
+maatschappelijke relevantie, verzamelen theoretische literatuur,
+ontwikkelen een onderzoeksdesign en voeren empirisch onderzoek uit op
+basis van primaire of secundaire data. Daarbij ligt de nadruk op het
+correct toepassen van statistische analysemethoden en het interpreteren
+van onderzoeksresultaten binnen een wetenschappelijk kader.
+
+De module behandelt het volledige onderzoeksproces, vanaf de formulering
+van een probleemstelling en onderzoeksvraag tot aan de presentatie van
+onderzoeksbevindingen. Studenten leren een methodologisch verantwoord
+onderzoeksplan op te stellen volgens internationale wetenschappelijke
+standaarden en ontwikkelen vaardigheden in dataverwerking, statistische
+analyse, interpretatie van resultaten en het trekken van onderbouwde
+conclusies. Tevens wordt aandacht besteed aan het kritisch reflecteren
+op het eigen onderzoek, het koppelen van bevindingen aan bestaande
+wetenschappelijke theorieën, en het formuleren van de maatschappelijke
+en wetenschappelijke relevantie van het onderzoek.
+
+Gedurende het project werken studenten in multidisciplinaire teams en
+dragen zij gezamenlijk verantwoordelijkheid voor planning, samenwerking,
+taakverdeling en het naleven van de regels van wetenschappelijke
+integriteit. De module stimuleert studenten om zelfstandig en onder
+beperkte begeleiding onderzoek uit te voeren, waarbij zowel academische
+als professionele vaardigheden verder worden ontwikkeld. Daarnaast wordt
+expliciet aandacht besteed aan mondelinge en schriftelijke
+communicatievaardigheden, waaronder het schrijven van een
+onderzoeksrapport en het presenteren van onderzoeksresultaten aan
+academici en medestudenten.
+
+De module bestaat uit hoorcolleges, werkcolleges en begeleidingsmomenten
+waarin studenten stapsgewijs worden ondersteund bij de uitvoering van
+hun onderzoek. De beoordeling van de module vindt plaats op basis van
+een onderzoeksrapport (Research Project Report), dat 90\% van het
+eindcijfer vertegenwoordigt, en een mondelinge presentatie, die meetelt
+voor 10\% van het eindcijfer.
+
+In deze handleiding zijn tevens de leerdoelen van de module opgenomen,
+evenals een overzicht van de vakinhoud, het programma van de colleges,
+de werkwijze van het onderzoeksproject en een toelichting op de toetsing
+en beoordelingscriteria.
+
+\section*{Wijze van toetsen en vaststellen
+eindcijfer}\label{wijze-van-toetsen-en-vaststellen-eindcijfer}
+\addcontentsline{toc}{section}{Wijze van toetsen en vaststellen
+eindcijfer}
+
+\markright{Wijze van toetsen en vaststellen eindcijfer}
+
+De beoordeling van Module 12 (Research Project) vindt plaats op basis
+van een groepsgericht onderzoeksproject dat bestaat uit een schriftelijk
+onderzoeksrapport en een mondelinge presentatie. Gedurende de module
+werken studenten in groepen aan het opzetten, uitvoeren, analyseren en
+rapporteren van een wetenschappelijk onderzoekstraject.
+
+Het eindcijfer van de module wordt als volgt vastgesteld:
+
+\begin{itemize}
+\tightlist
+\item
+  Research Project Report: 85\%
+\item
+  Persoonlijke reflectie op de cursus, het proces en de samenwerking met
+  medestudenten: 5\%
+\item
+  Mondelinge presentatie: 10\%
+\end{itemize}
+
+Het onderzoeksrapport vormt het belangrijkste onderdeel van de
+beoordeling en omvat onder andere de probleemstelling, onderzoeksvragen,
+theoretisch kader, methodologie, dataverzameling en -analyse,
+interpretatie van resultaten, discussie en conclusies. Bij de
+beoordeling wordt gelet op de methodologische kwaliteit van het
+onderzoek, de correcte toepassing van statistische analysetechnieken, de
+wetenschappelijke onderbouwing, de interpretatie van resultaten, de
+academische schrijfstijl en de mate van kritische reflectie.
+
+De mondelinge presentatie richt zich op het professioneel presenteren en
+verdedigen van het uitgevoerde onderzoek aan medestudenten en/of
+academici. Hierbij worden onder andere de inhoudelijke kwaliteit van de
+presentatie, academische presentatievaardigheden, structuur,
+argumentatie en beantwoording van vragen beoordeeld. De beoordeling
+geschiedt aan de hand van vooraf vastgestelde beoordelingscriteria en
+rubrics die gedurende de module aan de studenten beschikbaar worden
+gesteld.
+
+\subsection*{Cesuur}\label{cesuur}
+\addcontentsline{toc}{subsection}{Cesuur}
+
+De student haalt deze module met een cijfer van 5.5 of meer. Indien een
+student de toets niet heeft gehaald, dan komt die in aanmerking voor een
+herkansing. Voor het deelnemen zijn er geen bijkomende voorwaarden dan
+die vermeld zijn in de OER waaronder het tijdig intekenen voor deelname.
+
+\subsection*{Collegemateriaal}\label{collegemateriaal}
+\addcontentsline{toc}{subsection}{Collegemateriaal}
+
+• Powerpoint slides lecturer • A selection of relevant online and free
+reference materials (scientific articles/journals)
+
+\bookmarksetup{startatroot}
+
+\chapter*{Teaching team}\label{teaching-team}
+\addcontentsline{toc}{chapter}{Teaching team}
+
+\markboth{Teaching team}{Teaching team}
+
+\section*{Docent}\label{docent}
+\addcontentsline{toc}{section}{Docent}
+
+\markright{Docent}
+
+\includegraphics[width=2.08333in,height=\textheight,keepaspectratio]{images/team/gerko.png}
+
+Als psycholoog ben ik per ongeluk statisticus geworden. Ik heb een
+voorliefde voor het overbrengen van informatie en lesgeven, en doe dit
+vooral over mijn expertise in rekenen, wiskunde, programmeren en
+kunstmatige intelligentie (AI). Ik geef lezingen en cursussen over de
+hele wereld, maar vooral in Utrecht. Daarnaast maak ik als wetenschapper
+software en web-apps zodat studenten, overheden en onderzoekers die niet
+zoveel kaas hebben gegeten van lastige wiskundige modellen, toch de
+state-of-the-art kunnen gebruiken of begrijpen. Ook geef ik in Utrecht
+leiding aan het universiteitsbrede consortium over de impact van AI in
+onderwijs. Je kunt me bereiken via e-mail:
+\href{mailto:g.vink@uu.nl}{\nolinkurl{g.vink@uu.nl}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\bookmarksetup{startatroot}
+
+\chapter*{Deliverables}\label{deliverables}
+\addcontentsline{toc}{chapter}{Deliverables}
+
+\markboth{Deliverables}{Deliverables}
+
+Voor deze module werken studenten aan een toegepast statistisch
+onderzoeksproject. Het eindproduct bestaat uit:
+
+\begin{itemize}
+\tightlist
+\item
+  een schriftelijk research project report
+\item
+  een reflectie op de cursus, het proces en de samenwerking met
+  medestudenten
+\item
+  een mondelinge presentatie
+\end{itemize}
+
+Deze producten worden beoordeeld door de docenten en vormen samen het
+eindcijfer voor de module.
+
+Het research project report telt voor 85\% mee in het eindcijfer. De
+reflectie voor 5\%. De mondelinge presentatie telt voor 10\% mee.
+
+\section*{Doel van de deliverables}\label{doel-van-de-deliverables}
+\addcontentsline{toc}{section}{Doel van de deliverables}
+
+\markright{Doel van de deliverables}
+
+Het doel van het deliverables is dat studenten laten zien dat zij een
+maatschappelijk of wetenschappelijk relevant probleem kunnen vertalen
+naar een uitvoerbaar statistisch onderzoeksproject. Daarbij moeten ze
+aantonen dat zij zelfstandig en op academisch niveau kunnen werken met
+literatuur, data, statistische analyse, interpretatie, rapportage en
+reflectie.
+
+Het project bereidt studenten voor op het zelfstandig uitvoeren van
+onderzoek, zoals verwacht wordt bij de masterthesis en in professionele
+statistische functies binnen overheid, NGO's, onderzoeksinstituten of
+vergelijkbare organisaties.
+
+\section*{Onderzoeksproject}\label{sec-deliv}
+\addcontentsline{toc}{section}{Onderzoeksproject}
+
+\markright{Onderzoeksproject}
+
+Studenten werken aan een onderzoeksvraag die aansluit bij een relevant
+maatschappelijk, beleidsmatig of wetenschappelijk thema. De
+onderzoeksvraag wordt uitgewerkt aan de hand van beschikbare empirische
+data of secundaire databestanden. Het project kan bijvoorbeeld
+betrekking hebben op thema's als officiële statistiek, onderwijs,
+volksgezondheid, economie, publieke financiën, milieu, ecologie,
+watermanagement, arbeidsmarkt, bestuur of maatschappelijke ontwikkeling.
+
+De student moet aantonen dat de gekozen onderzoeksvraag past bij de
+beschikbare data en dat de gebruikte statistische aanpak geschikt is om
+de onderzoeksvraag op een verantwoorde manier te beantwoorden.
+
+\subsection*{Schriftelijk Research Project Report}\label{sec-resrep}
+\addcontentsline{toc}{subsection}{Schriftelijk Research Project Report}
+
+Het schriftelijke rapport is het belangrijkste eindproduct van de
+module. Het rapport moet een samenhangend academisch onderzoeksverslag
+zijn, waarin de student duidelijk maakt wat is onderzocht, waarom dit
+relevant is, welke data zijn gebruikt, welke analyses zijn uitgevoerd,
+wat de resultaten betekenen en welke conclusies verantwoord kunnen
+worden getrokken.
+
+Het rapport bevat ten minste de volgende onderdelen:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Titel en samenvatting (abstract): \emph{Een duidelijke titel en een
+  korte samenvatting van het onderzoek, de gebruikte data, de
+  belangrijkste resultaten en de conclusie.}
+\item
+  Introductie en probleemstelling: \emph{Een beschrijving van het
+  maatschappelijke, beleidsmatige of wetenschappelijke probleem dat
+  centraal staat. De student legt uit waarom het onderwerp relevant is
+  en voor wie het onderzoek van belang is.}
+\item
+  Onderzoeksvraag en doelstelling: \emph{Een heldere formulering van de
+  centrale onderzoeksvraag en eventuele deelvragen. De vraag moet
+  onderzoekbaar zijn met de beschikbare data en moet aansluiten bij het
+  gekozen thema.}
+\item
+  Literatuur en theoretisch kader: \emph{Een beknopte bespreking van
+  relevante literatuur, theorieën, eerdere onderzoeken en/of
+  beleidsdocumenten. De student laat zien hoe bestaande kennis helpt om
+  de onderzoeksvraag, variabelen, verwachtingen en analysekeuzes te
+  onderbouwen.}
+\item
+  Data en datakwaliteit: \emph{Een beschrijving van het gebruikte
+  databestand of de gebruikte databestanden. Hierbij wordt aandacht
+  besteed aan de herkomst van de data, de populatie, de steekproef of
+  selectie, de meetinstrumenten, de belangrijkste variabelen,
+  ontbrekende waarden, eventuele wegingen, beperkingen en andere
+  aspecten van datakwaliteit.}
+\item
+  Methode en analyseplan: \emph{Een uitleg van de gekozen statistische
+  aanpak. De student verantwoordt waarom de gebruikte methode past bij
+  de onderzoeksvraag, de aard van de data en het type conclusie dat men
+  wil trekken. Ook wordt beschreven hoe de data zijn voorbereid,
+  opgeschoond en geanalyseerd.}
+\item
+  Resultaten: \emph{Een overzichtelijke presentatie van de belangrijkste
+  resultaten, met relevante tabellen en/of figuren. De student
+  presenteert niet alleen statistische output, maar geeft ook een
+  duidelijke interpretatie van wat de resultaten betekenen.}
+\item
+  Discussie: \emph{Een kritische bespreking van de resultaten in relatie
+  tot de onderzoeksvraag, literatuur en maatschappelijke context. De
+  student bespreekt mogelijke verklaringen, beperkingen van het
+  onderzoek, aannames, onzekerheden en alternatieve interpretaties.}
+\item
+  Conclusie en aanbevelingen: Een beknopt antwoord op de
+  onderzoeksvraag. \emph{De conclusie moet volgen uit de data en
+  analyses. Waar passend formuleert de student aanbevelingen voor
+  beleid, praktijk, vervolgonderzoek of dataverzameling.}
+\item
+  Reflectie op reproduceerbaarheid en wetenschappelijke integriteit:
+  \emph{De student beschrijft hoe het onderzoek reproduceerbaar en
+  controleerbaar is gemaakt. Denk aan een duidelijke projectstructuur,
+  documentatie van databewerkingen, analysecode of syntax,
+  beslislogboek, bronvermelding en verantwoording van keuzes. Ook wordt
+  aandacht besteed aan ethiek, vertrouwelijkheid en verantwoord gebruik
+  van data.}
+\item
+  Referenties en bijlagen: \emph{Alle gebruikte literatuur, datasets,
+  rapporten en andere bronnen worden correct vermeld. Bijlagen kunnen
+  bestaan uit aanvullende tabellen, codeboeken, analysecode, syntax,
+  logboeken of extra documentatie.}
+\end{enumerate}
+
+\subsection*{Reproduceerbaar onderzoeksarchief}\label{sec-archive}
+\addcontentsline{toc}{subsection}{Reproduceerbaar onderzoeksarchief}
+
+Naast het geschreven rapport wordt verwacht dat studenten hun
+onderzoeksproces voldoende documenteren. De docent moet kunnen nagaan
+hoe de student van ruwe data en onderzoeksvraag tot resultaten en
+conclusie is gekomen.
+
+Het onderzoeksarchief bevat idealiter:
+
+\begin{itemize}
+\tightlist
+\item
+  een korte README met uitleg over de projectstructuur;
+\item
+  het gebruikte databestand, of een duidelijke verwijzing naar de bron
+  als de data niet gedeeld mogen worden;
+\item
+  een codeboek of beschrijving van de gebruikte variabelen;
+\item
+  analysecode, syntax of een duidelijk stappenplan van de uitgevoerde
+  analyses;
+\item
+  een logboek van databewerkingen, hercoderingen en gemaakte keuzes;
+\item
+  tabellen en figuren die in het rapport zijn gebruikt;
+\item
+  de definitieve versie van het rapport en de presentatie.
+\end{itemize}
+
+Wanneer data vertrouwelijk zijn of niet gedeeld mogen worden, beschrijft
+de student duidelijk hoe toegang tot de data is geregeld en welke
+onderdelen van het archief wel gedeeld kunnen worden.
+
+\subsection*{Mondelinge presentatie}\label{sec-pres}
+\addcontentsline{toc}{subsection}{Mondelinge presentatie}
+
+Aan het einde van de gecombineerde hoor- en werk-collegereeks
+presenteren studenten hun (voorlopig) onderzoek aan docenten en
+medestudenten. De presentatie is bedoeld om de kern van het onderzoek
+helder, professioneel en academisch verantwoord over te brengen.
+
+De presentatie bevat ten minste:
+
+\begin{itemize}
+\tightlist
+\item
+  het onderwerp en de relevantie van het onderzoek;
+\item
+  de centrale onderzoeksvraag;
+\item
+  een korte beschrijving van de gebruikte data;
+\item
+  de gekozen analysemethode;
+\item
+  de belangrijkste resultaten;
+\item
+  de conclusie;
+\item
+  de beperkingen van het onderzoek;
+\item
+  eventuele aanbevelingen;
+\item
+  beantwoording van vragen uit het publiek.
+\end{itemize}
+
+De presentatie moet begrijpelijk zijn voor een academisch publiek, maar
+hoeft niet onnodig technisch te zijn. Studenten moeten laten zien dat
+zij hun eigen analyse kunnen uitleggen, verdedigen en kritisch kunnen
+bespreken.
+
+\subsection*{Persoonlijke reflectie}\label{sec-refl}
+\addcontentsline{toc}{subsection}{Persoonlijke reflectie}
+
+Studenten wordt ook geacht om een persoonlijke reflectie op het vak en
+op de samenwerking met medestudenten in te leveren. In deze reflectie
+moet worden aangegeven hoe men het vak heeft ervaren, wat men geleerd en
+ervaren heeft uit de lesstof, de hoorcolleges, het project, de
+presentatie en de samenwerking met medestudenten.
+
+\section*{Beoordeling}\label{beoordeling}
+\addcontentsline{toc}{section}{Beoordeling}
+
+\markright{Beoordeling}
+
+Bij de beoordeling wordt onder andere gelet op:
+
+\begin{itemize}
+\tightlist
+\item
+  helderheid en relevantie van de onderzoeksvraag;
+\item
+  kwaliteit van het onderzoeksdesign;
+\item
+  gebruik en verwerking van relevante literatuur;
+\item
+  correcte omgang met data en datakwaliteit;
+\item
+  passende toepassing van statistische methoden;
+\item
+  juistheid en helderheid van de interpretatie;
+\item
+  kwaliteit van tabellen, figuren en rapportage;
+\item
+  kritische reflectie op aannames, beperkingen en onzekerheid;
+\item
+  reproduceerbaarheid en transparantie van het onderzoeksproces;
+\item
+  wetenschappelijke integriteit en zorgvuldig brongebruik;
+\item
+  maatschappelijke en/of wetenschappelijke relevantie;
+\item
+  academische schrijfstijl en structuur;
+\item
+  kwaliteit van de mondelinge presentatie en beantwoording van vragen.
+\end{itemize}
+
+Een goed report en een kundige presentatie geven niet alleen
+statistische resultaten, maar laat ook zien waarom de analyse een
+verantwoord antwoord geeft op de onderzoeksvraag, wat de beperkingen van
+dat antwoord zijn, en hoe het onderzoek gecontroleerd of gereproduceerd
+kan worden.
+
+\bookmarksetup{startatroot}
+
+\chapter*{Regels voor GenAI}\label{regels-voor-genai}
+\addcontentsline{toc}{chapter}{Regels voor GenAI}
+
+\markboth{Regels voor GenAI}{Regels voor GenAI}
+
+Je mag generatieve AI gebruiken in deze cursus, maar alleen als je de
+onderstaande tekst goed hebt gelezen.
+
+\section*{Auteursrecht en intellectueel
+eigendom}\label{auteursrecht-en-intellectueel-eigendom}
+\addcontentsline{toc}{section}{Auteursrecht en intellectueel eigendom}
+
+\markright{Auteursrecht en intellectueel eigendom}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Weet je wat je wel en niet mag invoeren?}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+In de wetenschappelijk onderzoek en onderwijs vinden we ethiek,
+eerlijkheid en de waarden van open wetenschap zeer belangrijk. Deze
+principes vormen de basis van onze academische gemeenschap. Ze sturen
+zowel ons onderwijs als onze zoektocht naar kennis.
+
+Nu AI-tools steeds beter worden en steeds vaker worden gebruikt, is het
+belangrijk om deze waarden te blijven bewaken. Er is veel aandacht voor
+wat AI-tools produceren. Maar ik wil hier de aandacht vestigen op een
+ander belangrijk punt: het onterecht gebruiken van materiaal dat wij
+invoeren in deze tools.
+
+Veel mensen gebruiken AI alsof zij in de privacy van hun eigen computer
+of telefoon werken. Dat gevoel van privacy kan misleidend zijn. Daardoor
+kunnen mensen informatie invoeren die niet van hen is, die zij niet
+mochten delen, of die vertrouwelijk had moeten blijven. Om onze
+integriteit te beschermen en respectvol om te gaan met intellectueel
+eigendom, moeten we voorzichtig zijn met wat we delen met AI-tools. Let
+daarom op het volgende:
+
+\begin{itemize}
+\tightlist
+\item
+  Voer geen opdrachten, cursusmateriaal, wetenschappelijke manuscripten
+  of ander werk in zonder expliciete toestemming van de eigenaar.
+\item
+  Gebruik AI-tools niet om elkaars werk te verwerken, samen te vatten,
+  te beoordelen of te evalueren, tenzij je toestemming hebt van de
+  auteur.
+\end{itemize}
+
+Door deze richtlijnen te volgen, beschermen en respecteren we zowel het
+creatieve werk als het intellectuele eigendom binnen onze gemeenschap.
+
+\end{tcolorbox}
+
+\section*{Hoe zit het met deze
+cursus?}\label{hoe-zit-het-met-deze-cursus}
+\addcontentsline{toc}{section}{Hoe zit het met deze cursus?}
+
+\markright{Hoe zit het met deze cursus?}
+
+Het materiaal in deze cursus is gemaakt door Gerko en zijn team. Zij
+bezitten het auteursrecht. Het intellectuele eigendom ligt bij de
+Universiteit Utrecht. Afbeeldingen zijn zelf gemaakt, direct gelinkt, of
+gegenereerd met AI-tools. Dit gezegd hebbende: het cursusmateriaal bevat
+geen informatie die buiten het wettelijk toegestane gebruik van
+auteursrechtelijk beschermd materiaal in een academische context valt.
+Het bevat ook geen informatie die niet openbaar beschikbaar is of die
+geen onderdeel zou mogen zijn van het publieke domein.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Je mag alle inhoud uit deze cursus gebruiken --- inclusief namen van
+docenten en medewerkers --- en als input geven aan generatieve AI-tools,
+met de volgende uitzondering:
+
+\begin{itemize}
+\tightlist
+\item
+  Je moet ervoor zorgen dat de inhoud niet wordt gebruikt om het
+  AI-model verder te trainen.
+\end{itemize}
+
+Als je niet weet hoe je training van input kan uitsluiten, mag je geen
+AI gebruiken!
+
+\end{tcolorbox}
+
+\section*{Mijn advies}\label{mijn-advies}
+\addcontentsline{toc}{section}{Mijn advies}
+
+\markright{Mijn advies}
+
+Generatieve AI kan een goede assistent zijn bij het maken van taal die
+context lijkt te hebben en goed geschreven oogt. Veel vaardigheden die
+we in deze cursus behandelen, zijn afhankelijk van taal en van het
+kunnen samenbrengen van informatie. Daardoor kan generatieve AI heel
+behulpzaam lijken. Maar een vaardigheid die sterk op taal gebaseerd is,
+leer je vooral door te oefenen. Wetenschappelijk onderzoek heeft
+aangetoond dat wanneer je het oefenen achterwege laat en AI je
+\emph{oefening} laat doen, je leeropbrengst niet duurzaam is. Sterker
+nog, wanneer je afhankelijk wordt van GenAI, kan dat je ontwikkeling op
+de lange termijn juist belemmeren. In extreme gevallen kun je zelfs
+ongezond afhankelijk worden van AI.
+
+Daarom adviseren we je om ook actief in gesprek te gaan met je
+medestudenten, docenten, en andere betrouwbare bronnen op het internet.
+Zo ontwikkel je jezelf van iemand die vooral informatie opneemt tot
+iemand die ook kennis kan verwerken en die kennis kan delen. In
+onderwijstermen: als je aan anderen kunt uitleggen wat je doet en waarom
+je het zo doet, ben je gegroeid van student naar meester. Pas wanneer je
+deze metacognitieve vaardigheden hebt ontwikkeld, heb je een goede basis
+om generatieve AI op een verantwoorde manier te gebruiken.
+
+\bookmarksetup{startatroot}
+
+\chapter{De anatomie van een antwoord}\label{sec-mt1}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 15 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+We beginnen vandaag met een inleiding tot het vak en een hoorcollege
+over de anatomie van een antwoord. We zullen aandacht besteden aan
+
+\begin{itemize}
+\tightlist
+\item
+  de structuur en opzet van dit vak
+\item
+  waarom statistische antwoorden (kunnen) falen
+\item
+  hoe we van onderwerp naar onderzoekbare vragen kunnen komen
+\item
+  antwoordkwaliteit en hoe dit samenhangt met goed onderzoek
+\end{itemize}
+
+De slides voor het hoorcollege kun je \href{slides/lec-1.html}{hier
+vinden}.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht}
+
+In deze opdracht oefenen we met een breed maatschappelijk of
+wetenschappelijk onderwerp om te vormen tot een concrete, onderzoekbare
+statistische vraag. Veel onderzoek begint met een interessant thema,
+maar een thema is nog geen onderzoeksvraag. Een goede onderzoeksvraag
+maakt duidelijk over welke populatie of eenheden het onderzoek gaat,
+welke uitkomst wordt onderzocht, welke verklarende variabele of
+vergelijking centraal staat, welke periode relevant is en welk
+databestand gebruikt kan worden.
+
+Het doel is dat iedereen aan het einde van de opdracht beschikt over:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  een aangescherpte onderzoeksvraag;
+\item
+  een voorlopig format voor het beantwoorden van die vraag;
+\item
+  een korte beschrijving van wat het onderzoek niet kan aantonen of
+  concluderen.
+\end{enumerate}
+
+De nadruk ligt niet op het vinden van het perfecte antwoord, maar op het
+formuleren van een vraag die met beschikbare data op een verantwoorde
+manier onderzocht kan worden.
+
+De opdracht \href{opdracht/groepsopdracht1.html}{staat hier}. De
+uitwerktabel voor Groepsopdracht 1 is beschikbaar als invulbaar MS Word
+bestand op Moodle.
+
+\section{Individuele opdracht}\label{individuele-opdracht}
+
+In de komende twee weken werken we naar de structuur van een eindproduct
+toe. Informatie over dit eindproduct (i.e.~de deliverables
+\textbf{?@sec-resrep}, \textbf{?@sec-archive}, \textbf{?@sec-refl} en
+\textbf{?@sec-pres}) staat beschreven in het hoofdstuk
+\textbf{?@sec-deliv}. Om een eerste begin te maken, zullen we vandaag de
+volgende stappen volgen:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Start met een projectdocument. Bijvoorbeeld in Word of Quarto.
+\item
+  Begin te schrijven aan een paragraaf \textbf{Onderzoeksvraag} waarin
+  het volgende aan bod komt:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Wat is het maatschappelijke of wetenschappelijke probleem?
+\item
+  De (aangescherpte) onderzoeksvraag. Dit hoeft nog niet de perfecte
+  vraag te zijn. We werken hier morgen aan verder.
+\item
+  Een potentieel antwoordmodel, zoals we in de groepsopdracht hebben
+  gemaakt.
+\item
+  Een beschrijving van de dataset die hiervoor gebruikt zal worden.
+\item
+  In ieder geval 1 beperking die nu al voorzien kan worden.
+\end{itemize}
+
+De paragraaf waaraan we in de individuele opdracht werken, zal dienen
+als de basis voor de introductie en onderzoeksvraag sectie in het
+Research Report. In de komende gecombineerde hoor- en werk-colleges
+zullen we toewerken naar een completer einddocument.
+
+\bookmarksetup{startatroot}
+
+\chapter{Van probleem naar onderwerp}\label{sec-mt2}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 18 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Vandaag werken we verder aan de stap van maatschappelijk probleem naar
+onderzoeksontwerp. We kijken vooral naar het soort vraag dat je stelt en
+naar het soort antwoord dat je onderzoek redelijkerwijs kan geven. We
+besteden aandacht aan
+
+\begin{itemize}
+\tightlist
+\item
+  verschillende typen statistische onderzoeksvragen
+\item
+  het verschil tussen beschrijven, vergelijken, verklaren, voorspellen,
+  causaliteit en valideren
+\item
+  waarom onderzoeksontwerp vóór analysemethode komt
+\item
+  de rol van literatuur bij het aanscherpen van je onderzoeksvraag
+\item
+  hoe AI modellen werken en je kunnen assisteren
+\item
+  goede AI prompts schrijven en de output evalueren
+\item
+  het zoeken naar inhoudelijke, theoretische en methodologische
+  literatuur
+\item
+  het verschil tussen ``samenhang'', ``voorspelling'', ``verklaring'' en
+  ``oorzaak''
+\end{itemize}
+
+Ook besteden we aandacht aan het zoeken naar literatuur en bronnen en
+aan de manieren waarop we dat kunnen doen. We oefenen in de
+groepsopdracht met AI prompting en het opstellen van een
+literatuurkaart.
+
+De slides voor het hoorcollege kunt je \href{slides/lec-2.html}{hier
+vinden}.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht-1}
+
+In de groepsopdracht onderzoeken we hoe een AI-tool kan worden gebruikt
+als onderzoeksassistent. Het doel is niet om AI een kant-en-klaar
+antwoord te laten maken, maar om te leren hoe je AI gericht, kritisch en
+verantwoord kunt inzetten bij het lezen, samenvatten en verkennen van
+wetenschappelijke literatuur.
+
+We werken vandaag met een wetenschappelijk artikel over de evaluatie van
+imputatiemethoden. Je begint met een minimale prompt:
+
+\emph{Summarize this in 200 words}
+
+Daarna bouwen we deze prompt stap voor stap uit met behulp van de
+BRAVE(R)-techniek. We onderzoeken hoe de kwaliteit van de output
+verandert wanneer we duidelijker aangeven wat we verwachten van de AI.
+Ook beoordelen we de AI-output met behulp van RACCCA. Daarbij kijken we
+niet alleen of de tekst prettig leest, maar vooral of de output
+relevant, accuraat, volledig, helder, coherent en passend is.
+
+Daarna gebruik we AI en wetenschappelijke zoekmachines om relevante
+literatuur rond het artikel te vinden. We zoeken niet alleen naar
+bronnen die \emph{ook over hetzelfde onderwerp gaan}, maar naar bronnen
+met een duidelijke functie. Een bron kan bijvoorbeeld helpen om een
+begrip te definiëren, een methode te begrijpen, een beperking te
+herkennen, een nieuwere ontwikkeling toe te voegen of een claim beter te
+begrenzen.
+
+Het doel is dat je aan het einde van de opdracht beschikt over:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  een eerste AI-samenvatting op basis van een minimale prompt;
+\item
+  een verbeterde BRAVE(R)-prompt;
+\item
+  een definitieve samenvatting van ongeveer 200 woorden;
+\item
+  een RACCCA-beoordeling van de AI-output;
+\item
+  een mini-literatuurkaart met ten minste drie relevante bronnen;
+\item
+  een Zotero-collectie met het artikel en de aanvullende bronnen;
+\item
+  een workflow die je kunt toepassen op het eigen onderzoeksproject.
+\end{enumerate}
+
+De nadruk ligt op kritisch en verantwoord gebruik van AI. Een goede
+prompt kan de output sterk verbeteren, maar als onderzoeker blijf je
+altijd zelf verantwoordelijk voor de inhoud, de broncontrole en de
+uiteindelijke interpretatie.
+
+De opdracht \href{opdracht/groepsopdracht2.html}{staat hier}. De
+uitwerktabel voor de literatuurkaart voor Groepsopdracht 2 is
+beschikbaar als invulbaar \href{}{Word bestand} of \href{}{Excel
+bestand}.
+
+\section{Individuele opdracht}\label{individuele-opdracht-1}
+
+Na de groepsopdracht pas je de werkwijze toe op je eigen
+onderzoeksproject. Vandaag werk je aan de eerste versie van je
+literatuurstudie. Het doel is dat je niet alleen bronnen verzamelt, maar
+ook begint na te denken over de functie van die bronnen in je onderzoek.
+
+Literatuur is geen losse verzameling samenvattingen. Een goede
+literatuurstudie helpt je om je onderzoeksvraag scherper te formuleren,
+begrippen te definiëren, relevante variabelen te kiezen, eerdere
+bevindingen te begrijpen, je methode te onderbouwen en de grenzen van je
+eigen onderzoek te bepalen.
+
+Aan het einde van deze individuele opdracht heb je:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  een eerste literatuurarchief in Zotero
+\item
+  een opzet voor de literatuurkaart voor je eigen onderzoeksproject
+\item
+  een eerste geschreven versie van je literatuurstudie
+\item
+  een korte beschrijving van hoe je AI wel en niet hebt gebruikt in je
+  literatuuronderzoek
+\end{enumerate}
+
+\subsection{Stap 1 --- Maak een Zotero-collectie voor je
+project}\label{stap-1-maak-een-zotero-collectie-voor-je-project}
+
+Maak in Zotero een collectie aan voor je onderzoeksproject. Geef de
+collectie een duidelijke naam, bijvoorbeeld:
+
+\begin{quote}
+MAS Research Project --- {[}jouw onderwerp{]}
+\end{quote}
+
+Voeg minimaal vijf relevante bronnen toe. Probeer verschillende typen
+bronnen op te nemen:
+
+\begin{itemize}
+\tightlist
+\item
+  inhoudelijke literatuur over je onderwerp;
+\item
+  theoretische of conceptuele literatuur over belangrijke begrippen of
+  mechanismen;
+\item
+  methodologische literatuur over data, meetinstrumenten of
+  analysemethoden;
+\item
+  datasetdocumentatie, codeboeken of technische rapporten;
+\item
+  beleidsrapporten of officiële statistische publicaties, indien
+  relevant.
+\end{itemize}
+
+Controleer bij elke bron of de metadata correct zijn:
+
+\begin{itemize}
+\tightlist
+\item
+  auteur(s);
+\item
+  jaar;
+\item
+  titel;
+\item
+  tijdschrift, uitgever of organisatie;
+\item
+  DOI, URL of andere vindplaats;
+\item
+  PDF of toegangsinformatie, indien beschikbaar.
+\end{itemize}
+
+Als je de informatie in Zotero automatisch verkrijgt, bijvoorbeeld door
+de browser plugin, dan klopt dit automatisch. Voeg bij elke bron een
+korte notitie toe waarin je aangeeft waarom deze bron relevant is voor
+je project. Dit kan ook later obv je literatuurkaart.
+
+\subsection{Stap 2 --- Maak een
+literatuurkaart}\label{stap-2-maak-een-literatuurkaart}
+
+Maak vervolgens een literatuurkaart voor je eigen project. De
+literatuurkaart helpt je om per bron vast te leggen wat de functie is
+van die bron. Een bron is niet alleen relevant omdat die ``over
+hetzelfde onderwerp'' gaat. Elke bron moet iets doen in je onderzoek.
+
+Gebruik hiervoor de volgende structuur:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bron
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Wat draagt deze bron bij?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Begrippen/variabelen
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Methode/design
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Gebruikte analyse- of evaluatietechniek
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nut voor mijn project
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Bron 1 & & & & & \\
+Bron 2 & & & & & \\
+Bron 3 & & & & & \\
+Bron 4 & & & & & \\
+Bron 5 & & & & & \\
+\end{longtable}
+}
+
+Probeer in je literatuurkaart duidelijk te maken of een bron helpt bij
+bijvoorbeeld:
+
+\begin{itemize}
+\tightlist
+\item
+  het definiëren van een begrip;
+\item
+  het herkennen van een theoretisch mechanisme;
+\item
+  het kiezen van variabelen;
+\item
+  het verantwoorden van achtergrondvariabelen of confounders;
+\item
+  het kiezen van een analysemethode;
+\item
+  het begrijpen van de dataset;
+\item
+  het vergelijken van bevindingen;
+\item
+  het herkennen van beperkingen;
+\item
+  het begrenzen van je claim.
+\end{itemize}
+
+\subsection{Stap 3 --- Begin met het schrijven van je
+literatuurstudie}\label{stap-3-begin-met-het-schrijven-van-je-literatuurstudie}
+
+Open je projectdocument en maak een nieuwe paragraaf met de titel:
+
+\begin{quote}
+Literatuurstudie
+\end{quote}
+
+Schrijf een eerste versie van ongeveer 500--800 woorden. Deze tekst
+hoeft nog niet perfect te zijn, maar moet wel een duidelijke structuur
+hebben. Gebruik je literatuurkaart als basis.
+
+Je literatuurstudie bevat in ieder geval:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Introductie van het onderwerp Wat is het maatschappelijke,
+  beleidsmatige of wetenschappelijke probleem?
+\item
+  Belangrijke begrippen Welke begrippen zijn belangrijk en hoe worden
+  die in de literatuur gedefinieerd?
+\item
+  Eerdere bevindingen Wat is al bekend over dit onderwerp? Welke
+  patronen, relaties of verschillen zijn eerder gevonden?
+\item
+  Relevante variabelen en mechanismen Welke variabelen,
+  achtergrondkenmerken of verklaringen komen uit de literatuur naar
+  voren?
+\item
+  Methodologische aanwijzingen Welke data, meetinstrumenten of
+  analysemethoden worden in eerdere studies gebruikt?
+\item
+  Aansluiting op jouw onderzoek Hoe helpt de literatuur om jouw
+  onderzoeksvraag, variabelen, methode of claimgrens te onderbouwen?
+\item
+  Open vraag of kennislacune Wat blijft onduidelijk? Waar sluit jouw
+  onderzoek op aan?
+\end{enumerate}
+
+\subsection{Stap 4 --- Beschrijf de rol van AI in je
+literatuuronderzoek}\label{stap-4-beschrijf-de-rol-van-ai-in-je-literatuuronderzoek}
+
+Het is belangrijk om open en transparant te zijn over het proces waarmee
+je onderzoeksconclusies zijn verkregen. Schrijf daarom altijd op hoe je
+AI hebt gebruikt. Voeg aan het einde van je report document een korte
+aparte alinea met de titel:
+
+\begin{quote}
+Gebruik van AI bij het onderzoek
+\end{quote}
+
+In deze alinea beschrijf je hoe je AI hebt gebruikt en welke controles
+je hebt uitgevoerd. AI mag helpen bij het formuleren van zoektermen, het
+structureren van een literatuurkaart, het samenvatten van abstracts of
+het vergelijken van bronnen. AI mag echter niet de verantwoordelijkheid
+overnemen voor bronselectie, interpretatie of wetenschappelijke claims.
+
+Beantwoord in deze alinea kort de volgende vragen:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Waarvoor heb je AI gebruikt?
+\item
+  Welke prompts of typen vragen heb je gesteld?
+\item
+  Hoe heb je gecontroleerd of de AI-output klopte?
+\item
+  Welke bronnen heb je zelf geverifieerd?
+\item
+  Welke onderdelen heb je bewust niet aan AI overgelaten?
+\item
+  Hoe zorg je ervoor dat jij verantwoordelijk blijft voor de
+  uiteindelijke tekst?
+\end{enumerate}
+
+Een mogelijke formulering is:
+
+\begin{quote}
+AI is in dit literatuuronderzoek gebruikt als hulpmiddel om zoektermen
+te formuleren, abstracts samen te vatten en mogelijke verbanden tussen
+bronnen te verkennen. De geselecteerde bronnen zijn gecontroleerd via
+{[}Google Scholar/Zotero/Scopus/Web of Science/officiële
+rapporten/uitgeverspagina's{]}. AI-output is niet zonder controle
+overgenomen. Claims, citaties en inhoudelijke interpretaties zijn
+vergeleken met de oorspronkelijke bronnen. De uiteindelijke selectie,
+interpretatie en formulering van de literatuurstudie zijn mijn eigen
+verantwoordelijkheid.
+\end{quote}
+
+\subsection{Eindproduct van de individuele
+opdracht}\label{eindproduct-van-de-individuele-opdracht}
+
+Aan het einde van deze opdracht heb je:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  een Zotero-collectie met minimaal vijf relevante bronnen;
+\item
+  korte notities bij de bronnen in Zotero;
+\item
+  een ingevulde literatuurkaart;
+\item
+  een eerste geschreven versie van de literatuurstudie;
+\item
+  een korte verantwoording van het gebruik van AI.
+\end{enumerate}
+
+Deze producten vormen de basis voor het theoretisch kader en de
+literatuursectie van je Research Project Report.
+
+\bookmarksetup{startatroot}
+
+\chapter{Data zijn niet heilig!}\label{sec-mt3}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 18 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Vandaag besteden we aandacht aan data. We zullen zien dat data niet
+altijd te vertrouwen is en dat data ook vaak gezien kan worden als
+gemaakt bewijs in plaats van enkel neutrale feiten. Ook zullen we
+potentiele biases leren identificeren. We besteden in dit hoorcollege
+aandacht aan:
+
+\begin{itemize}
+\tightlist
+\item
+  data provenance: wie heeft de data verzameld, met welk doel en volgens
+  welke procedures?
+\item
+  het verschil tussen observatie-eenheid, analyse-eenheid, steekproef en
+  doelpopulatie
+\item
+  variabelen als metingen van begrippen, niet alleen als kolommen in een
+  databestand
+\item
+  dark data: ontbrekende waarden, nonrespons, onderdekking, verborgen
+  populaties en niet-gemeten confounders
+\item
+  publieke en surveydata: steekproefontwerp, wegingen,
+  representativiteit, clustering en stratificatie
+\item
+  het belang van metadata, codeboeken en documentatie
+\item
+  datakwaliteit als onderdeel van het uiteindelijke onderzoeksantwoord
+\end{itemize}
+
+In het vorige hoorcollege hebben we al stil gestaan bij mogelijke
+beperkingen. Vandaag gaan we daarom in dat dergelijke beperkingen
+onderdeel zouden moeten zijn van het onderzoek, en niet enkel een
+-afterthought- in de discussie van ons onderzoeksverslag.
+
+De slides voor het hoorcollege kunt je \href{slides/lec-4.html}{hier
+vinden}.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht-2}
+
+Data biography worksheet maken met de onderstaande velden:
+
+\begin{itemize}
+\tightlist
+\item
+  Naam van het databestand.
+\item
+  Eigenaar of bron van de data.
+\item
+  Oorspronkelijk doel van de dataverzameling.
+\item
+  Observatie-eenheid.
+\item
+  Doelpopulatie.
+\item
+  Geobserveerde populatie of steekproef.
+\item
+  Tijdperiode.
+\item
+  Steekproef- of selectiemechanisme.
+\item
+  Wegingen of designvariabelen, indien relevant.
+\item
+  Belangrijkste variabelen die nodig zijn voor het project.
+\item
+  Belangrijke ontbrekende waarden of niet-beschikbare variabelen.
+\item
+  Mogelijke meetproblemen.
+\item
+  Mogelijke selectie- of dekkingsproblemen.
+\item
+  Ethische, privacy- of toegangsbeperkingen.
+\item
+  Waarvoor het databestand geschikt is.
+\item
+  Welke vragen het databestand niet kan beantwoorden.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Dataset Inventory
+\item
+  Dark Data diagnose
+\item
+  Gebruiksoverzicht van onze data:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  waarom is de data geschikt of nuttig?
+\item
+  wat is de belangrijkste beperking?
+\item
+  hoe ondervang ik die beperking?
+\end{itemize}
+
+Synthese: Zijn er beperkingen die een verandering in de RQ vereisen?
+
+\section{Individuele opdracht}\label{individuele-opdracht-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  voortbouwen op technieken geleerd in groepsopdracht
+\item
+  maak Data Decision Log aan (morgen gaan vullen)
+\end{enumerate}
+
+\bookmarksetup{startatroot}
+
+\chapter{Reproduceerbare onderzoeksarchieven}\label{sec-mt4}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 19 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Vandaag kijken we naar reproduceerbaar onderzoek. We leren hoe we er
+voor kunnen zorgen dat de route van ruwe data naar eindrapport
+transparant, controleerbaar en begrijpelijk is? We behandelen
+reproduceerbaarheid niet alleen als tecnhische netheid, maar als
+onderdeel van wetenschappelijke integriteit en professioneel statistisch
+werk. We besteden aandacht aan:
+
+\begin{itemize}
+\tightlist
+\item
+  wat een reproduceerbaar onderzoeksarchief is
+\item
+  waarom transparantie belangrijk is voor geloofwaardigheid,
+  samenwerking en begeleiding
+\item
+  hoe een goede projectstructuur helpt om fouten te vinden en keuzes te
+  verantwoorden
+\item
+  welke onderdelen minimaal in een onderzoeksarchief aanwezig moeten
+  zijn
+\item
+  het verschil tussen ruwe data, opgeschoonde data, scripts, output,
+  rapport en presentatie
+\item
+  het belang van een README, (evt datatoegangsnotitie), codeboek en
+  beslislogboek
+\item
+  principes voor een transparante workflow, zoals het niet overschrijven
+  van ruwe data
+\item
+  verklaren welke invloed AI heeft gehad in het project
+\end{itemize}
+
+Ook besteden we aandacht aan het idee dat reproduceerbaarheid niet
+perfect hoeft te zijn om waardevol te zijn. Het belangrijkste is
+traceerbaarheid: wat is er gedaan, waarom is dat gedaan, waar staat het
+beschreven, en waar komt de output in het rapport vandaan?
+
+De slides voor het hoorcollege kunt je \href{slides/lec-3.html}{hier
+vinden}.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht-3}
+
+De groepsopdracht \href{opdracht/Groepsopdracht4.html}{staat hier}.
+
+\section{Individuele opdracht}\label{individuele-opdracht-3}
+
+Gebruik nu het geleerde om een eigen structuur voor je onderzoeksarchief
+te maken. Je kunt dit doen door een nieuwe map aan te maken en daarin de
+volgende onderdelen te plaatsen:
+
+\begin{itemize}
+\tightlist
+\item
+  Een duidelijke mapstructuur. Let op: je hoeft niet alles te vullen,
+  maar maak wel de mappen aan. Bijvoorbeeld:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clean\_project/}
+\NormalTok{├── README.md}
+\NormalTok{├── license.txt}
+\NormalTok{├── AI\_use.md}
+\NormalTok{├── data/}
+\NormalTok{│   ├── raw/}
+\NormalTok{│   │   └── suriname\_households\_raw.csv}
+\NormalTok{│   └── processed/}
+\NormalTok{│       └── suriname\_households\_clean.csv}
+\NormalTok{├── documentation/}
+\NormalTok{|   ├── data\_decision\_log.md}
+\NormalTok{│   └── codebook.md}
+\NormalTok{├── code/}
+\NormalTok{│   ├── 01\_clean\_data.R}
+\NormalTok{│   └── 02\_make\_table.R}
+\NormalTok{├── output/}
+\NormalTok{│   ├── tables/}
+\NormalTok{│   │   └── table\_household\_summary.csv}
+\NormalTok{│   └── figures/}
+\NormalTok{│       └── fig\_income\_by\_district.png}
+\NormalTok{└── report/}
+\NormalTok{    └── short\_report.docx}
+    
+\end{Highlighting}
+\end{Shaded}
+
+Je kunt dit altijd later aanpassen en uitbreiden als blijkt dat de
+structuur die je tot nu toe hebt aangehouden niet meer toereikend is.
+Het is echter wel verstandig om zo spoedig mogelijk in een duidelijke
+structuur te werken, zodat je niet later voor verrassingen komt te
+staan. We hebben in de groepsopdracht gezien hoe lastig het kan zijn om
+de structuur achteraf nog te bepalen.
+
+\begin{itemize}
+\tightlist
+\item
+  maak een beslislogboek (data decision log) om te documenteren welke
+  keuzes je hebt gemaakt bij het verkrijgen van data, het opschonen van
+  data, en het analyseren van data. Dit logboek helpt niet alleen om
+  transparant te zijn over je keuzes, maar ook om later terug te kunnen
+  kijken op waarom bepaalde beslissingen zijn genomen.
+\item
+  maak codeboek als het er nog niet is.
+\item
+  maak een README waarin je de structuur van je project uitlegt.
+\item
+  maak een AI log waarin je aangeeft welke invloed AI heeft gehad in het
+  project en (indien van toepassing) hoe je AI hebt gebruikt.
+  Bijvoorbeeld met een logboek waarin de gebruikte prompts staan.
+\end{itemize}
+
+\begin{quote}
+\textbf{TIP:} Je kunt hiervoor ook de beschrijving uit de individuele
+opdracht bij de tweede bijeenkomst gebruiken.
+\end{quote}
+
+\bookmarksetup{startatroot}
+
+\chapter{Statistisch modeleren}\label{sec-mt5}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 22 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Vandaag kijken we naar statistische modellering als een vorm van
+\emph{gedisciplineerd vergelijken}. We beginnen dus niet met de vraag
+``welke toets wil ik gebruiken?'', maar met de vraag ``welke
+vergelijking is nodig om mijn onderzoeksvraag te beantwoorden?'' We
+besteden aandacht aan
+
+\begin{itemize}
+\tightlist
+\item
+  een model zien als gestructureerde vergelijking
+\item
+  bepalen van de uitkomst die je wilt beschrijven, verklaren of
+  voorspellen
+\item
+  herkennen van de variabelen die de centrale vergelijking vormen
+\item
+  identificeren en kiezen van achtergrondvariabelen die nodig zijn voor
+  een eerlijkere vergelijking
+\item
+  hoe type uitkomst (meetniveau) richting geeft aan de analysemethode
+\item
+  het belang van diagnostiek en heldere interpretatie
+\item
+  vermijden van \emph{method-first} denken
+\end{itemize}
+
+Ook besteden we aandacht aan het idee dat een complexere methode niet
+automatisch een beter antwoord geeft. Een eenvoudige analyse die goed
+aansluit op de onderzoeksvraag, zorgvuldig is uitgevoerd en helder wordt
+geïnterpreteerd, is vaak krachtiger dan een geavanceerd model dat niet
+helemaal past bij de data, aannames of de claim.
+
+De slides voor het hoorcollege kunt je \href{slides/lec-5.html}{hier
+vinden}.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht-4}
+
+De groepsopdracht \href{opdracht/Groepsopdracht5.html}{staat hier}.
+
+\section{Individuele opdracht}\label{individuele-opdracht-4}
+
+Ga nu verder met het uitvoeren van je analyseplan. Maar niet voordat je
+de onderstaande checklist hebt doorgelopen.
+
+\subsection{Checklist voor je
+analyseplan}\label{checklist-voor-je-analyseplan}
+
+Gebruik deze checklist voordat je het analyseplan gaat uitvoeren. Zelf
+gebruik ik altijd de regel:
+
+\begin{quote}
+Je weet pas waar je het over hebt, als je het kan uitleggen aan een
+ander.
+\end{quote}
+
+Gebruik deze tabel om te controleren of je analyseplan klaar is om
+uitgevoerd te worden. Als je twijfelt over een van de punten, bespreek
+dat dan met een medestudent of één van de docenten voordat je aan de
+analyse begint.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Check
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ja / Nee / Twijfel
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Mijn onderzoeksvraag is concreet genoeg om een analyse te kiezen & \\
+Mijn analyse-eenheid is duidelijk & \\
+Mijn uitkomstvariabele is duidelijk & \\
+Ik weet welk type uitkomst ik heb & \\
+Ik weet welke vergelijking centraal staat & \\
+Ik heb relevante achtergrondvariabelen in beeld & \\
+Mijn hoofdmethoden past bij de onderzoeksvraag & \\
+Ik heb een eenvoudigere backup-methode & \\
+Ik heb diagnostiek of controles gepland & \\
+Ik weet welke output, estimates, tabellen en figuren ik straks nodig heb
+& \\
+Mijn beoogde interpretatie is niet sterker dan mijn data toelaten & \\
+Ik weet welke vraag ik nog moet bespreken met een andere
+\emph{stakeholder} in het onderzoek & \\
+\end{longtable}
+}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Kernidee}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Start niet met de methode. Start altijd vanuit de beoogde vergelijking
+of je onderzoeksprobleem. Een goed analyseplan laat zien wat je wilt
+vergelijken, waarom die vergelijking nodig is, welke data daarvoor
+beschikbaar zijn en welke methode daar verantwoord bij past.
+
+\end{tcolorbox}
+
+\bookmarksetup{startatroot}
+
+\chapter{Onzekerheid, aannames en robuustheid}\label{sec-mt6}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 23 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Vandaag kijken we naar onzekerheid, aannames en robuustheid. Ieder
+statistisch antwoord hangt af van aannames over de data, de meting, het
+model en de onderzoekssituatie. In dit college leren we hoe je die
+aannames zichtbaar kunt maken en hoe je eenvoudige controles kunt
+plannen om te onderzoeken hoe stevig of robuust je conclusies zijn. We
+besteden aandacht aan:
+
+\begin{itemize}
+\tightlist
+\item
+  onzekerheid als meer dan alleen \(p\)-waarden en
+  betrouwbaarheidsintervallen (- steekproefonzekerheid, meetonzekerheid,
+  modelonzekerheid en missing-data-onzekerheid) --\textgreater{} dag
+  ervoor?
+\item
+  aannames als brug tussen analyse en conclusie
+\item
+  bedreigingen voor validiteit, zoals selectiebias, confounding,
+  nonrespons en meetfouten
+\item
+  het herkennen van te sterke conclusies bij beperkte data
+\item
+  eenvoudige robuustheids- en sensitiviteitschecks
+\end{itemize}
+
+Ook besteden we aandacht aan verantwoord taalgebruik bij conclusies. Een
+goed statistisch antwoord zegt niet alleen wat de resultaten laten zien,
+maar ook onder welke aannames die resultaten betekenisvol zijn.
+
+De slides voor het hoorcollege kunt je \href{slides/lec-6.html}{hier
+vinden}.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht-5}
+
+De groepsopdracht \href{opdracht/Groepsopdracht6.html}{staat hier}.
+
+\section{Individuele opdracht}\label{individuele-opdracht-5}
+
+Overmorgen gaan we in gesprek over het presenteren van je eigen werk. Op
+vrijdag presenteer je je eigen project aan de groep. Gebruik de
+resterende tijd vandaag om je (voorlopige) resultaten en conclusies nog
+eens aan te scherpen. Begin alvast met het maken van een presentatie of
+de opzet daarvan en denk na over een goede manier om je resultaten en
+conclusie te verwoorden of te presernteren.
+
+\bookmarksetup{startatroot}
+
+\chapter{Onderzoeksresultaten presenteren}\label{sec-mt7}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 25 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Van resultaat tot argument. Hoe presenteer je je onderzoek? doel: leren
+dat onderzoek presenteren een keten moet zijn van coherente argumenten
+en niet van lsose secties of resultaten. dit geldt voor rapporten en
+artikelen, maar ook voor presentaties.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht-6}
+
+Vandaag is er geen groepsopdracht. Gebruik de tijd om de losse eindjes
+aan elkaar te knopen en om je presentatie voor morgen voor te bereiden.
+
+\bookmarksetup{startatroot}
+
+\chapter{Presentaties}\label{sec-mt8}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Hoorcollege 26 juni 2026}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+We beginnen vandaag met \texttt{R} en \texttt{RStudio}. We zullen leren
+om deze software efficient te gebruiken en we gaan werken in projecten.
+Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk
+maakt om met anderen samen te werken aan hetzelfde project. We beginnen
+vandaag ook meteen met \texttt{storytelling} en zullen daar het
+publicatieplatform \href{}{\texttt{Quarto}} voor gebruiken. De slides
+voor het hoorcollege kunt u \href{slides/lec-1.html}{hier vinden}.
+
+\end{tcolorbox}
+
+\section{Groepsopdracht}\label{groepsopdracht-7}
+
+hier de groepsopdracht tekst
+
+\section{Individuele opdracht}\label{individuele-opdracht-6}
+
+hier de individuele opdracht tekst
+
+
+
+
+\end{document}
