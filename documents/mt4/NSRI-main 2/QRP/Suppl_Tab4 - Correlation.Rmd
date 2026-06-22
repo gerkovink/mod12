@@ -1,0 +1,108 @@
+---
+title: "Table 2"
+author: "Gerko Vink"
+date: "Correlations between the explanatory variable scales"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptive tables
+library(tibble)   # Tibbles
+library(RRreg)    # Randomized Response
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+options(DT.options = list(pageLength = 50)) # table options
+```
+
+```{r echo = FALSE}
+fisher.trans <- function(x) 1/2 * log((1 + x) / (1 - x))
+fisher.backtrans <- function(x) (exp(2 * x) - 1) / (exp(2 * x) + 1)
+
+cor <- d50 %>%
+  map(~.x %>% 
+        select(SciNorms, PeerNorms, WorkPress, FundPress, Competitive, DetectCol, DetectRev, MentSurv, MentResp, OrgJust) %>% 
+        stats::cor(use = "pairwise.complete.obs") %>%
+        fisher.trans)
+cor.rect <- Reduce("+", cor) / length(cor) # m is equal to the length of the list
+cor <- fisher.backtrans(cor.rect)
+diag(cor) <- 1
+cor %>% round(3)
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

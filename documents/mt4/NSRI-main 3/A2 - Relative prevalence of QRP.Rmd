@@ -1,0 +1,543 @@
+---
+title: "A2 Relative Prevalence of QRP"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../Workspaces/3. Data imputation.Rdata")
+load(file = "../Workspaces/2. Data inspection.Rdata")
+```
+
+---
+
+# QRP with `Not Applicable`'s
+First, we create an indicator for all QRP
+```{r}
+QRP_set <- names(raw_data[86:107])[-c(1, 2, 4, 6, 9, 12, 15, 16, 17, 19, 21 )]
+```
+
+## Tables and plots
+
+### Overall
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  sapply(table)
+```
+Zero indicates not applicable
+
+Then we calculate the proportional table
+```{r}
+p_tab <- function(x){prop.table(table(x)) %>% round(3)}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  sapply(p_tab) %>%
+  round(3)
+```
+
+Next, we create the stacked barplot. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  sapply(table) %>% 
+  melt(varnames = c("Response", "Practices")) %>% 
+  mutate(Response = factor(Response),
+         percentage = value / (sum(value)/11),
+         Response = recode(Response, `0` = "Not Applicable", `1` = "1 Never", `7` = "7 Always")) %>% 
+  ggplot(aes(x = Practices, y = percentage, fill = Response)) +
+  geom_bar(stat = 'identity', position = "stack", colour="black") +
+  geom_col(position = position_stack(reverse = FALSE)) + 
+  scale_fill_brewer(palette = "Spectral", direction = -1) +
+  theme_minimal()
+```
+
+---
+
+### By Disciplinary Field
+First, we grab the info from `D2`
+```{r}
+raw_data$D2 %>% var_label
+raw_data$D2 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D2`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D2, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D2) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D2 %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D2, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D2) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+barplotfun <- function(data){
+  current <- sapply(out, function(x){identical(x, data)}) %>% which %>% names
+  data %>% 
+    melt(varnames = c("Response", "Practices")) %>% 
+    mutate(Response = factor(Response),
+           percentage = value / (sum(value)/11),
+           Response = recode(Response, `0` = "Not Applicable", `1` = "1 Never", `7` = "7 Always")) %>% 
+    ggplot(aes(x = Practices, y = percentage, fill = Response)) +
+    geom_bar(stat = 'identity', position = "stack", colour="black") +
+    geom_col(position = position_stack(reverse = FALSE)) + 
+    scale_fill_brewer(palette = "Spectral", direction = -1) +
+    theme_minimal() + 
+    ggtitle(current)
+}
+lapply(out, barplotfun)
+```
+
+---
+
+### By academic rank
+First, we grab the info from `D3`
+```{r}
+raw_data$D3 %>% var_label
+raw_data$D3 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D3`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D3, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D3) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D3 %>% val_labels %>% names %>% .[1:3]
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D3, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D3) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(out, barplotfun)
+```
+
+
+---
+
+### By gender identification
+First, we grab the info from `D4`
+```{r}
+raw_data$D4 %>% var_label
+raw_data$D4 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D4`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D4, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D4) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D4 %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D4, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D4) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(out, barplotfun)
+```
+
+
+---
+
+### By empirical research engagement
+First, we grab the info from `D5`
+```{r}
+raw_data$D5 %>% var_label
+raw_data$D5 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D5`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D5, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D5) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D5 %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D5, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D5) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(out, barplotfun)
+```
+
+---
+
+### By institutional support
+First, we grab the info from `Group`
+```{r}
+raw_data$Group %>% var_label
+raw_data$Group %>% val_labels
+```
+Then we calculate a table for each of the labels in `Group`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(Group, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(Group) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$Group %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(Group, all_of(QRP_set)) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(Group) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(out, barplotfun)
+```
+
+---
+
+# QRP without `Not Applicable`'s
+
+## Tables and plots
+
+### Overall
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  sapply(table)
+```
+Zero indicates not applicable
+
+Then we calculate the proportional table
+```{r}
+p_tab <- function(x){prop.table(table(x)) %>% round(3)}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  sapply(p_tab) %>%
+  round(3)
+```
+
+Next, we create the stacked barplot. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  sapply(p_tab) %>% 
+  melt(varnames = c("Response", "Practices")) %>% 
+  mutate(Response = factor(Response),
+         percentage = value, 
+         Response = recode(Response, `1` = "1 Never", `7` = "7 Always")) %>% 
+  ggplot(aes(x = Practices, y = percentage, fill = Response)) +
+  geom_bar(stat = 'identity', position = "stack", colour="black") +
+  geom_col(position = position_stack(reverse = FALSE)) + 
+  scale_fill_brewer(palette = "Spectral", direction = -1) +
+  theme_minimal()
+```
+
+---
+
+### By Disciplinary Field
+First, we grab the info from `D2`
+```{r}
+raw_data$D2 %>% var_label
+raw_data$D2 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D2`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D2, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D2) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D2 %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D2, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D2) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+barplotfun <- function(data){
+  current <- sapply(p.out, function(x){identical(x, data)}) %>% which %>% names
+  data %>% 
+    melt(varnames = c("Response", "Practices")) %>% 
+    mutate(Response = factor(Response),
+           percentage = value / (sum(value)/11),
+           Response = recode(Response, `1` = "1 Never", `7` = "7 Always")) %>% 
+    ggplot(aes(x = Practices, y = percentage, fill = Response)) +
+    geom_bar(stat = 'identity', position = "stack", colour="black") +
+    geom_col(position = position_stack(reverse = FALSE)) + 
+    scale_fill_brewer(palette = "Spectral", direction = -1) + 
+    theme_minimal() + 
+    ggtitle(current)
+}
+lapply(p.out, barplotfun)
+```
+
+---
+
+### By academic rank
+First, we grab the info from `D3`
+```{r}
+raw_data$D3 %>% var_label
+raw_data$D3 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D3`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D3, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D3) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D3 %>% val_labels %>% names %>% .[1:3]
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D3, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D3) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(p.out, barplotfun)
+```
+
+
+---
+
+### By gender identification
+First, we grab the info from `D4`
+```{r}
+raw_data$D4 %>% var_label
+raw_data$D4 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D4`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D4, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D4) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D4 %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D4, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D4) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(p.out, barplotfun)
+```
+
+
+---
+
+### By empirical research engagement
+First, we grab the info from `D5`
+```{r}
+raw_data$D5 %>% var_label
+raw_data$D5 %>% val_labels
+```
+Then we calculate a table for each of the labels in `D5`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(D5, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D5) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$D5 %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(D5, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(D5) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(p.out, barplotfun)
+```
+
+---
+
+### By institutional support
+First, we grab the info from `Group`
+```{r}
+raw_data$Group %>% var_label
+raw_data$Group %>% val_labels
+```
+Then we calculate a table for each of the labels in `Group`
+```{r}
+out <- mice::complete(imp, 1) %>% 
+  select(Group, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(Group) %>% 
+  group_map(~sapply(., table, simplify = TRUE))
+names(out) <- raw_data$Group %>% val_labels %>% names
+out
+```
+Then we calculate the proportional table
+```{r}
+p.out <- mice::complete(imp, 1) %>% 
+  select(Group, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  mutate(across(where(is.numeric), as.factor)) %>% 
+  group_by(Group) %>% 
+  group_map(~sapply(., p_tab, simplify = TRUE)) 
+names(p.out) <- names(out)
+p.out
+```
+And the plots
+```{r}
+lapply(p.out, barplotfun)
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

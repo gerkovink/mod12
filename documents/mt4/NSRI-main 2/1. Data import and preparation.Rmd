@@ -1,0 +1,109 @@
+---
+title: "1. Data import and preperation"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+  
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+---
+
+This script reads in the data set `244406978_NSRI_dataset_27012021.sav` the data and stores the data frame as an `R`-workspace. We transfer the data to an `R`-friendly format to facilitate speedy data processing in `R` for all further data imputation and analyses steps. 
+
+---
+
+
+# Packages used
+For this document we use the following packages
+```{r}
+library(haven) # Data import/export
+library(dplyr) # Data manipulation
+library(magrittr) # Pipes
+```
+
+---
+
+# Importing the data
+We use function `read_sav` from package `haven` to import the SPSS file produced by Kantar into `R`. 
+```{r}
+raw_data <- read_sav("244406978_NSRI_dataset_27012021.sav")
+```
+We name the resulting object `NSRI_data`
+
+---
+
+# Creating a data frame
+We create an accessible data frame that will serve as the basis for imputation and analysis. 
+```{r}
+
+NSRI_df <- raw_data %>% as_factor %>% zap_labels() %>% zap_formats() %>% zap_label()
+```
+
+---
+
+# Convert factors to numeric
+We convert the questinable research practices items and the responsible research practices items to factors. 
+```{r}
+which <- names(raw_data)[11:107] # all questionaire items F and RP
+NSRI_df[, which] %<>% mutate_if(., is.factor, as.numeric)
+```
+
+---
+
+# Make `ID` a character vector
+```{r}
+NSRI_df %<>% mutate(ID = as.character(ID)) 
+```
+
+---
+
+# Exporting the workspace
+We export the objects `NSRI_df` and `raw_data` in an `R` workspace to the `\Workspaces\` directory in the project root. The resulting workspace name mirrors the name of this document. 
+```{r}
+save(NSRI_df, raw_data, file = "Workspaces/1. Data import and preparation.Rdata")
+```
+
+
+---
+
+End of document. 
+
+---
+
+```{r}
+sessionInfo()
+```
+

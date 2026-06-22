@@ -16,7 +16,7 @@ format:
 ---
 
 ::: callout-tip
-## Hoorcollege 18 juni 2026
+## Hoorcollege 22 juni 2026
 Vandaag besteden we aandacht aan data. We zullen zien dat data niet altijd te vertrouwen is en dat data ook vaak gezien kan worden als gemaakt bewijs in plaats van enkel neutrale feiten. Ook zullen we potentiele biases leren identificeren. We besteden in dit hoorcollege aandacht aan:
 
 - data provenance: wie heeft de data verzameld, met welk doel en volgens welke procedures?
@@ -33,39 +33,10 @@ De slides voor het hoorcollege kunt je [hier vinden](slides/lec-4.html).
 
 :::
 
-
 ## Groepsopdracht
-
-Data biography worksheet maken met de onderstaande velden:
-
-- Naam van het databestand.
-- Eigenaar of bron van de data.
-- Oorspronkelijk doel van de dataverzameling.
-- Observatie-eenheid.
-- Doelpopulatie.
-- Geobserveerde populatie of steekproef.
-- Tijdperiode.
-- Steekproef- of selectiemechanisme.
-- Wegingen of designvariabelen, indien relevant.
-- Belangrijkste variabelen die nodig zijn voor het project.
-- Belangrijke ontbrekende waarden of niet-beschikbare variabelen.
-- Mogelijke meetproblemen.
-- Mogelijke selectie- of dekkingsproblemen.
-- Ethische, privacy- of toegangsbeperkingen.
-- Waarvoor het databestand geschikt is.
-- Welke vragen het databestand niet kan beantwoorden.
-
-1. Dataset Inventory
-2. Dark Data diagnose
-3. Gebruiksoverzicht van onze data:
- - waarom is de data geschikt of nuttig?
- - wat is de belangrijkste beperking?
- - hoe ondervang ik die beperking?
- 
-Synthese: Zijn er beperkingen die een verandering in de RQ vereisen?
+De groepsopdracht [staat hier](opdracht/Groepsopdracht3.html).
 
 ## Individuele opdracht
-1. voortbouwen op technieken geleerd in groepsopdracht
-2. maak Data Decision Log aan (morgen gaan vullen)
+Ga verder met de technieken die je hebt geleerd in de groepsopdracht. Maak een Data Decision Log aan als je dat nog niet hebt gedaan. 
 
 

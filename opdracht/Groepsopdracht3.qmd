@@ -27,9 +27,6 @@ format:
 | **Werkvorm** | Groepswerk in groepen van 3–4 studenten. Het liefst werk je samen in groepen met verschillende typen data, bijvoorbeeld surveydata, administratieve data, financiële data, milieudata, arbeidsmarktdata, sociale data of publieke-opiniedata. Zo komen we meer potentiele valkuilen op het spoor |
 | **Product** | Aan het eind van de groepsopdracht heb je een eerste data biography, een diagnose van mogelijke dataproblemen en een starttekst voor de dataparagraaf van je Research Report. |
 
-# Invulbare MS Word versie
-In dit document staan veel tabellen die we gaan invullen. Als je het prettig vindt, kun je die tabellen invullen in dit [MS Word bestand](Groepsopdracht3.docx). 
-
 # Doel van de opdracht
 
 In deze opdracht onderzoeken we niet meteen welke statistische analyse we willen uitvoeren. Eerst proberen we controle te krijgen over de data zelf. We willen begrijpen waar de data vandaan komen, waarvoor ze oorspronkelijk zijn verzameld, wat ze precies meten, welke eenheden erin voorkomen, wie of wat ontbreekt, en welke beperkingen later invloed kunnen hebben op onze analyse.

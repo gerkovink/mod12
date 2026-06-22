@@ -194,17 +194,7 @@
     "href": "meeting3.html",
     "title": "Data zijn niet heilig!",
     "section": "",
-    "text": "Groepsopdracht\nData biography worksheet maken met de onderstaande velden:\nSynthese: Zijn er beperkingen die een verandering in de RQ vereisen?",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data zijn niet heilig!</span>"
-    ]
-  },
-  {
-    "objectID": "meeting3.html#groepsopdracht",
-    "href": "meeting3.html#groepsopdracht",
-    "title": "Data zijn niet heilig!",
-    "section": "",
-    "text": "Naam van het databestand.\nEigenaar of bron van de data.\nOorspronkelijk doel van de dataverzameling.\nObservatie-eenheid.\nDoelpopulatie.\nGeobserveerde populatie of steekproef.\nTijdperiode.\nSteekproef- of selectiemechanisme.\nWegingen of designvariabelen, indien relevant.\nBelangrijkste variabelen die nodig zijn voor het project.\nBelangrijke ontbrekende waarden of niet-beschikbare variabelen.\nMogelijke meetproblemen.\nMogelijke selectie- of dekkingsproblemen.\nEthische, privacy- of toegangsbeperkingen.\nWaarvoor het databestand geschikt is.\nWelke vragen het databestand niet kan beantwoorden.\n\n\nDataset Inventory\nDark Data diagnose\nGebruiksoverzicht van onze data:\n\n\nwaarom is de data geschikt of nuttig?\nwat is de belangrijkste beperking?\nhoe ondervang ik die beperking?",
+    "text": "Groepsopdracht\nDe groepsopdracht staat hier.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data zijn niet heilig!</span>"
     ]
@@ -214,7 +204,7 @@
     "href": "meeting3.html#individuele-opdracht",
     "title": "Data zijn niet heilig!",
     "section": "Individuele opdracht",
-    "text": "Individuele opdracht\n\nvoortbouwen op technieken geleerd in groepsopdracht\nmaak Data Decision Log aan (morgen gaan vullen)",
+    "text": "Individuele opdracht\nGa verder met de technieken die je hebt geleerd in de groepsopdracht. Maak een Data Decision Log aan als je dat nog niet hebt gedaan.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data zijn niet heilig!</span>"
     ]

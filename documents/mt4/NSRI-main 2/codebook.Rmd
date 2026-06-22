@@ -1,0 +1,197 @@
+---
+title: "Codebook NSRI"
+output: html_document
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 10px;
+}
+h1.title {
+  font-size: 22px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h1.subtitle { /* Header 2 */
+  font-size: 12px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 8px;
+}
+
+</style>
+
+---
+
+
+Code book for the 50 data sets stored in the R workspace: '5. Preparation Imputed Datasets.RData'.
+
+---
+
+<br>
+
+<br>
+
+```{r include=F}
+knitr::opts_chunk$set(echo=F)
+library(DT)
+
+load("Workspaces/5. Preparation Imputed Datasets.RData")
+
+v <- ordered(names(d50[[1]]))
+v <- unlist(v)
+```
+
+```{r echo=F}
+values <- c(paste(levels(factor(d50[[1]]$Field)), collapse = ", "),
+            paste(levels(factor(d50[[1]]$Rank)), collapse = ", "),
+            paste(levels(factor(d50[[1]]$Gender)), collapse = ", "),
+            paste(levels(factor(d50[[1]]$Research)), collapse = ", "),
+            paste(levels(factor(d50[[1]]$Support)), collapse = ", "),
+            rep("1 = Totally Disagree, ..., 7 = Totally Agree", 33), 
+            rep("1 = Never, ..., 7 = Always", 6),
+            rep("1 = Totally Disagree, ..., 7 = Totally Agree", 6),
+            rep("1 = Never, ..., 7 = Always", 6),
+            rep("1 = Totally Disagree, ..., 7 = Totally Agree", 12),
+            rep("1 = Very Likely, ..., 7 = Very Unlikely", 12),
+            rep("0 = Not Applicable, 1 = Never, ..., 7 = Always", 22),
+            "1 = P(Yes|Fabrication) = 5/6, 0 = P(No|No Fabrication) = 5/6",
+            "1 = P(Yes|Falsification) = 5/6, 0 = P(No|No Falsification) = 5/6",
+            rep("1 = Not Applicable/Never, ..., 7 = Always", 22),
+            "continuous in interval (0, 7)",
+            "continuous in interval (0, 7)",
+            "1 = yes, 0 = no",
+            rep("z-scores (mean = 0, sd = 1)", 14))
+
+
+
+
+
+description <- c(
+"Which of the following is your main disciplinary field of research? (select only one)",
+"Which academic rank do you belong to? (select only one)",
+"What is your gender (select only one)",
+"Were you engaged in empirical research in the last three years?",
+"Is the institution supporting the survey?",  
+"Researchers should evaluate research only on its merit.",
+"Researchers should judge each other’s contributions primarily on the basis of quality.",
+"The acceptance or rejection of claims entering the scholarly domain should be independent of the personal or social characteristics of researchers.",
+"Researchers should consider all new evidence, hypotheses, theories, and innovations, even those that challenge or contradict their own work.",
+"Researchers should be motivated by the desire for knowledge and discovery, and not by the possibility of personal gain.",
+"Researchers should be clear about what data their work is based on, and how results were achieved.",
+"Researchers contributions should never be accepted without careful scrutiny.",
+"Researchers should put their work in the public domain to be read and used freely by other researchers and the general public.",
+"Researchers should derive satisfaction from the mere act of doing research.",
+"Researchers actually evaluate research only on its merit.",
+"Researchers actually judge each other’s contributions primarily on the basis of quality.",
+"The acceptance or rejection of claims entering the scholarly domain is actually independent of the personal or social characteristics of researchers.",
+"Researchers actually consider all new evidence, hypotheses, theories, and innovations, even those that challenge or contradict their own work.",
+"Researchers are actually motivated by the desire for knowledge and discovery, and not by the possibility of personal gain.",
+"Researchers actually are clear about what data their work is based on, and how results were achieved.",
+"A researcher's contribution to knowledge is never actually accepted without careful scrutinty.",
+"Researchers actually put their work in the public domain to be read and used by other researchers and the general public.",
+"Researchers actually derive satisfaction from the mere act of doing research.",
+"How often does it occur that you have enough time to do all the tasks demanded of you?",
+"How often are you assigned too much work to do in a limited time?",
+"How often does an excess of work prevent you from having time to rest?",
+"I feel pressure to publish.",
+"I experience stress at the thought of my colleagues’ assessment of my publication output.",
+"I have the feeling that my colleagues judge me mainly on the basis of my publications.",
+"Publication pressure harms my ability to do good research.",
+"The current publication climate puts pressure on relationships with fellow-researchers.",
+"Publication pressure sometimes leads me to cut corners.",
+"Judgements of my academic performance are independent of my succesful grant applications.",
+"My job security depends strongly on research grants I receive.",
+"My prospects for promotion depend on me obtaining funding.",
+"The continuation of my research depends on obtaining my own funding.",
+"I would be able to do my research without obtaining my own funding.",
+"Obtaining my own research funding is crucial for my academic career.",
+"How often has your most important mentor provided you with help in learning the art of survival in your field?",
+"How often has your most important mentor helped you in developing professional relationships with others in your field?",
+"How often has your most important mentor provided you with guidance in writing grant and contract proposals?",
+"How often has your most important mentor coached you in career advancement?",
+"How often has your most important academic mentor(s) given you guidance on how to seize career opportunities?",
+"How often has your most important mentor advised you on how to get your research published?",
+"My field functions largely as a community of researchers.",
+"Many researchers in my field are afraid of being scooped by their peers.",
+"Many researchers in my field are unhappy when their peers obtain a major award or recognition.",
+"Rivalry between researchers is common in my field.",
+"Researchers in my field working on similar topics are inclined to collaborate with each other.",
+"Most researchers in my field consider their own work to be part of a larger collaborative effort.",
+"How often has your most important academic mentor(s) helped you in presenting the limitations of your research?",
+"How often have your most important academic mentor(s) given you feedback on how to select the most robust research methods?",
+"How often has your most important academic mentor(s) advised you on making your work as transparent as possible?",
+"How often has your most important academic mentor(s) coached you on how to deal with conflicts of interest in your work?",
+"How often has your most important academic mentor(s) provided you with insights in the ethical aspects of a research design?",
+"How often has your most important academic mentor(s) provided you with guidance on good research practices?",
+"Resource allocation at my department is fair.",
+"The allocation of tasks at my department is biased.",
+"Tenure decisions at my department are often biased.",
+"Decisions about promotion at my department are reasonable.",
+"The management at my department makes reasonable decisions.",
+"The assessment of my academic performance is fair.",
+"The process of allocating resources at my department is poorly managed.",
+"The process of allocating tasks at my department is ethical.",
+"The criteria for tenure at my department are applied consistently.",
+"The process for promotion at my department is poor.",
+"The management at my department is transparent about their decisions.",
+"At my department, academic performances are assessed objectively.",
+"How likely is it that a collaborator detects that a researcher in your field provides insufficient supervision or mentoring to junior co-workers.",
+"How likely is it that a collaborator detects that a researcher in your field does not submit (or resubmit) for publication a valid negative study.",
+"How likely is it that a collaborator detects that a researcher in your field keeps inadequate notes of their research process in their project.",
+"How likely is it that a collaborator detects that a researcher in your field uses published or unpublished ideas or phrases without properly referencing the originating source.",
+"How likely is it that a collaborator detects that a researcher in your field unfairly reviews papers, grant applications, or colleagues applying for promotion.",
+"How likely is it that a collaborator detects that a researcher in your field fabricates data in his/her research.",
+"How likely is it that a reviewer detects that a researcher in your field draws conclusions that were not sufficiently substantiated by his/her study.",
+"How likely is it that a reviewer detects that a researcher in your field chooses an inadequate research design or uses evidently unsuitable measurement instruments for his/her study.",
+"How likely is it that a reviewer detects that a researcher in your field gives insufficient attention to the equipment, skills or expertise essential to perform his/her study.",
+"How likely is it that a reviewer detects that a researcher in your field fails to report clearly relevant details of the study method.",
+"How likely is it that a reviewer detects that a researcher in your field insufficiently reports study flaws and limitations.",
+"How likely is it that a reviewer detects that a researcher in your field selectively cites references to enhance his/her own findings or convictions.",
+"In the last three years, I disclosed who funded my studies and all my relevant financial and non-financial interests in my publications.",
+"In the last three years, I took steps to correct errors in my published work whenever I and/or peers provided valid reasons for such a correction.",
+"In the last three years, the allocation and ordering of authorships in my publications, were fair and in line with the standards of my discipline.",
+"In the last three years, I contributed, where appropriate, to making my research data findable, accessible, interoperable and reusable in accordance with the FAIR principles.",
+"In the last three years, I kept a comprehensive record of my research decisions throughout my studies.",
+"In the last three years, I pre-registered my study protocols in line with open science practices.",
+"In the last three years, I managed my research data carefully by storing both the raw and processed versions for a period appropriate to my discipline and methodology used.",
+"In the last three years, my research was published under open access conditions.",
+"In the last three years, when making use of other people’s ideas, procedures, results and text in my publications, I cited the source accurately in accordance with the standards of my discipline.",
+"In the last three years, I fully disclosed and made accessible on open science platforms my underlying data, computer codes, or syntaxes used in my research.",
+"In the last three years, before releasing results of my research, I meticulously checked my work to avoid errors and biases.",
+"In the last three years, I gave insufficient attention to the equipment, skills or expertise essential to perform my studies.",
+"In the last three years, I insufficiently supervised or mentored junior co-workers.",
+"In the last three years, I chose inadequate research designs or used evidently unsuitable measurement instruments for my studies.",
+"In the last three years, I unfairly reviewed manuscripts, grant applications or colleagues applying for promotion.",
+"In the last three years, I drew conclusions that were not sufficiently substantiated by my studies.",
+"In the last three years, I used published or unpublished ideas or phrases from others without properly referencing its source.",
+"In the last three years, I kept inadequate notes of my research process in a project.",
+"In the last three years, I did not mention clearly important details of my study method in my publications.",
+"In the last three years, I chose not to submit or resubmit valid negative studies for publication.",
+"In the last three years, I insufficiently mentioned study flaws and limitations in my publications.",
+"In the last three years, I selectively cited references to enhance my own findings or convictions.",
+"In the last three years, I fabricated data in my research.",
+"In the last three years, I falsified data in my reseach.",
+rep(paste("Recoded scores of raw RRP"), 11),
+rep(paste("Recoded scores of raw QRP"), 11),
+"Average score on the 11 RRP's",
+"Average score on the 11 QRP's",
+"At least one QRP score > 4",
+paste("1st principal component of items ",  c("F1:F9", "F10:F18", "F19:F21", "F22,F27", "F28:F33", "F40:F45", "F64:F69", "F70:F75", "F34:F39, F46:F51", "F52:F63", "F34:F39", "F46:F51", "F52:F57", "F58:F63"))
+)
+
+```
+
+```{r echo=F}
+datatable(data.frame(variables = v, description, values))
+```
+

@@ -1,0 +1,125 @@
+---
+title: "Fig2 - Barchart - Gender x RRP"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(gridExtra)# Grids
+library(tidyr)    # Tidy modeling
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+```
+
+---
+
+# Plot with Not Applicable
+```{r}
+d <- d50[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(Gender, starts_with("R")) %>% 
+  select(Gender, contains("raw"))
+names(d) <- c("Gender", paste("RRP", 1:11, sep = ""))
+
+a <- d %>% gather(key, value, -Gender, factor_key = TRUE) %>% 
+  count(Gender, key, value) %>% 
+  add_count(Gender, key, wt = n, name = "sum") %>% 
+  mutate(Percentage = n/sum) %>% 
+  mutate(Response = factor(value),
+         Practices = key,
+         Response = recode(Response, `0` = "Not Applicable", `1` = "1 Never", `7` = "7 Always")) %>% 
+  ggplot(aes(x = Practices, y = Percentage, fill = Response)) +
+  geom_bar(stat = 'identity', position = "stack", colour="black") +
+  geom_col(position = position_stack(reverse = TRUE)) + 
+  scale_fill_brewer(palette = "RdBu", direction = 1) +
+  scale_y_continuous(labels = scales::percent) + 
+  theme_minimal()  + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))   +
+  scale_fill_manual(values = c("grey50", "#D6604D", "#F4A582", "#FDDBC7", "#D1E5F0", "#92C5DE", "#4393C3", "#2166AC")) + 
+  guides(fill = guide_legend(reverse = TRUE)) + 
+  facet_wrap(vars(Gender)) 
+
+a
+
+pdf(file = "Suppl_Fig2c_Gender.pdf", width = 10, height = 4)
+a
+dev.off()
+
+postscript(file = "Suppl_Fig2c_Gender_large.eps", width = 10, height = 6)
+a
+dev.off()
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

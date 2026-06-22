@@ -1,0 +1,255 @@
+---
+title: "Table 2"
+author: "Gerko Vink"
+date: Mean score and prevalence^^  of Responsible Research Practices (RRP), Falsification, and Fabrication stratified by Disciplinary Field and Academic Rank withput NA
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptive tables
+library(tibble)   # Tibbles
+library(RRreg)    # Randomized Response
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+options(DT.options = list(pageLength = 50)) # table options
+```
+
+```{r echo = FALSE}
+## RR functions
+RR2 <- function(df){
+  df <- na.omit(df)
+  y  <- df$Freq
+  n  <- sum(y)
+  pobs <- y / n
+  P <- matrix(c(5, 1, 1, 5) / 6, 2, 2)
+  Q <- P %x% P
+  phat <- solve(Q) %*% pobs
+  varp <- (n - 1)^-1 * solve(Q) %*% (diag(pobs) -  pobs %*% t(pobs)) %*% t(solve(Q))
+  min95 <- phat - 1.96*sqrt(diag(varp))
+  max95 <- phat + 1.96*sqrt(diag(varp))
+  data.frame(df, phat = phat, lwr = min95, upr = max95, p.ci = paste(round(phat, 3), paste("(", round(min95, 3), ",", round(max95, 3), ")", sep = "")))
+}
+
+RR1 <- function(df){
+  y <- df$Freq
+  n <- sum(y)
+  pobs <- y / n
+  P <- matrix(c(5, 1, 1, 5) / 6, 2, 2)
+  phat <- solve(P) %*% pobs
+  varp <- prod(pobs)/(n*(P[2,2]-P[2,1])^2)
+  min95 <- phat - 1.96*sqrt(varp)
+  max95 <- phat + 1.96*sqrt(varp)
+  data.frame(df, phat = phat, lwr = min95, upr = max95, p.ci = paste(round(phat, 3), paste("(", round(min95, 3), ",", round(max95, 3), ")", sep = "")))
+}
+```
+
+---
+
+## Means without NA
+```{r echo = FALSE}
+rrp <- c("RDisclFunds", "RCorrectPub", "RAuthorship", "ROpenData", "RKeepRecord", 
+         "RPreReg", "RDataManage", "ROpenAccess", "RCiteSource", "ROpenCode", "RErrorCheck")
+
+Q <- d50
+Q <- Q %>% 
+  map(~ .x %>% 
+        mutate_at(paste(rrp, "_raw", sep = ""), ~ na_if(., 0))) %>% 
+  map(~.x %>% 
+        mutate(RRPave = rowMeans(select(., 81:91), na.rm = FALSE)))
+meangv <- function(x){mean(x, na.rm = TRUE)}
+sdgv <- function(x){sd(x, na.rm = TRUE)}
+Overall <- Q[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(starts_with("R")) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), RRPave) %>% 
+  melt(variable.name = "Practices") %>% 
+  group_by(Practices) %>% 
+  summarise_all(list(n = length, mean = meangv, sd = sdgv)) %>% 
+  mutate(lwr = mean - qnorm(.975) * (sd/sqrt(n)),
+         upr = mean + qnorm(.975) * (sd/sqrt(n)),
+         ci = paste("(", round(lwr, 1), ",", round(upr, 1), ")", sep = ""),
+         mean = round(mean, 1),
+         m.ci = paste(mean, ci, sep = " ")) %>% 
+  select(Practices, mean, ci, m.ci) 
+mci.overall <- Overall %>% select(Practices, m.ci) %>% rename(Overall = m.ci)
+m.overall <- Overall %>% select(Practices, mean) %>% rename(Overall = mean)
+```
+```{r echo = FALSE}
+Field <- Q[[1]] %>% 
+  select(Field, starts_with("R")) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), RRPave, Field) %>%  # exclude raw
+  melt(id.vars = "Field", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(Field, Practices) %>% 
+  summarise_all(list(n = length, mean = meangv, sd = sdgv)) %>% 
+  mutate(lwr = mean - qnorm(.975) * (sd/sqrt(n)),
+         upr = mean + qnorm(.975) * (sd/sqrt(n)),
+         ci = paste("(", round(lwr, 1), ",", round(upr, 1), ")", sep = ""),
+         mean = round(mean, 1),
+         m.ci = paste(mean, ci, sep = " ")) %>% 
+  select(Practices, Field, mean, ci, m.ci) 
+
+mci.Field <- Field %>% dcast(Practices ~ Field, value.var = "m.ci") %>% .[, c(1, 5, 2, 4, 3)]
+m.Field <- Field %>% dcast(Practices ~ Field, value.var = "mean") %>% .[, c(1, 5, 2, 4, 3)]
+```
+
+```{r echo = FALSE}
+Rank <- Q[[1]] %>% 
+  select(Rank, starts_with("R")) %>% 
+  select(-Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), RRPave, Rank) %>%  # exclude raw
+  melt(id.vars = "Rank", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(Rank, Practices) %>% 
+  summarise_all(list(n = length, mean = meangv, sd = sdgv)) %>% 
+  mutate(lwr = mean - qnorm(.975) * (sd/sqrt(n)),
+         upr = mean + qnorm(.975) * (sd/sqrt(n)),
+         ci = paste("(", round(lwr, 1), ",", round(upr, 1), ")", sep = ""),
+         mean = round(mean, 1)) %>% 
+  select(Practices, Rank, mean, ci) 
+
+mci.Rank <- Rank %>% mutate(m.ci = paste(mean, ci, sep = " ")) %>% dcast(Practices ~ Rank, value.var = "m.ci")
+m.Rank <- Rank %>% dcast(Practices ~ Rank, value.var = "mean")
+
+```
+
+```{r echo = FALSE}
+Means <- merge(mci.Field, mci.Rank, by.x = "Practices")
+Means <- merge(Means, mci.overall, by.x = "Practices")
+Means <- Means[c(5, 3, 1, 10, 7, 11, 4, 8, 2, 9, 6, 12), ]
+datatable(Means)
+Means
+write.table(Means, file = "Table2a_means.txt", sep = "\t")
+```
+
+---
+
+## Prevalence of RRP items (RRP > 4) without NA's in total
+
+Prevalences are not affected as RRP prevalence is only considered for values (5, 6 and 7)
+```{r echo = FALSE}
+p.test <- function(x){
+  t <- suppressWarnings(prop.test(x))
+  paste(round(t$estimate * 100, 1),
+        paste("(", round(t$conf.int[1]*100, 1), ",", round(t$conf.int[2]*100, 1), ")", sep = ""))
+}
+p.fun <- function(x){
+  table(x > 4) %>% .[c(2, 1)] %>% t() %>% p.test
+}
+
+Prevalence_RRP_Overall <- Q[[1]] %>% 
+  select(starts_with("R")) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"))  %>%
+  summarise_all(list(prevalence = p.fun)) %>% t() %>% 
+  data.frame(Overall = .)
+
+Prevalence_RRP_Field <- Q[[1]] %>% 
+  select(Field, starts_with("R")) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Field)  %>%
+  group_by(Field) %>% 
+  summarise_all(list(prevalence = p.fun)) %>% t() %>% .[, c(4, 1, 3, 2)] %>% 
+  .[-1, ] %>% as.data.frame() %>% 
+  `colnames<-`(names(Means)[2:5])
+
+Prevalence_RRP_Rank <- Q[[1]] %>% 
+  select(Rank, starts_with("R")) %>% 
+  select(-Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Rank) %>%
+  group_by(Rank) %>% 
+  summarise_all(list(prevalence = p.fun)) %>% t() %>% .[-1, ] %>% 
+  as.data.frame() %>% 
+  `colnames<-`(names(Means)[6:8])
+
+prevalence <- cbind(Prevalence_RRP_Field, 
+                    Prevalence_RRP_Rank, 
+                    Prevalence_RRP_Overall)
+prevalence %>% datatable()
+prevalence
+write.table(prevalence, file = "Table2_prevalence.txt", sep = "\t")
+```
+
+---
+
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

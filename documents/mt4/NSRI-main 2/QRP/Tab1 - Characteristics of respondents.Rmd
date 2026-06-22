@@ -1,0 +1,684 @@
+---
+title: "Table 1"
+author: "Gerko Vink"
+date: Characteristics of respondents by background variables and by the 10 explanatory
+  variable scales
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(tibble)   # Tibbles
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../Workspaces/5. Preparation Imputed Datasets.Rdata")
+```
+
+---
+
+# Female
+```{r echo = FALSE}
+# Female
+r1a <- d50[[1]] %$% table(Gender, Field)[2, c(4, 1, 3, 2)]
+r1b <- d50[[1]] %$% table(Gender, Rank)[2,]
+r1c <- d50[[1]] %$% table(Gender)[2]
+names(r1c) <- "Overall"
+r2a <- d50[[1]] %$% table(Gender, Field) %>% prop.table(margin = 2) %>% .[2, c(4, 1, 3, 2)]*100 
+r2b <- d50[[1]] %$% table(Gender, Rank) %>% prop.table(margin = 2) %>% .[2,]*100 
+r2c <- d50[[1]] %$% table(Gender) %>% prop.table %>% .[2]*100  
+Row1 <- rbind(c(r1a, r1b, r1c), paste0("(", round(c(r2a, r2b, r2c), 3),")"))
+rownames(Row1) <- c("Female N", "Female %")
+# Empirical engagement
+r1a <- d50[[1]] %$% table(Research, Field)["Yes", c(4, 1, 3, 2)]
+r1b <- d50[[1]] %$% table(Research, Rank)["Yes",]
+r1c <- d50[[1]] %$% table(Research)["Yes"]
+r2a <- d50[[1]] %$% table(Research, Field) %>% prop.table(margin = 2) %>% .["Yes", c(4, 1, 3, 2)]*100 
+r2b <- d50[[1]] %$% table(Research, Rank) %>% prop.table(margin = 2) %>% .["Yes",]*100 
+r2c <- d50[[1]] %$% table(Research) %>% prop.table %>% .["Yes"]*100  
+Row2 <- rbind(c(r1a, r1b, r1c), paste0("(", round(c(r2a, r2b, r2c), 3),")"))
+rownames(Row2) <- c("Empirical N", "Empirical %")
+# Female
+r1a <- d50[[1]] %$% table(Support, Field)["Yes", c(4, 1, 3, 2)]
+r1b <- d50[[1]] %$% table(Support, Rank)["Yes",]
+r1c <- d50[[1]] %$% table(Support)["Yes"]
+r2a <- d50[[1]] %$% table(Support, Field) %>% prop.table(margin = 2) %>% .["Yes", c(4, 1, 3, 2)]*100 
+r2b <- d50[[1]] %$% table(Support, Rank) %>% prop.table(margin = 2) %>% .["Yes",]*100 
+r2c <- d50[[1]] %$% table(Support) %>% prop.table %>% .["Yes"]*100  
+Row3 <- rbind(c(r1a, r1b, r1c), paste0("(", round(c(r2a, r2b, r2c), 3),")"))
+rownames(Row3) <- c("Support N", "Support %")
+# Means
+evs  <- c("SciNorms", "PeerNorms", "WorkPress", "PubPress", "FundPress",
+         "Competitive","DetectCol", "DetectRev", "Mentoring", "OrgJust")
+#Overall
+Overall <- rbind(
+  d50 %>% map(select, F1:F9) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F10:F18) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F19:F21) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F22:F27) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F28:F33) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F40:F45) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F64:F69) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F70:F75)%>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F34:F39, F46:F51) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(select, F52:F63) %>% 
+  map(rowMeans, na.rm = T) %>% 
+  map(mean_cl_normal) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(Overall) <- evs
+m.overall <- Overall$y
+ci.overall <- Overall$ci
+#biomed
+bio <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F1:F9) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F10:F18) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F19:F21) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F22:F27) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F28:F33) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F40:F45) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F64:F69) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F70:F75) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F34:F39, F46:F51) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Bio & Life") %>% 
+              select(F52:F63) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(bio) <- evs
+m.bio <- bio$y
+ci.bio <- bio$ci
+
+
+
+
+#socialmed
+social <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F1:F9) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F10:F18) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F19:F21) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F22:F27) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F28:F33) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F40:F45) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F64:F69) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F70:F75) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F34:F39, F46:F51) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Soc & Beh") %>% 
+              select(F52:F63) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(social) <- evs
+m.social <- social$y
+ci.social <- social$ci
+
+
+
+#artshummed
+artshum <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F1:F9) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F10:F18) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F19:F21) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F22:F27) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F28:F33) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F40:F45) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F64:F69) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F70:F75) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F34:F39, F46:F51) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Arts & Hum") %>% 
+              select(F52:F63) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(artshum) <- evs
+m.artshum <- artshum$y
+ci.artshum <- artshum$ci
+
+
+
+
+
+#Eng & Nat
+engnat <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F1:F9) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F10:F18) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F19:F21) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F22:F27) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F28:F33) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F40:F45) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F64:F69) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F70:F75) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F34:F39, F46:F51) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Field == "Eng & Nat") %>% 
+              select(F52:F63) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(engnat) <- evs
+m.engnat <- engnat$y
+ci.engnat <- engnat$ci
+
+
+#Phd
+phd <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F1:F9) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F10:F18) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F19:F21) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F22:F27) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F28:F33) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F40:F45) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F64:F69) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F70:F75) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F34:F39, F46:F51) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "PhD") %>% 
+              select(F52:F63) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(phd) <- evs
+m.phd <- phd$y
+ci.phd <- phd$ci
+
+
+
+
+#Postdoc
+postdoc <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F1:F9) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F10:F18) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F19:F21) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F22:F27) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F28:F33) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F40:F45) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F64:F69) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F70:F75) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F34:F39, F46:F51) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Postdoc") %>% 
+              select(F52:F63) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(postdoc) <- evs
+m.postdoc <- postdoc$y
+ci.postdoc <- postdoc$ci
+
+#Prof
+prof <- rbind(
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F1:F9) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F10:F18) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F19:F21) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F22:F27) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F28:F33) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F40:F45) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F64:F69) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F70:F75) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F34:F39, F46:F51) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50,
+d50 %>% map(~.x %>% 
+              filter(Rank == "Prof") %>% 
+              select(F52:F63) %>% 
+              rowMeans(na.rm = T) %>% 
+              mean_cl_normal()) %>% 
+  Reduce("+", .) / 50) %>% 
+  round(3) %>% 
+  mutate(ci = paste("(", ymin, ",", ymax, ")", sep = ""))
+rownames(prof) <- evs
+m.prof <- prof$y
+ci.prof <- prof$ci
+
+MeanCI <- cbind(
+c(rbind(m.bio, ci.bio)),
+c(rbind(m.social, ci.social)),
+c(rbind(m.engnat, ci.engnat)),
+c(rbind(m.artshum, ci.artshum)),
+c(rbind(m.phd, ci.phd)),
+c(rbind(m.postdoc, ci.postdoc)),
+c(rbind(m.prof, ci.prof)), 
+c(rbind(m.overall, ci.overall))
+)
+rownames(MeanCI) <- c(rbind(paste(evs, "MEAN", sep = "_"),
+                            paste(evs, "CI", sep = "_")))
+
+options(DT.options = list(pageLength = 50))
+rbind(Row1, Row2, Row3, MeanCI) %>% 
+  datatable(options = )
+
+rbind(Row1, Row2, Row3, MeanCI) %>% 
+  as.data.frame()
+```
+
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

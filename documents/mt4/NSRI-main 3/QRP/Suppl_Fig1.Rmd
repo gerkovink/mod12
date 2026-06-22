@@ -1,0 +1,186 @@
+---
+title: "Plan of Analysis NSRI"
+subtitle: "Analyses"
+author: "Maarten"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+---
+
+This document contains the analyses as described in "NSRI data analysis plan - VERSION 7 - 20120126.docx".
+
+
+Loading packages, sourcing the functions for the randomized response models, loading the data, setting the reference categories according data analaysis plan, and making help vectors for variable selection and colors in the bar plots. 
+```{r include=F}
+knitr::opts_chunk$set(comment="", message=F, warning=F, echo=F, cache=T)
+library(tidyverse)
+library(magrittr)
+library(mice)
+library(gridExtra)
+library(kableExtra)
+library(psych)
+
+source("../../Functions/RR_functions.R")
+
+load("../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+
+d50 <- d50 %>%  
+  map(~ .x %>% 
+        mutate_at(vars(Field), 
+                  relevel, ref = "Bio & Life") %>% 
+        mutate_at(vars(Rank), 
+                  relevel, ref = "Postdoc") %>% 
+        mutate_at(vars(Gender), 
+                  relevel, ref = "Male") %>% 
+        mutate_at(vars(Support), 
+                  relevel, ref = "No") %>% 
+        mutate_at(vars(Research), 
+                  relevel, ref = "Yes")
+        )
+
+
+evs  <- c("SciNorms", "PeerNorms", "WorkPress", "PubPress", "FundPress",
+         "Competitive","DetectCol", "DetectRev", "MentSurv", "MentResp", "OrgJust")
+
+rrp <- c("RDisclFunds", "RCorrectPub", "RAuthorship", "ROpenData", "RKeepRecord", 
+         "RPreReg", "RDataManage", "ROpenAccess", "RCiteSource", "ROpenCode", "RErrorCheck")
+qrp <- c("QAttention", "QSupervision", "QResDesign", "QUnfairRev", "QUnsubstClaims", 
+         "QCiteSource", "QResNotes", "QConcealDetails", "QNoReSubmit", "QConcealFlaws",
+         "QSelectCites")
+
+barcolsR <- c("grey", "red", "darkorange1", "orange", "gold", "olivedrab1", "green2", "green3")
+barcolsQ <- c("grey", "green3", "green2", "olivedrab1", "gold", "orange", "darkorange1", "red")
+```
+
+
+## Missings per scale
+```{r 3.1}
+d50 %>% map(select, !!!syms(evs)) %>% 
+  map(~.x %>% summarise_all(is.na)) %>% 
+  map(~.x %>%  summarise_all(sum)) %>% 
+  Reduce("+", .) / 50  
+```
+
+
+## By Field
+
+```{r fig.asp=.3}
+d50 %>% 
+  map(select, Field, !!!syms(evs)) %>% 
+  map(group_by, Field) %>% 
+  map_df( ~ summarise_all(.x, list(mean), na.rm = T)) %>% 
+  group_by(Field) %>% 
+  summarise_all(mean) %>% 
+  pivot_longer(cols = -Field, names_to = "scale", values_to = "mean") %>% 
+  ggplot(aes(mean, scale, col = Field)) +
+  geom_point() + 
+  xlim(-.6, .6) +
+  xlab("mean scale score in standard deviations") +
+  theme_minimal()
+
+```
+
+
+
+## By Rank
+```{r fig.asp=.3}
+d50 %>% 
+  map(select, Rank, !!!syms(evs)) %>% 
+  map(group_by, Rank) %>% 
+  map_df( ~ summarise_all(.x, list(mean), na.rm = T)) %>% 
+  group_by(Rank) %>% 
+  summarise_all(mean) %>% 
+  pivot_longer(cols = -Rank, names_to = "scale", values_to = "mean") %>% 
+  ggplot(aes(mean, scale, col = Rank)) +
+  geom_point() + 
+  xlim(-.6, .6) +
+  xlab("mean scale score in standard deviations") +
+  theme_minimal()
+
+```
+
+## By Gender
+```{r fig.asp=.3}
+d50 %>% 
+  map(select, Gender, !!!syms(evs)) %>% 
+  map(group_by, Gender) %>% 
+  map_df( ~ summarise_all(.x, list(mean), na.rm = T)) %>% 
+  group_by(Gender) %>% 
+  summarise_all(mean) %>% 
+  pivot_longer(cols = -Gender, names_to = "scale", values_to = "mean") %>% 
+  ggplot(aes(mean, scale, col = Gender)) +
+  geom_point() + 
+  xlim(-.6, .6) +
+  xlab("mean scale score in standard deviations") +
+  theme_minimal()
+
+```
+
+## By Research
+```{r fig.asp=.3}
+d50 %>% 
+  map(select, Research, !!!syms(evs)) %>% 
+  map(group_by, Research) %>% 
+  map_df( ~ summarise_all(.x, list(mean), na.rm = T)) %>% 
+  group_by(Research) %>% 
+  summarise_all(mean) %>% 
+  pivot_longer(cols = -Research, names_to = "scale", values_to = "mean") %>% 
+  ggplot(aes(mean, scale, col = Research)) +
+  geom_point() + 
+  xlim(-.6, .6) +
+  xlab("mean scale score in standard deviations") +
+  theme_minimal()
+
+```
+
+## By Support
+```{r fig.asp=.3}
+d50 %>% 
+  map(select, Support, !!!syms(evs)) %>% 
+  map(group_by, Support) %>% 
+  map_df( ~ summarise_all(.x, list(mean), na.rm = T)) %>% 
+  group_by(Support) %>% 
+  summarise_all(mean) %>% 
+  pivot_longer(cols = -Support, names_to = "scale", values_to = "mean") %>% 
+  ggplot(aes(mean, scale, col = Support)) +
+  geom_point() + 
+  xlim(-.6, .6) +
+  xlab("mean scale score in standard deviations") +
+  theme_minimal()
+```
+
+

@@ -1,12 +1,12 @@
 ---
-title: "Placeholder Lecture 4"
+title: "Data zijn niet heilig!"
 author: 
   - name: Gerko Vink
     orcid: 0000-0001-9767-1924
     email: g.vink@uu.nl
     affiliations:
       - name: Methodology & Statistics @ Utrecht University
-date: 19 June 2026
+date: 22 June 2026
 date-format: "D MMM YYYY"
 execute: 
   echo: true
@@ -51,445 +51,507 @@ You **may use** any and all content in this presentation - including my name - a
 
 ## Recap
 
-Yesterday we learned
+In the previous lecture we discussed how to make your research reproducible. We learned about the importance of transparency, traceability, and documentation in the research process. We also talked about how to structure your project and what components should be included in a reproducible research archive.
 
 
 ## Today
 
-## Today's core idea
-
 ::: {.callout-note appearance="simple"}
-# Reproducible research archive
-A reproducible research archive is a structured collection of files that allows another person — or your future self — to understand, check, and rerun the path from **data** to **answer**.
+# Core idea
+Data are not neutral facts. Data are constructed evidence.
 :::
 
-A statistical result becomes more trustworthy when the path to it is transparent.
+Today we discuss:
 
-- Not because the result is automatically correct
-- But because others can inspect **what was done**
-- And because you can inspect your own choices later
+1. data provenance
+2. units, populations, and variables
+3. dark data
+4. survey and public-sector data issues
+5. data quality as part of the research answer
 
-## Reproducibility is not neatness
+## The innocent spreadsheet
 
-::::{.columns}
-:::{.column width="50%"}
-A neat project:
+A data file can look clean:
 
-- looks clean
-- has pretty filenames
-- feels organized
-- may still be impossible to audit
+| district | flooded | income | drainage | weight |
+|---|---:|---:|---:|---:|
+| Paramaribo | 1 | 2 | 0 | 1.42 |
+| Wanica | 0 | 3 | 1 | 0.86 |
+| Nickerie | 1 | 1 | 0 | 1.12 |
+
+But each column hides a story:
+
+- who collected this?
+- what counted as "flooded"?
+- who was not reached?
+- why is there a weight?
+- what is the population behind these rows?
+
+::: {.callout-important}
+# The trap
+A clean data file is not the same as clean evidence.
 :::
 
-:::{.column width="50%"}
-A reproducible project:
+## Data provenance
 
-- records decisions
-- separates raw and cleaned data
-- connects scripts to outputs
-- makes tables and figures traceable
-- documents limitations
-:::
-::::
-
-::: {.callout-tip}
-# In Short
-Reproducibility is scientific integrity made visible.
+::: {.callout-tip appearance="simple"}
+# Data provenance
+The history of how data came into existence, moved through systems, and became available for analysis.
 :::
 
-## Why it matters
+Good provenance questions:
 
-::::{.columns}
-:::{.column width="50%"}
-For science:
-
-- credibility
-- error detection
-- clear assumptions
-- evidence that can be checked
-- learning from mistakes
-:::
-
-:::{.column width="50%"}
-For public-sector statistics:
-
-- accountability
-- continuity when staff change
-- supervision and review
-- defensible reporting
-- transparent policy evidence
-:::
-::::
+- Who collected the data?
+- For what purpose?
+- Under what procedures?
+- With what definitions?
+- For whom or what are the data representative?
 
 ::: footer
-The Turing Way describes reproducible research as work that can be independently verified and emphasizes sharing data and code where possible: [The Turing Way](https://www.turing.ac.uk/research/research-projects/turing-way).
+See Groves et al. (2009). *Survey Methodology*. Wiley; also see UNICEF MICS documentation and World Bank Microdata Library for examples of survey documentation.
 :::
 
-## The problem: output without a trail
+## Example: MICS Suriname 2018
 
-Imagine a report says:
+The Suriname 2018 Multiple Indicator Cluster Survey was designed to provide high quality data on 
 
-> Households without adequate drainage report wateroverlast more often than households with adequate drainage.
+- children
+- adolescents
+- women
+- households 
 
-Good. But now ask:
+This is a powerful dataset. It is also a dataset with a purpose.
 
-1. Which data file was used?
-2. How was *adequate drainage* coded?
-3. Were missing values removed or recoded?
-4. Were survey weights used?
-5. Which script produced the table?
-6. Was the figure updated after the final model?
+### Ask yourself
+If the MICS survey was designed to monitor children, women, households, and SDGs, what questions is it naturally good for?
+
+What questions might it not be good for?
+
+::: footer
+UNICEF MICS Suriname 2018 Survey Findings Report and World Bank Microdata Library: [Suriname MICS 2018](https://microdata.worldbank.org/index.php/catalog/3531).
+:::
+
+## Good for
+Questions about the living conditions, health, education, protection, and well-being of children, adolescents, women, and households. For example:
+
+* How many children are attending school?
+* What share of children are vaccinated or have access to basic health services?
+* What are household living conditions like?
+* Do households have access to clean water, sanitation, electricity, or the internet?
+* What are patterns in child nutrition, child discipline, early childhood development, or child marriage?
+* How do outcomes differ by region, wealth, gender, ethnicity, or urban/rural location?
+* How is Suriname performing on selected Sustainable Development Goal indicators?
+
+In short, it is good for population-level descriptive questions about the groups and indicators it was designed to monitor.
+
+## Not good for
+Questions outside that purpose, especially questions that require detailed information on topics the survey was not designed to measure. For example:
+
+* Detailed questions about adult men, employers, firms, or the labor market.
+* Questions about income, wealth, taxation, or macroeconomic performance beyond basic household indicators.
+* Highly localized questions about small villages or neighborhoods if the sample is not large enough.
+* Questions about rare events or very small subgroups.
+* Questions requiring causal answers, such as “Did this policy cause school attendance to improve?”
+* Questions about changes over time, unless comparable surveys from other years are used.
+* Questions requiring clinical, administrative, or real-time data.
+
+## Unit of observation vs unit of analysis
+
+These are often confused.
+
+| Concept | Meaning | Example |
+|---|---|---|
+| Unit of observation | What one row describes | child, household, person, plot, district-year |
+| Unit of analysis | What your question is about | child learning, household risk, district trend |
+
+::: {.callout-important}
+# Be careful
+You can have child-level data, household-level predictors, and district-level weather in one project.
+
+That does not make all units interchangeable.
+:::
+
+## Population, sample, and target
+![](img/lec-4/gap.png){width=70%}
+
+**Key question:** Are you analyzing the population you care about, or the population the data happened to capture?
+
+
+
+
+## Variables are measurements
+
+A variable is not a concept (the abstract thing you care about theoretically, before you decide how to observe it in data).
+
+| Concept | Possible measurement | Possible problem |
+|---|---|---|
+| Poverty | income, assets, deprivation index | underreporting, informal economy |
+| Trust | survey question | translation, scale interpretation |
+| Flood exposure | self-report, map overlay, sensor | recall bias, spatial mismatch |
+| Health | diagnosis, symptoms, biomarker | access to care, measurement error |
+
+::: {.callout-tip}
+# In short
+A variable name says what the data is supposed to represent. The measurement process tells you what it actually captures
+:::
+
+## Administrative categories are built for decisions
+
+Public-sector data usually records **what an institution needed to decide or manage**.
+
+| Administrative category | Created to answer | But often used as a proxy for |
+|---|---|---|
+| Receives social assistance | Who qualifies for support? | Poverty |
+| Registered at school | Who is enrolled? | Education participation |
+| Has a diagnosis | Who received care? | Health status |
+| Filed a disaster report | Who reported damage? | Disaster impact |
 
 ::: {.callout-warning}
-# If the trail is missing
-The result may be correct, but it is hard to trust.
+# Key question
+Does this category measure the thing itself, or only the part that became visible to the system?
 :::
 
-## The archive documents the answer
 
-A good research archive documents five things:
+## Dark data
 
-1. **Reasoning**: why this question, design and analysis?
-2. **Data**: what data, from where, and under what restrictions?
-3. **Processing**: how did raw data become analysis data?
-4. **Outputs**: where did each table and figure come from?
-5. **Report**: how does the final answer follow from the evidence?
+**Dark data** is information you need for a correct answer, but do not observe.
 
-::: {.callout-note}
-# Good question to ask yourself
-Could a supervisor locate the exact code, syntax, or spreadsheet step behind Table 2 in your report?
-:::
+It may be absent because it was:
 
-## Minimum viable archive
-
-For this course, aim for a **minimum viable archive**:
-
-```text
-project-name/
-├── README.md
-├── data-access-note.md
-├── data_raw/              # or placeholder if data cannot be shared
-├── data_clean/
-├── code/                  # R scripts, SPSS syntax, Stata do-files, notes
-├── output/
-│   ├── tables/
-│   └── figures/
-├── report/
-├── slides/
-├── codebook/
-└── decision-log.md
-```
-
-::: footer
-The Turing Way provides practical guidance and templates for reproducible project structures: [Reproducible project template](https://github.com/the-turing-way/reproducible-project-template).
-:::
-
-## README: the front door
-
-The README is the first file someone should open.
-
-It should answer:
-
-- What is this project about?
-- Who created it?
-- What data are used?
-- Which files should be opened first?
-- How can the analysis be rerun?
-- What software is needed?
-- Which parts are private or restricted?
+- not asked
+- not answered
+- not recorded
+- not covered
+- not linkable
+- not accessible
 
 ::: {.callout-tip}
-# Rule of thumb
-If someone cannot start from your README, they cannot audit your project.
+# Core idea
+The problem is not only what is in the dataset. It is also what is missing from it.
 :::
 
-## Data access note
+## A small taxonomy of darkness
 
-Sometimes data cannot be shared.
+| Dark data problem | Simple example | Why it matters |
+|---|---|---|
+| Missing values | income left blank | poverty may be underestimated |
+| Nonresponse | remote households not interviewed | vulnerable groups may disappear |
+| Undercoverage | informal workers absent from registers | official employment looks too positive |
+| Unmeasured confounding | drainage quality not measured | flood risk may be explained incorrectly |
+| Changed definitions | benefit categories revised | a data break may look like real change |
+| Restricted access | exact locations unavailable | spatial patterns become harder to study |
 
-This is common in:
-
-- government data
-- survey microdata
-- administrative records
-- health data
-- education data
-- confidential NGO data
-
-A data access note should explain:
-
-- what the data are
-- who owns them
-- whether they can be shared
-- how access is arranged
-- what anonymization or restrictions apply
-
-::: footer
-UK Data Service guidance emphasizes privacy protection and ethical/legal considerations when preparing data that include information about people: [UK Data Service](https://ukdataservice.ac.uk/help/deposit-data/prepare-your-data-for-deposit/).
+::: {.callout-warning}
+# Ask yourself
+What would need to be observed outside the dataset for this analysis to be trustworthy?
 :::
 
-## Never overwrite raw data
+## Case: Spaceshuttle Challenger
+36 years ago, on 28 January 1986, 73 seconds into its flight and at an altitude of 9 miles, the space shuttle Challenger experienced an enormous fireball caused by one of its two booster rockets and broke up. The crew compartment continued its trajectory, reaching an altitude of 12 miles, before falling into the Atlantic. All seven crew members, consisting of five astronauts and two payload specialists, were killed.
 
 ::::{.columns}
-:::{.column width="45%"}
-Bad workflow:
-
-```text
-mics2018.xlsx
-mics2018_new.xlsx
-mics2018_final.xlsx
-mics2018_final2.xlsx
-mics2018_REALFINAL.xlsx
-```
+:::{.column width="40%"}
+![](img/lec-1/chal.jpg){width=90%}
 :::
-
-:::{.column width="55%"}
-Better workflow:
-
-```text
-data_raw/mics2018_original.sav
-code/01_clean_data.R
-data_clean/mics2018_clean.rds
-code/02_analysis.R
-output/tables/table1_descriptives.csv
+:::{.column width="60%"}
+```{r failure, echo = FALSE, message=FALSE, warning=FALSE, fig.height = 4, fig.width=6}
+library(tidyverse)
+library(ggplot2)
+library(alr4)
+set.seed(123)
+Challeng %>%
+  filter(fail > 0) %>%
+  ggplot(aes(temp, fail)) +
+  geom_point() +
+  #geom_(height = .1, width = .01) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) +
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") +
+  theme_classic()
 ```
 :::
 ::::
+
+## Nothing happened, so we ignored it
+
+::::{.columns}
+:::{.column width="50%"}
+```{r darkdata, echo = FALSE, message=FALSE, warning=FALSE, fig.width = 5}
+set.seed(123)
+Challeng %>%
+  ggplot(aes(temp, fail)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0, 5) + xlim(52, 76) +
+  ylab("Number of distressed O−rings at each launch") +
+  xlab("Temperature in degrees Fahrenheit") +
+  theme_classic()
+```
+:::
+:::{.column width="50%"}
+In the decision to proceed with the launch, there was a presence of dark data. And no-one noticed!
+
+Dark data
+: Information that is not available but necessary to arrive at the correct answer.
+
+This missing information has the potential to mislead people. The notion that we can be misled is essential because it also implies that artificial intelligence can be misled!
+
+::: {.callout-warning appearance="simple"}
+If you don’t have all the information, there is always the possibility of drawing an incorrect conclusion or making a wrong decision.
+:::
+
+:::
+::::
+
+
+## Example: flood risk in Paramaribo
+
+The World Bank's strategic flood risk assessment for Paramaribo emphasizes coastal, fluvial, and pluvial flood risk, drainage, land use, and climate-related challenges.
+
+A household survey about wateroverlast may observe **reported water nuisance**.
+
+It may not observe:
+
+- exact water depth
+- blocked drainage at the time of rainfall
+- illegal dumping
+- elevation at household level
+- previous mitigation actions
+- households that moved away after repeated floods
+
+
+::: {.callout-important}
+If you can think of a missing variable that could change your conclusion, it should be researched. If that is not possible, it at least belongs in your limitation section.
+:::
+
+## Survey data: design is part of the data
+
+Survey data are not just rows.They often include:
+
+- strata
+- clusters
+- sampling weights
+- household selection procedures
+- response rates
+- eligibility rules
+- questionnaire routing
+
+::: {.callout-tip}
+# Good practice
+Always read the methodology section before touching the analysis file.
+:::
+
+::: footer
+UNICEF MICS programme documentation and survey reports include questionnaires, sampling design information, and weights. See [MICS surveys](https://mics.unicef.org/surveys).
+:::
+
+## Why weights exist
+
+Weights often correct for:
+
+- unequal selection probabilities
+- nonresponse adjustments
+- calibration to known population totals
+
+A weighted answer and an unweighted answer can differ.
 
 ::: {.callout-warning}
 # Be careful
-Raw data are evidence. Once overwritten, the original data-generating trace may be gone.
+If a survey was designed with weights, ignoring them may change the reference to the population your answer speaks about.
 :::
 
-## Number your scripts
-
-Scripts should tell a story in order.
-
-```text
-code/
-├── 00_setup.R
-├── 01_import_data.R
-├── 02_clean_variables.R
-├── 03_descriptives.R
-├── 04_model_wateroverlast.R
-├── 05_robustness_checks.R
-└── 06_make_figures.R
-```
-
-The same principle works in other software:
-
-- `01_clean_data.sps`
-- `02_descriptives.sps`
-- `03_models.sps`
-- `04_figures.sps`
-
+## Clustering and stratification
 ::: {.callout-tip}
-# In Short
-Order is a form of documentation.
+# What is the difference?
+::::{.columns}
+:::{.column width="50%"}
+### Clustering
+People in the same cluster may be more similar than people in different clusters.
+
+Examples:
+
+- households in the same enumeration area$^*$ 
+- students in the same school
+- workers in the same organization
 :::
 
-## Separate cleaning from analysis
+:::{.column width="50%"}
+### Stratification
+Sampling may be organized to guarantee representation across subgroups.
 
-Cleaning asks:
+Examples:
 
-- Which variables do we use?
-- Which values are impossible?
-- How do we recode categories?
-- How do we handle missingness?
-- How do we define the analytic sample?
-
-Analysis asks:
-
-- What comparison answers the question?
-- Which model or table do we need?
-- Which result supports the claim?
-- Which robustness check is needed?
-
-::: {.callout-note}
-# Why separate them?
-If cleaning and analysis are mixed, it becomes hard to know whether a result came from the data, the model, or an unnoticed recoding decision.
+- district
+- urban/rural area
+- region
+- demographic groups
+:::
+::::
 :::
 
-## Decision log
+Ignoring design can make uncertainty look smaller than it is.
 
-A decision log records subjective choices.
+::: footer
+$^*$the geographic boundary assigned to a single census taker or data collector during a demographic count or survey
+:::
 
-| Date | Decision | Reason | Effect |
-|---|---|---|---|
-| 19 Jun | Recoded `don't know` to missing | Not a substantive answer | Reduces complete cases |
-| 20 Jun | Combined two education categories | Small cell sizes | More stable estimates |
-| 21 Jun | Used survey weights | MICS sample design | Population-relevant estimates |
+## Public-sector data: collected to run systems
+
+Administrative data are created when government does something: pays benefits, registers students, gives permits, records damage, or enforces rules.
+
+That means the numbers can change for two different reasons:
+
+| What changed? | Example | What you might wrongly conclude |
+|---|---|---|
+| The world changed | More households experienced flood damage | Flood damage increased |
+| The system changed | Reporting became easier through an online form | Flood damage increased |
+| The rules changed | More people became eligible for a benefit | Poverty increased |
+| The definition changed | A category was renamed or split | A new trend appeared |
 
 ::: {.callout-important}
-# There is no such thing as a neutral workflow
-If a choice changes the answer, it belongs in the decision log.
+# Trend warning for long-term data collection efforts
+Before interpreting a trend as real-world change, it is good procedure to ask whether the way the data were collected might have changed.
 :::
 
-## Codebook or variable dictionary
+## Codebooks are not optional
 
-A codebook connects **columns** to **meaning**.
+A codebook tells you:
 
-| Variable | Meaning | Values | Notes |
-|---|---|---|---|
-| `flood_report` | Household reports wateroverlast | 0 = no, 1 = yes | Self-reported |
-| `district` | District of residence | 1–10 | Check labels |
-| `drainage` | Access to drainage | 0 = no, 1 = yes | May be observed or reported |
-| `weight` | Survey weight | numeric | Use for population estimates |
-
-::: {.callout-tip}
-# Columns are not concepts
-A variable is a measurement of a construct. The codebook explains the distance between them.
-:::
-
-## Make output traceable
-
-Every table and figure in the report should have a known origin.
-
-```text
-report/table1_descriptives.qmd
-    ↑ uses
-output/tables/table1_descriptives.csv
-    ↑ produced by
-code/03_descriptives.R
-    ↑ uses
-data_clean/project_clean.rds
-    ↑ produced by
-code/02_clean_variables.R
-```
-
-::: {.callout-note}
-# Good question to ask yourself
-If I change the cleaning rule today, do I know which tables and figures need to be updated?
-:::
-
-## Reproducibility without perfection
-
-You may work in:
-
-- R
-- SPSS
-- Stata
-- Excel
-- Quarto or Word
-- mixed workflows
-
-That is fine.
-
-The core principle is **traceability**:
-
-<center>What was done? Why was it done? Where did the output come from?</center>
+- variable meanings
+- value labels
+- missing value codes
+- skip patterns
+- questionnaire wording
+- units and scales
+- eligibility restrictions
 
 ::: {.callout-warning}
-# Be careful
-A perfectly coded analysis with undocumented data access and unclear decisions is still not reproducible.
+# Classic mistake
+Treating `99`, `999`, `-8`, or `Don't know` as real numbers.
 :::
 
-## Excel is allowed, but it needs a trail
+# Case: When you know you're wrong
 
-If you use Excel:
+## Scenario
+In a survey about research integrity and fraud we surveyed behaviours and practices in the following format.
 
-- keep the original file unchanged
-- create a separate cleaned file
-- document every recoding or formula
-- avoid manual copy-paste without notes
-- export tables with clear names
-- keep a log of filters and exclusions
+<center>
+![](img/lec-1/14. not_applicable.png){width=60%}
+</center>
+<br>
+Many behaviours were surveyed over multiple groups of people. Some findings:
 
-Bad:
+- In most groups similar behavioural prevalence was observed.
+- When looking at subgroups, prevalences differ between subgroups.
+- Not applicables were much more prevalent in one group than in other groups
+- There are too few cases and too many patterns with `Not Applicable`'s over features to allow for a pattern-wise analysis (stratified analysis).
+- There are too many `Not Applicables` to allow for *listwise deletion*.
 
-> I selected some rows and made a graph.
+## Some background
+We know:
 
-Better:
+1. `Not Applicable` is not randomly distributed over the data. Removing them is therefore not valid!
+2. `Not Applicable` are bonafide missing values: there should be no observations.
 
-> I filtered to households with complete drainage and wateroverlast variables; the filtering rule is recorded in `decision-log.md` and the resulting table is stored as `output/tables/table2_by_drainage.xlsx`.
+::: callout-important
+# There's no such thing as a free lunch
 
-## Case: MICS-style survey project
-
-Suppose your project uses household survey data.
-
-A minimum archive may include:
-
-```text
-mics_project/
-├── README.md
-├── data-access-note.md
-├── data_raw/README_raw_data_not_shared.md
-├── data_clean/households_clean.rds
-├── code/01_import_sav.R
-├── code/02_clean_child_variables.R
-├── code/03_weighted_descriptives.R
-├── output/tables/table1_sample.csv
-├── output/figures/figure1_dropout_by_mother_education.png
-├── report/research-report.qmd
-└── decision-log.md
-```
-
-::: footer
-UNICEF MICS surveys provide questionnaires, reports and microdata documentation for many countries, including Suriname: [MICS surveys](https://mics.unicef.org/surveys).
+Every imputation will bias the results. For some we know the direction of the bias, for some we have no idea. We do not have access to the truth.
 :::
 
-## FAIR is a useful mindset
+### What would you do?
 
-The FAIR principles ask whether digital research objects are:
+## Our solution
+We chose to impute the data as `1 (never)`. There are a couple of reasons why we think that this is the best defendable scenario.
 
-- **Findable**
-- **Accessible**
-- **Interoperable**
-- **Reusable**
+1. `Never` has a semantic similarity to a behaviour not being applicable. However,  `Never` implies intentionality; `Not Applicable` does not.
+2. We know the effect the imputation has on the inference: Filling in `Never` will underestimate intentional behaviours.
 
-FAIR does not mean everything must be public.
+In this case the choice was made to make a **deliberate error**. The estimates obtained would serve as an underestimation of *true behaviour* and can be considered a lower bound estimation.
 
-It means that people with appropriate permission can find, understand, access, and reuse what is ethically and legally shareable.
+## Data biography
 
-::: footer
-Wilkinson et al. (2016) introduced the FAIR Guiding Principles for scientific data management and stewardship in *Scientific Data*: [Nature Scientific Data](https://www.nature.com/articles/sdata201618).
-:::
+For your project, write a short biography of the dataset.
 
-## What goes into the report?
+| Field | Your entry |
+|---|---|
+| Dataset name |  |
+| Data owner/source |  |
+| Original purpose |  |
+| Unit of observation |  |
+| Target population |  |
+| Observed sample |  |
+| Time period |  |
+| Sampling/selection |  |
+| Weights/design variables |  |
+| Key variables |  |
+| Missing/unavailable variables |  |
+| Ethical/access restrictions |  |
+| Good for |  |
+| Cannot answer |  |
 
-Your report should not simply say:
+## Data quality is not a paragraph at the end
 
-> The data were cleaned and analyzed.
+Data (i.e. information) quality shapes your whole document, from the title to the conclusion. It should become visible in:
 
-It should explain:
+- the research question
+- the analysis plan or methods
+- the results
+- the strength of the claim
+- the interpretation
+- the limitations
+- the recommendation
 
-- which data were used
-- how the analytic sample was created
-- how key variables were defined
-- how missing values were handled
-- which software or workflow was used
-- what limitations remain
+## Small data can hide real differences
+Sometimes the pattern is meaningful, but the dataset is too small to confirm it reliably.
+
+| What you see | Positive interpretation |
+|---|---|
+| Group A appears higher than Group B | There may be a real difference worth investigating |
+| A subgroup shows a clear pattern | The signal may be promising, but needs more observations |
+| An estimate has a wide uncertainty interval | The data are compatible with several plausible values |
+| Results change when a few cases are removed | More data would help stabilize the conclusion |
 
 ::: {.callout-tip}
-# In Short
-The archive is the evidence trail. The report is the argument built on that trail.
+# Low statistical power does not mean “no difference.”
+It means the information may be too limited to detect the difference reliably.
 :::
 
-## Before you submit
-
-Ask yourself:
-
-1. Can someone identify the final dataset?
-2. Can someone find the code or syntax behind each table?
-3. Are subjective decisions documented?
-4. Are raw data protected from accidental changes?
-5. Are restrictions and privacy issues clear?
-6. Could your future self continue the project in six months?
-
 ::: {.callout-important}
-# Final principle
-A statistical answer is not only a number. It is a traceable route from question to evidence to claim.
+# Better conclusion
+The evidence is promising, but more observations are needed before drawing a firm conclusion.
+:::
+
+## Claim language
+
+Limited data can still be useful.The key is to match the strength of the claim to the strength of the evidence.
+
+| When the evidence is limited | Say this instead |
+|---|---|
+| X causes Y | X may contribute to Y |
+| The population is... | In the observed sample... |
+| This proves... | This provides evidence that... |
+| There is no difference | We do not have enough evidence to detect a difference |
+| The data show no problem | The available data do not show a clear problem |
+| We controlled for everything | We accounted for the observed background variables |
+
+::: {.callout-tip}
+Be clear about what the data suggest, what they cannot confirm, and what more evidence would help establish.
 :::
 
 ## To conclude
 
-Reproducibility is not about being perfect.
+::: {.callout-important appearance="simple"}
+# Your data are witnesses
+They can tell you what has been measured and observed. They can also tell you the relation with what might have been. They cannot tell you about the relations they were never able to observe.
+:::
 
-It is about making your research accountable.
+Before you start your data analysis, ask:
 
-- A clear archive makes supervision easier
-- A clear archive makes collaboration easier
-- A clear archive makes mistakes easier to find
-- A clear archive makes your final answer more credible
-
-
+1. Where did the data come from?
+2. What do the variables really measure?
+3. Who or what is missing?
+4. What design choices shaped the file?
+5. What can this dataset answer well?
+6. What can it not answer?

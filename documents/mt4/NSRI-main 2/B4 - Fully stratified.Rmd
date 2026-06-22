@@ -1,0 +1,103 @@
+---
+title: "B4 - Fully Stratified"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../Workspaces/5. Preparation Imputed Datasets.Rdata")
+```
+
+---
+
+
+# Field x Rank x Gender x Research x Support 
+The absolute frequencies for the 144 cells in Field x Rank x Gender x Research x Support are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Gender does not differ
+  table(Field, Rank, Gender, Research, Support) 
+```
+
+The relative frequencies for the 144 cells in Field x Rank x Gender x Research x Support  are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Gender does not differ
+  table(Field, Rank, Gender, Research, Support) %>% 
+  prop.table(margin = c("Field", "Gender", "Research", "Support")) %>% 
+  round(4)
+```
+ 
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

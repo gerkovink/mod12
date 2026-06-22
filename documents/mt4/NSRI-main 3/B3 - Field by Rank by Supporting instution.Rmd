@@ -1,0 +1,174 @@
+---
+title: "B3 - Field by Rank by (non)Supporting institution"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../Workspaces/5. Preparation Imputed Datasets.Rdata")
+```
+
+---
+
+# Disciplinary field
+The absolute frequencies for `Field` are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Field does not differ
+  table(Field) 
+```
+
+The relative frequencies for `Field` are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Field does not differ
+  table(Field) %>% 
+  prop.table() %>% 
+  round(3)
+```
+
+---
+
+# Academic rank
+The absolute frequencies for `Rank` are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Rank does not differ
+  table(Rank) 
+```
+
+The relative frequencies for `Rank` are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Rank does not differ
+  table(Rank) %>% 
+  prop.table() %>% 
+  round(3)
+```
+
+---
+
+# Supporting institution
+The absolute frequencies for `Support` are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Support does not differ
+  table(Support) 
+```
+
+The relative frequencies for `Support` are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Support does not differ
+  table(Support) %>% 
+  prop.table() %>% 
+  round(3)
+```
+
+---
+
+# Field x Rank x Support
+The absolute frequencies for Field x Rank x Support are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Gender does not differ
+  table(Field, Rank, Support) 
+```
+
+The relative frequencies for Field x Rank x Support are
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Gender does not differ
+  table(Field, Rank, Support)  %>% 
+  prop.table() %>% 
+  round(3)
+```
+
+The plot of Field x Rank x Support
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Gender does not differ
+  table(Field, Rank, Support) %>% 
+  as.data.frame() %>% 
+  mutate(FieldSupp = paste(Field, Support)) %>% 
+  ggplot(aes(x = FieldSupp, y = Freq, fill = Rank)) +
+    geom_bar(stat = "identity") + 
+    theme(axis.text.x = element_text(angle = 90))
+```
+
+and the plot of Rank x Field x Support
+```{r}
+d50[[1]] %$% # Take the first listed dimension because Gender does not differ
+  table(Field, Rank, Support) %>% 
+  as.data.frame() %>% 
+  mutate(FieldSupp = paste(Field, Support)) %>% 
+  ggplot(aes(x = Rank, y = Freq, fill = FieldSupp)) +
+    geom_bar(stat = "identity")
+```
+ 
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

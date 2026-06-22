@@ -1,0 +1,276 @@
+---
+title: "A4 Means and SD's of QRP"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptives
+library(tibble)   # Dataframes on steroids
+library(gtools)   # Useful tools
+library(DT)       # HTML tables
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../Workspaces/3. Data imputation.Rdata")
+load(file = "../Workspaces/2. Data inspection.Rdata")
+```
+
+---
+
+# QRP without `Not Applicable`'s
+First, we create an indicator for all QRP
+```{r}
+QRP_set <- names(raw_data[86:107])[-c(1, 2, 4, 6, 9, 12, 15, 16, 17, 19, 21 )]
+```
+
+
+## Descriptives and plots
+
+### Overall
+First, we calculate the descriptive statistics
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  describe() %>% .[, 2:5] %>% 
+  print.data.frame()
+```
+
+Second, we create a pointrangeplot
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  describe(fast = TRUE) %>% 
+  rownames_to_column(var = "Practices") %>% 
+  mutate(min = mean - 1.96*sd, # subtract [1.96] SD
+         max = mean + 1.96*sd,
+         Practices = reorder(Practices, mixedorder(Practices))) %>%  
+  ggplot(aes(x = Practices, y = mean)) + 
+  geom_pointrange(aes(ymin = min, ymax = max))
+```
+
+---
+
+### By disciplinary field
+First, we calculate the descriptive statistics
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D2, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D2", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D2, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>% 
+  print.data.frame()
+```
+
+Second, we create a pointrangeplot
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D2, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D2", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D2, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>% 
+  ggplot(aes(x = Practices, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D2, colour = D2), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal()
+```
+
+---
+
+### By rank
+First, we calculate the descriptive statistics
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D3, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D3", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D3, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>%    
+  print.data.frame()
+```
+
+Second, we create a pointrangeplot
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D3, all_of(QRP_set)) %>% 
+  mutate(D3 = recode(D3, "PhD student or junior researcher" = "PhD|Junior", "Postdoctoral researcher, Assistant Professor, Physician Researcher or Lecturer Researcher" = "PostDoc|AssistProf|Researcher", "Associate Professor or Full Professor" = "AssocProf|FullProf")) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D3", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D3, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>% 
+  ggplot(aes(x = Practices, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D3, colour = D3), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal()
+```
+
+---
+
+### By gender identification
+First, we calculate the descriptive statistics
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D4, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D4", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D4, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>%    
+  print.data.frame()
+```
+
+Second, we create a pointrangeplot
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D4, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D4", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D4, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>% 
+  ggplot(aes(x = Practices, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D4, colour = D4), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal()
+```
+
+---
+
+### By  empirical research engagement
+First, we calculate the descriptive statistics
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D5, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D5", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D5, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>%    
+  print.data.frame()
+```
+
+Second, we create a pointrangeplot
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D5, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "D5", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(D5, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>% 
+  ggplot(aes(x = Practices, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D5, colour = D5), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal()
+```
+
+---
+
+### By institutional support
+First, we calculate the descriptive statistics
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(Group, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "Group", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(Group, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>%    
+  print.data.frame()
+```
+
+Second, we create a pointrangeplot
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(Group, all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  melt(id.vars = "Group", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(Group, Practices) %>% 
+  summarise_all(list(mean = mean, sd = sd), na.rm = TRUE) %>% 
+  ggplot(aes(x = Practices, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = Group, colour = Group), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal()
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

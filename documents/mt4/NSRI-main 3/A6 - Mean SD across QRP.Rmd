@@ -1,0 +1,495 @@
+---
+title: "A6 Means and SD's across QRP"
+author: "Gerko Vink"
+date: ""
+output: 
+   html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    number_sections: false
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptives
+library(tibble)   # Dataframes on steroids
+library(gtools)   # Useful tools
+library(DT)       # HTML tables
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../Workspaces/3. Data imputation.Rdata")
+load(file = "../Workspaces/2. Data inspection.Rdata")
+```
+
+---
+
+# QRP with and without `NA`'s
+We consider **both the cases with and without `Not Applicable`'s** in this document. 
+First, we create an indicator for all QRP
+```{r}
+QRP_set <- names(raw_data[86:107])[-c(1, 2, 4, 6, 9, 12, 15, 16, 17, 19, 21 )]
+```
+
+
+## Descriptives and plots
+
+### Overall
+First, we calculate the descriptive statistics of the data **with `Not Applicable`'s**
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  rowMeans(na.rm = FALSE) %>% #no missings
+  describe() %>% .[, 2:5] %>% 
+  print.data.frame()
+```
+
+---
+
+Second, we print the means and SD's for the data without the rows that contain `Not Applicable`'s. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  rowMeans(na.rm = FALSE) %>% #i.e. listwise deletion of incomplete rows
+  describe() %>% .[, 2:5] %>% 
+  print.data.frame()
+```
+
+---
+
+Third, we consider the means and SD's for the QRP's for the data without the rows that contain `Not Applicable`'s where for each row the mean is calculated based on the observed (i.e. applicable) values. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(all_of(QRP_set)) %>% 
+  na_if(0) %>% 
+  rowMeans(na.rm = TRUE) %>% #i.e. casewise deletion of unobserved values in row
+  describe() %>% .[, 2:5] %>% 
+  print.data.frame()
+```
+
+---
+
+### By disciplinary field
+First, we calculate the descriptive statistics of the data **with `Not Applicable`'s**
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D2, all_of(QRP_set)) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D2, rowM) %>% 
+  melt(id.vars = "D2", value.name = "QRP_mean") %>% 
+  group_by(D2) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D2, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D2, colour = D2), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Second, we print the means and SD's for the data without the rows that contain `Not Applicable`'s. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D2, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D2, rowM) %>% 
+  melt(id.vars = "D2", value.name = "QRP_mean") %>% 
+  group_by(D2) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D2, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D2, colour = D2), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Third, we consider the means and SD's for the QRP's where only missing cases are excluded from calculating the rowwise mean. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D2, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = TRUE)) %>% 
+  select(D2, rowM) %>% 
+  melt(id.vars = "D2", value.name = "QRP_mean") %>% 
+  group_by(D2) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE)) %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D2, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D2, colour = D2), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+### By rank
+First, we calculate the descriptive statistics of the data **with `Not Applicable`'s**
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D3, all_of(QRP_set)) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D3, rowM) %>% 
+  melt(id.vars = "D3", value.name = "QRP_mean") %>% 
+  group_by(D3) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D3, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D3, colour = D3), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Second, we print the means and SD's for the data without the rows that contain `Not Applicable`'s. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D3, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D3, rowM) %>% 
+  melt(id.vars = "D3", value.name = "QRP_mean") %>% 
+  group_by(D3) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D3, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D3, colour = D3), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Third, we consider the means and SD's for the QRP's where only missing cases are excluded from calculating the rowwise mean. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D3, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = TRUE)) %>% 
+  select(D3, rowM) %>% 
+  melt(id.vars = "D3", value.name = "QRP_mean") %>% 
+  group_by(D3) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE)) %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D3, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D3, colour = D3), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+### By gender identification
+First, we calculate the descriptive statistics of the data **with `Not Applicable`'s**
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D4, all_of(QRP_set)) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D4, rowM) %>% 
+  melt(id.vars = "D4", value.name = "QRP_mean") %>% 
+  group_by(D4) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D4, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D4, colour = D4), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Second, we print the means and SD's for the data without the rows that contain `Not Applicable`'s. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D4, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D4, rowM) %>% 
+  melt(id.vars = "D4", value.name = "QRP_mean") %>% 
+  group_by(D4) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D4, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D4, colour = D4), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Third, we consider the means and SD's for the QRP's where only missing cases are excluded from calculating the rowwise mean. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D4, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = TRUE)) %>% 
+  select(D4, rowM) %>% 
+  melt(id.vars = "D4", value.name = "QRP_mean") %>% 
+  group_by(D4) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE)) %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D4, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D4, colour = D4), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+### By  empirical research engagement
+First, we calculate the descriptive statistics of the data **with `Not Applicable`'s**
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D5, all_of(QRP_set)) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D5, rowM) %>% 
+  melt(id.vars = "D5", value.name = "QRP_mean") %>% 
+  group_by(D5) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D5, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D5, colour = D5), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Second, we print the means and SD's for the data without the rows that contain `Not Applicable`'s. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D5, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(D5, rowM) %>% 
+  melt(id.vars = "D5", value.name = "QRP_mean") %>% 
+  group_by(D5) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D5, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D5, colour = D5), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Third, we consider the means and SD's for the QRP's where only missing cases are excluded from calculating the rowwise mean. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(D5, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = TRUE)) %>% 
+  select(D5, rowM) %>% 
+  melt(id.vars = "D5", value.name = "QRP_mean") %>% 
+  group_by(D5) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE)) %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = D5, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = D5, colour = D5), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+### By institutional support
+First, we calculate the descriptive statistics of the data **with `Not Applicable`'s**
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(Group, all_of(QRP_set)) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(Group, rowM) %>% 
+  melt(id.vars = "Group", value.name = "QRP_mean") %>% 
+  group_by(Group) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = Group, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = Group, colour = Group), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Second, we print the means and SD's for the data without the rows that contain `Not Applicable`'s. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(Group, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = FALSE)) %>% 
+  select(Group, rowM) %>% 
+  melt(id.vars = "Group", value.name = "QRP_mean") %>% 
+  group_by(Group) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE))  %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = Group, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = Group, colour = Group), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+Third, we consider the means and SD's for the QRP's where only missing cases are excluded from calculating the rowwise mean. 
+```{r}
+mice::complete(imp, 1) %>% #QRP has no missings -so use 1st imputed set
+  select(Group, all_of(QRP_set)) %>%
+  na_if(0) %>% 
+  mutate(rowM = rowMeans(select(., all_of(QRP_set)), na.rm = TRUE)) %>% 
+  select(Group, rowM) %>% 
+  melt(id.vars = "Group", value.name = "QRP_mean") %>% 
+  group_by(Group) %>% 
+  summarise(count = n(), 
+            mean = mean(QRP_mean, na.rm=TRUE), 
+            sd = sd(QRP_mean, na.rm = TRUE)) %T>%    
+  print.data.frame() %>% 
+  ggplot(aes(x = Group, y = mean, 
+             ymin = mean - 1.96*sd, 
+             ymax = mean + 1.96*sd)) + 
+  geom_pointrange(aes(group = Group, colour = Group), 
+                  position = position_dodge(width = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info 
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

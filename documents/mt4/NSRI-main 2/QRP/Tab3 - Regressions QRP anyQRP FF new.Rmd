@@ -1,0 +1,253 @@
+---
+title: "Table 3"
+author: "Gerko Vink"
+date: Linear, Logistic and Proportional Odds Regression Coefficients (95% CI) of QRPs, any QRP^^ and any FF  by Explanatory Variable Scales
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptive tables
+library(tibble)   # Tibbles
+library(RRreg)    # Randomized Response
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+options(DT.options = list(pageLength = 50)) # table options
+```
+
+---
+
+```{r echo=FALSE}
+d50 %<>% 
+  map(~.x %>% mutate(Gender = relevel(Gender, ref = "Male"),
+                     Rank = relevel(Rank, ref = "Postdoc"),
+                     Field = relevel(Field, ref = "Bio & Life"), 
+                     Support = relevel(Support, ref = "No")))
+```
+
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(comment="", message=F, warning=F, echo=F, cache = F)
+RRpropodds <- function(df){
+  
+  
+  df <- na.omit(df)
+  
+  y  <- df[, 1:2]
+  
+  sy <- rowSums(y)
+  
+  n  <- nrow(y)
+  
+  M  <- ncol(y)
+  
+  x <- model.matrix(~ ., df)[, -(1:3), drop = F]
+    
+  P <- matrix(c(5, 1, 1, 5) / 6, 2, 2)
+  
+  Q <- P %x% P
+  
+  Q[2, ] <- colSums(Q[2:3, ])
+  
+  Q <- Q[-3, -3]
+  
+  
+  logl <- function(theta){
+    
+    alpha     <- matrix(theta[1:M], n, M, byrow = T)
+    
+    b         <- theta[(M + 1):length(theta)]
+    
+    if(ncol(df) > M){
+      
+    xb        <- x %*% b
+    
+    cum.probs <- exp(alpha - c(xb)) / (1 + exp(alpha - c(xb)))
+      
+    } else {
+      
+      cum.probs <- exp(alpha) / (1 + exp(alpha))
+    }
+    
+    probs     <- cbind(cum.probs, 1) - cbind(0, cum.probs)
+    
+    logl  <- 0
+    
+    for(j in 0:M){
+      
+      logl <- logl - sum(log(Q[j + 1, ] %*% t(probs[sy == j, ])))
+      
+    }
+    
+    return(logl + sum(b^2))
+  }
+  
+  if(ncol(df) > M){
+    
+    par0 <- c(2, 5, rep(0, ncol(x))) 
+    
+  } else {
+    
+    par0 <- c(2, 5)
+    
+  }
+  
+  fit  <- optim(par0, logl, hessian = T, method = "BFGS")
+  
+  bhat  <- fit$par
+  
+  bvar  <- diag(solve(fit$hessian))
+  
+  data.frame(pars = c(paste0("alpha", 1:M), if(ncol(df) > M)colnames(x)), bhat, bvar)
+  
+}
+
+```
+
+# Linear model
+```{r echo = FALSE, cache = TRUE}
+d50 %>% 
+  map(lm, 
+      formula = QRP_ave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% 
+  summary(conf.int = TRUE) %>% 
+  mutate(Bci = paste(round(estimate, 2),
+        paste("(", round(`2.5 %`, 2), ",", round(`97.5 %`, 2), ")", sep = ""))) %>% 
+  select(term, Bci) %>% 
+  datatable()
+
+
+d50 %>% 
+  map(lm, 
+      formula = QRP_ave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared()
+
+d50 %>% 
+  map(lm, 
+      formula = QRP_ave ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support) %>% 
+  pool %>% pool.r.squared(adjusted = TRUE)
+```
+
+# Logistic model (Any QRP)
+```{r}
+d50 %>% 
+  map(glm, formula = QRP_1 ~ SciNorms + PeerNorms + WorkPress + PubPress + FundPress + Competitive + DetectCol + DetectRev + MentSurv + MentResp + OrgJust + Field + Rank + Gender + Research + Support, 
+      family = binomial(link = "logit")) %>% 
+  pool %>% 
+  summary(conf.int = TRUE) %>% 
+  mutate(OR = if_else(term == '(Intercept)', as.numeric(NA), exp(estimate)), 
+         lwr = if_else(term == '(Intercept)', as.numeric(NA), 
+                       exp(estimate - 1.96 * std.error)),
+         upr = if_else(term == '(Intercept)', as.numeric(NA), 
+                       exp(estimate + 1.96 * std.error)),
+         Oci = paste(round(OR, 2), 
+                     paste("(", round(lwr, 2), ",", round(upr, 2), ")", 
+                           sep = ""))) %>% 
+  select(term, Oci) %>% 
+  datatable()
+```
+
+# Any FF
+```{r echo = FALSE, cache = TRUE}
+set.seed(123)
+d50 %>% 
+  map(select, RRfabr, RRfals, SciNorms, PeerNorms, WorkPress,  PubPress,  FundPress,  Competitive,  DetectCol,  DetectRev,  MentSurv,  MentResp,  OrgJust,  Field,  Rank,  Gender,  Research,  Support) %>% 
+  map(RRpropodds) %>% 
+  reduce(rbind) %>% 
+  group_by(pars) %>% 
+  summarise(qbar = mean(bhat), 
+            ubar = mean(bvar),
+            b = var(bhat)) %>% 
+  mutate(t = ubar + b + b/50, # m = 50 imputations
+         se = sqrt(t),
+         z = qbar/se,
+         pval = 2 * pnorm(-abs(z)),
+         OR = if_else(pars %in% c('alpha1', 'alpha2'), as.numeric(NA), exp(qbar)), 
+         lwr = if_else(pars %in% c('alpha1', 'alpha2'), as.numeric(NA),  
+                       exp(qbar - 1.96 * se)),
+         upr = if_else(pars %in% c('alpha1', 'alpha2'), as.numeric(NA), 
+                       exp(qbar + 1.96 * se)),
+         Oci = paste(round(OR, 2), 
+                     paste("(", round(lwr, 2), ",", round(upr, 2), ")", 
+                           sep = ""))) %>% 
+  select(pars, Oci) %>% 
+  datatable()
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT

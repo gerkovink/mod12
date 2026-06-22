@@ -1,0 +1,240 @@
+---
+title: "Table 2"
+author: "Gerko Vink"
+date: Mean score and prevalence^^ of Responsible Research Practices (RRP) stratified by Disciplinary Gender, Research and Research without NA
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    number_sections: no
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: true
+---
+
+<style type="text/css">
+  
+body{ /* Normal  */
+  font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 18px;
+  color: DarkBlue;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+}
+h2 { /* Header 2 */
+  font-size: 18px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+code.r{ /* Code block */
+  font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+  font-size: 14px;
+}
+</style>
+
+
+---
+
+# Packages used
+For this document we use the following packages
+```{r message=FALSE, warning=FALSE}
+library(dplyr)    # Data manipulation
+library(mice)     # Data imputation
+library(magrittr) # Pipes
+library(purrr)    # Functional programming
+library(haven)    # Import data
+library(DT)       # Interactive tables
+library(ggplot2)  # Plotting device
+library(reshape2) # Data shaping
+library(labelled) # Advanced labelling
+library(psych)    # Descriptive tables
+library(tibble)   # Tibbles
+library(RRreg)    # Randomized Response
+```
+
+---
+
+# Load the data
+```{r}
+load(file = "../../Workspaces/5. Preparation Imputed Datasets.Rdata")
+options(DT.options = list(pageLength = 50)) # table options
+```
+
+---
+
+# Means
+```{r echo = FALSE}
+
+rrp <- c("RDisclFunds", "RCorrectPub", "RAuthorship", "ROpenData", "RKeepRecord", 
+         "RPreReg", "RDataManage", "ROpenAccess", "RCiteSource", "ROpenCode", "RErrorCheck")
+
+Q <- d50
+Q <- Q %>% 
+  map(~ .x %>% 
+        mutate_at(paste(rrp, "_raw", sep = ""), ~ na_if(., 0))) %>% 
+  map(~.x %>% 
+        mutate(RRPave = rowMeans(select(., 81:91), na.rm = FALSE)))
+meangv <- function(x){mean(x, na.rm = TRUE)}
+sdgv <- function(x){sd(x, na.rm = TRUE)}
+
+Support <- Q[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(starts_with("R"), Support) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Support) %>% # exclude raw
+  melt(id.vars = "Support", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(Support, Practices) %>% 
+  summarise_all(list(n = length, mean = meangv, sd = sdgv)) %>% 
+  mutate(lwr = mean - qnorm(.975) * (sd/sqrt(n)),
+         upr = mean + qnorm(.975) * (sd/sqrt(n)),
+         ci = paste("(", round(lwr, 1), ",", round(upr, 1), ")", sep = ""),
+         mean = round(mean, 1),
+         m.ci = paste(mean, ci, sep = " ")) %>% 
+  select(Practices, mean, ci, m.ci) 
+
+mci.Support <- Support %>% dcast(Practices ~ Support, value.var = "m.ci") %>% 
+  rename(`Support (Yes)` = Yes, `Support (No)` = No)
+```
+```{r echo = FALSE}
+Gender <- Q[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(starts_with("R"), Gender) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Gender)%>% # exclude raw
+  melt(id.vars = "Gender", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(Gender, Practices) %>% 
+  summarise_all(list(n = length, mean = meangv, sd = sdgv)) %>% 
+  mutate(lwr = mean - qnorm(.975) * (sd/sqrt(n)),
+         upr = mean + qnorm(.975) * (sd/sqrt(n)),
+         ci = paste("(", round(lwr, 1), ",", round(upr, 1), ")", sep = ""),
+         mean = round(mean, 1),
+         m.ci = paste(mean, ci, sep = " ")) %>% 
+  select(Practices, Gender, mean, ci, m.ci) 
+
+mci.Gender <- Gender %>% dcast(Practices ~ Gender, value.var = "m.ci") %>% .[, c(1, 4, 3, 2)]
+```
+
+```{r echo = FALSE}
+Research <- Q[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(starts_with("R"), Research) %>% 
+  select(-Rank) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Research) %>% # exclude raw
+  melt(id.vars = "Research", variable.name = "Practices", value.name = "Response") %>% 
+  group_by(Research, Practices) %>% 
+  summarise_all(list(n = length, mean = meangv, sd = sdgv)) %>% 
+  mutate(lwr = mean - qnorm(.975) * (sd/sqrt(n)),
+         upr = mean + qnorm(.975) * (sd/sqrt(n)),
+         ci = paste("(", round(lwr, 1), ",", round(upr, 1), ")", sep = ""),
+         mean = round(mean, 1)) %>% 
+  select(Practices, Research, mean, ci) 
+
+mci.Research <- Research %>% mutate(m.ci = paste(mean, ci, sep = " ")) %>% dcast(Practices ~ Research, value.var = "m.ci") %>% 
+  rename(`Research (Yes)` = Yes, `Research (No)` = No)
+```
+
+```{r echo = FALSE}
+Means <- merge(mci.Gender, mci.Research, by.x = "Practices")
+Means <- merge(Means, mci.Support, by.x = "Practices")
+Means <- Means[c(5, 3, 1, 10, 7, 11, 4, 8, 2, 9, 6), ]
+datatable(Means)
+Means
+```
+
+---
+
+# Prevalence of RRP items
+```{r echo = FALSE}
+p.test <- function(x){
+  t <- suppressWarnings(prop.test(x))
+  paste(round(t$estimate*100, 1),
+        paste("(", round(t$conf.int[1]*100, 1), ",", round(t$conf.int[2]*100, 1), ")", sep = ""))
+}
+p.fun <- function(x){
+  if(sum(x > 4, na.rm = TRUE) == 0) {
+    return("none")
+    } 
+  if(dim(table(x > 4)) == 1){return("100")} else {
+  table(x > 4) %>% .[c(2, 1)] %>% t() %>% p.test
+  }
+}
+
+
+Prevalence_RRP_Support <- Q[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(starts_with("R"), Support) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Support) %>%
+  group_by(Support) %>% 
+  summarise_all(list(prevalence = p.fun)) %>% t() %>% .[-1, ] %>% 
+  as.data.frame() %>% 
+  `colnames<-`(names(Means)[7:8])
+  
+Prevalence_RRP_Gender <- Q[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(starts_with("R"), Gender) %>% 
+  select(-Rank, -Research) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Gender) %>%
+  group_by(Gender) %>% 
+  summarise_all(list(prevalence = p.fun)) %>% t()  %>% 
+  .[-1, 3:1] %>% as.data.frame() %>% 
+  `colnames<-`(names(Means)[2:4])
+
+Prevalence_RRP_Research <- Q[[1]] %>% #RRP has no missings -so use 1st imputed set
+  select(starts_with("R"), Research) %>% 
+  select(-Rank) %>% 
+  select(-RRfabr, -RRfals) %>% 
+  select(contains("raw"), Research) %>%
+  group_by(Research) %>% 
+  summarise_all(list(prevalence = p.fun)) %>% t() %>% .[-1, ] %>% 
+  as.data.frame() %>% 
+  `colnames<-`(names(Means)[5:6])
+
+prevalence <- cbind(Prevalence_RRP_Gender, 
+                    Prevalence_RRP_Research, 
+                    Prevalence_RRP_Support) 
+prevalence %>% datatable()
+prevalence
+```
+
+
+---
+
+```{r}
+Out <- rbind(Means, prevalence %>% rownames_to_column(var = "Practices"))[c(1,12, 2, 13, 3, 14, 4, 15, 5, 16, 6, 17, 7, 18, 8, 19, 9, 20, 10, 21, 11, 22), ]
+Out
+write.table(Out[, -c(6, 8)], file = "SupplTable2_meanprevalence.txt", sep = "\t")
+
+```
+
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+---
+
+# Document info
+Signed: 
+[Gerko Vink](https://www.gerkovink.com), 
+
+```{r}
+timestamp()
+```
+
+---
+
+END of DOCUMENT
