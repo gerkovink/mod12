@@ -681,31 +681,4 @@ Possible checks:
 2. Do the results change when different samples/models are used?
 :::
 
-## Responsible conclusion language
 
-| Too strong | More responsible |
-|---|---|
-| X causes Y | X is associated with Y |
-| The population is... | In the observed sample... |
-| This proves... | This suggests... |
-| No effect was found | The data do not show clear evidence of... |
-| We controlled for everything | We adjusted for observed background variables |
-| The model predicts accurately | The model predicted reasonably in this dataset |
-
-## The combined workflow
-
-```{mermaid}
-%%| echo: false
-flowchart TB
-  A[Research question] --> B[Comparison]
-  B --> C[Outcome type]
-  C --> D[Primary method]
-  D --> E[Diagnostics]
-  E --> F[Preliminary claim]
-  F --> G[Robustness check]
-  G --> H[Responsible interpretation]
-```
-
-::: {.callout-tip appearance="simple"}
-The goal is not the most impressive model. The goal is the most defensible answer.
-:::
