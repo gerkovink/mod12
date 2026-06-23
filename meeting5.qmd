@@ -16,8 +16,8 @@ format:
 ---
 
 ::: callout-tip
-## Hoorcollege 22 juni 2026
-Vandaag kijken we naar statistische modellering als een vorm van *gedisciplineerd vergelijken*. We beginnen dus niet met de vraag “welke toets wil ik gebruiken?”, maar met de vraag “welke vergelijking is nodig om mijn onderzoeksvraag te beantwoorden?” We besteden aandacht aan
+## Hoorcollege 23 juni 2026
+Vandaag kijken we naar statistische modelering als een vorm van *gedisciplineerd vergelijken*. We beginnen dus niet met de vraag “welke toets wil ik gebruiken?”, maar met de vraag “welke vergelijking is nodig om mijn onderzoeksvraag te beantwoorden?” We besteden aandacht aan
 
 - een model zien als gestructureerde vergelijking
 - bepalen van de uitkomst die je wilt beschrijven, verklaren of voorspellen

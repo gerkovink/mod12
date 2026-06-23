@@ -1,12 +1,13 @@
 ---
-title: "Placeholder Lecture 5"
+title: "Statistical Modelling as Disciplined Comparison"
+subtitle: "With assumptions, robustness and sensitivity checks"
 author: 
   - name: Gerko Vink
     orcid: 0000-0001-9767-1924
     email: g.vink@uu.nl
     affiliations:
       - name: Methodology & Statistics @ Utrecht University
-date: 22 June 2026
+date: 23 June 2026
 date-format: "D MMM YYYY"
 execute: 
   echo: true
@@ -51,10 +52,660 @@ You **may use** any and all content in this presentation - including my name - a
 
 ## Recap
 
-Yesterday we learned
+Yesterday we learned that we should not take our data for granted!
 
 
 ## Today
 
+### Core idea
+> A statistical model is a disciplined comparison.
 
-# Groepsopdracht
+Today we cover the following:
+
+- How do we choose a statistical test or model?
+- How does the outcome type guide the method?
+- How can we perform simple robustness and sensitivity checks?
+
+
+## Terms I may use
+
+- **Comparison**: the contrast that answers the research question
+- **Outcome**: the variable we try to describe, explain or predict
+- **Predictor / explanatory variable**: the variable that defines the main comparison
+- **Covariate / background variable**: a variable used to make the comparison fairer
+- **Model**: a structured way to make the comparison
+- **Diagnostic**: a check of whether the model behaves reasonably
+- **Robustness check**: a check whether the answer survives a reasonable alternative choice
+- **Sensitivity check**: a check how much the answer changes when an assumption is varied
+
+## At the start
+
+Let's start with the core:
+
+::: {.callout-note appearance="simple"}
+# Modelling
+A model is not the answer. A model is the machine that turns a comparison into an answer.
+:::
+
+So the first question is not:
+
+> Which test should I use?
+
+The first question is:
+
+> Which comparison would answer my research question?
+
+## The method-first trap
+
+A common mistake:
+
+::: {.callout-warning appearance="simple"}
+# Method-first thinking
+“I want to use regression.”  
+“I want to do a t-test.”  
+“I want to use a random forest.”
+:::
+
+This is backwards.
+
+- A method cannot repair a vague question.
+- A complex model cannot repair weak data.
+- A significant result cannot repair a poor comparison.
+
+## The analysis route
+
+A more disciplined route:
+
+```{mermaid}
+%%| echo: false
+flowchart LR
+  A[Research question] --> B[Comparison]
+  B --> C[Outcome type]
+  C --> D[Data structure]
+  D --> E[Method]
+  E --> F[Diagnostics]
+  F --> G[Claim]
+  G --> H[Robustness check]
+```
+
+::: {.callout-tip appearance="simple"}
+# Rule of thumb
+Choose the method after you understand the comparison, the outcome and the data structure.
+:::
+
+## What kind of question is it?
+
+| Type question | Central task | Typical output |
+|---|---|---|
+| **Descriptive** | describe a level, distribution or trend | mean, proportion, table, trend |
+| **Comparative** | compare groups or periods | difference in means/proportions |
+| **Associational** | relate variables | regression coefficient, odds ratio |
+| **Predictive** | predict future or unseen outcomes | prediction error, accuracy |
+| **Causal** | estimate effect of intervention/exposure | effect estimate under assumptions |
+| **Validation** | compare measurement systems | agreement, calibration, error |
+
+## The same data can support different answers
+
+Imagine a survey on households and water nuisance.
+
+| Question | Possible method | Claim |
+|---|---|---|
+| How many households report water nuisance? | proportion, table | descriptive |
+| Do districts differ? | cross-tab, group comparison | comparative |
+| Is water nuisance associated with drainage? | regression | associational |
+| Can we predict high-risk households? | prediction model | predictive |
+| Does poor drainage cause water nuisance? | causal design needed | causal only with stronger assumptions |
+
+::: {.callout-warning appearance="simple"}
+The dataset does not decide the claim by itself. The design and assumptions do.
+:::
+
+## Outcome type guides the method
+
+| Outcome type | Examples | Natural first methods |
+|---|---|---|
+| **Continuous** | income, score, biomass | means, linear regression |
+| **Binary** | yes/no hypertension, dropout | proportions, logistic regression |
+| **Categorical** | district, job sector | cross-tabs, multinomial models |
+| **Ordinal** | low/middle/high, Likert | ordered comparisons, ordinal models |
+| **Counts** | number of events | rates, count models |
+| **Time series** | yearly revenues | trends, change, cautious models |
+| **Measurement comparison** | ULS vs field inventory | agreement, calibration, prediction error |
+
+## Continuous outcomes
+
+Some outcomes are **continuous**: they can take many numerical values, and differences between values are meaningful. Examplesare:
+
+- body mass index
+- household income
+
+For continuous outcomes, we often ask whether the **average level** differs between groups, or whether the outcome changes with another variable.
+
+| Type of question | Example | What do we compare? | Appropriate first step |
+|---|---|---|---|
+| Describe one continuous outcome | Average math score | Mean, median and variation | Summary table and histogram |
+| Compare two groups | Math score  | Difference in average score | Group means and boxplot |
+| Compare more than two groups | Biomass by forest type or district | Differences between several group means | Grouped summary table |
+| Study association  | Biomass and tree height | relation between values | Scatterplot |
+| Adjust for background characteristics | Math score by language proficiency, accounting for household wealth and district | Difference after adjustment | Regression model |
+
+## Possible methods for continuous outcomes
+
+| Situation | Possible method |
+|---|---|
+| We want to summarize a continuous outcome | Mean, median, standard deviation, interquartile range |
+| We want to visualize the distribution | Histogram, density plot or boxplot |
+| We compare the average outcome between two groups | Difference in means or t-test |
+| We compare the average outcome across several groups | ANOVA-style comparison or regression with group indicators |
+| We study the association between two continuous variables | Scatterplot and correlation |
+| We want to adjust for background variables | Linear regression |
+| The outcome is very skewed, such as income | Consider median, transformation, robust summaries, or careful interpretation |
+
+## Binary outcomes
+
+Some outcomes have only **two possible values**. Examples are:
+
+- hypertension: yes/no
+- school dropout: yes/no
+- trusts government: yes/no
+- employed: yes/no
+
+For binary outcomes, we often describe the **percentage** with the outcome in each group.
+
+| Type of question | Example | What do we compare? | Appropriate first step |
+|---|---|---|---|
+| Describe one binary outcome | Percentage with hypertension | Proportion or percentage with “yes” | Frequency table |
+| Compare two groups | Dropout by mother’s education | Difference in percentages | Cross-table |
+| Compare risk between groups | Water nuisance in low/high-risk areas | Risk difference or risk ratio | Percentages per group |
+| Study association with background variables | Hypertension by age, gender and lifestyle | Adjusted association | Logistic regression |
+| Small groups or rare outcome | Dropout in small subgroups | Exact comparison | Fisher’s exact test |
+
+## Possible methods for binary outcomes
+
+| Situation | Possible method |
+|---|---|
+| We want to summarize a binary outcome | Percentage or proportion |
+| We compare percentages between groups | Cross-table |
+| We want an easily interpretable group difference | Risk difference |
+| We want a relative comparison | Risk ratio |
+| We model a binary outcome with predictors | Logistic regression |
+| Groups are small or cells contain very few cases | Fisher's exact test |
+| We report logistic regression | Translate odds or log-odds carefully into plain language |
+
+::: {.callout-warning appearance="simple"}
+# Interpretation trap
+
+Odds are not probabilities.
+
+If the probability of an event is 20%, the odds are 20 to 80, or 0.25.  
+If the probability is 50%, the odds are 50 to 50, or 1.
+
+An odds ratio can sound like a risk ratio, but it is not the same. For students and policy audiences, it is often clearer to also report predicted probabilities or percentages.
+:::
+
+## Categorical and ordinal outcomes
+
+Some outcomes are **categories**: each observation belongs to one group or type.
+
+Categorical examples:
+
+- employment sector
+- district
+- type of schooling
+- source of drinking water
+
+Other outcomes are **ordered categories**: the values have a meaningful order, but the distance between categories is not necessarily equal.
+
+Ordinal examples:
+
+- low / middle / high trust
+- strongly disagree → strongly agree
+- poor / fair / good health
+- no education / primary / secondary / tertiary education
+
+## Categorical and ordinal outcomes
+| Type of outcome | Example | What do we compare? | Appropriate description |
+|---|---|---|---|
+| Nominal categorical | Employment sector | Distribution across categories | Frequency table |
+| Nominal categorical by group | Type of schooling by district | Whether category distributions differ across groups | Cross-table |
+| Ordinal categorical | Low / middle / high trust | Ordered distribution of responses | Ordered frequency table |
+| Ordinal categorical by group | Trust level by age group | Whether one group tends to score higher or lower | Grouped ordinal comparison |
+
+## Possible methods for categorical outcomes {.scrollable}
+
+| Situation | Possible method |
+|---|---|
+| We only want to summarize categories | Frequency table |
+| We compare categories across groups | Cross-table |
+| We test whether two categorical variables are associated | Chi-square test |
+| We model an unordered categorical outcome with more than two categories | Multinomial logistic regression |
+| We model an ordered categorical outcome | Ordinal logistic regression |
+| The sample size is small or some cells are sparse | Simpler grouped comparisons or combine categories before analysis |
+
+::: {.callout-tip appearance="simple"}
+# Why not always use a complex model?
+
+Categorical outcomes can quickly create many small groups.  
+For example, five districts, three education levels and four age groups already create many combinations.
+
+If many cells contain only a few observations, a complex model may become unstable or difficult to interpret. 
+
+In that case, a simpler comparison, fewer categories, or a more descriptive analysis may give a more honest but equally informative answer.
+:::
+
+## Counts and rates
+Some outcomes are **counts**: we count how often something happens.Examples:
+
+- number of visits to a clinic
+- number of flood events
+- number of incidents in an area
+- number of days absent from school
+
+But a count is not always directly comparable. Sometimes we need to take into account the **exposure** or **opportunity** for something to happen.
+
+| Question | Example | Appropriate description |
+|---|---|---|
+| How often does something happen? | Number of incidents per district | Count table |
+| How often does something happen relatively? | Incidents per 10,000 inhabitants | Rate |
+| How often does something happen per unit of time? | Clinic visits per month | Rate over time |
+| How often does something happen per person, household, or area? | Absence days per student | Rate per unit |
+
+## Possible methods {.scrollable}
+
+| Situation | Possible method |
+|---|---|
+| We only want to summarize counts | Frequency table or count table |
+| We compare counts between groups with equal exposure | Cross-table or simple group comparison |
+| We compare counts between groups with different exposure | Rates, for example per inhabitant, household, month, or area |
+| We model counts as an outcome | Poisson regression |
+| The counts vary much more than a Poisson model expects | Negative binomial regression |
+
+::: {.callout-tip appearance="simple"}
+# Why negative binomial regression?
+A Poisson model expects the average count and the spread of the counts to be roughly aligned.
+
+If some areas or groups show much more variation than expected — for example many zeroes and a few extremely high counts — then a Poisson model may be too restrictive. This is called **overdispersion**.
+
+In that case, negative binomial regression may be more appropriate because it allows for extra variation.
+:::
+
+## Time series and repeated measurements
+
+Some outcomes are observed **over time** or **repeatedly for the same unit**. Examples:
+
+- mining revenues from 2010–2025
+- tax income per year
+- yearly forest-cover change
+
+The first step is usually not a model. The first step is to **draw the time pattern**.
+
+| Type of question | Example | What do we compare? | Appropriate first step |
+|---|---|---|---|
+| Trend over time | Mining revenues from 2010–2025 | Do values increase, decrease, or fluctuate? | Line plot |
+| Difference between periods | Tax income before and after a policy change | Are values different before and after a moment in time? | Before/after plot and descriptive comparison |
+| Repeated measurements | Forest cover measured yearly in the same area | Does the same unit change over time? | Line plot per unit or area |
+| Simple time association | Inflation by year | Is there a general linear trend? | Simple regression on time |
+
+## Time series and repeated measurements
+
+::: {.callout-note appearance="simple"}
+# Important question
+
+Are we studying **change over time**, or are we comparing **independent groups**?
+
+For example:
+
+- tax income in Suriname from 2010–2025  
+- tax income in different districts in one year  
+
+These require different ways of thinking about the data.
+:::
+
+## Possible methods for time series
+
+| Situation | Possible method |
+|---|---|
+| We want to describe change over time | Line plot and descriptive trend comparison |
+| We compare two broad periods | Before/after comparison, with caution |
+| We want to estimate a simple trend | Regression with time as predictor |
+| We have repeated observations within the same unit | Repeated-measures or panel-style approach |
+| We have only 10–15 yearly observations | Keep the analysis simple and avoid overfitting |
+| There may be a policy change or shock | Show the timing clearly and interpret cautiously |
+
+::: {.callout-warning appearance="simple"}
+# Small-N warning
+
+A complex time-series model is rarely convincing with 10–15 yearly observations.
+
+With few years, the model can easily start describing random fluctuations instead of a real pattern. A clear figure, a simple trend description, and careful language are often stronger.
+:::
+
+## Measurement and validation questions
+
+Sometimes the research question is not about explaining an outcome, but about **checking whether a measurement is good enough**. Examples:
+
+- Does a short test measure the same construct as a longer test?
+- Do administrative records agree with survey responses?
+- Does a new indicator classify households similarly to an existing measure?
+
+| Validation question | Example | What do we compare? | Appropriate first step |
+|---|---|---|---|
+| Agreement between two measurements | ULS biomass estimate vs forest inventory biomass | Do both methods give similar values? | Scatterplot against reference measurement |
+| Accuracy of a new measure | Short test vs long test | How far are the new measurements from the reference? | Mean error, MAE, RMSE |
+| Consistency of classification | Administrative poverty status vs survey poverty status | Do both sources classify units similarly? | Cross-table |
+| Systematic bias | New sensor vs field measurement | Is the new method systematically too high or too low? | Difference plot or Bland-Altman style plot |
+
+## Possible methods
+
+| Situation | Possible method |
+|---|---|
+| We want a first visual check | Scatterplot against reference measurement |
+| We want to know whether two measures move together | Correlation |
+| We want to quantify average error | Mean error |
+| We want to quantify typical absolute error | Mean absolute error, MAE |
+| We want to penalize larger errors more strongly | Root mean squared error, RMSE |
+| We want to inspect agreement and bias | Bland-Altman style agreement plot |
+| We want to adjust or translate one measurement into another | Calibration model |
+
+## Covariates: make comparisons fairer
+A covariate is a variable we include because it helps us make a comparison more meaningful, more precise, or less misleading.
+
+| Job of a covariate | What it means | Example |
+|---|---|---|
+| Reduce confounding | We compare groups that differ in other important ways | Compare dropout by mother’s education while also considering household wealth |
+| Improve precision | We explain some background variation, so the main comparison becomes clearer | Include child’s age when comparing school performance |
+| Compare like with like | We avoid comparing very different units as if they were the same | Compare districts while accounting for urban/rural composition |
+| Account for design differences | We respect how the data were collected | Include survey weights, clusters, or strata where relevant |
+| Avoid misleading group comparisons | We prevent a crude comparison from carrying too much weight | Compare clinic visits while accounting for population size or access to care |
+
+## Covariates make comparisons fairer
+::: {.callout-note appearance="simple"}
+# Example
+
+If we compare dropout by mother’s education, should we also consider household wealth, district, child's age and school attendance?
+
+Without these background variables, the comparison may partly reflect other differences between households rather than mother’s education alone.
+:::
+
+## Covariates in an analysis plan
+
+| Analysis question | Possible covariates | Why they may matter |
+|---|---|---|
+| Is language skill associated with math performance? | Age, district, school attendance, household wealth | These factors may affect both language skill and math performance |
+| Does trust in government differ by age group? | Education, district, employment status | Age groups may differ in social and economic background |
+| Are flood reports higher in some districts? | Population size, urban/rural area, drainage access | Districts differ in exposure and infrastructure |
+| Is health-care use associated with income? | Age, gender, distance to clinic, insurance status | Health-care use also depends on need and access |
+
+## Choosing background variables
+
+Good covariate choices usually come from the research design, not from searching for the model that gives the nicest result.
+
+::: {.callout-note appearance="simple"}
+# Important question
+
+Why is this variable in the model?
+
+A covariate should have a clear function. If we cannot explain why it is included, it probably does not belong in the analysis plan yet.
+:::
+
+## Poor covariate choices
+
+| Poor strategy | Why it is risky | Better alternative |
+|---|---|---|
+| Include everything available | The model may become unstable or hard to interpret | Select variables based on literature, theory and design |
+| Include only significant variables | This turns model building into result hunting | Decide key covariates before looking at results |
+| Add or remove variables until the result looks good | This can produce misleading conclusions | Report a planned main model and simple robustness checks |
+| Control for variables that are consequences of the exposure | This may remove part of the effect or change the question | Think carefully about the causal or conceptual order |
+| Use covariates without understanding them | Administrative variables may not mean what we think | Check codebooks and definitions |
+
+::: {.callout-warning appearance="simple"}
+# A covariate can change the question
+
+For example:
+
+- Crude question: Do children from different wealth groups differ in school performance?
+- Adjusted question: Do children from different wealth groups differ in school performance, among children with similar age, district and school attendance?
+
+Both questions can be useful, but they are not the same question.
+:::
+
+## A practical model map
+
+| Research situation | Start simple | Model option |
+|---|---|---|
+| Mean score differs by group | group means + CI | linear regression, t-test, ANOVA |
+| Yes/no outcome differs by group | percentages, tables | logistic regression |
+| Association between two continuous variables | scatterplot, correlation | linear regression |
+| Several groups, categorical outcome | cross-tab | multinomial model |
+| Outcome over years | line plot | simple trend model |
+| Measurement A vs measurement B | scatterplot + error | agreement/calibration |
+
+::: {.callout-tip appearance="simple"}
+Start with the simplest analysis that directly answers the comparison.
+:::
+
+## Diagnostics: what can go wrong?
+
+Diagnostics are not only technical.
+
+They answer practical questions:
+
+- Do we have enough observations?
+- Are groups large enough?
+- Are there many missing values?
+- Are there extreme values?
+- Is the model dominated by one subgroup?
+- Are assumptions roughly plausible?
+- Does the output make substantive sense?
+
+## Model-specific checks
+
+| Method | Simple checks |
+|---|---|
+| group comparison | group sizes and variances, missing values, outliers |
+| linear regression | residuals, influential cases, linearity, normality of errors |
+| logistic regression | events per variable, separation, predicted probabilities |
+| chi-square test | expected cell counts |
+| time trend | plot over time, influential years, definition changes |
+| prediction model | train/test split or cross-validation when possible |
+
+::: {.callout-warning appearance="simple"}
+Do not report a model you cannot explain to someone else!.
+:::
+
+## Interpretation before p-values
+
+Statistical output is not yet an answer. Ask yourselves:
+
+1. What was compared?
+2. What is the direction of the result?
+3. How large is the difference or association?
+4. How uncertain is it?
+5. Is the result meaningful in context?
+6. Is the claim not too strong?
+
+::: {.callout-tip appearance="simple"}
+# A good result flow
+Estimate → uncertainty → interpretation → limitation.
+:::
+
+## From method to table or figure
+
+The table or figure should make the comparison visible.
+
+| Question | Useful display |
+|---|---|
+| How common is X? | bar chart, frequency table |
+| Do groups differ? | grouped bar chart, dot plot with intervals |
+| Is X related to Y? | scatterplot, coefficient plot |
+| Is there a trend? | line plot |
+| Does a model predict well? | observed vs predicted, error plot |
+| Do measures agree? | agreement plot, residual/error plot |
+
+## Now the second layer: robustness
+A conclusion is more credible when it does not disappear under reasonable alternative choices.
+
+Robustness is not about proving we are right. It is about asking:
+
+> How fragile is my answer?
+
+If a reasonable alternative choice changes the answer, we need to report that fragility.
+
+## Uncertainty is broader than p-values
+
+Uncertainty can enter through:
+
+- sampling
+- measurement
+- missing data
+- coding and cleaning decisions
+- model choice
+- covariate choice
+- time period choice
+- subgroup definitions
+- external validity
+
+::: {.callout-warning appearance="simple"}
+Remember: A narrow confidence interval around the wrong target is still wrong!
+:::
+
+## Assumptions connect analysis to claim
+
+| Assumption | Why it matters |
+|---|---|
+| representative sample | can we generalize? |
+| valid measurement | are variables measuring the intended concepts? |
+| no major omitted confounders | is the comparison fair? |
+| stable definitions | can periods or groups be compared? |
+| sufficient sample size | is the result too noisy? |
+| missingness not too harmful | are observed cases informative? |
+| model form adequate | does the model capture the comparison? |
+
+## Threats to validity
+
+Common threats in applied projects:
+
+- selection bias
+- confounding
+- reverse causality
+- nonresponse
+- measurement error
+- changing definitions over time
+- small subgroups
+- outliers
+- inaccessible raw data
+- hidden populations
+
+::: {.callout-tip appearance="simple"}
+# Good practice
+Identify and discuss the threat before your colleague, supervisor or any other reader does!
+:::
+
+## A menu of easy robustness checks
+
+| Concern | Easy check |
+|---|---|
+| coding choice | try an alternative coding |
+| questionable variable | run with and without it |
+| outliers | compare with and without extreme cases, give outliers less weight |
+| missing data | compare complete cases with broader sample, change the imputations if you suspect a direction |
+| survey weights | compare weighted and unweighted results |
+| subgroup dominance | repeat/stratified analysis by subgroup |
+| model complexity | compare complex model with simple model |
+| time aggregation | inspect results by year and compare to the overall measure|
+
+## Example 1: comparing groups over years
+
+Suppose we compare average income between two groups over 2018–2024.
+
+A weak check:
+
+> Group A has a higher average than Group B over all years combined.
+
+A better robustness check:
+
+> Does Group A have a higher average in each separate year?
+
+::: {.callout-tip appearance="simple"}
+# Practical check
+Make one table with group means per year, or one line plot per group.
+:::
+
+## Example 1: what could happen?
+
+| Pattern | Interpretation |
+|---|---|
+| difference appears in every year | more robust descriptive pattern |
+| difference appears only in one year | result may be driven by that year |
+| difference changes direction | average hides instability |
+| one year has very small N | result may be unreliable |
+| definitions changed in one year | trend may not be comparable |
+
+::: {.callout-warning appearance="simple"}
+Pooling years can make a pattern look stable even when it is not.
+:::
+
+## Example 2: binary outcome
+
+Research question:
+
+> Is hypertension more common among workers with a certain lifestyle factor?
+
+Primary analysis:
+
+- percentage hypertensive by lifestyle group
+- logistic regression adjusted for age and sex
+
+Robustness checks:
+
+- compare crude and adjusted results
+- add ethnicity or occupation if justified
+- inspect results by age group
+- check whether small groups drive the result
+
+## Example 3: missing values
+
+Suppose a key covariate has many missing values.
+
+Possible checks:
+
+- compare complete cases with the full available sample
+- compare people with and without missingness on observed variables
+- run a simpler model without the covariate
+- report how much the sample size changes
+
+::: {.callout-note appearance="simple"}
+# Missing data questions
+1. Who disappears from the analysis when we require complete data?
+
+2. Do the results change when different samples/models are used?
+:::
+
+## Responsible conclusion language
+
+| Too strong | More responsible |
+|---|---|
+| X causes Y | X is associated with Y |
+| The population is... | In the observed sample... |
+| This proves... | This suggests... |
+| No effect was found | The data do not show clear evidence of... |
+| We controlled for everything | We adjusted for observed background variables |
+| The model predicts accurately | The model predicted reasonably in this dataset |
+
+## The combined workflow
+
+```{mermaid}
+%%| echo: false
+flowchart TB
+  A[Research question] --> B[Comparison]
+  B --> C[Outcome type]
+  C --> D[Primary method]
+  D --> E[Diagnostics]
+  E --> F[Preliminary claim]
+  F --> G[Robustness check]
+  G --> H[Responsible interpretation]
+```
+
+::: {.callout-tip appearance="simple"}
+The goal is not the most impressive model. The goal is the most defensible answer.
+:::

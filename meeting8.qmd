@@ -16,13 +16,9 @@ format:
 ---
 
 ::: callout-tip
-## Hoorcollege 26 juni 2026
+## Presentaties 26 juni 2026
 
-We beginnen vandaag met `R` en `RStudio`. We zullen leren om deze software efficient te gebruiken en we gaan werken in projecten. Dit is belangrijk omdat een gestructureerde werkomgeving het mogelijk maakt om met anderen samen te werken aan hetzelfde project. We beginnen vandaag ook meteen met `storytelling` en zullen daar het publicatieplatform [`Quarto`]() voor gebruiken. De slides voor het hoorcollege kunt u [hier vinden](slides/lec-1.html).
+Vandaag zullen we de presentaties van de onderzoeksontwerpen van de studenten zien. De presentaties zijn een belangrijk onderdeel van het leerproces, omdat ze studenten in staat stellen om hun onderzoeksbevindingen te communiceren en feedback te ontvangen van hun medestudenten en docenten.
 :::
 
-## Groepsopdracht
-hier de groepsopdracht tekst
 
-## Individuele opdracht
-hier de individuele opdracht tekst

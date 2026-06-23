@@ -23,7 +23,7 @@ Dit [Quarto](https://quarto.org) boek bevat het cursusmateriaal en de informatie
 | Week 2                 | Datum  | Locatie      |
 |------------------------|--------|------------------|
 | @sec-mt3               | 22 Juni  |  IGSR     |
-| @sec-mt5 <br> @sec-mt6  | 23 Juni  |  IGSR     |
+| @sec-mt5               | 23 Juni  |  IGSR     |
 | Geen Hoorcollege       | 24 Juni  |    -      |
 | @sec-mt7               | 25 Juni  |  IGSR     |
 | @sec-mt8               | 26 Juni  |  IGSR      |

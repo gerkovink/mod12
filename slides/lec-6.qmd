@@ -1,5 +1,6 @@
 ---
-title: "Placeholder Lecture 7"
+title: "Statistical Modelling as Disciplined Comparison"
+subtitle: "With assumptions, robustness and sensitivity checks"
 author: 
   - name: Gerko Vink
     orcid: 0000-0001-9767-1924

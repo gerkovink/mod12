@@ -63,7 +63,7 @@ Aan het einde van deze opdracht hebben we:
 - Informatie over de belangrijkste variabelen in het eigen databestand
 - Eventueel een codeboek, vragenlijst, metadata of datadocumentatie. Als je dat nog niet hebt, is het niet erg - dan moet je gewoon wat meer nadenken of gissen over de variabelen die je nodig hebt.
 - Een gedeeld document of eigen notities om de analyseplan-tabel in te vullen
-- De slides van het hoorcollege: [Lecture 5](slides/lec-5.html) zijn ook handig om bij de hand te houden. 
+- De slides van het hoorcollege: [Lecture 5](../slides/lec-5.html) zijn ook handig om bij de hand te houden. 
 
 # De opdracht
 
