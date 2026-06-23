@@ -176,7 +176,7 @@ The dataset does not decide the claim by itself. The design and assumptions do.
 | **Ordinal** | low/middle/high, Likert | ordered comparisons, ordinal models |
 | **Counts** | number of events | rates, count models |
 | **Time series** | yearly revenues | trends, change, cautious models |
-| **Measurement comparison** | ULS vs field inventory | agreement, calibration, prediction error |
+| **Measurement comparison** | Satellite/drone vs field observation | agreement, calibration, prediction error |
 
 ## Continuous outcomes
 
@@ -303,7 +303,7 @@ In that case, a simpler comparison, fewer categories, or a more descriptive anal
 Some outcomes are **counts**: we count how often something happens.Examples:
 
 - number of visits to a clinic
-- number of flood events
+- number of flood eventss
 - number of incidents in an area
 - number of days absent from school
 
