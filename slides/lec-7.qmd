@@ -133,7 +133,7 @@ A report and a presentation use the same logic, but not the same density.
 - **The presentation** shows just the map of the route, with some pictures of the scenery here and there.
 :::
 
-## A 7-minute presentation needs a spine
+## A 7-minute presentation needs clear plan
 
 For the final presentation, use one clear storyline:
 
@@ -322,7 +322,7 @@ Core idea: Optimize the data to ink ratio
 - show variation and uncertainty where relevant
 
 ::: footer
-Tufte, E. R. (1983). *The Visual Display of Quantitative Information*. Graphics Press.
+[Tufte, E. R. (1983). *The Visual Display of Quantitative Information*. Graphics Press.](https://kyl.neocities.org/books/%5BTEC%20TUF%5D%20the%20visual%20display%20of%20quantitative%20information.pdf)
 :::
 
 ## Data <-> ink ratio
