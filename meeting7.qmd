@@ -21,7 +21,9 @@ format:
 Van resultaat tot argument. Hoe presenteer je je onderzoek?
 doel: leren dat onderzoek presenteren een keten moet zijn van coherente argumenten en niet van lsose secties of resultaten. dit geldt voor rapporten en artikelen, maar ook voor presentaties. 
 
+De slides voor het hoorcollege kun je [hier vinden](slides/lec-7.html).
+
 :::
 
 ## Groepsopdracht 
-Vandaag is er geen groepsopdracht. Gebruik de tijd om de losse eindjes aan elkaar te knopen en om je presentatie voor morgen voor te bereiden. 
+Vandaag is er geen groepsopdracht. Gebruik de tijd om vragen te stellen, de losse eindjes aan elkaar te knopen en om je presentatie voor morgen voor te bereiden. 

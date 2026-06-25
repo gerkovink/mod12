@@ -1,5 +1,6 @@
 ---
-title: "Placeholder Lecture 7"
+title: "Data Science Storytelling"
+subtitle: "Van analyseplan naar overtuigend onderzoeksrapport en presentatie"
 author: 
   - name: Gerko Vink
     orcid: 0000-0001-9767-1924
@@ -30,31 +31,484 @@ format:
     standalone: true
 ---
 
-## Disclaimer {.smaller}
+## Disclaimer
+
 I owe a debt of gratitude to many people as the thoughts and code in these slides are the process of years-long development cycles and discussions with my team, friends, colleagues and peers. When someone has contributed to the content of the slides, I have credited their authorship.
 
-Images are either directly linked, or generated with some AI tool. That said, there is no information in this presentation that exceeds legal use of copyright materials in academic settings, or that should not be part of the public domain. 
+Scientific references are in the footer. Opinions and figures are my own, AI-generated or directly linked.
 
-::: {.callout-warning}
-You **may use** any and all content in this presentation - including my name - and submit it as input to generative AI tools, with the following **exception**:
-
-- You must ensure that the content is not used for further training of the model
-:::
-
-## Slide materials and source code
 ::: callout-tip
 # Materials
-- lecture slides on Moodle
-- course page: [www.gerkovink.com/mod12](https://www.gerkovink.com/mod12)
+- website: [www.gerkovink.com/mod12](https://www.gerkovink.com/mod12)]
 - source: [github.com/gerkovink/mod12](https://github.com/gerkovink/mod12)
 :::
 
-## Recap
-
-Yesterday we learned
-
-
 ## Today
 
+::: {.callout-tip}
+# Small recap and look forward
+A good statistical answer is not only correct. It must also be understandable, traceable and appropriately cautious. 
 
-# Groepsopdracht
+And it must be presented in an engaging manner.
+:::
+
+Today we focus on:
+
+- data science storytelling
+- writing a clear research report
+- presenting a 7-minute analysis plan
+- writing paragraphs that flow
+- designing tables and figures
+- CRAP design principles
+- Tufte-inspired graphical discipline
+
+## Terms I may use
+
+- **Storytelling**: making the logic of the research visible
+- **Claim**: what the reader is allowed to conclude
+- **Evidence**: data, analysis and reasoning that support the claim
+- **Warrant**: why the evidence supports the claim
+- **Outline**: the planned structure of the argument
+- **Transition**: a sentence that connects one idea to the next
+- **Figure**: a visual argument, not decoration
+- **Data-ink ratio**: ink that displays information rather than decoration
+
+## Data science storytelling
+
+>Data science storytelling is the disciplined process of turning data, analysis and uncertainty into a responsible answer. 
+
+- it combines data, visuals, and narrative to communicate complex analytical insights. 
+- it bridges the gap between raw statistics and business action
+- it allows non-technical stakeholders to understand what the data and results mean, why it matters, and what decisions to make
+
+It is about making the ~~results more dramatic~~ reasoning more visible.
+
+## A result is not yet an answer
+
+A statistical output becomes an answer only when we know:
+
+1. what question it answers
+2. what data generated the output
+3. what comparison or model was used
+4. what assumptions are needed
+5. what the result means
+6. what the result does **not** mean
+
+The answer only becomes useful when it is communicated clearly and honestly.
+
+::: {.callout-tip appearance="simple"}
+# Tip
+Early career story-tellers (e.g. students) often present output. Experienced researchers present an argument.
+:::
+
+## The anatomy of a research story
+
+| Part | Function | Question for the reader |
+|---|---|---|
+| Problem | Establish relevance | Why should I care? |
+| Research question | Focus the project | What exactly is being asked? |
+| Literature | Position the question | What is already known? |
+| Data | Define the evidence | What can these data show? |
+| Method | Structure the comparison | How is the answer produced? |
+| Result | Present the finding | What did we observe or estimate? |
+| Discussion | Interpret responsibly | How strong is the answer? |
+| Conclusion | Close the loop | What should we take away? |
+
+## Report versus presentation
+
+A report and a presentation use the same logic, but not the same density.
+
+| Research report | Presentation |
+|---|---|
+| Complete argument | Selected argument |
+| Detailed evidence | Only key evidence |
+| Many references | Just a few visible anchors |
+| Full methods | Methods needed for trust |
+| Written for close reading | Designed for listening AND watching |
+| Can contain nuance everywhere | Needs one clear line or train of thought |
+
+::: {.callout-tip appearance="simple"}
+# Practical rule
+- **The report** contains the full diary of the journey that you have taken. 
+- **The presentation** shows just the map of the route, with some pictures of the scenery here and there.
+:::
+
+## A 7-minute presentation needs a spine
+
+For the final presentation, use one clear storyline:
+
+<center>
+**problem → question → literature → data → analysis plan → limitations → responsible next step**
+</center>
+
+<br><br>
+
+| Minute | Focus |
+|---:|---|
+| 0–1 | Problem and research question |
+| 1–2 | Literature and conceptueel model |
+| 2–3 | Data biography |
+| 3–5 | Analysis plan |
+| 5–6 | Data limitations and claim boundary |
+| 6–7 | Expected contribution and next step |
+
+## Before writing: make the outline
+
+I usually start with a simple rough outline:
+
+1. What problem do I address?
+2. What question follows from that problem?
+3. What literature helps define the question?
+4. What data can speak to the question?
+5. What comparison should the analysis make?
+6. What limitations should restrict the claim?
+7. What conclusion could be responsible?
+
+::: {.callout-note appearance="simple"}
+# Good writing starts before writing
+If the outline is unclear, the text will usually become unclear too.
+:::
+
+## Outline as the map for your story
+
+An outline should not only list sections.  
+It should show the logic between sections.
+
+| Section | Job in the argument |
+|---|---|
+| Introduction | Moves from broad problem to precise question |
+| Literature | Shows what concepts, mechanisms and variables matter |
+| Data | Shows what evidence is available and limited |
+| Methods | Shows the comparison that answers the question |
+| Results | Shows what the comparison produced |
+| Discussion | Shows how far the answer can travel |
+
+## First and last sentences
+
+A useful writing trick:
+
+1. Write the **first sentence** of every paragraph.
+2. Write the **last sentence** of every paragraph.
+3. Check whether the last sentence of paragraph *n* invites paragraph *n + 1*.
+
+::: {.callout-tip appearance="simple"}
+# Paragraph flow
+The first sentence opens a task.  
+The last sentence completes the task and prepares the next step.
+:::
+
+If you use this trick, you can write a first draft very quickly. Then you can fill in the paragraph content. 
+
+> The good thing is that you limit yourself to adding only relevant content - as other content would simply distract from the message
+
+> If a paragraph becomes too large, you can split it into multiple paragraphs, each with its own first and last sentence. In that case your preliminary outline was perhaps too coarse.
+
+## Example {.scrollable}
+
+**Example topic:** Extreme gradient boosting for multiple imputation  
+**Study type:** Computer simulation study
+
+| Introductieparagraaf | Eerste zin | Laatste zin |
+|---|---|---|
+| **1. Problem** | Missing data are common in applied statistical research and can distort statistical inference when they are handled inadequately. | This creates a need for imputation methods that are both flexible enough for complex data and reliable enough for valid statistical conclusions. |
+| **2. Research gap** | Machine learning methods, such as extreme gradient boosting, are increasingly attractive for imputation because they can capture nonlinearities and interactions. | However, strong predictive performance does not automatically imply valid inference after imputation. |
+| **3. Literature and positioning** | Existing work on multiple imputation emphasizes the importance of preserving uncertainty, distributional structure, and the relations needed for the substantive analysis. | This means that new imputation methods should be evaluated not only by prediction error, but also by their ability to support unbiased estimates, valid standard errors, and proper coverage. |
+| **4. Study aim** | In this paper, we evaluate an extreme-gradient-boosting-based imputation approach in a controlled computer simulation study. | The simulation is designed to examine when this approach improves upon standard imputation methods and when it may create misleading statistical inferences. |
+| **5. Responsible claim** | We do not aim to show that one method is universally best. | Instead, we aim to identify the data conditions under which the method is useful, risky, or in need of further refinement. |
+
+
+## What does a paragraph contain?
+
+A strong paragraph usually has just one job.
+
+| Paragraph part | Function |
+|---|---|
+| First sentence | Announces the idea |
+| Middle sentences | Explain, support, nuance |
+| Evidence | Literature, data, method or result that provides evidence |
+| Last sentence | Synthesis, new problem introduction and/or transition to next paragraph |
+
+::: {.callout-warning}
+# Take care of your readership
+A reader should never have to guess why the next paragraph is there.
+:::
+
+## From vague to precise writing
+
+| Vague writing | Stronger writing |
+|---|---|
+| This topic is important. | This topic is important because it affects policy decisions about drainage, housing and climate adaptation. |
+| The data are good. | The dataset is suitable because it contains household-level information on water nuisance, district and socioeconomic background. |
+| The model checks the relationship. | The model estimates whether water nuisance is associated with drainage access after accounting for district and household characteristics. |
+| The results prove that... | The results suggest that..., under the assumptions that... |
+
+## Writing the data paragraph
+
+A good data paragraph tells the reader what kind of evidence we have.
+
+It should include:
+
+- data source and owner
+- original purpose of collection
+- unit of observation and unit of analysis
+- target and observed population
+- time period and context
+- key variables
+- sampling, weights or design information
+- known limitations
+
+> Already indicate your data limitations in the data paragraph - not just in the limitations section. This already helps the reader understand the claim boundary.
+
+## Writing the methods paragraph
+
+A good methods paragraph explains the comparison.
+
+| Element | Example question |
+|---|---|
+| Outcome | What are we trying to describe, explain or predict? |
+| Main comparison | Which groups, predictors or measurements are compared? |
+| Covariates | What makes the comparison fairer? |
+| Model/test | Which method structures the comparison? |
+| Diagnostics | How do we check whether the method behaves reasonably? |
+| Robustness | What simple alternative analysis will we compare against? |
+
+## Writing the result paragraph
+
+Even before results are final, we can learn the structure:
+
+1. State the comparison.
+2. Present the main numerical result.
+3. Interpret it in plain language.
+4. Mention uncertainty.
+5. Connect back to the research question.
+
+::: {.callout-tip appearance="simple"}
+# Template
+We compared [groups/variables] with respect to [outcome]. The analysis showed [result]. In practical terms, this means [interpretation]. 
+
+When applicable:
+
+> This result should be interpreted with caution because [limitation].
+:::
+
+## Tables and figures are also writing
+
+A table or figure should answer a question.
+
+| Bad reason to include a figure | Good reason to include a figure |
+|---|---|
+| It looks nice | It shows the main comparison |
+| The software produced it | It supports the argument |
+| I need more slides | It reduces explanation burden |
+| It contains all output | It makes one message easier to see |
+
+::: {.callout-note appearance="simple"}
+# Figure title test
+Could the reader understand the message from the title, labels and caption?
+:::
+
+## Tufte-inspired graphics
+
+Edward Tufte argued that good graphics should show the data clearly and avoid visual noise.
+
+Core idea: Optimize the data to ink ratio
+
+- show the data
+- maximize useful information
+- remove chartjunk
+- use labels instead of unnecessary legends
+- make comparisons visible
+- avoid misleading scales
+- show variation and uncertainty where relevant
+
+::: footer
+Tufte, E. R. (1983). *The Visual Display of Quantitative Information*. Graphics Press.
+:::
+
+## Data <-> ink ratio
+![[source](https://www.thedataschool.co.uk/content/images/2023/06/Picture1-2.png)](https://www.thedataschool.co.uk/content/images/2023/06/Picture1-2.png)
+
+## Good questions to ask yourself
+
+| Question | Better design choice |
+|---|---|
+| Does this line, color, border or icon carry information? | Remove it if it does not. |
+| Is the comparison visually easy to see? | Align values on a common scale. |
+| Is the axis/margin honest? | Use a scale that does not exaggerate. |
+| Is the legend necessary? | Label directly if possible. |
+| Is the figure or table overloaded? | Split into panels or show less. |
+
+## Some examples
+![[source](https://preview.redd.it/and-the-line-connecting-the-points-across-the-x-axis-means-v0-d5ifyx4vob9h1.png?width=1080&crop=smart&auto=webp&s=04ea44e98613121e9ae1d2c7fef3b524f7d28786)](https://preview.redd.it/and-the-line-connecting-the-points-across-the-x-axis-means-v0-d5ifyx4vob9h1.png?width=1080&crop=smart&auto=webp&s=04ea44e98613121e9ae1d2c7fef3b524f7d28786)
+
+## Some examples
+![[source](https://preview.redd.it/eternal-december-2015-v0-h3w5x1qaot8h1.jpeg?width=1080&crop=smart&auto=webp&s=7d588e19d983e2938df037b9c5b156c0303fa5ea)](https://preview.redd.it/eternal-december-2015-v0-h3w5x1qaot8h1.jpeg?width=1080&crop=smart&auto=webp&s=7d588e19d983e2938df037b9c5b156c0303fa5ea)
+
+## Some examples
+![[source](https://preview.redd.it/current-heatwave-in-europe-v0-kxwks3vg2x8h1.png?auto=webp&s=5dfdfb1aa6f3977cec555c29a282fc61102c1cb2)](https://preview.redd.it/current-heatwave-in-europe-v0-kxwks3vg2x8h1.png?auto=webp&s=5dfdfb1aa6f3977cec555c29a282fc61102c1cb2)
+
+## Choosing a graphic
+
+| Research task | Useful graphic |
+|---|---|
+| Show a distribution | Histogram, density plot, boxplot |
+| Compare groups | Dot plot, boxplot, bar chart with uncertainty |
+| Show change over time | Line plot |
+| Show association between two continuous variables | Scatterplot |
+| Show model estimates | Coefficient plot |
+| Show agreement between measurements | Scatterplot against reference, Bland-Altman style plot |
+| Show missingness | Missingness pattern plot or variable-wise missingness table |
+
+## One figure, one message
+
+A good figure has a sentence behind it.
+
+| Figure message | Better title |
+|---|---|
+| The average differs between groups | Math scores are higher among pupils with stronger language proficiency |
+| A trend changes over time | Mining revenues increased after 2020, but yearly variation remains large |
+| A method agrees imperfectly | ULS estimates track field biomass but overestimate high-biomass plots |
+| Missingness is not random | Income is missing more often in high-wealth households |
+
+::: {.callout-tip appearance="simple"}
+# Practical rule
+Write the message or goal of the image first. Then build the figure. It will frame your visualization! 
+:::
+
+## CRAP design principles
+
+The CRAP principles help us make slides and documents easier to read.
+
+| Principle | Meaning | Practical use |
+|---|---|---|
+| **Contrast** | Important things should stand out | Use size, weight or color to guide attention |
+| **Repetition** | Similar things should look similar | Use consistent headings, colors and figure styles |
+| **Alignment** | Elements should visually connect | Align text, figures and tables to a grid |
+| **Proximity** | Related things should be close together | Put labels near what they explain |
+
+::: footer
+Williams, R. (2015). *The Non-Designer's Design Book*. Peachpit Press.
+:::
+
+## Example of C.R.A.P
+![[source](https://www.science.org/doi/10.1126/sciadv.adi2205)](img/lec-7/example.png)
+
+## Presenting uncertainty visually
+
+Uncertainty should be visible when it matters.
+
+| Situation | Useful display |
+|---|---|
+| Mean comparison | Mean with confidence interval |
+| Model estimate | Coefficient plot with interval |
+| Prediction | Prediction interval or uncertainty band |
+| Small sample | Show individual points where possible |
+| Sensitive result | Show main estimate and robustness check side by side |
+
+::: {.callout-warning appearance="simple"}
+# Be careful
+A clean figure can still be misleading if it hides uncertainty.
+:::
+
+## Clean, but misleading {.scrollable}
+
+A figure can look very convincing when it only shows group means.
+
+| Group | Mean math score |
+|---|---:|
+| Low language proficiency | 52 |
+| High language proficiency | 58 |
+
+```{r}
+#| echo: false
+#| fig-width: 7
+#| fig-height: 4
+
+group <- c("Low language\nproficiency", "High language\nproficiency")
+
+mean_score <- c(52, 58)
+
+barplot(
+
+  mean_score,
+
+  names.arg = group,
+
+  ylim = c(0, 70),
+
+  ylab = "Mean math score",
+
+  main = "Mean math score by language proficiency"
+
+)
+```
+
+## With uncertainty
+
+The same comparison becomes more honest when we show uncertainty.
+
+```{r}
+#| echo: false
+#| fig-width: 7
+#| fig-height: 4
+
+group <- c("Low language\nproficiency", "High language \nproficiency")
+mean_score <- c(52, 58)
+se <- c(4.5, 15.0)
+
+plot(
+  x = 1:2,
+  y = mean_score,
+  ylim = c(20, 90),
+  xaxt = "n",
+  xlab = "",
+  ylab = "Mean math score",
+  main = "Mean math score by language proficiency"
+)
+
+axis(1, at = 1:2, labels = group)
+
+arrows(
+  x0 = 1:2,
+  y0 = mean_score - 1.96 * se,
+  x1 = 1:2,
+  y1 = mean_score + 1.96 * se,
+  angle = 90,
+  code = 3,
+  length = 0.08
+)
+
+points(1:2, mean_score, pch = 19)
+```
+
+## Writing with AI
+
+AI can help with writing, but it cannot take responsibility.
+
+Useful AI tasks:
+
+- improve transitions
+- check whether an argument flows
+- simplify technical language
+- generate alternative titles
+- find unclear claims
+- turn bullet points into paragraphs.
+
+Not acceptable without checking:
+
+- invented references
+- unsupported claims
+- copied interpretation
+- unchecked statistical explanation
+
+## AI transparency
+
+A short AI note can be enough:
+
+::: {.callout-note appearance="simple"}
+AI was used to improve the clarity and structure of selected draft paragraphs. All substantive claims, statistical interpretations, references and conclusions were checked by the author against the original sources, data and analysis output.
+:::
+
+The question is not: *Did AI help?*  
+The question is: *Can you still take responsibility for the final text?*
+

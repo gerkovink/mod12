@@ -29,7 +29,7 @@ Vandaag kijken we naar onzekerheid, aannames en robuustheid. Ieder statistisch a
 
 Ook besteden we aandacht aan verantwoord taalgebruik bij conclusies. Een goed statistisch antwoord zegt niet alleen wat de resultaten laten zien, maar ook onder welke aannames die resultaten betekenisvol zijn.
 
-De slides voor het hoorcollege kunt je [hier vinden](slides/lec-6.html).
+De slides voor het hoorcollege kun je [hier vinden](slides/lec-6.html).
 
 :::
 
