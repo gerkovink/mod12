@@ -42,8 +42,8 @@ Het rapport bevat ten minste de volgende onderdelen:
 *Een beschrijving van het maatschappelijke, beleidsmatige of wetenschappelijke probleem dat centraal staat. De student legt uit waarom het onderwerp relevant is en voor wie het onderzoek van belang is.*
   3. Onderzoeksvraag en doelstelling: <br>
 *Een heldere formulering van de centrale onderzoeksvraag en eventuele deelvragen. De vraag moet onderzoekbaar zijn met de beschikbare data en moet aansluiten bij het gekozen thema.*
-  4. Literatuur en theoretisch kader: <br>
-*Een beknopte bespreking van relevante literatuur, theorieën, eerdere onderzoeken en/of beleidsdocumenten. De student laat zien hoe bestaande kennis helpt om de onderzoeksvraag, variabelen, verwachtingen en analysekeuzes te onderbouwen.*
+  4. Literatuur, theoretisch kader en conceptueel model: <br>
+*Een beknopte bespreking van relevante literatuur, theorieën, eerdere onderzoeken en/of beleidsdocumenten. De student laat zien hoe bestaande kennis helpt om de onderzoeksvraag, variabelen, verwachtingen en analysekeuzes te onderbouwen. Waar passend wordt een conceptueel model opgenomen dat de verwachte relaties tussen de belangrijkste begrippen, variabelen en achtergrondkenmerken weergeeft. Dit model maakt duidelijk welke uitkomst centraal staat, welke verklarende variabelen of vergelijkingen belangrijk zijn, en welke mogelijke confounders of contextfactoren relevant zijn.*
   5. Data en datakwaliteit: <br>
 *Een beschrijving van het gebruikte databestand of de gebruikte databestanden. Hierbij wordt aandacht besteed aan de herkomst van de data, de populatie, de steekproef of selectie, de meetinstrumenten, de belangrijkste variabelen, ontbrekende waarden, eventuele wegingen, beperkingen en andere aspecten van datakwaliteit.*
   6. Methode en analyseplan: <br> 
